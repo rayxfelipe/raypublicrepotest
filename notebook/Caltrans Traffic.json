@@ -1,0 +1,81 @@
+{
+	"name": "Caltrans Traffic",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "f1f04b08-c458-4bc7-933f-c8b8a1c27ff8"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					}
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/CalTrans_Datasets/traffic.csv', format='csv'\r\n",
+					"## If header exists uncomment line below\r\n",
+					"##, header=True\r\n",
+					")\r\n",
+					"display(df.limit(5))\r\n",
+					"\r\n",
+					"print(df.show())\r\n",
+					"print(df.printSchema())\r\n",
+					"df.select(\"_c2\").show()\r\n",
+					"df.filter(df[2] == \"10\").show()\r\n",
+					"df.groupBy(\"_c2\").count().show()\r\n",
+					"print(df[3])\r\n",
+					"\r\n",
+					"import pandas as pd\r\n",
+					"\r\n",
+					"from pandas import read_csv\r\n",
+					"from pandas import set_option\r\n",
+					"\r\n",
+					"# CAL TRANS DATA SET\r\n",
+					"path = 'abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/CalTrans_Datasets/traffic.csv'\r\n",
+					"headernames = ['DateTime', 'Junction', 'Vehicles', 'ID']\r\n",
+					"data = read_csv(path, names=headernames)\r\n",
+					"set_option('display.width', 100)\r\n",
+					"set_option('precision', 2)\r\n",
+					"\r\n",
+					"print(data.head(10))\r\n",
+					"print(data.shape)\r\n",
+					"print(data.describe())\r\n",
+					"\r\n",
+					"#correlations = data.corr(method='pearson')\r\n",
+					"#print(\"CORRELATIONS:\")\r\n",
+					"#print(correlations)"
+				]
+			}
+		]
+	}
+}

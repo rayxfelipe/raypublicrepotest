@@ -1,0 +1,17 @@
+{
+	"name": "Create Views Complete",
+	"properties": {
+		"content": {
+			"query": "--CREATE VIEW [dbo].[County_Cardio_Disease] AS\nSELECT [California County] as County, \n--, [ZIP]\n--, [Nearby City (to help approximate location only)]\nSUM(cast([Cardiovascular Disease] as FLOAT)) as [Cardio Disease]\n--, [Cardiovascular Disease Pctl]\nFROM [dbo].[calenviroscreen]\n--where [California County] = 'Ventura'\ngroup by [California County]\n--order by [Cardio Disease] desc\n\n--CREATE VIEW [dbo].[County_Covid_Deaths] AS\nSELECT\n--[date]\n[area] as County, cast([cumulative_deaths] as FLOAT) as [Covid Deaths]\n--[cumulative_deaths]\n FROM [dbo].[Covid19CasesTest]\n where area_type != 'State' and date = '' \n --and area = 'Los Angeles' \n\n\nselect c.County, c.[Cardio Disease], \n--cast(d.[Covid Deaths] as numeric)\n--convert(decimal(18,2),[Covid Deaths])\n--d.[Covid Deaths] as numeric\n--isNumeric(d.[Covid Deaths])\nd.[Covid Deaths]\nfrom dbo.County_Cardio_Disease c, dbo.County_Covid_Deaths d\nwhere c.County = d.County\norder by d.[Covid Deaths] desc\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

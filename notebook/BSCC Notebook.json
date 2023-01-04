@@ -1,0 +1,70 @@
+{
+	"name": "BSCC Notebook",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "bce5f04a-eabe-4e94-8107-5bc64e96ee2a"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"from pyspark.sql import SparkSession\r\n",
+					"from pyspark.sql.types import *\r\n",
+					"from pyspark.sql.functions import col, year, month, dayofmonth, unix_timestamp, round, when\r\n",
+					"from datetime import datetime\r\n",
+					"\r\n",
+					"# Replace your storage location\r\n",
+					"covid19casesdemographicsdf = spark.read.load('abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/bscc_datasets/covid19casesdemographics.csv', \r\n",
+					"format='csv', header=True)\r\n",
+					"\r\n",
+					"#covid19casesdemographicsdf = spark.read.load('abfss://bsccdemodlgen2filesystem@bsccdemodlgen2acct.dfs.core.windows.net/bscc_dataset/covid19casesdemographics.csv', \r\n",
+					"#format='csv', header=True)\r\n",
+					"\r\n",
+					"covid19casesdemographicsdf = covid19casesdemographicsdf.where(col('deaths') > 0)\r\n",
+					"covid19casesdemographicsdf = covid19casesdemographicsdf.where(col('demographic_category') == 'Gender')\r\n",
+					"\r\n",
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS bcc_data_lake\")\r\n",
+					"covid19casesdemographicsdf.repartition(4).write.mode(\"overwrite\").saveAsTable(\"bcc_data_lake.covid_bygender\")\r\n",
+					"\r\n",
+					"print(\"Extracted & cleaned data\")\r\n",
+					"\r\n",
+					"#covid19casesdemographicsdf = covid19casesdemographicsdf.select(col(\"demographic_category\"))\r\n",
+					"\r\n",
+					"display(covid19casesdemographicsdf.limit(1000))\r\n",
+					"\r\n",
+					"#covid19casesdemographicsdf.printSchema()\r\n",
+					"\r\n",
+					""
+				]
+			}
+		]
+	}
+}

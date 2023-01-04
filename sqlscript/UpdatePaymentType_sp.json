@@ -1,0 +1,17 @@
+{
+	"name": "UpdatePaymentType_sp",
+	"properties": {
+		"content": {
+			"query": "CREATE PROC [dbo].[UpdatePaymentType]\nAS\nBEGIN\nUPDATE [dbo].[greentaxi]\nSET PaymentType = 2\nEND",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
