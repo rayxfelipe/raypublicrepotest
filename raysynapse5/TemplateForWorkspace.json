@@ -1,0 +1,580 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"type": "string",
+			"metadata": "Workspace name",
+			"defaultValue": "raysynapse5"
+		},
+		"DataLake2_DemoRG_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DataLake2_DemoRG'"
+		},
+		"rayfelipesynapseworkspace-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'rayfelipesynapseworkspace-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:rayfelipesynapseworkspace.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"raysynapse5-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'raysynapse5-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:raysynapse5.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"DataLake2_DemoRG_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakaeacctindemorg.dfs.core.windows.net/"
+		},
+		"rayfelipesynapseworkspace-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rayfelipedlgen2account.dfs.core.windows.net"
+		},
+		"raysynapse5-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raystore5.dfs.core.windows.net"
+		}
+	},
+	"variables": {
+		"workspaceId": "[concat('Microsoft.Synapse/workspaces/', parameters('workspaceName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('workspaceName'), '/DataLake2_DemoRG')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('DataLake2_DemoRG_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('DataLake2_DemoRG_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/rayfelipesynapseworkspace-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('rayfelipesynapseworkspace-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/rayfelipesynapseworkspace-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('rayfelipesynapseworkspace-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/raysynapse5-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('raysynapse5-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/raysynapse5-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('raysynapse5-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AutoResolveIntegrationRuntime')]",
+			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "AutoResolve",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 0
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/WorkspaceSystemIdentity')]",
+			"type": "Microsoft.Synapse/workspaces/credentials",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Create Views Clean')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "--CREATE VIEW [dbo].[County_Cardio_Disease] AS\nSELECT [California County] as County, \nSUM(cast([Cardiovascular Disease] as FLOAT)) as [Cardio Disease]\nFROM [dbo].[calenviroscreen]\ngroup by [California County]\n\n--CREATE VIEW [dbo].[County_Covid_Deaths] AS\nSELECT\n[area] as County, cast([cumulative_deaths] as FLOAT) as [Covid Deaths]\n FROM [dbo].[Covid19CasesTest]\n where area_type != 'State' and date = '' \n\nSELECT c.County, c.[Cardio Disease], \nd.[Covid Deaths]\nfrom dbo.County_Cardio_Disease c, dbo.County_Covid_Deaths d\nwhere c.County = d.County\norder by d.[Covid Deaths] desc\n\n\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Create Views Complete')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "--CREATE VIEW [dbo].[County_Cardio_Disease] AS\nSELECT [California County] as County, \n--, [ZIP]\n--, [Nearby City (to help approximate location only)]\nSUM(cast([Cardiovascular Disease] as FLOAT)) as [Cardio Disease]\n--, [Cardiovascular Disease Pctl]\nFROM [dbo].[calenviroscreen]\n--where [California County] = 'Ventura'\ngroup by [California County]\n--order by [Cardio Disease] desc\n\n--CREATE VIEW [dbo].[County_Covid_Deaths] AS\nSELECT\n--[date]\n[area] as County, cast([cumulative_deaths] as FLOAT) as [Covid Deaths]\n--[cumulative_deaths]\n FROM [dbo].[Covid19CasesTest]\n where area_type != 'State' and date = '' \n --and area = 'Los Angeles' \n\n\nselect c.County, c.[Cardio Disease], \n--cast(d.[Covid Deaths] as numeric)\n--convert(decimal(18,2),[Covid Deaths])\n--d.[Covid Deaths] as numeric\n--isNumeric(d.[Covid Deaths])\nd.[Covid Deaths]\nfrom dbo.County_Cardio_Disease c, dbo.County_Covid_Deaths d\nwhere c.County = d.County\norder by d.[Covid Deaths] desc\n\n\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/GithubTest')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://datalakaeacctindemorg.dfs.core.windows.net/bscccontainer/CDFW_Facilities.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0'\n    ) AS [result]\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Join Cardio Disease and Deaths')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "CREATE VIEW [dbo].[County_Cardio_Disease] AS\nSELECT [California County] as County, \nSUM(cast([Cardiovascular Disease] as FLOAT)) as [Cardio Disease]\nFROM [dbo].[calenviro]\ngroup by [California County]\n\n\nCREATE VIEW [dbo].[County_Covid_Deaths] AS\nSELECT\n[area] as County, cast([cumulative_deaths] as FLOAT) as [Covid Deaths]\n FROM [dbo].[covid_testcases]\n where area_type != 'State' and date IS NULL\n\n\nselect c.County, c.[Cardio Disease], \nd.[Covid Deaths]\nfrom dbo.County_Cardio_Disease c, dbo.County_Covid_Deaths d\nwhere c.County = d.County\norder by d.[Covid Deaths] desc\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/UpdatePaymentType_sp')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "CREATE PROC [dbo].[UpdatePaymentType]\nAS\nBEGIN\nUPDATE [dbo].[greentaxi]\nSET PaymentType = 2\nEND",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/update_covid_gender_unknown_sp')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "CREATE PROC [dbo].[update_covid_gender_unknown_sp]\nAS\nBEGIN\nUPDATE [dbo].[bscc_covid_bygender]\nSET demographic_value = 'Unknown'\nWHERE demographic_value = 'Total'\nEND",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/BSCC Notebook')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "bce5f04a-eabe-4e94-8107-5bc64e96ee2a"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "python"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"source": [
+							"from pyspark.sql import SparkSession\r\n",
+							"from pyspark.sql.types import *\r\n",
+							"from pyspark.sql.functions import col, year, month, dayofmonth, unix_timestamp, round, when\r\n",
+							"from datetime import datetime\r\n",
+							"\r\n",
+							"# Replace your storage location\r\n",
+							"covid19casesdemographicsdf = spark.read.load('abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/bscc_datasets/covid19casesdemographics.csv', \r\n",
+							"format='csv', header=True)\r\n",
+							"\r\n",
+							"#covid19casesdemographicsdf = spark.read.load('abfss://bsccdemodlgen2filesystem@bsccdemodlgen2acct.dfs.core.windows.net/bscc_dataset/covid19casesdemographics.csv', \r\n",
+							"#format='csv', header=True)\r\n",
+							"\r\n",
+							"covid19casesdemographicsdf = covid19casesdemographicsdf.where(col('deaths') > 0)\r\n",
+							"covid19casesdemographicsdf = covid19casesdemographicsdf.where(col('demographic_category') == 'Gender')\r\n",
+							"\r\n",
+							"spark.sql(\"CREATE DATABASE IF NOT EXISTS bcc_data_lake\")\r\n",
+							"covid19casesdemographicsdf.repartition(4).write.mode(\"overwrite\").saveAsTable(\"bcc_data_lake.covid_bygender\")\r\n",
+							"\r\n",
+							"print(\"Extracted & cleaned data\")\r\n",
+							"\r\n",
+							"#covid19casesdemographicsdf = covid19casesdemographicsdf.select(col(\"demographic_category\"))\r\n",
+							"\r\n",
+							"display(covid19casesdemographicsdf.limit(1000))\r\n",
+							"\r\n",
+							"#covid19casesdemographicsdf.printSchema()\r\n",
+							"\r\n",
+							""
+						],
+						"outputs": []
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Caltrans Traffic')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "f1f04b08-c458-4bc7-933f-c8b8a1c27ff8"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "python"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "python"
+							}
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"df = spark.read.load('abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/CalTrans_Datasets/traffic.csv', format='csv'\r\n",
+							"## If header exists uncomment line below\r\n",
+							"##, header=True\r\n",
+							")\r\n",
+							"display(df.limit(5))\r\n",
+							"\r\n",
+							"print(df.show())\r\n",
+							"print(df.printSchema())\r\n",
+							"df.select(\"_c2\").show()\r\n",
+							"df.filter(df[2] == \"10\").show()\r\n",
+							"df.groupBy(\"_c2\").count().show()\r\n",
+							"print(df[3])\r\n",
+							"\r\n",
+							"import pandas as pd\r\n",
+							"\r\n",
+							"from pandas import read_csv\r\n",
+							"from pandas import set_option\r\n",
+							"\r\n",
+							"# CAL TRANS DATA SET\r\n",
+							"path = 'abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/CalTrans_Datasets/traffic.csv'\r\n",
+							"headernames = ['DateTime', 'Junction', 'Vehicles', 'ID']\r\n",
+							"data = read_csv(path, names=headernames)\r\n",
+							"set_option('display.width', 100)\r\n",
+							"set_option('precision', 2)\r\n",
+							"\r\n",
+							"print(data.head(10))\r\n",
+							"print(data.shape)\r\n",
+							"print(data.describe())\r\n",
+							"\r\n",
+							"#correlations = data.corr(method='pearson')\r\n",
+							"#print(\"CORRELATIONS:\")\r\n",
+							"#print(correlations)"
+						],
+						"outputs": []
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Index Matching Example')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "d2d53cc1-6239-484c-8fed-ea3660513f3d"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "python"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"source": [
+							"listA = ['Mon','Tue', 'Wed', 'Thu', 'Fri']\r\n",
+							"listB = ['Tue', 'Fri']\r\n",
+							"# Given lists\r\n",
+							"print(\"The given list:\\n \",listA)\r\n",
+							"print(\"The list of values:\\n \",listB)\r\n",
+							"# using indices\r\n",
+							"res = [listA.index(i) for i in listB]\r\n",
+							"# Result\r\n",
+							"print(\"The Match indices list is : \",res)\r\n",
+							""
+						],
+						"outputs": []
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Matplotlib Example')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "9a2362cd-8601-431f-9031-b0265c1e88db"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "python"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"source": [
+							"import matplotlib.pyplot as plt\r\n",
+							"\r\n",
+							"x1 = [1, 3, 4, 5, 6, 7, 9]\r\n",
+							"y1 = [4, 7, 2, 4, 7, 8, 3]\r\n",
+							"\r\n",
+							"x2 = [2, 4, 6, 8, 10]\r\n",
+							"y2 = [5, 6, 2, 6, 2]\r\n",
+							"\r\n",
+							"plt.bar(x1, y1, label=\"Blue Bar\", color='b')\r\n",
+							"plt.bar(x2, y2, label=\"Green Bar\", color='g')\r\n",
+							"plt.plot()\r\n",
+							"\r\n",
+							"plt.xlabel(\"bar number\")\r\n",
+							"plt.ylabel(\"bar height\")\r\n",
+							"plt.title(\"Bar Chart Example\")\r\n",
+							"plt.legend()\r\n",
+							"plt.show()"
+						],
+						"outputs": []
+					}
+				]
+			},
+			"dependsOn": []
+		}
+	]
+}
