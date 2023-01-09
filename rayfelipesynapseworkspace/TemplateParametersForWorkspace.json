@@ -14,6 +14,12 @@
 		"raysynapse5-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:raysynapse5.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
+		"DLStorageSri_accountKey": {
+			"value": ""
+		},
+		"DataLakeGen2Sri_accountKey": {
+			"value": ""
+		},
 		"DataLake2_DemoRG_properties_typeProperties_url": {
 			"value": "https://datalakaeacctindemorg.dfs.core.windows.net/"
 		},
@@ -22,6 +28,12 @@
 		},
 		"raysynapse5-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://raystore5.dfs.core.windows.net"
+		},
+		"DLStorageSri_properties_typeProperties_url": {
+			"value": "https://datalakemxiar8l.dfs.core.windows.net/"
+		},
+		"DataLakeGen2Sri_properties_typeProperties_url": {
+			"value": "https://datalakemxiar8l.dfs.core.windows.net/"
 		}
 	}
 }
