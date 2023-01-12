@@ -757,6 +757,38 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Notebook1",
+						"type": "SynapseNotebook",
+						"dependsOn": [
+							{
+								"activity": "CalEnvironScreenCopyActivity",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebook": {
+								"referenceName": "Notebook 1",
+								"type": "NotebookReference"
+							},
+							"snapshot": true,
+							"sparkPool": {
+								"referenceName": "SynapseDemoSprk",
+								"type": "BigDataPoolReference"
+							},
+							"conf": {}
+						}
 					}
 				],
 				"policy": {
@@ -767,7 +799,9 @@
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/SourceDataset_ylf')]",
-				"[concat(variables('workspaceId'), '/datasets/DestinationDataset_ylf')]"
+				"[concat(variables('workspaceId'), '/datasets/DestinationDataset_ylf')]",
+				"[concat(variables('workspaceId'), '/notebooks/Notebook 1')]",
+				"[concat(variables('workspaceId'), '/bigDataPools/SynapseDemoSprk')]"
 			]
 		},
 		{
@@ -1667,7 +1701,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "03cec81f-de9e-4ad2-8667-f75b67663b04"
+						"spark.autotune.trackingId": "e50877e2-9ec5-44f0-9f6b-e36384ab6f21"
 					}
 				},
 				"metadata": {
@@ -1734,7 +1768,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "141722ca-a17a-496e-9d90-9739d1864d33"
+						"spark.autotune.trackingId": "4556d22e-d47c-4f5c-88c4-503e67d79f60"
 					}
 				},
 				"metadata": {
