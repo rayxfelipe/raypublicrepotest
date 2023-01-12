@@ -713,7 +713,15 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"snapshot": true
+					"notebook": {
+						"referenceName": "Notebook 1",
+						"type": "NotebookReference"
+					},
+					"snapshot": true,
+					"sparkPool": {
+						"referenceName": "SynapseDemoSprk",
+						"type": "BigDataPoolReference"
+					}
 				}
 			}
 		],
