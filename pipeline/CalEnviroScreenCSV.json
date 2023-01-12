@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_ylf",
+				"name": "CalEnvironScreenCopyActivity",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
