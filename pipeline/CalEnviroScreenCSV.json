@@ -1,0 +1,699 @@
+{
+	"name": "CalEnviroScreenCSV",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_ylf",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "bscccontainer//calenviroscreen-3.0-results-june-2018-update.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.calenviroscreen-3"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"writeBehavior": "Insert",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Census Tract",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Census Tract",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Total Population",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Total Population",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "California County",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "California County",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZIP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZIP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Nearby City (to help approximate location only)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Nearby City (to help approximate location only)",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Longitude",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Longitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Latitude",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Latitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CES 3.0 Score",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CES 3.0 Score",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CES 3.0 Percentile",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CES 3.0 Percentile",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CES 3.0 Percentile Range",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CES 3.0 Percentile Range",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SB 535 Disadvantaged Community",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SB 535 Disadvantaged Community",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Ozone",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Ozone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Ozone Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Ozone Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PM2.5",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PM2.5",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PM2.5 Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PM2.5 Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Diesel PM",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Diesel PM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Diesel PM Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Diesel PM Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Drinking Water",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Drinking Water",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Drinking Water Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Drinking Water Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Pesticides",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pesticides",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Pesticides Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pesticides Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Tox. Release",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Tox. Release",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Tox. Release Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Tox. Release Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Traffic",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Traffic",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Traffic Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Traffic Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cleanup Sites",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cleanup Sites",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cleanup Sites Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cleanup Sites Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Groundwater Threats",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Groundwater Threats",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Groundwater Threats Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Groundwater Threats Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Haz. Waste",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Haz. Waste",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Haz. Waste Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Haz. Waste Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Imp. Water Bodies",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Imp. Water Bodies",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Imp. Water Bodies Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Imp. Water Bodies Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Solid Waste",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Solid Waste",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Solid Waste Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Solid Waste Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Pollution Burden",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pollution Burden",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Pollution Burden Score",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pollution Burden Score",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Pollution Burden Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pollution Burden Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Asthma",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Asthma",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Asthma Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Asthma Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Low Birth Weight",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Low Birth Weight",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Low Birth Weight Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Low Birth Weight Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cardiovascular Disease",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cardiovascular Disease",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Cardiovascular Disease Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cardiovascular Disease Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Education",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Education",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Education Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Education Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Linguistic Isolation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Linguistic Isolation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Linguistic Isolation Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Linguistic Isolation Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Poverty",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Poverty",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Poverty Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Poverty Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Unemployment",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Unemployment",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Unemployment Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Unemployment Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Housing Burden",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Housing Burden",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Housing Burden Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Housing Burden Pctl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Pop. Char. ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pop. Char. ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Pop. Char. Score",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pop. Char. Score",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Pop. Char. Pctl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Pop. Char. Pctl",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_ylf",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_ylf",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
