@@ -612,11 +612,14 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "0725c3f8-bd43-47e0-b251-329afa69d815"
+						"spark.autotune.trackingId": "d2d53cc1-6239-484c-8fed-ea3660513f3d"
 					}
 				},
 				"metadata": {
 					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
 					"enableDebugMode": false,
 					"kernelspec": {
 						"name": "synapse_pyspark",
@@ -630,7 +633,6 @@
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"listA = ['Mon','Tue', 'Wed', 'Thu', 'Fri']\r\n",
 							"listB = ['Tue', 'Fri']\r\n",
@@ -643,8 +645,7 @@
 							"print(\"The Match indices list is : \",res)\r\n",
 							""
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					}
 				]
 			},
@@ -732,7 +733,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "095be84e-2017-4893-9b65-6e3aa6947a24"
+						"spark.autotune.trackingId": "e50bca72-c50e-4fb0-af03-88832be6c988"
 					}
 				},
 				"metadata": {
@@ -752,7 +753,7 @@
 						"cell_type": "code",
 						"metadata": {},
 						"source": [
-							"test 555"
+							"test 55599"
 						],
 						"outputs": [],
 						"execution_count": null
