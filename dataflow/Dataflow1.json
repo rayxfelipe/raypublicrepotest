@@ -10,6 +10,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable1",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -24,11 +28,32 @@
 				"     tableName: 'passengercountstats') ~> source1",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     store: 'synapse',",
-				"     databaseType: 'spark',",
+				"     input(",
+				"          {City Key} as integer,",
+				"          {WWI City ID} as integer,",
+				"          City as string,",
+				"          {State Province} as string,",
+				"          Country as string,",
+				"          Continent as string,",
+				"          {Sales Territory} as string,",
+				"          Region as string,",
+				"          Subregion as string,",
+				"          Location as binary,",
+				"          {Latest Recorded Population} as long,",
+				"          {Valid From} as timestamp,",
+				"          {Valid To} as timestamp,",
+				"          {Lineage Key} as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
 				"     format: 'table',",
-				"     database: 'LakeDatabase1',",
-				"     tableName: '') ~> sink1"
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}
 	}
