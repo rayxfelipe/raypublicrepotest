@@ -2758,7 +2758,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "b11b76df-9095-4910-a32a-d1118e7801fd"
+						"spark.autotune.trackingId": "1a13c762-c56e-4b36-a02e-ea0cff1759f3"
 					}
 				},
 				"metadata": {
@@ -2783,8 +2783,7 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -2918,7 +2917,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "bb3b9679-1df3-4c6f-82e1-f43b90930e65"
+						"spark.autotune.trackingId": "52e26b54-cf27-4e65-b7c8-e4a79c822957"
 					}
 				},
 				"metadata": {
@@ -2926,7 +2925,7 @@
 					"enableDebugMode": false,
 					"kernelspec": {
 						"name": "synapse_pyspark",
-						"display_name": "python"
+						"display_name": "Synapse PySpark"
 					},
 					"language_info": {
 						"name": "python"
@@ -2972,7 +2971,7 @@
 							"plt.show()"
 						],
 						"outputs": [],
-						"execution_count": null
+						"execution_count": 1
 					}
 				]
 			},
