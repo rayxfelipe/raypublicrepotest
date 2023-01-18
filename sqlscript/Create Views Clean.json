@@ -1,6 +1,9 @@
 {
 	"name": "Create Views Clean",
 	"properties": {
+		"folder": {
+			"name": "Healthcare Data Scripts"
+		},
 		"content": {
 			"query": "--CREATE VIEW [dbo].[County_Cardio_Disease] AS\nSELECT [California County] as County, \nSUM(cast([Cardiovascular Disease] as FLOAT)) as [Cardio Disease]\nFROM [dbo].[calenviroscreen]\ngroup by [California County]\n\n--CREATE VIEW [dbo].[County_Covid_Deaths] AS\nSELECT\n[area] as County, cast([cumulative_deaths] as FLOAT) as [Covid Deaths]\n FROM [dbo].[Covid19CasesTest]\n where area_type != 'State' and date = '' \n\nSELECT c.County, c.[Cardio Disease], \nd.[Covid Deaths]\nfrom dbo.County_Cardio_Disease c, dbo.County_Covid_Deaths d\nwhere c.County = d.County\norder by d.[Covid Deaths] desc\n\n\n",
 			"metadata": {

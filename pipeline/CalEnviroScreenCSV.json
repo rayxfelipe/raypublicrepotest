@@ -713,15 +713,17 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebook": {
-						"referenceName": "Notebook 1",
-						"type": "NotebookReference"
-					},
 					"snapshot": true,
 					"sparkPool": {
 						"referenceName": "SynapseDemoSprk",
 						"type": "BigDataPoolReference"
-					}
+					},
+					"conf": {
+						"spark.dynamicAllocation.enabled": null,
+						"spark.dynamicAllocation.minExecutors": null,
+						"spark.dynamicAllocation.maxExecutors": null
+					},
+					"numExecutors": null
 				}
 			}
 		],

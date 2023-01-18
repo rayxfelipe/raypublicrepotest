@@ -1,6 +1,9 @@
 {
 	"name": "UpdatePaymentType_sp",
 	"properties": {
+		"folder": {
+			"name": "Healthcare Data Scripts"
+		},
 		"content": {
 			"query": "CREATE PROC [dbo].[UpdatePaymentType]\nAS\nBEGIN\nUPDATE [dbo].[greentaxi]\nSET PaymentType = 2\nEND",
 			"metadata": {
