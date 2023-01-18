@@ -18,7 +18,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "a3dfbd64-ab62-4013-af95-53d167bcb669"
+				"spark.autotune.trackingId": "3d87f927-06fe-4df3-9077-b40c2ee48a2a"
 			}
 		},
 		"metadata": {
@@ -54,11 +54,12 @@
 				"metadata": {
 					"microsoft": {
 						"language": "python"
-					}
+					},
+					"collapsed": false
 				},
 				"source": [
 					"%%pyspark\r\n",
-					"df = spark.read.load('abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/CalTrans_Datasets/traffic.csv', format='csv'\r\n",
+					"df = spark.read.load('abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Caltrans/traffic.csv', format='csv'\r\n",
 					"## If header exists uncomment line below\r\n",
 					"##, header=True\r\n",
 					")\r\n",
@@ -77,7 +78,7 @@
 					"from pandas import set_option\r\n",
 					"\r\n",
 					"# CAL TRANS DATA SET\r\n",
-					"path = 'abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/CalTrans_Datasets/traffic.csv'\r\n",
+					"path = 'abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Caltrans/traffic.csv'\r\n",
 					"headernames = ['DateTime', 'Junction', 'Vehicles', 'ID']\r\n",
 					"data = read_csv(path, names=headernames)\r\n",
 					"set_option('display.width', 100)\r\n",
@@ -91,7 +92,7 @@
 					"#print(\"CORRELATIONS:\")\r\n",
 					"#print(correlations)"
 				],
-				"execution_count": 1
+				"execution_count": 2
 			}
 		]
 	}
