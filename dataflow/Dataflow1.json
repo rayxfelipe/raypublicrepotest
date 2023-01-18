@@ -8,7 +8,11 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
@@ -17,7 +21,14 @@
 				"     databaseType: 'spark',",
 				"     format: 'table',",
 				"     database: 'nyctaxi',",
-				"     tableName: 'passengercountstats') ~> source1"
+				"     tableName: 'passengercountstats') ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     store: 'synapse',",
+				"     databaseType: 'spark',",
+				"     format: 'table',",
+				"     database: 'LakeDatabase1',",
+				"     tableName: '') ~> sink1"
 			]
 		}
 	}
