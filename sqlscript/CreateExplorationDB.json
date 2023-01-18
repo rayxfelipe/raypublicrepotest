@@ -1,5 +1,5 @@
 {
-	"name": "Create Exploration DB",
+	"name": "CreateExplorationDB",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts"
