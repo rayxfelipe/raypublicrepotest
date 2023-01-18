@@ -2,7 +2,7 @@
 	"name": "CreateExplorationDB",
 	"properties": {
 		"folder": {
-			"name": "Quickstarts/AnalyzeUsingServerless"
+			"name": "Quickstarts/1. AnalyzeUsingServerless"
 		},
 		"content": {
 			"query": "CREATE DATABASE DataExplorationDB \n                COLLATE Latin1_General_100_BIN2_UTF8",

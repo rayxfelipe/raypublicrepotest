@@ -2,7 +2,7 @@
 	"name": "CreateExternalDataSource",
 	"properties": {
 		"folder": {
-			"name": "Quickstarts/AnalyzeUsingServerless"
+			"name": "Quickstarts/1. AnalyzeUsingServerless"
 		},
 		"content": {
 			"query": "CREATE EXTERNAL DATA SOURCE rayfelipedlgen2account\nWITH ( LOCATION = 'https://rayfelipedlgen2account.dfs.core.windows.net')\n",
