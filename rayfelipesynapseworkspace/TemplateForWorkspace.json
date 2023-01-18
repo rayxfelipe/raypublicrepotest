@@ -2085,6 +2085,20 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/PowerBIWorkspace1')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "PowerBIWorkspace",
+				"typeProperties": {
+					"workspaceID": "fcf798ad-1b90-48bb-a5a9-75b0b9417ff5",
+					"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/rayfelipesynapseworkspace-WorkspaceDefaultSqlServer')]",
 			"type": "Microsoft.Synapse/workspaces/linkedServices",
 			"apiVersion": "2019-06-01-preview",
@@ -2504,7 +2518,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "480d87ec-2fb7-46fe-b718-aa970c95cd32"
+						"spark.autotune.trackingId": "2f803b37-f3ca-4f05-aebf-42c5e2e74349"
 					}
 				},
 				"metadata": {
@@ -2529,8 +2543,7 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -2667,11 +2680,14 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "f04a14df-8273-4929-a2c2-ca8934b09811"
+						"spark.autotune.trackingId": "bce5f04a-eabe-4e94-8107-5bc64e96ee2a"
 					}
 				},
 				"metadata": {
 					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
 					"enableDebugMode": false,
 					"kernelspec": {
 						"name": "synapse_pyspark",
@@ -2685,7 +2701,6 @@
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"from pyspark.sql import SparkSession\r\n",
 							"from pyspark.sql.types import *\r\n",
@@ -2715,8 +2730,7 @@
 							"\r\n",
 							""
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					}
 				]
 			},
@@ -2744,7 +2758,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "1120cf6d-3a15-4153-a46a-179e3e4520bb"
+						"spark.autotune.trackingId": "b11b76df-9095-4910-a32a-d1118e7801fd"
 					}
 				},
 				"metadata": {
@@ -2780,11 +2794,12 @@
 						"metadata": {
 							"microsoft": {
 								"language": "python"
-							}
+							},
+							"collapsed": false
 						},
 						"source": [
 							"%%pyspark\r\n",
-							"df = spark.read.load('abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/CalTrans_Datasets/traffic.csv', format='csv'\r\n",
+							"df = spark.read.load('abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Caltrans/traffic.csv', format='csv'\r\n",
 							"## If header exists uncomment line below\r\n",
 							"##, header=True\r\n",
 							")\r\n",
@@ -2803,7 +2818,7 @@
 							"from pandas import set_option\r\n",
 							"\r\n",
 							"# CAL TRANS DATA SET\r\n",
-							"path = 'abfss://bsccsandboxdlgen2filesystem@bsccsandboxdlgen2acct.dfs.core.windows.net/CalTrans_Datasets/traffic.csv'\r\n",
+							"path = 'abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Caltrans/traffic.csv'\r\n",
 							"headernames = ['DateTime', 'Junction', 'Vehicles', 'ID']\r\n",
 							"data = read_csv(path, names=headernames)\r\n",
 							"set_option('display.width', 100)\r\n",
@@ -2818,7 +2833,7 @@
 							"#print(correlations)"
 						],
 						"outputs": [],
-						"execution_count": 1
+						"execution_count": 2
 					}
 				]
 			},
@@ -2842,11 +2857,14 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "1e93458d-9329-44af-a41a-7e2c68a24700"
+						"spark.autotune.trackingId": "d2d53cc1-6239-484c-8fed-ea3660513f3d"
 					}
 				},
 				"metadata": {
 					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
 					"enableDebugMode": false,
 					"kernelspec": {
 						"name": "synapse_pyspark",
@@ -2860,7 +2878,6 @@
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"listA = ['Mon','Tue', 'Wed', 'Thu', 'Fri']\r\n",
 							"listB = ['Tue', 'Fri']\r\n",
@@ -2873,8 +2890,7 @@
 							"print(\"The Match indices list is : \",res)\r\n",
 							""
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					}
 				]
 			},
@@ -2902,7 +2918,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "4fd7d8b8-8796-4078-a498-91a71928ceef"
+						"spark.autotune.trackingId": "bb3b9679-1df3-4c6f-82e1-f43b90930e65"
 					}
 				},
 				"metadata": {
@@ -3064,6 +3080,18 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL Dedicated 1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"collation": "SQL_Latin1_General_CP1_CI_AS",
+				"maxSizeBytes": 263882790666240,
+				"annotations": []
+			},
+			"dependsOn": [],
+			"location": "westus"
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SynapseDemoSprk')]",
 			"type": "Microsoft.Synapse/workspaces/bigDataPools",
 			"apiVersion": "2019-06-01-preview",
@@ -3087,32 +3115,6 @@
 			},
 			"dependsOn": [],
 			"location": "westus"
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/SQL Dedicated 1')]",
-			"type": "Microsoft.Synapse/workspaces/sqlPools",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"collation": "SQL_Latin1_General_CP1_CI_AS",
-				"maxSizeBytes": 263882790666240,
-				"annotations": []
-			},
-			"dependsOn": [],
-			"location": "westus"
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/PowerBIWorkspace1')]",
-			"type": "Microsoft.Synapse/workspaces/linkedServices",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"annotations": [],
-				"type": "PowerBIWorkspace",
-				"typeProperties": {
-					"workspaceID": "fcf798ad-1b90-48bb-a5a9-75b0b9417ff5",
-					"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
-				}
-			},
-			"dependsOn": []
 		}
 	]
 }
