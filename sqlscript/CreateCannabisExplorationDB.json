@@ -5,7 +5,7 @@
 			"name": "DCC"
 		},
 		"content": {
-			"query": "CREATE DATABASE CannabisDataExplorationDB \n                --COLLATE Latin1_General_100_BIN2_UTF8",
+			"query": "CREATE DATABASE CannabisDataExplorationDB \n                COLLATE Latin1_General_100_BIN2_UTF8",
 			"metadata": {
 				"language": "sql"
 			},
