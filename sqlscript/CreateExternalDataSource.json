@@ -1,6 +1,9 @@
 {
-	"name": "Create External Data Source",
+	"name": "CreateExternalDataSource",
 	"properties": {
+		"folder": {
+			"name": "Quickstarts"
+		},
 		"content": {
 			"query": "CREATE EXTERNAL DATA SOURCE rayfelipedlgen2account\nWITH ( LOCATION = 'https://rayfelipedlgen2account.dfs.core.windows.net')\n",
 			"metadata": {
