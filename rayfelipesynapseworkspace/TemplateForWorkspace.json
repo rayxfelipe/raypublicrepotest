@@ -1432,7 +1432,7 @@
 					"name": "Quickstarts"
 				},
 				"content": {
-					"query": "SELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://rayfelipedlgen2account.dfs.core.windows.net/rayfelipedlgen2filesystem/Fairfax/Quickstarts/NYCTripSmall.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]",
+					"query": "SELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://rayfelipedlgen2account.dfs.core.windows.net/rayfelipedlgen2filesystem/Quickstarts/NYCTripSmall.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]",
 					"metadata": {
 						"language": "sql"
 					},
@@ -1453,6 +1453,29 @@
 			"properties": {
 				"content": {
 					"query": "-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://datalakaeacctindemorg.dfs.core.windows.net/bscccontainer/california-grants-portal-data.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0'\n    ) AS [result]\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 2')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Quickstarts"
+				},
+				"content": {
+					"query": "CREATE DATABASE DataExplorationDB \n                COLLATE Latin1_General_100_BIN2_UTF8",
 					"metadata": {
 						"language": "sql"
 					},
