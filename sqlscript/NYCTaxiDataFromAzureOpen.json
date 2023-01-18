@@ -1,6 +1,9 @@
 {
 	"name": "NYCTaxiDataFromAzureOpen",
 	"properties": {
+		"folder": {
+			"name": "Quickstarts/1. AnalyzeUsingServerless"
+		},
 		"content": {
 			"query": "SELECT TOP 100 * FROM\n    OPENROWSET(\n        BULK 'https://azureopendatastorage.blob.core.windows.net/nyctlc/yellow/puYear=*/puMonth=*/*.parquet',\n        FORMAT='PARQUET'\n    ) AS [nyc]",
 			"metadata": {
