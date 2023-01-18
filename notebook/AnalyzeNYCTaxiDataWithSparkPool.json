@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "998187b7-c9cd-4f56-84da-817367eabb20"
+				"spark.autotune.trackingId": "ba418936-6149-4050-8592-588f809c1d1a"
 			}
 		},
 		"metadata": {
@@ -63,13 +63,51 @@
 					"df = spark.read.load('abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Quickstarts/NYCTripSmall.parquet', format='parquet')\r\n",
 					"display(df.limit(10))\r\n",
 					"\r\n",
+					""
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"\r\n",
 					"df.printSchema()\r\n",
 					"\r\n",
 					"spark.sql(\"CREATE DATABASE IF NOT EXISTS nyctaxi\")\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.trip\")"
 				],
-				"execution_count": 1
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"\r\n",
+					"df = spark.sql(\"SELECT * FROM nyctaxi.trip\") \r\n",
+					"display(df)"
+				],
+				"execution_count": null
 			}
 		]
 	}
