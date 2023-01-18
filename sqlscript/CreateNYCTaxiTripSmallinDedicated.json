@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 2",
+	"name": "CreateNYCTaxiTripSmallinDedicated",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts/2. AnalyzeUsingDedicatedSQLPool"
@@ -13,7 +13,7 @@
 				"databaseName": "SQL Dedicated 1",
 				"poolName": "SQL Dedicated 1"
 			},
-			"resultLimit": 5000
+			"resultLimit": -1
 		},
 		"type": "SqlQuery"
 	}
