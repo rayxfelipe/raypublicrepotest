@@ -1,5 +1,5 @@
 {
-	"name": "CreateExternalDataSource2",
+	"name": "CreateExternalDataSource",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts"
