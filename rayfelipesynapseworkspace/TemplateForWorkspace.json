@@ -2204,6 +2204,71 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/Dataflow1')]",
+			"type": "Microsoft.Synapse/workspaces/dataflows",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSynapseAnalyticsTable1",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     store: 'synapse',",
+						"     databaseType: 'spark',",
+						"     format: 'table',",
+						"     database: 'nyctaxi',",
+						"     tableName: 'passengercountstats') ~> source1",
+						"source1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          {City Key} as integer,",
+						"          {WWI City ID} as integer,",
+						"          City as string,",
+						"          {State Province} as string,",
+						"          Country as string,",
+						"          Continent as string,",
+						"          {Sales Territory} as string,",
+						"          Region as string,",
+						"          Subregion as string,",
+						"          Location as binary,",
+						"          {Latest Recorded Population} as long,",
+						"          {Valid From} as timestamp,",
+						"          {Valid To} as timestamp,",
+						"          {Lineage Key} as integer",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     staged: true,",
+						"     allowCopyCommand: true,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/AzureSynapseAnalyticsTable1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/WorkspaceSystemIdentity')]",
 			"type": "Microsoft.Synapse/workspaces/credentials",
 			"apiVersion": "2019-06-01-preview",
@@ -2917,7 +2982,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "52e26b54-cf27-4e65-b7c8-e4a79c822957"
+						"spark.autotune.trackingId": "7c6f8e42-b394-40be-b855-324e0f3d7146"
 					}
 				},
 				"metadata": {
@@ -2942,15 +3007,13 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"import matplotlib.pyplot as plt\r\n",
 							"\r\n",
