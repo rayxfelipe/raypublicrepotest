@@ -5,7 +5,7 @@
 			"name": "DCC"
 		},
 		"content": {
-			"query": "DROP external TABLE [dbo].[CannabisAccountSitesByQuarter]\nGO\n\n",
+			"query": "DROP external TABLE [dbo].[CannabisAccountSitesByQuarterTable]\nGO\n\n",
 			"metadata": {
 				"language": "sql"
 			},
