@@ -1,0 +1,47 @@
+{
+	"name": "Dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SourceDataset_cq5",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          VendorID as long,",
+				"          lpep_pickup_datetime as timestamp,",
+				"          lpep_dropoff_datetime as timestamp,",
+				"          store_and_fwd_flag as string,",
+				"          RatecodeID as double,",
+				"          PULocationID as long,",
+				"          DOLocationID as long,",
+				"          passenger_count as double,",
+				"          trip_distance as double,",
+				"          fare_amount as double,",
+				"          extra as double,",
+				"          mta_tax as double,",
+				"          tip_amount as double,",
+				"          tolls_amount as double,",
+				"          ehail_fee as integer,",
+				"          improvement_surcharge as double,",
+				"          total_amount as double,",
+				"          payment_type as double,",
+				"          trip_type as double,",
+				"          congestion_surcharge as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> source1"
+			]
+		}
+	}
+}
