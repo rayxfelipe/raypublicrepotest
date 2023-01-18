@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "13e667ec-d35d-4d06-aabb-e759205c317a"
+				"spark.autotune.trackingId": "ac018e72-ebca-4454-af60-f32458fb1ef9"
 			}
 		},
 		"metadata": {
@@ -87,7 +87,7 @@
 					"spark.sql(\"CREATE DATABASE IF NOT EXISTS nyctaxi\")\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.trip\")"
 				],
-				"execution_count": null
+				"execution_count": 2
 			},
 			{
 				"cell_type": "markdown",
@@ -114,14 +114,15 @@
 						"transient": {
 							"deleting": false
 						}
-					}
+					},
+					"collapsed": false
 				},
 				"source": [
 					"\r\n",
 					"df = spark.sql(\"SELECT * FROM nyctaxi.trip\") \r\n",
 					"display(df)"
 				],
-				"execution_count": null
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -137,7 +138,8 @@
 					},
 					"microsoft": {
 						"language": "python"
-					}
+					},
+					"collapsed": false
 				},
 				"source": [
 					"%%pyspark\r\n",
@@ -153,7 +155,7 @@
 					"display(df)\r\n",
 					"df.write.saveAsTable(\"nyctaxi.passengercountstats\")"
 				],
-				"execution_count": null
+				"execution_count": 4
 			}
 		]
 	}
