@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "ba418936-6149-4050-8592-588f809c1d1a"
+				"spark.autotune.trackingId": "31e3b5fc-59cb-4224-b69f-c20507f816a6"
 			}
 		},
 		"metadata": {
@@ -81,13 +81,26 @@
 					}
 				},
 				"source": [
-					"\r\n",
 					"df.printSchema()\r\n",
 					"\r\n",
 					"spark.sql(\"CREATE DATABASE IF NOT EXISTS nyctaxi\")\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.trip\")"
 				],
 				"execution_count": null
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Analyze the NYC Taxi data using Spark and notebooks\r\n",
+					""
+				]
 			},
 			{
 				"cell_type": "code",
