@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "69e6d874-42f6-46c0-b316-22b3af34f87b"
+				"spark.autotune.trackingId": "998187b7-c9cd-4f56-84da-817367eabb20"
 			}
 		},
 		"metadata": {
@@ -28,7 +28,7 @@
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
-				"display_name": "python"
+				"display_name": "Synapse PySpark"
 			},
 			"language_info": {
 				"name": "python"
@@ -59,11 +59,17 @@
 					}
 				},
 				"source": [
-					" %%pyspark\r\n",
-					"df = spark.read.load('abfss://users@contosolake.dfs.core.windows.net/NYCTripSmall.parquet', format='parquet')\r\n",
-					"display(df.limit(10))"
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Quickstarts/NYCTripSmall.parquet', format='parquet')\r\n",
+					"display(df.limit(10))\r\n",
+					"\r\n",
+					"\r\n",
+					"df.printSchema()\r\n",
+					"\r\n",
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS nyctaxi\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.trip\")"
 				],
-				"execution_count": null
+				"execution_count": 1
 			}
 		]
 	}
