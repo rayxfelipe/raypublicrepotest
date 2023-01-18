@@ -1,0 +1,20 @@
+{
+	"name": "CreateExternalDataSource2",
+	"properties": {
+		"folder": {
+			"name": "Quickstarts"
+		},
+		"content": {
+			"query": "CREATE EXTERNAL DATA SOURCE rayfelipedlgen2account\nWITH ( LOCATION = 'https://rayfelipedlgen2account.dfs.core.windows.net')\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
