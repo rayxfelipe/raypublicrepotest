@@ -5,7 +5,7 @@
 			"name": "Quickstarts/1. AnalyzeUsingServerless"
 		},
 		"content": {
-			"query": "SELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://rayfelipedlgen2account.dfs.core.windows.net/rayfelipedlgen2filesystem/Quickstarts/NYCTripSmall.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]",
+			"query": "SELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://rayfelipedlgen2account.dfs.core.windows.net/rayfelipedlgen2filesystem/Quickstarts/NYCTripSmall-Feb2022.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]",
 			"metadata": {
 				"language": "sql"
 			},
