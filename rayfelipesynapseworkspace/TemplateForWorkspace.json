@@ -51,15 +51,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('workspaceName'), '/SynapseDemoSprk')]",
-			"type": "Microsoft.Synapse/workspaces/bigDataPools",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('workspaceName'), '/CalEnviroScreenCSV')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
@@ -787,7 +778,12 @@
 								"referenceName": "SynapseDemoSprk",
 								"type": "BigDataPoolReference"
 							},
-							"conf": {}
+							"conf": {
+								"spark.dynamicAllocation.enabled": null,
+								"spark.dynamicAllocation.minExecutors": null,
+								"spark.dynamicAllocation.maxExecutors": null
+							},
+							"numExecutors": null
 						}
 					}
 				],
@@ -1398,7 +1394,7 @@
 						"language": "sql"
 					},
 					"currentConnection": {
-						"databaseName": "master",
+						"databaseName": "SQL Serverless 1",
 						"poolName": "Built-in"
 					},
 					"resultLimit": 5000
@@ -1414,6 +1410,26 @@
 			"properties": {
 				"content": {
 					"query": "CREATE VIEW [dbo].[County_Cardio_Disease] AS\nSELECT [California County] as County, \nSUM(cast([Cardiovascular Disease] as FLOAT)) as [Cardio Disease]\nFROM [dbo].[calenviro]\ngroup by [California County]\n\n\nCREATE VIEW [dbo].[County_Covid_Deaths] AS\nSELECT\n[area] as County, cast([cumulative_deaths] as FLOAT) as [Covid Deaths]\n FROM [dbo].[covid_testcases]\n where area_type != 'State' and date IS NULL\n\n\nselect c.County, c.[Cardio Disease], \nd.[Covid Deaths]\nfrom dbo.County_Cardio_Disease c, dbo.County_Covid_Deaths d\nwhere c.County = d.County\norder by d.[Covid Deaths] desc\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://datalakaeacctindemorg.dfs.core.windows.net/bscccontainer/california-grants-portal-data.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0'\n    ) AS [result]\n",
 					"metadata": {
 						"language": "sql"
 					},
@@ -1701,11 +1717,14 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "e50877e2-9ec5-44f0-9f6b-e36384ab6f21"
+						"spark.autotune.trackingId": "9a2362cd-8601-431f-9031-b0265c1e88db"
 					}
 				},
 				"metadata": {
 					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
 					"enableDebugMode": false,
 					"kernelspec": {
 						"name": "synapse_pyspark",
@@ -1719,7 +1738,6 @@
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"import matplotlib.pyplot as plt\r\n",
 							"\r\n",
@@ -1739,8 +1757,7 @@
 							"plt.legend()\r\n",
 							"plt.show()"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					}
 				]
 			},
@@ -1768,7 +1785,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "4556d22e-d47c-4f5c-88c4-503e67d79f60"
+						"spark.autotune.trackingId": "c3e15406-b9b8-4ff0-a369-483bf44bb332"
 					}
 				},
 				"metadata": {
@@ -1793,15 +1810,13 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"test 55599 222\r\n",
 							"\r\n",
