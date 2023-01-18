@@ -1384,6 +1384,52 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/CreateExplorationDB')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Quickstarts/1. AnalyzeUsingServerless"
+				},
+				"content": {
+					"query": "CREATE DATABASE DataExplorationDB \n                COLLATE Latin1_General_100_BIN2_UTF8",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/CreateExternalDataSource')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Quickstarts/1. AnalyzeUsingServerless"
+				},
+				"content": {
+					"query": "CREATE EXTERNAL DATA SOURCE rayfelipedlgen2account\nWITH ( LOCATION = 'https://rayfelipedlgen2account.dfs.core.windows.net')\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/GithubTest')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
@@ -1429,7 +1475,7 @@
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"folder": {
-					"name": "Quickstarts"
+					"name": "Quickstarts/1. AnalyzeUsingServerless"
 				},
 				"content": {
 					"query": "SELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://rayfelipedlgen2account.dfs.core.windows.net/rayfelipedlgen2filesystem/Quickstarts/NYCTripSmall.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]",
@@ -1467,20 +1513,20 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/SQL script 2')]",
+			"name": "[concat(parameters('workspaceName'), '/SelectTop100FromExternalDS')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"folder": {
-					"name": "Quickstarts"
+					"name": "Quickstarts/1. AnalyzeUsingServerless"
 				},
 				"content": {
-					"query": "CREATE DATABASE DataExplorationDB \n                COLLATE Latin1_General_100_BIN2_UTF8",
+					"query": "SELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n            BULK '/rayfelipedlgen2filesystem/Quickstarts/NYCTripSmall.parquet',\n            DATA_SOURCE = 'rayfelipedlgen2account',\n            FORMAT='PARQUET'\n    ) AS [result]\n\n\n           ",
 					"metadata": {
 						"language": "sql"
 					},
 					"currentConnection": {
-						"databaseName": "master",
+						"databaseName": "DataExplorationDB",
 						"poolName": "Built-in"
 					},
 					"resultLimit": 5000
@@ -1526,6 +1572,176 @@
 					"resultLimit": 5000
 				},
 				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AnalyzeNYCTaxiDataWithSparkPool')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Quickstarts"
+				},
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "SynapseDemoSprk",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "85ae35dc-8503-4073-b4c4-616565845f09"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
+						"name": "SynapseDemoSprk",
+						"type": "Spark",
+						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.2",
+						"nodeCount": 10,
+						"cores": 4,
+						"memory": 28,
+						"automaticScaleJobs": false
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "python"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"df = spark.read.load('abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Quickstarts/NYCTripSmall.parquet', format='parquet')\r\n",
+							"display(df.limit(10))\r\n",
+							"\r\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 1
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"df.printSchema()\r\n",
+							"\r\n",
+							"spark.sql(\"CREATE DATABASE IF NOT EXISTS nyctaxi\")\r\n",
+							"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.trip\")"
+						],
+						"outputs": [],
+						"execution_count": 2
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"# Analyze the NYC Taxi data using Spark and notebooks\r\n",
+							""
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {},
+							"collapsed": false
+						},
+						"source": [
+							"\r\n",
+							"df = spark.sql(\"SELECT * FROM nyctaxi.trip\") \r\n",
+							"display(df)"
+						],
+						"outputs": [],
+						"execution_count": 3
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "python"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"df = spark.sql(\"\"\"\r\n",
+							"   SELECT passenger_count,\r\n",
+							"       SUM(trip_distance) as SumTripDistance,\r\n",
+							"       AVG(trip_distance) as AvgTripDistance\r\n",
+							"   FROM nyctaxi.trip\r\n",
+							"   WHERE trip_distance > 0 AND passenger_count > 0\r\n",
+							"   GROUP BY passenger_count\r\n",
+							"   ORDER BY passenger_count\r\n",
+							"\"\"\") \r\n",
+							"display(df)\r\n",
+							"df.write.saveAsTable(\"nyctaxi.passengercountstats\")"
+						],
+						"outputs": [],
+						"execution_count": 4
+					}
+				]
 			},
 			"dependsOn": []
 		},
@@ -1831,7 +2047,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "c3e15406-b9b8-4ff0-a369-483bf44bb332"
+						"spark.autotune.trackingId": "40f2775c-7944-4059-91ef-e83f21149b00"
 					}
 				},
 				"metadata": {
@@ -1856,13 +2072,15 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28
+						"memory": 28,
+						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 30
 				},
 				"cells": [
 					{
 						"cell_type": "code",
+						"metadata": {},
 						"source": [
 							"test 55599 222\r\n",
 							"\r\n",
@@ -1946,6 +2164,29 @@
 			},
 			"dependsOn": [],
 			"location": "westus"
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 2')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Quickstarts/2. AnalyzeUsingDedicatedSQLPool"
+				},
+				"content": {
+					"query": "IF NOT EXISTS (SELECT * FROM sys.objects O JOIN sys.schemas S ON O.schema_id = S.schema_id WHERE O.NAME = 'NYCTaxiTripSmall' AND O.TYPE = 'U' AND S.NAME = 'dbo')\nCREATE TABLE dbo.NYCTaxiTripSmall\n    (\n     [DateID] int,\n     [MedallionID] int,\n     [HackneyLicenseID] int,\n     [PickupTimeID] int,\n     [DropoffTimeID] int,\n     [PickupGeographyID] int,\n     [DropoffGeographyID] int,\n     [PickupLatitude] float,\n     [PickupLongitude] float,\n     [PickupLatLong] nvarchar(4000),\n     [DropoffLatitude] float,\n     [DropoffLongitude] float,\n     [DropoffLatLong] nvarchar(4000),\n     [PassengerCount] int,\n     [TripDurationSeconds] int,\n     [TripDistanceMiles] float,\n     [PaymentType] nvarchar(4000),\n     [FareAmount] numeric(19,4),\n     [SurchargeAmount] numeric(19,4),\n     [TaxAmount] numeric(19,4),\n     [TipAmount] numeric(19,4),\n     [TollsAmount] numeric(19,4),\n     [TotalAmount] numeric(19,4)\n    )\nWITH\n    (\n    DISTRIBUTION = ROUND_ROBIN,\n     CLUSTERED COLUMNSTORE INDEX\n     -- HEAP\n    )\nGO\n\nCOPY INTO dbo.NYCTaxiTripSmall\n(DateID 1, MedallionID 2, HackneyLicenseID 3, PickupTimeID 4, DropoffTimeID 5,\nPickupGeographyID 6, DropoffGeographyID 7, PickupLatitude 8, PickupLongitude 9, \nPickupLatLong 10, DropoffLatitude 11, DropoffLongitude 12, DropoffLatLong 13, \nPassengerCount 14, TripDurationSeconds 15, TripDistanceMiles 16, PaymentType 17, \nFareAmount 18, SurchargeAmount 19, TaxAmount 20, TipAmount 21, TollsAmount 22, \nTotalAmount 23)\nFROM 'https://contosolake.dfs.core.windows.net/users/NYCTripSmall.parquet'\nWITH\n(\n    FILE_TYPE = 'PARQUET'\n    ,MAXERRORS = 0\n    ,IDENTITY_INSERT = 'OFF'\n)",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "SQL Dedicated 1",
+						"poolName": "SQL Dedicated 1"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
 		}
 	]
 }
