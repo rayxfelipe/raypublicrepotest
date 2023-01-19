@@ -1,9 +1,9 @@
 {
-	"name": "Pipeline 1",
+	"name": "Pipeline 12",
 	"properties": {
 		"activities": [
 			{
-				"name": "Notebook1",
+				"name": "Notebook12",
 				"type": "SynapseNotebook",
 				"dependsOn": [],
 				"policy": {
@@ -19,7 +19,13 @@
 						"referenceName": "1-Cannabis Acct Sites by Quarter",
 						"type": "NotebookReference"
 					},
-					"snapshot": true
+					"snapshot": true,
+					"conf": {
+						"spark.dynamicAllocation.enabled": null,
+						"spark.dynamicAllocation.minExecutors": null,
+						"spark.dynamicAllocation.maxExecutors": null
+					},
+					"numExecutors": null
 				}
 			}
 		],
