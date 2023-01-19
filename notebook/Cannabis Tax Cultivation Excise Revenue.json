@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "501100a0-4d3d-48b1-bc43-6d45d1d7942e"
+				"spark.autotune.trackingId": "20a7b1c9-9d91-4128-99ea-c94fc0e34dbb"
 			}
 		},
 		"metadata": {
@@ -136,9 +136,12 @@
 					"\r\n",
 					"import matplotlib.pyplot as plt\r\n",
 					"pd_df.hist(bins=10, figsize=(20,10))\r\n",
+					"plt.show()\r\n",
+					"\r\n",
+					"pd_df.plot(figsize=(10,5))\r\n",
 					"plt.show()"
 				],
-				"execution_count": 7
+				"execution_count": 34
 			},
 			{
 				"cell_type": "code",
@@ -155,7 +158,6 @@
 				},
 				"source": [
 					"# pd_df.plot(x = 'Fiscal Year To', y = '16. Total Cannabis Excise Tax Due', kind = 'line')\r\n",
-					"\r\n",
 					"# Core_Dataframe.plot(x ='age', y='py-score', kind = 'bar')\r\n",
 					"pd_df.plot(figsize=(10,5))\r\n",
 					"pd_df.plot.scatter(x='Fiscal Year To', y='16. Total Cannabis Excise Tax Due', figsize=(5,5))\r\n",
@@ -163,7 +165,7 @@
 					"\r\n",
 					"plt.show()"
 				],
-				"execution_count": 32
+				"execution_count": 33
 			}
 		]
 	}
