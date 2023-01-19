@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "496e08b7-95d7-4c20-94d6-45bd94fe3a52"
+				"spark.autotune.trackingId": "e3ac8c07-e6d3-4a81-bded-132608026aee"
 			}
 		},
 		"metadata": {
@@ -61,7 +61,7 @@
 				},
 				"source": [
 					"%%pyspark\r\n",
-					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisAccountSitesByQuarter.csv', format='csv', header='true')\r\n",
+					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisSalesByCounty.csv', format='csv', header='true')\r\n",
 					"display(df.limit(10))\r\n",
 					""
 				],
