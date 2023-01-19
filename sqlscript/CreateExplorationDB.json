@@ -1,11 +1,11 @@
 {
-	"name": "UpdatePaymentType_sp",
+	"name": "CreateExplorationDB",
 	"properties": {
 		"folder": {
-			"name": "Healthcare Data Scripts"
+			"name": "Quickstarts/1. AnalyzeUsingServerless"
 		},
 		"content": {
-			"query": "CREATE PROC [dbo].[UpdatePaymentType]\nAS\nBEGIN\nUPDATE [dbo].[greentaxi]\nSET PaymentType = 2\nEND",
+			"query": "CREATE DATABASE DataExplorationDB \n                COLLATE Latin1_General_100_BIN2_UTF8",
 			"metadata": {
 				"language": "sql"
 			},

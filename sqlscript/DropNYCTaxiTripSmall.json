@@ -1,0 +1,20 @@
+{
+	"name": "DropNYCTaxiTripSmall",
+	"properties": {
+		"folder": {
+			"name": "Quickstarts/2. AnalyzeUsingDedicatedSQLPool"
+		},
+		"content": {
+			"query": "DROP TABLE [dbo].[NYCTaxiTripSmall]\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQL Dedicated 1",
+				"poolName": "SQL Dedicated 1"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,252 @@
+{
+	"name": "SourceDataset_ylf",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake2_DemoRG",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "calenviroscreen-3.0-results-june-2018-update.csv",
+				"fileSystem": "bscccontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Census Tract",
+				"type": "String"
+			},
+			{
+				"name": "Total Population",
+				"type": "String"
+			},
+			{
+				"name": "California County",
+				"type": "String"
+			},
+			{
+				"name": "ZIP",
+				"type": "String"
+			},
+			{
+				"name": "Nearby City (to help approximate location only)",
+				"type": "String"
+			},
+			{
+				"name": "Longitude",
+				"type": "String"
+			},
+			{
+				"name": "Latitude",
+				"type": "String"
+			},
+			{
+				"name": "CES 3.0 Score",
+				"type": "String"
+			},
+			{
+				"name": "CES 3.0 Percentile",
+				"type": "String"
+			},
+			{
+				"name": "CES 3.0 Percentile Range",
+				"type": "String"
+			},
+			{
+				"name": "SB 535 Disadvantaged Community",
+				"type": "String"
+			},
+			{
+				"name": "Ozone",
+				"type": "String"
+			},
+			{
+				"name": "Ozone Pctl",
+				"type": "String"
+			},
+			{
+				"name": "PM2.5",
+				"type": "String"
+			},
+			{
+				"name": "PM2.5 Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Diesel PM",
+				"type": "String"
+			},
+			{
+				"name": "Diesel PM Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Drinking Water",
+				"type": "String"
+			},
+			{
+				"name": "Drinking Water Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Pesticides",
+				"type": "String"
+			},
+			{
+				"name": "Pesticides Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Tox. Release",
+				"type": "String"
+			},
+			{
+				"name": "Tox. Release Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Traffic",
+				"type": "String"
+			},
+			{
+				"name": "Traffic Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Cleanup Sites",
+				"type": "String"
+			},
+			{
+				"name": "Cleanup Sites Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Groundwater Threats",
+				"type": "String"
+			},
+			{
+				"name": "Groundwater Threats Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Haz. Waste",
+				"type": "String"
+			},
+			{
+				"name": "Haz. Waste Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Imp. Water Bodies",
+				"type": "String"
+			},
+			{
+				"name": "Imp. Water Bodies Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Solid Waste",
+				"type": "String"
+			},
+			{
+				"name": "Solid Waste Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Pollution Burden",
+				"type": "String"
+			},
+			{
+				"name": "Pollution Burden Score",
+				"type": "String"
+			},
+			{
+				"name": "Pollution Burden Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Asthma",
+				"type": "String"
+			},
+			{
+				"name": "Asthma Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Low Birth Weight",
+				"type": "String"
+			},
+			{
+				"name": "Low Birth Weight Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Cardiovascular Disease",
+				"type": "String"
+			},
+			{
+				"name": "Cardiovascular Disease Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Education",
+				"type": "String"
+			},
+			{
+				"name": "Education Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Linguistic Isolation",
+				"type": "String"
+			},
+			{
+				"name": "Linguistic Isolation Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Poverty",
+				"type": "String"
+			},
+			{
+				"name": "Poverty Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Unemployment",
+				"type": "String"
+			},
+			{
+				"name": "Unemployment Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Housing Burden",
+				"type": "String"
+			},
+			{
+				"name": "Housing Burden Pctl",
+				"type": "String"
+			},
+			{
+				"name": "Pop. Char. ",
+				"type": "String"
+			},
+			{
+				"name": "Pop. Char. Score",
+				"type": "String"
+			},
+			{
+				"name": "Pop. Char. Pctl",
+				"type": "String"
+			}
+		]
+	}
+}

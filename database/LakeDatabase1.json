@@ -1,0 +1,22 @@
+{
+	"name": "LakeDatabase1",
+	"properties": {
+		"Name": "LakeDatabase1",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/LakeDatabase1",
+			"Properties": {
+				"FormatType": "csv",
+				"LinkedServiceName": "rayfelipesynapseworkspace-WorkspaceDefaultStorage"
+			}
+		}
+	},
+	"type": "DATABASE"
+}

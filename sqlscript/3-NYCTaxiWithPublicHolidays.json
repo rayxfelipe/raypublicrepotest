@@ -1,0 +1,20 @@
+{
+	"name": "3-NYCTaxiWithPublicHolidays",
+	"properties": {
+		"folder": {
+			"name": "Quickstarts/1. AnalyzeUsingServerless"
+		},
+		"content": {
+			"query": "WITH taxi_rides AS (\nSELECT\n    CAST([tpepPickupDateTime] AS DATE) AS [current_day],\n    COUNT(*) as rides_per_day\nFROM\n    OPENROWSET(\n        BULK 'https://azureopendatastorage.blob.core.windows.net/nyctlc/yellow/puYear=*/puMonth=*/*.parquet',\n        FORMAT='PARQUET'\n    ) AS [nyc]\nWHERE nyc.filepath(1) = '2016'\nGROUP BY CAST([tpepPickupDateTime] AS DATE)\n),\npublic_holidays AS (\nSELECT\n    holidayname as holiday,\n    date\nFROM\n    OPENROWSET(\n        BULK 'https://azureopendatastorage.blob.core.windows.net/holidaydatacontainer/Processed/*.parquet',\n        FORMAT='PARQUET'\n    ) AS [holidays]\nWHERE countryorregion = 'United States' AND YEAR(date) = 2016\n),\njoined_data AS (\nSELECT\n    *\nFROM taxi_rides t\nLEFT OUTER JOIN public_holidays p on t.current_day = p.date\n)\n\nSELECT \n    *,\n    holiday_rides = \n    CASE   \n      WHEN holiday is null THEN 0   \n      WHEN holiday is not null THEN rides_per_day\n    END   \nFROM joined_data\nORDER BY current_day ASC",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,14 +1,17 @@
 {
 	"name": "update_covid_gender_unknown_sp",
 	"properties": {
+		"folder": {
+			"name": "Healthcare Data Scripts"
+		},
 		"content": {
 			"query": "CREATE PROC [dbo].[update_covid_gender_unknown_sp]\nAS\nBEGIN\nUPDATE [dbo].[bscc_covid_bygender]\nSET demographic_value = 'Unknown'\nWHERE demographic_value = 'Total'\nEND",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "master",
-				"poolName": "Built-in"
+				"databaseName": "SQL Dedicated 1",
+				"poolName": "SQL Dedicated 1"
 			},
 			"resultLimit": 5000
 		},

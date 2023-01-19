@@ -1,0 +1,20 @@
+{
+	"name": "DropCannabisAccountSitesByQuarterTable",
+	"properties": {
+		"folder": {
+			"name": "DCC"
+		},
+		"content": {
+			"query": "DROP external TABLE [dbo].[CannabisAccountSitesByQuarterTable]\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "CannabisDataExplorationDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

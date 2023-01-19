@@ -1,11 +1,11 @@
 {
-	"name": "UpdatePaymentType_sp",
+	"name": "CreateCannabisExploreDB",
 	"properties": {
 		"folder": {
-			"name": "Healthcare Data Scripts"
+			"name": "DCC"
 		},
 		"content": {
-			"query": "CREATE PROC [dbo].[UpdatePaymentType]\nAS\nBEGIN\nUPDATE [dbo].[greentaxi]\nSET PaymentType = 2\nEND",
+			"query": "CREATE DATABASE CannabisDataExplorationDB \n                COLLATE Latin1_General_100_BIN2_UTF8",
 			"metadata": {
 				"language": "sql"
 			},

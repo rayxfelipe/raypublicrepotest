@@ -1,0 +1,163 @@
+{
+	"name": "1-AnalyzeNYCTaxiDataWithSparkPool",
+	"properties": {
+		"folder": {
+			"name": "Quickstarts/4. AnalyzeUsingSparkPool"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SynapseDemoSprk",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "c8bdf4b2-a71e-4821-91b3-d16bdd056787"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
+				"name": "SynapseDemoSprk",
+				"type": "Spark",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.2",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Quickstarts/NYCTripSmall.parquet', format='parquet')\r\n",
+					"display(df.limit(10))\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.printSchema()\r\n",
+					"\r\n",
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS nyctaxi\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.trip\")"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Analyze the NYC Taxi data using Spark and notebooks\r\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"\r\n",
+					"df = spark.sql(\"SELECT * FROM nyctaxi.trip\") \r\n",
+					"display(df)"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.sql(\"\"\"\r\n",
+					"   SELECT passenger_count,\r\n",
+					"       SUM(trip_distance) as SumTripDistance,\r\n",
+					"       AVG(trip_distance) as AvgTripDistance\r\n",
+					"   FROM nyctaxi.trip\r\n",
+					"   WHERE trip_distance > 0 AND passenger_count > 0\r\n",
+					"   GROUP BY passenger_count\r\n",
+					"   ORDER BY passenger_count\r\n",
+					"\"\"\") \r\n",
+					"display(df)\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.passengercountstats\")\r\n",
+					""
+				],
+				"execution_count": 8
+			}
+		]
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"name": "2-NYCPassengerCountAnalysis",
+	"properties": {
+		"folder": {
+			"name": "Quickstarts/2. AnalyzeUsingDedicatedSQLPool"
+		},
+		"content": {
+			"query": "SELECT passenger_count,\n      SUM(trip_distance) as SumTripDistance,\n      AVG(trip_distance) as AvgTripDistance\n--INTO dbo.PassengerCountStats\nFROM  dbo.NYCTripSmall\nWHERE trip_distance > 0 AND passenger_count > 0\nGROUP BY passenger_count;\nSELECT * FROM dbo.PassengerCountStats\nORDER BY passenger_count;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQL Dedicated 1",
+				"poolName": "SQL Dedicated 1"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
