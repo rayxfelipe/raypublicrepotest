@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "20a7b1c9-9d91-4128-99ea-c94fc0e34dbb"
+				"spark.autotune.trackingId": "5ad17346-be99-44f1-90da-f351422a387e"
 			}
 		},
 		"metadata": {
@@ -166,6 +166,25 @@
 					"plt.show()"
 				],
 				"execution_count": 33
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
+				],
+				"execution_count": 35
 			}
 		]
 	}

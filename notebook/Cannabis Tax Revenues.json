@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "de4b28b7-c177-47de-9844-0e17d15d46cb"
+				"spark.autotune.trackingId": "5c06777d-612c-4919-8993-f6abbd808b44"
 			}
 		},
 		"metadata": {
@@ -65,7 +65,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 1
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -86,7 +86,7 @@
 					"df.select('Calendar Year').show()\r\n",
 					"df.filter(df['Calendar Year'] == \"2018\").show()"
 				],
-				"execution_count": 2
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -107,7 +107,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 3
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -124,15 +124,17 @@
 				},
 				"source": [
 					"pd_df['Calendar Year'] = pd_df['Calendar Year'].astype(int)\r\n",
-					"pd_df['Quarter'] = pd_df['Quarter'].astype(int)\r\n",
-					"pd_df['Per Capita Sales'] = pd_df['Per Capita Sales'].astype(float)\r\n",
-					"pd_df['Total Taxable Sales'] = pd_df['Total Taxable Sales'].astype(float)\r\n",
+					"pd_df['Quarter'] = pd_df['Quarter'].astype(str)\r\n",
+					"pd_df['Excise Tax'] = pd_df['Excise Tax'].astype(int)\r\n",
+					"pd_df['Cultivation Tax'] = pd_df['Cultivation Tax'].astype(str)\r\n",
+					"pd_df['Total Tax'] = pd_df['Total Tax'].astype(int)\r\n",
+					"pd_df['Taxable Sales'] = pd_df['Taxable Sales'].astype(int)\r\n",
 					"\r\n",
 					"import matplotlib.pyplot as plt\r\n",
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
 					"plt.show()"
 				],
-				"execution_count": 4
+				"execution_count": 11
 			}
 		]
 	}
