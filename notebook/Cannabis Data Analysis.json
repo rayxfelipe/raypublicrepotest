@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "eeabcae7-e668-4028-98ee-99a9ba772b57"
+				"spark.autotune.trackingId": "8591e56c-7dbe-4fbe-873f-7e6e6c3b0b40"
 			}
 		},
 		"metadata": {
@@ -65,7 +65,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 7
+				"execution_count": 39
 			},
 			{
 				"cell_type": "code",
@@ -82,45 +82,57 @@
 				},
 				"source": [
 					"df.show()\r\n",
-					"df.printSchema()"
-				],
-				"execution_count": 28
-			},
-			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"df.select('Year').show()"
-				],
-				"execution_count": 34
-			},
-			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
+					"df.printSchema()\r\n",
+					"df.select('Year').show()\r\n",
 					"df.filter(df['Year'] == \"2018\").show()"
 				],
-				"execution_count": 33
+				"execution_count": 40
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pd_df = df.toPandas()\r\n",
+					"pd_df.info()\r\n",
+					"pd_df.describe()\r\n",
+					"pd_df.head()"
+				],
+				"execution_count": 41
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pd_df['Year'] = pd_df['Year'].astype(int)\r\n",
+					"pd_df['Quarter'] = pd_df['Quarter'].astype(int)\r\n",
+					"pd_df['Active'] = pd_df['Active'].astype(int)\r\n",
+					"pd_df['Ceased'] = pd_df['Ceased'].astype(int)\r\n",
+					"\r\n",
+					"import matplotlib.pyplot as plt\r\n",
+					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
+					"plt.show()"
+				],
+				"execution_count": 53
 			}
 		]
 	}
