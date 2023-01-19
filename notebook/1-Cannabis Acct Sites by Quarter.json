@@ -133,19 +133,6 @@
 					"plt.show()"
 				],
 				"execution_count": 4
-			},
-			{
-				"cell_type": "markdown",
-				"metadata": {
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"End 3"
-				]
 			}
 		]
 	}
