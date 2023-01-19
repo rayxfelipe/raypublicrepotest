@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "a7245d80-172e-4b3c-88c1-5714acd95df7"
+				"spark.autotune.trackingId": "f467276e-a0d6-4e1d-ac84-4d6bf26bcf2b"
 			}
 		},
 		"metadata": {
@@ -210,26 +210,6 @@
 					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue2019\")"
 				],
 				"execution_count": 7
-			},
-			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"from sklearn.tree import DecisionTreeClassifier\r\n",
-					"X = pd_df\r\n",
-					"y = pd_df"
-				],
-				"execution_count": 8
 			}
 		]
 	}
