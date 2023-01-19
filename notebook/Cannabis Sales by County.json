@@ -7,20 +7,20 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SynapseDemoSprk",
+			"referenceName": "SynapseDemoSpk2",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "28g",
-			"driverCores": 4,
-			"executorMemory": "28g",
-			"executorCores": 4,
+			"driverMemory": "112g",
+			"driverCores": 16,
+			"executorMemory": "112g",
+			"executorCores": 16,
 			"numExecutors": 2,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "ad7994c5-1919-4500-b05a-de730a040b4a"
+				"spark.autotune.trackingId": "d0aa2a29-b094-4b09-8619-986b608a149f"
 			}
 		},
 		"metadata": {
@@ -34,21 +34,21 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
-				"name": "SynapseDemoSprk",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSpk2",
+				"name": "SynapseDemoSpk2",
 				"type": "Spark",
-				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk2",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.2",
 				"nodeCount": 10,
-				"cores": 4,
-				"memory": 28,
+				"cores": 16,
+				"memory": 112,
 				"automaticScaleJobs": false
 			},
-			"sessionKeepAliveTimeout": 30
+			"sessionKeepAliveTimeout": 15
 		},
 		"cells": [
 			{
@@ -83,10 +83,10 @@
 				"source": [
 					"df.show()\r\n",
 					"df.printSchema()\r\n",
-					"df.select('Year').show()\r\n",
-					"df.filter(df['Year'] == \"2018\").show()"
+					"df.select('Calendar Year').show()\r\n",
+					"df.filter(df['Calendar Year'] == \"2018\").show()"
 				],
-				"execution_count": 40
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -107,7 +107,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 41
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -123,16 +123,16 @@
 					}
 				},
 				"source": [
-					"pd_df['Year'] = pd_df['Year'].astype(int)\r\n",
+					"pd_df['Calendar Year'] = pd_df['Calendar Year'].astype(int)\r\n",
 					"pd_df['Quarter'] = pd_df['Quarter'].astype(int)\r\n",
-					"pd_df['Active'] = pd_df['Active'].astype(int)\r\n",
-					"pd_df['Ceased'] = pd_df['Ceased'].astype(int)\r\n",
+					"pd_df['Per Capita Sales'] = pd_df['Per Capita Sales'].astype(float)\r\n",
+					"pd_df['Total Taxable Sales'] = pd_df['Total Taxable Sales'].astype(float)\r\n",
 					"\r\n",
 					"import matplotlib.pyplot as plt\r\n",
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
 					"plt.show()"
 				],
-				"execution_count": 53
+				"execution_count": 4
 			}
 		]
 	}
