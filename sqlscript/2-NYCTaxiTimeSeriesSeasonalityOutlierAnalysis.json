@@ -1,5 +1,5 @@
 {
-	"name": "NYCTaxiTimeSeriesSeasonalityOutlierAnalysis",
+	"name": "2-NYCTaxiTimeSeriesSeasonalityOutlierAnalysis",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts/1. AnalyzeUsingServerless"

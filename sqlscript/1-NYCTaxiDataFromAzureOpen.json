@@ -1,5 +1,5 @@
 {
-	"name": "NYCTaxiDataFromAzureOpen",
+	"name": "1-NYCTaxiDataFromAzureOpen",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts/1. AnalyzeUsingServerless"
