@@ -1,5 +1,5 @@
 {
-	"name": "CreateNYCTaxiTripSmallinDedicated",
+	"name": "1-CreateNYCTaxiTripSmallinDedicated",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts/2. AnalyzeUsingDedicatedSQLPool"

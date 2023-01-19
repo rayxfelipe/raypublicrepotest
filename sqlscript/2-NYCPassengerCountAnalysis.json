@@ -1,5 +1,5 @@
 {
-	"name": "NYCPassengerCountAnalysis",
+	"name": "2-NYCPassengerCountAnalysis",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts/2. AnalyzeUsingDedicatedSQLPool"
