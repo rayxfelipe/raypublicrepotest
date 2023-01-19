@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "01c62eca-ce80-42d1-b0cd-def430c08458"
+				"spark.autotune.trackingId": "501100a0-4d3d-48b1-bc43-6d45d1d7942e"
 			}
 		},
 		"metadata": {
@@ -83,8 +83,8 @@
 				"source": [
 					"df.show()\r\n",
 					"df.printSchema()\r\n",
-					"df.select('Calendar Year').show()\r\n",
-					"df.filter(df['Calendar Year'] == \"2018\").show()"
+					"df.select('Fiscal Year To').show()\r\n",
+					"df.filter(df['Fiscal Year To'] == \"2018\").show()"
 				],
 				"execution_count": 2
 			},
@@ -123,16 +123,47 @@
 					}
 				},
 				"source": [
-					"pd_df['Calendar Year'] = pd_df['Calendar Year'].astype(int)\r\n",
-					"pd_df['Quarter'] = pd_df['Quarter'].astype(int)\r\n",
-					"pd_df['Per Capita Sales'] = pd_df['Per Capita Sales'].astype(float)\r\n",
-					"pd_df['Total Taxable Sales'] = pd_df['Total Taxable Sales'].astype(float)\r\n",
+					"pd_df['Fiscal Year From'] = pd_df['Fiscal Year From'].astype(int)\r\n",
+					"pd_df['Fiscal Year To'] = pd_df['Fiscal Year To'].astype(int)\r\n",
+					"pd_df['Number of Returns Filed'] = pd_df['Number of Returns Filed'].astype(int)\r\n",
+					"pd_df['1. Total Average Market Price on Sales/Transfers of Cannabis'] = pd_df['1. Total Average Market Price on Sales/Transfers of Cannabis'].astype(float)\r\n",
+					"pd_df['3. Excise Tax Due'] = pd_df['3. Excise Tax Due'].astype(float)\r\n",
+					"pd_df['16. Total Cannabis Excise Tax Due'] = pd_df['16. Total Cannabis Excise Tax Due'].astype(float)\r\n",
+					"\r\n",
+					"# pd_df['xx'] = pd_df['xx'].astype(int)\r\n",
+					"\r\n",
+					"\r\n",
 					"\r\n",
 					"import matplotlib.pyplot as plt\r\n",
-					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
+					"pd_df.hist(bins=10, figsize=(20,10))\r\n",
 					"plt.show()"
 				],
-				"execution_count": 4
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# pd_df.plot(x = 'Fiscal Year To', y = '16. Total Cannabis Excise Tax Due', kind = 'line')\r\n",
+					"\r\n",
+					"# Core_Dataframe.plot(x ='age', y='py-score', kind = 'bar')\r\n",
+					"pd_df.plot(figsize=(10,5))\r\n",
+					"pd_df.plot.scatter(x='Fiscal Year To', y='16. Total Cannabis Excise Tax Due', figsize=(5,5))\r\n",
+					"pd_df.plot.scatter(x='Number of Returns Filed', y='16. Total Cannabis Excise Tax Due', figsize=(5,5))\r\n",
+					"\r\n",
+					"plt.show()"
+				],
+				"execution_count": 32
 			}
 		]
 	}
