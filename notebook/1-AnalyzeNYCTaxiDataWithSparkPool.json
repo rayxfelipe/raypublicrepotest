@@ -1,5 +1,5 @@
 {
-	"name": "AnalyzeNYCTaxiDataWithSparkPool",
+	"name": "1-AnalyzeNYCTaxiDataWithSparkPool",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts/4. AnalyzeUsingSparkPool"
@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "66d830b0-274d-4251-88f5-1eaa5d33e689"
+				"spark.autotune.trackingId": "c8bdf4b2-a71e-4821-91b3-d16bdd056787"
 			}
 		},
 		"metadata": {
