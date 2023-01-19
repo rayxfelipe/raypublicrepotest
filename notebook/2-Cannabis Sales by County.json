@@ -1,5 +1,5 @@
 {
-	"name": "Cannabis Sales by County",
+	"name": "2-Cannabis Sales by County",
 	"properties": {
 		"folder": {
 			"name": "DCC"
@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "82d18a4c-6c48-4f4d-b487-fca34cfbd40b"
+				"spark.autotune.trackingId": "87b7585a-995d-4ad3-a986-63e33f2ae48a"
 			}
 		},
 		"metadata": {

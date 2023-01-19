@@ -1,5 +1,5 @@
 {
-	"name": "Cannabis Tax Revenues",
+	"name": "4-Cannabis Tax Revenues",
 	"properties": {
 		"folder": {
 			"name": "DCC"
@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b6c2ff7d-497f-4e95-991f-5b45499a647e"
+				"spark.autotune.trackingId": "63bb6b70-1476-4a44-9d66-a64bd8e3e06a"
 			}
 		},
 		"metadata": {
