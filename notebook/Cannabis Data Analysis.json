@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "d933670f-c091-48a0-bf9e-9a874ba00e74"
+				"spark.autotune.trackingId": "6ce43edc-e758-4664-922a-bfc25b3eedde"
 			}
 		},
 		"metadata": {
@@ -56,15 +56,71 @@
 				"metadata": {
 					"microsoft": {
 						"language": "python"
-					}
+					},
+					"collapsed": false
 				},
 				"source": [
 					"%%pyspark\r\n",
-					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisAccountSitesByQuarter.csv', format='csv')\r\n",
+					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisAccountSitesByQuarter.csv', format='csv', header='true')\r\n",
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 1
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.show()\r\n",
+					"df.printSchema()"
+				],
+				"execution_count": 28
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.select('Year').show()"
+				],
+				"execution_count": 22
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.filter(df['Year'] == \"2018\").show()"
+				],
+				"execution_count": 33
 			}
 		]
 	}
