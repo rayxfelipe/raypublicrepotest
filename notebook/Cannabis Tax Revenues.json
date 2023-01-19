@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "80e27e63-5cb3-4ebc-9f41-332e25184999"
+				"spark.autotune.trackingId": "ed46f750-8e3e-4fa0-9782-8ec378b70bad"
 			}
 		},
 		"metadata": {
@@ -65,7 +65,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 3
+				"execution_count": 34
 			},
 			{
 				"cell_type": "code",
@@ -83,10 +83,10 @@
 				"source": [
 					"df.show()\r\n",
 					"df.printSchema()\r\n",
-					"df.select('Calendar Year').show()\r\n",
-					"df.filter(df['Calendar Year'] == \"2018\").show()"
+					"df.select('Calendar_Year').show()\r\n",
+					"df.filter(df['Calendar_Year'] == \"2018\").show()"
 				],
-				"execution_count": 4
+				"execution_count": 35
 			},
 			{
 				"cell_type": "code",
@@ -107,7 +107,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 5
+				"execution_count": 32
 			},
 			{
 				"cell_type": "code",
@@ -123,19 +123,19 @@
 					}
 				},
 				"source": [
-					"pd_df['Calendar Year'] = pd_df['Calendar Year'].astype(int)\r\n",
+					"pd_df['Calendar_Year'] = pd_df['Calendar_Year'].astype(int)\r\n",
 					"pd_df['Quarter'] = pd_df['Quarter'].astype(str)\r\n",
-					"pd_df['Excise Tax'] = pd_df['Excise Tax'].astype(int)\r\n",
-					"pd_df['Cultivation Tax'] = pd_df['Cultivation Tax'].astype(str)\r\n",
-					"pd_df['Total Tax'] = pd_df['Total Tax'].astype(int)\r\n",
-					"pd_df['Taxable Sales'] = pd_df['Taxable Sales'].astype(int)\r\n",
+					"pd_df['Excise_Tax'] = pd_df['Excise_Tax'].astype(int)\r\n",
+					"pd_df['Cultivation_Tax'] = pd_df['Cultivation_Tax'].astype(str)\r\n",
+					"pd_df['Total_Tax'] = pd_df['Total_Tax'].astype(int)\r\n",
+					"pd_df['Taxable_Sales'] = pd_df['Taxable_Sales'].astype(int)\r\n",
 					"\r\n",
 					"import matplotlib.pyplot as plt\r\n",
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
 					"plt.show()\r\n",
 					""
 				],
-				"execution_count": 15
+				"execution_count": 33
 			},
 			{
 				"cell_type": "code",
@@ -157,7 +157,7 @@
 					"\r\n",
 					"plt.show()"
 				],
-				"execution_count": 16
+				"execution_count": 26
 			},
 			{
 				"cell_type": "code",
@@ -170,12 +170,17 @@
 						"transient": {
 							"deleting": false
 						}
-					}
+					},
+					"collapsed": false
 				},
 				"source": [
-					""
+					"df.printSchema()\r\n",
+					"# display(df.limit(10))\r\n",
+					"display(df)\r\n",
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
 				],
-				"execution_count": null
+				"execution_count": 29
 			}
 		]
 	}
