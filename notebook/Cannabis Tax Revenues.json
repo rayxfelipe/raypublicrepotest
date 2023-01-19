@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "5c06777d-612c-4919-8993-f6abbd808b44"
+				"spark.autotune.trackingId": "80e27e63-5cb3-4ebc-9f41-332e25184999"
 			}
 		},
 		"metadata": {
@@ -132,9 +132,50 @@
 					"\r\n",
 					"import matplotlib.pyplot as plt\r\n",
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
+					"plt.show()\r\n",
+					""
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pd_df.plot(figsize=(10,5))\r\n",
+					"pd_df.plot.scatter(x='Excise Tax', y='Calendar Year', figsize=(5,5))\r\n",
+					"# pd_df.plot.scatter(x='Number of Returns Filed', y='16. Total Cannabis Excise Tax Due', figsize=(5,5))\r\n",
+					"\r\n",
 					"plt.show()"
 				],
-				"execution_count": 11
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				],
+				"execution_count": null
 			}
 		]
 	}
