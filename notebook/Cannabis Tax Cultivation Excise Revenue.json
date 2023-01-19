@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "5ad17346-be99-44f1-90da-f351422a387e"
+				"spark.autotune.trackingId": "fce3fba1-2546-4f0e-bee3-aae3ea86d7e4"
 			}
 		},
 		"metadata": {
@@ -184,7 +184,7 @@
 					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
 				],
-				"execution_count": 35
+				"execution_count": 36
 			}
 		]
 	}
