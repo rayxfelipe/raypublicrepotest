@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "8ae8a9ce-0937-4142-9ba8-f4d53a678695"
+				"spark.autotune.trackingId": "d3fbc79b-587e-4a02-82ba-0cbb3c5f4bf3"
 			}
 		},
 		"metadata": {
@@ -65,7 +65,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 11
+				"execution_count": 16
 			},
 			{
 				"cell_type": "code",
@@ -86,7 +86,7 @@
 					"df.select('Fiscal Year To').show()\r\n",
 					"df.filter(df['Fiscal Year To'] == \"2018\").show()"
 				],
-				"execution_count": 12
+				"execution_count": 17
 			},
 			{
 				"cell_type": "code",
@@ -107,7 +107,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 13
+				"execution_count": 18
 			},
 			{
 				"cell_type": "code",
@@ -141,7 +141,7 @@
 					"pd_df.plot(figsize=(10,5))\r\n",
 					"plt.show()"
 				],
-				"execution_count": 14
+				"execution_count": 19
 			},
 			{
 				"cell_type": "code",
@@ -165,7 +165,7 @@
 					"\r\n",
 					"plt.show()"
 				],
-				"execution_count": 15
+				"execution_count": 20
 			}
 		]
 	}

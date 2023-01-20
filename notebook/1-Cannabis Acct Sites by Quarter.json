@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "01b68e40-674c-462b-bc6e-3840e9757d44"
+				"spark.autotune.trackingId": "f32d435a-c518-4a9c-bdb9-a0874cbacf1e"
 			}
 		},
 		"metadata": {
@@ -65,7 +65,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 1
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -86,7 +86,7 @@
 					"df.select('Year').show()\r\n",
 					"df.filter(df['Year'] == \"2018\").show()"
 				],
-				"execution_count": 2
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -107,7 +107,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 3
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
@@ -132,7 +132,7 @@
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
 					"plt.show()"
 				],
-				"execution_count": 4
+				"execution_count": 8
 			}
 		]
 	}

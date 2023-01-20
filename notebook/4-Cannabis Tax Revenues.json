@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "66530709-96b2-44ec-8afe-27e4bc280976"
+				"spark.autotune.trackingId": "c4af88c6-9118-4da0-9b33-77b7b03dff3b"
 			}
 		},
 		"metadata": {
@@ -65,7 +65,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 15
+				"execution_count": 22
 			},
 			{
 				"cell_type": "code",
@@ -86,7 +86,7 @@
 					"df.select('Calendar_Year').show()\r\n",
 					"df.filter(df['Calendar_Year'] == \"2018\").show()"
 				],
-				"execution_count": 16
+				"execution_count": 23
 			},
 			{
 				"cell_type": "code",
@@ -107,7 +107,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 17
+				"execution_count": 24
 			},
 			{
 				"cell_type": "code",
@@ -135,7 +135,7 @@
 					"plt.show()\r\n",
 					""
 				],
-				"execution_count": 18
+				"execution_count": 25
 			},
 			{
 				"cell_type": "code",
@@ -157,7 +157,7 @@
 					"\r\n",
 					"plt.show()"
 				],
-				"execution_count": 19
+				"execution_count": 26
 			},
 			{
 				"cell_type": "code",
@@ -180,7 +180,7 @@
 					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
 				],
-				"execution_count": 20
+				"execution_count": 27
 			},
 			{
 				"cell_type": "code",
@@ -207,9 +207,9 @@
 					"   WHERE Calendar_Year == \"2019\"\r\n",
 					"\"\"\") \r\n",
 					"display(sparksql_df)\r\n",
-					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue2019\")"
+					"sparksql_df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue2019\")"
 				],
-				"execution_count": 21
+				"execution_count": 28
 			}
 		]
 	}
