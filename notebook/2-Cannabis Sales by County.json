@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "87b7585a-995d-4ad3-a986-63e33f2ae48a"
+				"spark.autotune.trackingId": "207ef1cd-4d43-4f54-9a60-31b9113da7ae"
 			}
 		},
 		"metadata": {
@@ -65,7 +65,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 1
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -86,7 +86,7 @@
 					"df.select('Calendar Year').show()\r\n",
 					"df.filter(df['Calendar Year'] == \"2018\").show()"
 				],
-				"execution_count": 2
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
@@ -107,7 +107,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 5
+				"execution_count": 8
 			},
 			{
 				"cell_type": "code",
@@ -132,7 +132,7 @@
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
 					"plt.show()"
 				],
-				"execution_count": 4
+				"execution_count": 9
 			}
 		]
 	}

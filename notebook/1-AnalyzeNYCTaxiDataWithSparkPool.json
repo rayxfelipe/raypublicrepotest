@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "c8bdf4b2-a71e-4821-91b3-d16bdd056787"
+				"spark.autotune.trackingId": "b44fd067-60e5-4bc4-a08f-5438a21f769b"
 			}
 		},
 		"metadata": {
@@ -122,7 +122,7 @@
 					"df = spark.sql(\"SELECT * FROM nyctaxi.trip\") \r\n",
 					"display(df)"
 				],
-				"execution_count": 6
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -156,7 +156,7 @@
 					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.passengercountstats\")\r\n",
 					""
 				],
-				"execution_count": 8
+				"execution_count": 5
 			}
 		]
 	}
