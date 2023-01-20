@@ -7,20 +7,20 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SynapseDemoSprk",
+			"referenceName": "SynapseDemoSpk2",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "28g",
-			"driverCores": 4,
-			"executorMemory": "28g",
-			"executorCores": 4,
+			"driverMemory": "112g",
+			"driverCores": 16,
+			"executorMemory": "112g",
+			"executorCores": 16,
 			"numExecutors": 2,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "da40466a-3738-46c7-8165-c9bc3294883d"
+				"spark.autotune.trackingId": "66530709-96b2-44ec-8afe-27e4bc280976"
 			}
 		},
 		"metadata": {
@@ -34,18 +34,18 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
-				"name": "SynapseDemoSprk",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSpk2",
+				"name": "SynapseDemoSpk2",
 				"type": "Spark",
-				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk2",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.2",
 				"nodeCount": 10,
-				"cores": 4,
-				"memory": 28,
+				"cores": 16,
+				"memory": 112,
 				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 60
@@ -65,7 +65,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 2
+				"execution_count": 15
 			},
 			{
 				"cell_type": "code",
@@ -86,7 +86,7 @@
 					"df.select('Calendar_Year').show()\r\n",
 					"df.filter(df['Calendar_Year'] == \"2018\").show()"
 				],
-				"execution_count": 3
+				"execution_count": 16
 			},
 			{
 				"cell_type": "code",
@@ -107,7 +107,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 4
+				"execution_count": 17
 			},
 			{
 				"cell_type": "code",
@@ -135,7 +135,7 @@
 					"plt.show()\r\n",
 					""
 				],
-				"execution_count": 5
+				"execution_count": 18
 			},
 			{
 				"cell_type": "code",
@@ -157,7 +157,7 @@
 					"\r\n",
 					"plt.show()"
 				],
-				"execution_count": 6
+				"execution_count": 19
 			},
 			{
 				"cell_type": "code",
@@ -180,7 +180,7 @@
 					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
 				],
-				"execution_count": 7
+				"execution_count": 20
 			},
 			{
 				"cell_type": "code",
@@ -209,7 +209,7 @@
 					"display(sparksql_df)\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue2019\")"
 				],
-				"execution_count": 8
+				"execution_count": 21
 			}
 		]
 	}
