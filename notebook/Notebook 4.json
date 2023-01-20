@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "5b33d0fb-313a-4533-a49a-dabe7d53d113"
+				"spark.autotune.trackingId": "085ff0d3-48e0-41bf-9b86-bc40ca8afd15"
 			}
 		},
 		"metadata": {
@@ -59,7 +59,7 @@
 					"%%pyspark\n",
 					"spark.sql(\"DROP DATABASE IF EXISTS cannabis CASCADE\")"
 				],
-				"execution_count": 1
+				"execution_count": 4
 			}
 		]
 	}
