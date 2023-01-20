@@ -1,0 +1,22 @@
+{
+	"name": "ray lake db",
+	"properties": {
+		"Name": "ray lake db",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/ray lake db",
+			"Properties": {
+				"FormatType": "csv",
+				"LinkedServiceName": "rayfelipesynapseworkspace-WorkspaceDefaultStorage"
+			}
+		}
+	},
+	"type": "DATABASE"
+}
