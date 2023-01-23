@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_b00",
+				"name": "copy_data_activity_CannabisTaxCultivationExciseRevenue",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
