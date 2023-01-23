@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_b00x",
+	"name": "DestinationDataset_b00",
 	"properties": {
 		"annotations": [],
 		"type": "SqlPoolTable",
