@@ -1,0 +1,290 @@
+{
+	"name": "CopyPipeline_nyctaxitrip",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_h3j",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "rayfelipedlgen2filesystem/Quickstarts/NYCTripSmall.parquet"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.NYCTripSmall"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"writeBehavior": "Insert",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "VendorID",
+									"type": "Int64",
+									"physicalType": "INT64"
+								},
+								"sink": {
+									"name": "VendorID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "lpep_pickup_datetime",
+									"type": "Int64",
+									"physicalType": "TIMESTAMP_MICROS"
+								},
+								"sink": {
+									"name": "lpep_pickup_datetime",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "lpep_dropoff_datetime",
+									"type": "Int64",
+									"physicalType": "TIMESTAMP_MICROS"
+								},
+								"sink": {
+									"name": "lpep_dropoff_datetime",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "store_and_fwd_flag",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "store_and_fwd_flag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RatecodeID",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "RatecodeID",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "PULocationID",
+									"type": "Int64",
+									"physicalType": "INT64"
+								},
+								"sink": {
+									"name": "PULocationID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "DOLocationID",
+									"type": "Int64",
+									"physicalType": "INT64"
+								},
+								"sink": {
+									"name": "DOLocationID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "passenger_count",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "passenger_count",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "trip_distance",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "trip_distance",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "fare_amount",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "fare_amount",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "extra",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "extra",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "mta_tax",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "mta_tax",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "tip_amount",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "tip_amount",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "tolls_amount",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "tolls_amount",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "ehail_fee",
+									"type": "Int32",
+									"physicalType": "INT32"
+								},
+								"sink": {
+									"name": "ehail_fee",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "improvement_surcharge",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "improvement_surcharge",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "total_amount",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "total_amount",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "payment_type",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "payment_type",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "trip_type",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "trip_type",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "congestion_surcharge",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								},
+								"sink": {
+									"name": "congestion_surcharge",
+									"type": "Double"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_h3j",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_h3j",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-01-18T04:41:17Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

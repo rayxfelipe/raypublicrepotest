@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_cq5",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NYCTripSmall"
+		},
+		"sqlPool": {
+			"referenceName": "SQL Dedicated 1",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
