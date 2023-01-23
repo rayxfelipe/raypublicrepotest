@@ -653,1127 +653,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/F0_ChannelType_Territory_Channel')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "L0_ChannelType_Territory",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L0_ChannelType_Territory",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "L1_Channel",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "L0_ChannelType_Territory",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L1_Channel",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:43:17Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/pipelines/L0_ChannelType_Territory')]",
-				"[concat(variables('workspaceId'), '/pipelines/L1_Channel')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/F1_Country_Country2')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "L0_Country",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L0_Country",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "L1_Country1",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "L0_Country",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L1_Country2",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:43:25Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/pipelines/L0_Country')]",
-				"[concat(variables('workspaceId'), '/pipelines/L1_Country2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/F3_Item_ProductCategoryDim_Product_TransactionLineItem')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "L0_Item_ProductCategoryDim",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L0_Item_ProductCategoryDim",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "L1_Product",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "L0_Item_ProductCategoryDim",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L1_Product",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "L2_TransactionLineItem",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "L1_Product",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L2_TransactionLineItem",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:43:33Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/pipelines/L0_Item_ProductCategoryDim')]",
-				"[concat(variables('workspaceId'), '/pipelines/L1_Product')]",
-				"[concat(variables('workspaceId'), '/pipelines/L2_TransactionLineItem')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/F4_Location_Location1_Customer_Transaction')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "L0_Location",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L0_Location",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "L1_Location1",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "L0_Location",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L1_Location2",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "L2_Customer",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "L1_Location1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L2_Customer",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "L3_Transaction",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "L2_Customer",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L3_Transaction",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:43:36Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/pipelines/L0_Location')]",
-				"[concat(variables('workspaceId'), '/pipelines/L1_Location2')]",
-				"[concat(variables('workspaceId'), '/pipelines/L2_Customer')]",
-				"[concat(variables('workspaceId'), '/pipelines/L3_Transaction')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L0_ChannelType_Territory')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "ChannelTypeTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "ChannelType_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"ResellerDeltaSource": {},
-									"TargetChannelType": {},
-									"ChannelTypeSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "TerritoryTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Territory_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"SalesTerritoryDeltaSource": {},
-									"TerritorySink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:31:10Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/ChannelType_DataFlow1')]",
-				"[concat(variables('workspaceId'), '/dataflows/Territory_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L0_Country')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "CountryTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Country_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"CustomerDataDeltaSource": {},
-									"TargetCountry": {},
-									"CountrySink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:31:16Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Country_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L0_IndividualCustomer')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "IndividualCustomerTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "IndividualCustomer_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"CustomerDataDeltaSource": {},
-									"IndividualCustomerSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:31:23Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/IndividualCustomer_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L0_Item_ProductCategoryDim')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "ItemTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Item_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"ProductDataDeltaSource": {},
-									"ItemSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "ProductCategoryDimTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "ProductCategoryDim_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"ProductDataDeltaSource": {},
-									"ProductCategoryDimSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:31:29Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Item_DataFlow1')]",
-				"[concat(variables('workspaceId'), '/dataflows/ProductCategoryDim_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L0_Location')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "LocationTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Location_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"CustomerDataDeltaSource": {},
-									"TargetCountry": {},
-									"TargetLocation": {},
-									"LocationSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:31:36Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Location_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L1_Channel')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "ChannelTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Channel_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"ResellerDeltaSource": {},
-									"SalesSource": {},
-									"SalesTerritorySource": {},
-									"TargetChannelType": {},
-									"ChannelSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:39:52Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Channel_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L1_Country2')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "Country2Transform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Country2_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"ResellerDeltaSource": {},
-									"TargetCountry": {},
-									"CountrySink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:39:57Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Country2_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L1_Location2')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "Location2Transform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Location2_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"ResellerDeltaSource": {},
-									"TargetCountry": {},
-									"TargetLocation": {},
-									"LocationSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:40:02Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Location2_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L1_Product')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "ProductTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Product_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"ProductDataDeltaSource": {},
-									"ProductSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:40:10Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Product_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L2_Customer')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "CustomerTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Customer_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"CustomerDataDeltaSource": {},
-									"TargetCountry": {},
-									"TargetLocation": {},
-									"CustomerSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:42:43Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Customer_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L2_TransactionLineItem')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "TransactionLineItemTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "TransactionLineItem_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"SalesDeltaSource": {},
-									"SalesOrderSource": {},
-									"TransactionLineItemSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:42:48Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/TransactionLineItem_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/L3_Transaction')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "TransactionTransform",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 60
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Transaction_DataFlow1",
-								"type": "DataFlowReference",
-								"parameters": {
-									"modifiedAfter": "toTimestamp(\"01-01-1900\")",
-									"modifiedBefore": "currentTimestamp()"
-								},
-								"datasetParameters": {
-									"SalesOrderDeltaSource": {},
-									"SalesSource": {},
-									"CustomerDataSource": {},
-									"ResellerSource": {},
-									"TransactionSink": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:42:54Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Transaction_DataFlow1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/StartingPipeline')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "F0_ChannelType_Territory_Channel",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "L0_IndividualCustomer",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "F0_ChannelType_Territory_Channel",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "F1_Country_Country1",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "F0_ChannelType_Territory_Channel",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "F1_Country_Country2",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "F4_Location_Location1_Customer_Transacti",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "F1_Country_Country1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "F4_Location_Location1_Customer_Transaction",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "F3_Item_ProductCategoryDim_Product_Trans",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "F4_Location_Location1_Customer_Transacti",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "F3_Item_ProductCategoryDim_Product_TransactionLineItem",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "L0_IndividualCustomer",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "L0_IndividualCustomer",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "AdventureWorksPipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-09-23T14:43:43Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/pipelines/F0_ChannelType_Territory_Channel')]",
-				"[concat(variables('workspaceId'), '/pipelines/F1_Country_Country2')]",
-				"[concat(variables('workspaceId'), '/pipelines/F4_Location_Location1_Customer_Transaction')]",
-				"[concat(variables('workspaceId'), '/pipelines/F3_Item_ProductCategoryDim_Product_TransactionLineItem')]",
-				"[concat(variables('workspaceId'), '/pipelines/L0_IndividualCustomer')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('workspaceName'), '/AzureSynapseAnalyticsTable1')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -2637,6 +1516,26 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Trigger 1')]",
+			"type": "Microsoft.Synapse/workspaces/triggers",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 3,
+						"startTime": "2023-01-23T18:03:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/AutoResolveIntegrationRuntime')]",
@@ -4304,6 +3203,7 @@
 					"executorMemory": "28g",
 					"executorCores": 4,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
@@ -4328,12 +3228,14 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28
+						"memory": 28,
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -4473,11 +3375,12 @@
 					"executorMemory": "28g",
 					"executorCores": 4,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "bc96c0ef-5b3e-44e8-b9c7-2ff1e52f5ec3"
+						"spark.autotune.trackingId": "00fa7e35-9a92-4224-85d2-4ed65253aaf6"
 					}
 				},
 				"metadata": {
@@ -4620,6 +3523,7 @@
 					"executorMemory": "112g",
 					"executorCores": 16,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
@@ -4644,12 +3548,14 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk2",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 16,
-						"memory": 112
+						"memory": 112,
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 15
 				},
@@ -4765,6 +3671,7 @@
 					"executorMemory": "56g",
 					"executorCores": 8,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
@@ -4789,12 +3696,14 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk3",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 8,
-						"memory": 56
+						"memory": 56,
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -4854,8 +3763,7 @@
 							"nyc_tlc = NycTlcYellow(start_date=start_date, end_date=end_date)\n",
 							"nyc_tlc_df = nyc_tlc.to_spark_dataframe()"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					},
 					{
 						"cell_type": "code",
@@ -4863,8 +3771,7 @@
 							"#To make development easier, faster and less expensive downsample for now\n",
 							"sampled_taxi_df = nyc_tlc_df.sample(True, 0.001, seed=1234)"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					},
 					{
 						"cell_type": "markdown",
@@ -4905,8 +3812,7 @@
 							"plt.suptitle('')\n",
 							"plt.show()"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					},
 					{
 						"cell_type": "markdown",
@@ -4938,8 +3844,7 @@
 							"                                & (sampled_taxi_df.paymentType.isin({\"1\", \"2\"}))\n",
 							"                                )"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					},
 					{
 						"cell_type": "markdown",
@@ -4965,8 +3870,7 @@
 							"                                              )\\\n",
 							"                                       .filter((taxi_df.tripTimeSecs >= 30) & (taxi_df.tripTimeSecs <= 7200))"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					},
 					{
 						"cell_type": "markdown",
@@ -4993,8 +3897,7 @@
 							"# Create a new dataframe that has had the encodings applied\n",
 							"encoded_final_df = Pipeline(stages=[sI1, en1, sI2, en2]).fit(taxi_featurised_df).transform(taxi_featurised_df)"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					},
 					{
 						"cell_type": "markdown",
@@ -5015,8 +3918,7 @@
 							"# Split the dataframe into test and training dataframes\n",
 							"train_data_df, test_data_df = encoded_final_df.randomSplit([trainingFraction, testingFraction], seed=seed)"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					},
 					{
 						"cell_type": "markdown",
@@ -5050,8 +3952,7 @@
 							"metrics = BinaryClassificationMetrics(predictionAndLabels)\n",
 							"print(\"Area under ROC = %s\" % metrics.areaUnderROC)"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					},
 					{
 						"cell_type": "markdown",
@@ -5075,8 +3976,7 @@
 							"plt.ylabel('True Positive Rate')\n",
 							"plt.show()"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					}
 				]
 			},
@@ -5102,6 +4002,7 @@
 					"executorMemory": "28g",
 					"executorCores": 4,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
@@ -5126,12 +4027,14 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28
+						"memory": 28,
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 15
 				},
@@ -5281,6 +4184,7 @@
 					"executorMemory": "112g",
 					"executorCores": 16,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
@@ -5305,12 +4209,14 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk2",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 16,
-						"memory": 112
+						"memory": 112,
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 60
 				},
@@ -7038,6 +5944,7 @@
 					"executorMemory": "112g",
 					"executorCores": 16,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
@@ -7062,12 +5969,14 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk2",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 16,
-						"memory": 112
+						"memory": 112,
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -7110,6 +6019,7 @@
 					"executorMemory": "112g",
 					"executorCores": 16,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
@@ -7134,12 +6044,14 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk2",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 16,
-						"memory": 112
+						"memory": 112,
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 30
 				},
