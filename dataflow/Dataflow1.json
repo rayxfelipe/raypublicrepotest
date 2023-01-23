@@ -19,8 +19,8 @@
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     store: 'synapseanalytics',",
-				"     schemaName: '',",
-				"     tableName: '',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'CannabisTaxCultivationExciseRevenue',",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     staged: true) ~> source1"
 			]
