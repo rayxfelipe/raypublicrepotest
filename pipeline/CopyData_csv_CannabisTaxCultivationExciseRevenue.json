@@ -231,7 +231,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_b00",
+						"referenceName": "DestinationDataset_b00x",
 						"type": "DatasetReference"
 					}
 				]
