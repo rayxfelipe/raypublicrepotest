@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_lwz_csvCannabisTaxCultivationExciseRevenue",
+	"name": "SourceDataset_lwz",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataLake2_DemoRG",
