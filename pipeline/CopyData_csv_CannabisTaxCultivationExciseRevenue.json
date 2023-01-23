@@ -231,12 +231,14 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_dedicated_CannabisTaxCultivationExciseRevenue",
+						"referenceName": "DestinationDataset_b00",
 						"type": "DatasetReference"
 					}
 				]
 			}
 		],
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2023-01-23T19:35:47Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
 }
