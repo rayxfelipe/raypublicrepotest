@@ -44,8 +44,7 @@
 							{
 								"source": {
 									"name": "VendorID",
-									"type": "Int64",
-									"physicalType": "INT64"
+									"type": "Int64"
 								},
 								"sink": {
 									"name": "VendorID",
@@ -55,8 +54,7 @@
 							{
 								"source": {
 									"name": "lpep_pickup_datetime",
-									"type": "Int64",
-									"physicalType": "TIMESTAMP_MICROS"
+									"type": "Int64"
 								},
 								"sink": {
 									"name": "lpep_pickup_datetime",
@@ -66,8 +64,7 @@
 							{
 								"source": {
 									"name": "lpep_dropoff_datetime",
-									"type": "Int64",
-									"physicalType": "TIMESTAMP_MICROS"
+									"type": "Int64"
 								},
 								"sink": {
 									"name": "lpep_dropoff_datetime",
@@ -77,8 +74,7 @@
 							{
 								"source": {
 									"name": "store_and_fwd_flag",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								},
 								"sink": {
 									"name": "store_and_fwd_flag",
@@ -88,8 +84,7 @@
 							{
 								"source": {
 									"name": "RatecodeID",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "RatecodeID",
@@ -99,8 +94,7 @@
 							{
 								"source": {
 									"name": "PULocationID",
-									"type": "Int64",
-									"physicalType": "INT64"
+									"type": "Int64"
 								},
 								"sink": {
 									"name": "PULocationID",
@@ -110,8 +104,7 @@
 							{
 								"source": {
 									"name": "DOLocationID",
-									"type": "Int64",
-									"physicalType": "INT64"
+									"type": "Int64"
 								},
 								"sink": {
 									"name": "DOLocationID",
@@ -121,8 +114,7 @@
 							{
 								"source": {
 									"name": "passenger_count",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "passenger_count",
@@ -132,8 +124,7 @@
 							{
 								"source": {
 									"name": "trip_distance",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "trip_distance",
@@ -143,8 +134,7 @@
 							{
 								"source": {
 									"name": "fare_amount",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "fare_amount",
@@ -154,8 +144,7 @@
 							{
 								"source": {
 									"name": "extra",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "extra",
@@ -165,8 +154,7 @@
 							{
 								"source": {
 									"name": "mta_tax",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "mta_tax",
@@ -176,8 +164,7 @@
 							{
 								"source": {
 									"name": "tip_amount",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "tip_amount",
@@ -187,8 +174,7 @@
 							{
 								"source": {
 									"name": "tolls_amount",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "tolls_amount",
@@ -198,8 +184,7 @@
 							{
 								"source": {
 									"name": "ehail_fee",
-									"type": "Int32",
-									"physicalType": "INT32"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "ehail_fee",
@@ -209,8 +194,7 @@
 							{
 								"source": {
 									"name": "improvement_surcharge",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "improvement_surcharge",
@@ -220,8 +204,7 @@
 							{
 								"source": {
 									"name": "total_amount",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "total_amount",
@@ -231,8 +214,7 @@
 							{
 								"source": {
 									"name": "payment_type",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "payment_type",
@@ -242,8 +224,7 @@
 							{
 								"source": {
 									"name": "trip_type",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "trip_type",
@@ -253,31 +234,19 @@
 							{
 								"source": {
 									"name": "congestion_surcharge",
-									"type": "Double",
-									"physicalType": "DOUBLE"
+									"type": "Double"
 								},
 								"sink": {
 									"name": "congestion_surcharge",
 									"type": "Double"
 								}
 							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
+						]
 					}
 				},
 				"inputs": [
 					{
 						"referenceName": "SourceDataset_cq5",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DestinationDataset_cq5",
 						"type": "DatasetReference"
 					}
 				]
