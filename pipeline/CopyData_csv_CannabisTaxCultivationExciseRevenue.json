@@ -225,7 +225,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_b00",
+						"referenceName": "SourceDataset_csv_CannabisTaxCultivationExciseRevenue",
 						"type": "DatasetReference"
 					}
 				],

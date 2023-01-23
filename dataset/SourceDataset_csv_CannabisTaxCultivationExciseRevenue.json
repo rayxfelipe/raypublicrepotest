@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_b00",
+	"name": "SourceDataset_csv_CannabisTaxCultivationExciseRevenue",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataLake2_DemoRG",
