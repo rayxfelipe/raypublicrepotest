@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "4c60a23e-1021-414a-95f6-4d2bdee653e8"
+				"spark.autotune.trackingId": "dffd4662-fe00-4a37-8501-00a7de6ceeda"
 			}
 		},
 		"metadata": {
@@ -130,7 +130,8 @@
 					"\r\n",
 					"import matplotlib.pyplot as plt\r\n",
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
-					"plt.show()"
+					"plt.show()\r\n",
+					"test"
 				],
 				"execution_count": 4
 			}
