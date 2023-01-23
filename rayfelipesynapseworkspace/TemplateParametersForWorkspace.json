@@ -5,9 +5,6 @@
 		"workspaceName": {
 			"value": "rayfelipesynapseworkspace"
 		},
-		"AzureSynapseAnalytics1_connectionString": {
-			"value": ""
-		},
 		"DataLake2_DemoRG_accountKey": {
 			"value": ""
 		},
