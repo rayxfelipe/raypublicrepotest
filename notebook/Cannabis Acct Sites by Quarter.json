@@ -1,8 +1,8 @@
 {
-	"name": "1-AnalyzeNYCTaxiDataWithSparkPool",
+	"name": "Cannabis Acct Sites by Quarter",
 	"properties": {
 		"folder": {
-			"name": "Quickstarts/4. AnalyzeUsingSparkPool"
+			"name": "DCC"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b44fd067-60e5-4bc4-a08f-5438a21f769b"
+				"spark.autotune.trackingId": "7580c071-26e8-4cd6-8b50-17db7719013f"
 			}
 		},
 		"metadata": {
@@ -63,12 +63,11 @@
 				},
 				"source": [
 					"%%pyspark\r\n",
-					"df = spark.read.load('abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/Quickstarts/NYCTripSmall.parquet', format='parquet')\r\n",
+					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisAccountSitesByQuarter.csv', format='csv', header='true')\r\n",
 					"display(df.limit(10))\r\n",
-					"\r\n",
 					""
 				],
-				"execution_count": 2
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -84,16 +83,20 @@
 					}
 				},
 				"source": [
+					"df.show()\r\n",
 					"df.printSchema()\r\n",
-					"\r\n",
-					"spark.sql(\"CREATE DATABASE IF NOT EXISTS nyctaxi\")\r\n",
-					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.trip\")"
+					"df.select('Year').show()\r\n",
+					"df.filter(df['Year'] == \"2018\").show()"
 				],
-				"execution_count": 3
+				"execution_count": 40
 			},
 			{
-				"cell_type": "markdown",
+				"cell_type": "code",
 				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
 					"nteract": {
 						"transient": {
 							"deleting": false
@@ -101,9 +104,12 @@
 					}
 				},
 				"source": [
-					"# Analyze the NYC Taxi data using Spark and notebooks\r\n",
-					""
-				]
+					"pd_df = df.toPandas()\r\n",
+					"pd_df.info()\r\n",
+					"pd_df.describe()\r\n",
+					"pd_df.head()"
+				],
+				"execution_count": 41
 			},
 			{
 				"cell_type": "code",
@@ -116,49 +122,19 @@
 						"transient": {
 							"deleting": false
 						}
-					},
-					"collapsed": false
+					}
 				},
 				"source": [
+					"pd_df['Year'] = pd_df['Year'].astype(int)\r\n",
+					"pd_df['Quarter'] = pd_df['Quarter'].astype(int)\r\n",
+					"pd_df['Active'] = pd_df['Active'].astype(int)\r\n",
+					"pd_df['Ceased'] = pd_df['Ceased'].astype(int)\r\n",
 					"\r\n",
-					"df = spark.sql(\"SELECT * FROM nyctaxi.trip\") \r\n",
-					"display(df)"
+					"import matplotlib.pyplot as plt\r\n",
+					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
+					"plt.show()"
 				],
-				"execution_count": 4
-			},
-			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					},
-					"microsoft": {
-						"language": "python"
-					},
-					"collapsed": false
-				},
-				"source": [
-					"%%pyspark\r\n",
-					"df = spark.sql(\"\"\"\r\n",
-					"   SELECT passenger_count,\r\n",
-					"       SUM(trip_distance) as SumTripDistance,\r\n",
-					"       AVG(trip_distance) as AvgTripDistance\r\n",
-					"   FROM nyctaxi.trip\r\n",
-					"   WHERE trip_distance > 0 AND passenger_count > 0\r\n",
-					"   GROUP BY passenger_count\r\n",
-					"   ORDER BY passenger_count\r\n",
-					"\"\"\") \r\n",
-					"display(df)\r\n",
-					"df.write.mode(\"overwrite\").saveAsTable(\"nyctaxi.passengercountstats\")\r\n",
-					""
-				],
-				"execution_count": 5
+				"execution_count": 53
 			}
 		]
 	}

@@ -1,5 +1,5 @@
 {
-	"name": "2-Cannabis Sales by County",
+	"name": "Cannabis Tax Revenues",
 	"properties": {
 		"folder": {
 			"name": "DCC"
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "207ef1cd-4d43-4f54-9a60-31b9113da7ae"
+				"spark.autotune.trackingId": "e4bf0517-0e6a-4c24-a62b-97484ec80f38"
 			}
 		},
 		"metadata": {
@@ -63,11 +63,11 @@
 				},
 				"source": [
 					"%%pyspark\r\n",
-					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisSalesByCounty.csv', format='csv', header='true')\r\n",
+					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisTaxRevenues.csv', format='csv', header='true')\r\n",
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 6
+				"execution_count": 46
 			},
 			{
 				"cell_type": "code",
@@ -85,10 +85,10 @@
 				"source": [
 					"df.show()\r\n",
 					"df.printSchema()\r\n",
-					"df.select('Calendar Year').show()\r\n",
-					"df.filter(df['Calendar Year'] == \"2018\").show()"
+					"df.select('Calendar_Year').show()\r\n",
+					"df.filter(df['Calendar_Year'] == \"2018\").show()"
 				],
-				"execution_count": 7
+				"execution_count": 47
 			},
 			{
 				"cell_type": "code",
@@ -109,7 +109,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 8
+				"execution_count": 48
 			},
 			{
 				"cell_type": "code",
@@ -125,16 +125,93 @@
 					}
 				},
 				"source": [
-					"pd_df['Calendar Year'] = pd_df['Calendar Year'].astype(int)\r\n",
-					"pd_df['Quarter'] = pd_df['Quarter'].astype(int)\r\n",
-					"pd_df['Per Capita Sales'] = pd_df['Per Capita Sales'].astype(float)\r\n",
-					"pd_df['Total Taxable Sales'] = pd_df['Total Taxable Sales'].astype(float)\r\n",
+					"pd_df['Calendar_Year'] = pd_df['Calendar_Year'].astype(int)\r\n",
+					"pd_df['Quarter'] = pd_df['Quarter'].astype(str)\r\n",
+					"pd_df['Excise_Tax'] = pd_df['Excise_Tax'].astype(int)\r\n",
+					"pd_df['Cultivation_Tax'] = pd_df['Cultivation_Tax'].astype(str)\r\n",
+					"pd_df['Total_Tax'] = pd_df['Total_Tax'].astype(int)\r\n",
+					"pd_df['Taxable_Sales'] = pd_df['Taxable_Sales'].astype(int)\r\n",
 					"\r\n",
 					"import matplotlib.pyplot as plt\r\n",
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
+					"plt.show()\r\n",
+					""
+				],
+				"execution_count": 49
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pd_df.plot(figsize=(10,5))\r\n",
+					"pd_df.plot.scatter(x='Excise_Tax', y='Calendar_Year', figsize=(5,5))\r\n",
+					"# pd_df.plot.scatter(x='Number of Returns Filed', y='16. Total Cannabis Excise Tax Due', figsize=(5,5))\r\n",
+					"\r\n",
 					"plt.show()"
 				],
-				"execution_count": 9
+				"execution_count": 50
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df.printSchema()\r\n",
+					"# display(df.limit(10))\r\n",
+					"display(df)\r\n",
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
+				],
+				"execution_count": 51
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"sparksql_df = spark.sql(\"\"\"\r\n",
+					"   SELECT *\r\n",
+					"   FROM cannabis.taxrevenue\r\n",
+					"   WHERE Calendar_Year == \"2019\"\r\n",
+					"\"\"\") \r\n",
+					"display(sparksql_df)\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue2019\")"
+				],
+				"execution_count": 52
 			}
 		]
 	}

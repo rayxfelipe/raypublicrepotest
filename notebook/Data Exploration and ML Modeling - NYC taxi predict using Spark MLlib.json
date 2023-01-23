@@ -1,5 +1,5 @@
 {
-	"name": "2-Data Exploration and ML Modeling - NYC taxi predict using Spark MLlib",
+	"name": "Data Exploration and ML Modeling - NYC taxi predict using Spark MLlib",
 	"properties": {
 		"folder": {
 			"name": "Quickstarts/4. AnalyzeUsingSparkPool"
@@ -7,21 +7,21 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SynapseDemoSpk3",
+			"referenceName": "SynapseDemoSpk2",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "56g",
-			"driverCores": 8,
-			"executorMemory": "56g",
-			"executorCores": 8,
+			"driverMemory": "112g",
+			"driverCores": 16,
+			"executorMemory": "112g",
+			"executorCores": 16,
 			"numExecutors": 2,
 			"runAsWorkspaceSystemIdentity": false,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "a92b9094-4e28-4fa3-9fd6-e93f62714a13"
+				"spark.autotune.trackingId": "86ec15a6-4cad-423f-9db8-2e11cea19dc1"
 			}
 		},
 		"metadata": {
@@ -35,10 +35,10 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSpk3",
-				"name": "SynapseDemoSpk3",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSpk2",
+				"name": "SynapseDemoSpk2",
 				"type": "Spark",
-				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk3",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk2",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net",
@@ -46,8 +46,8 @@
 				},
 				"sparkVersion": "3.2",
 				"nodeCount": 10,
-				"cores": 8,
-				"memory": 56,
+				"cores": 16,
+				"memory": 112,
 				"extraHeader": null
 			},
 			"sessionKeepAliveTimeout": 30
@@ -82,7 +82,7 @@
 					"from pyspark.mllib.evaluation import BinaryClassificationMetrics\n",
 					"from pyspark.ml.evaluation import BinaryClassificationEvaluator"
 				],
-				"execution_count": 1
+				"execution_count": 2
 			},
 			{
 				"cell_type": "markdown",
@@ -106,14 +106,16 @@
 					"\n",
 					"nyc_tlc = NycTlcYellow(start_date=start_date, end_date=end_date)\n",
 					"nyc_tlc_df = nyc_tlc.to_spark_dataframe()"
-				]
+				],
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
 				"source": [
 					"#To make development easier, faster and less expensive downsample for now\n",
 					"sampled_taxi_df = nyc_tlc_df.sample(True, 0.001, seed=1234)"
-				]
+				],
+				"execution_count": 4
 			},
 			{
 				"cell_type": "markdown",
@@ -153,7 +155,8 @@
 					"plt.axis([-2, 80, -2, 20])\n",
 					"plt.suptitle('')\n",
 					"plt.show()"
-				]
+				],
+				"execution_count": 5
 			},
 			{
 				"cell_type": "markdown",
@@ -184,7 +187,8 @@
 					"                                & (sampled_taxi_df.rateCodeId <= 5)\n",
 					"                                & (sampled_taxi_df.paymentType.isin({\"1\", \"2\"}))\n",
 					"                                )"
-				]
+				],
+				"execution_count": 6
 			},
 			{
 				"cell_type": "markdown",
@@ -209,7 +213,8 @@
 					"                                                .otherwise(0).alias('trafficTimeBins')\n",
 					"                                              )\\\n",
 					"                                       .filter((taxi_df.tripTimeSecs >= 30) & (taxi_df.tripTimeSecs <= 7200))"
-				]
+				],
+				"execution_count": 7
 			},
 			{
 				"cell_type": "markdown",
@@ -235,7 +240,8 @@
 					"\n",
 					"# Create a new dataframe that has had the encodings applied\n",
 					"encoded_final_df = Pipeline(stages=[sI1, en1, sI2, en2]).fit(taxi_featurised_df).transform(taxi_featurised_df)"
-				]
+				],
+				"execution_count": 8
 			},
 			{
 				"cell_type": "markdown",
@@ -255,7 +261,8 @@
 					"\n",
 					"# Split the dataframe into test and training dataframes\n",
 					"train_data_df, test_data_df = encoded_final_df.randomSplit([trainingFraction, testingFraction], seed=seed)"
-				]
+				],
+				"execution_count": 9
 			},
 			{
 				"cell_type": "markdown",
@@ -288,7 +295,8 @@
 					"predictionAndLabels = predictions.select(\"prediction\", \"label\").rdd\n",
 					"metrics = BinaryClassificationMetrics(predictionAndLabels)\n",
 					"print(\"Area under ROC = %s\" % metrics.areaUnderROC)"
-				]
+				],
+				"execution_count": 10
 			},
 			{
 				"cell_type": "markdown",
@@ -311,7 +319,8 @@
 					"plt.xlabel('False Positive Rate')\n",
 					"plt.ylabel('True Positive Rate')\n",
 					"plt.show()"
-				]
+				],
+				"execution_count": 11
 			}
 		]
 	}

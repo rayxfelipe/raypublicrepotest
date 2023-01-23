@@ -1,5 +1,5 @@
 {
-	"name": "2-Cannabis Sales by County",
+	"name": "Cannabis Sales by County",
 	"properties": {
 		"folder": {
 			"name": "DCC"
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "207ef1cd-4d43-4f54-9a60-31b9113da7ae"
+				"spark.autotune.trackingId": "82d18a4c-6c48-4f4d-b487-fca34cfbd40b"
 			}
 		},
 		"metadata": {
@@ -67,7 +67,7 @@
 					"display(df.limit(10))\r\n",
 					""
 				],
-				"execution_count": 6
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -88,7 +88,7 @@
 					"df.select('Calendar Year').show()\r\n",
 					"df.filter(df['Calendar Year'] == \"2018\").show()"
 				],
-				"execution_count": 7
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -109,7 +109,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 8
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -134,7 +134,7 @@
 					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
 					"plt.show()"
 				],
-				"execution_count": 9
+				"execution_count": 4
 			}
 		]
 	}

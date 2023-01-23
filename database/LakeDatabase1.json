@@ -16,7 +16,10 @@
 				"FormatType": "csv",
 				"LinkedServiceName": "rayfelipesynapseworkspace-WorkspaceDefaultStorage"
 			}
-		}
+		},
+		"PublishStatus": "PUBLISHED",
+		"ObjectVersion": 1,
+		"ObjectId": "c9c59a4e-00a4-4060-a118-b1959c2d4b59"
 	},
 	"type": "DATABASE"
 }
