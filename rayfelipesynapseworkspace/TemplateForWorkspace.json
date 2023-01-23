@@ -4038,44 +4038,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/LakeDatabase1')]",
-			"type": "Microsoft.Synapse/workspaces/databases",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"Ddls": [
-					{
-						"ActionType": "CREATE",
-						"OldEntity": null,
-						"NewEntity": {
-							"Name": "LakeDatabase1",
-							"EntityType": "DATABASE",
-							"Origin": {
-								"Type": "SPARK"
-							},
-							"Properties": {
-								"IsSyMSCDMDatabase": true
-							},
-							"Source": {
-								"Provider": "ADLS",
-								"Location": "abfss://rayfelipedlgen2filesystem@rayfelipedlgen2account.dfs.core.windows.net/LakeDatabase1",
-								"Properties": {
-									"FormatType": "csv",
-									"LinkedServiceName": "rayfelipesynapseworkspace-WorkspaceDefaultStorage"
-								}
-							},
-							"PublishStatus": "PUBLISHED",
-							"ObjectVersion": 1,
-							"ObjectId": "c9c59a4e-00a4-4060-a118-b1959c2d4b59"
-						},
-						"Source": {
-							"Type": "SPARK"
-						}
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('workspaceName'), '/SynapseDemoSprk')]",
 			"type": "Microsoft.Synapse/workspaces/bigDataPools",
 			"apiVersion": "2019-06-01-preview",
