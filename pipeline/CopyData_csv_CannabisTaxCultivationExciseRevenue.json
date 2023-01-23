@@ -231,7 +231,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_dedicated_CannabisTaxCultivationExciseRevenue",
+						"referenceName": "DestinationDataset_b00",
 						"type": "DatasetReference"
 					}
 				]
