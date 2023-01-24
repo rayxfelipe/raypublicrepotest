@@ -35,7 +35,7 @@
 				"     tableName: 'CannabisTaxCultivationExciseRevenue',",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     staged: true) ~> source1",
-				"source1 filter(column1 == 2018) ~> filter1",
+				"source1 filter(columns('Column1') == \"2019\") ~> filter1",
 				"filter1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
