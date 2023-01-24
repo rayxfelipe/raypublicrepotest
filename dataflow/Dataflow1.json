@@ -12,7 +12,11 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
@@ -22,7 +26,14 @@
 				"     schemaName: 'dbo',",
 				"     tableName: 'CannabisTaxCultivationExciseRevenue',",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     staged: true) ~> source1"
+				"     staged: true) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     store: 'synapse',",
+				"     databaseType: 'spark',",
+				"     format: 'table',",
+				"     database: 'default',",
+				"     tableName: '') ~> sink1"
 			]
 		}
 	}
