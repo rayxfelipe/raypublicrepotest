@@ -21,7 +21,11 @@
 					"name": "sink1"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -31,7 +35,8 @@
 				"     tableName: 'CannabisTaxCultivationExciseRevenue',",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     staged: true) ~> source1",
-				"source1 sink(allowSchemaDrift: true,",
+				"source1 filter(toInteger(column1) >= 2018) ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     store: 'synapseanalytics',",
