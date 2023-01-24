@@ -69,14 +69,7 @@
 					{
 						"name": "Copy_89p",
 						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Drop and Create",
-								"dependencyConditions": [
-									"Completed"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -314,7 +307,7 @@
 						"type": "ExecuteDataFlow",
 						"dependsOn": [
 							{
-								"activity": "Script1",
+								"activity": "Copy_89p",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -351,65 +344,6 @@
 							},
 							"traceLevel": "Fine"
 						}
-					},
-					{
-						"name": "Drop and Create",
-						"type": "Script",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"linkedServiceName": {
-							"referenceName": "LocalSynapse_LinkedService",
-							"type": "LinkedServiceReference"
-						},
-						"typeProperties": {
-							"scripts": [
-								{
-									"type": "NonQuery",
-									"text": "DROP TABLE [dbo].[CannabisTaxCultivationExciseRevenue]\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nCREATE TABLE [dbo].[CannabisTaxCultivationExciseRevenue]\n( \n\t[Column1] [nvarchar](max)  NULL,\n\t[Column2] [nvarchar](max)  NULL,\n\t[Column3] [nvarchar](max)  NULL,\n\t[Column4] [nvarchar](max)  NULL,\n\t[Column5] [nvarchar](max)  NULL,\n\t[Column6] [nvarchar](max)  NULL,\n\t[Column7] [nvarchar](max)  NULL,\n\t[Column8] [nvarchar](max)  NULL,\n\t[Column9] [nvarchar](max)  NULL,\n\t[Column10] [nvarchar](max)  NULL,\n\t[Column11] [nvarchar](max)  NULL,\n\t[Column12] [nvarchar](max)  NULL,\n\t[Column13] [nvarchar](max)  NULL,\n\t[Column14] [nvarchar](max)  NULL,\n\t[Column15] [nvarchar](max)  NULL,\n\t[Column16] [nvarchar](max)  NULL,\n\t[Column17] [nvarchar](max)  NULL\n)\nWITH\n(\n\tDISTRIBUTION = ROUND_ROBIN,\n\tHEAP\n)\nGO"
-								}
-							],
-							"scriptBlockExecutionTimeout": "02:00:00"
-						}
-					},
-					{
-						"name": "Script1",
-						"type": "Script",
-						"dependsOn": [
-							{
-								"activity": "Copy_89p",
-								"dependencyConditions": [
-									"Completed"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"linkedServiceName": {
-							"referenceName": "LocalSynapse_LinkedService",
-							"type": "LinkedServiceReference"
-						},
-						"typeProperties": {
-							"scripts": [
-								{
-									"type": "NonQuery",
-									"text": "DROP TABLE [dbo].[test]\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nCREATE TABLE [dbo].[test]\n( \n\t[Column1] [nvarchar](max)  NULL,\n\t[Column2] [nvarchar](max)  NULL,\n\t[Column3] [nvarchar](max)  NULL,\n\t[Column4] [nvarchar](max)  NULL,\n\t[Column5] [nvarchar](max)  NULL,\n\t[Column6] [nvarchar](max)  NULL,\n\t[Column7] [nvarchar](max)  NULL,\n\t[Column8] [nvarchar](max)  NULL,\n\t[Column9] [nvarchar](max)  NULL,\n\t[Column10] [nvarchar](max)  NULL,\n\t[Column11] [nvarchar](max)  NULL,\n\t[Column12] [nvarchar](max)  NULL,\n\t[Column13] [nvarchar](max)  NULL,\n\t[Column14] [nvarchar](max)  NULL,\n\t[Column15] [nvarchar](max)  NULL,\n\t[Column16] [nvarchar](max)  NULL,\n\t[Column17] [nvarchar](max)  NULL\n)\nWITH\n(\n\tDISTRIBUTION = ROUND_ROBIN,\n\tHEAP\n)\nGO"
-								}
-							],
-							"scriptBlockExecutionTimeout": "02:00:00"
-						}
 					}
 				],
 				"policy": {
@@ -421,9 +355,9 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/SourceDataset_89p')]",
 				"[concat(variables('workspaceId'), '/datasets/DestinationDataset_89p')]",
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
 				"[concat(variables('workspaceId'), '/dataflows/Dataflow1')]",
-				"[concat(variables('workspaceId'), '/linkedServices/DataLake2_DemoRG')]",
-				"[concat(variables('workspaceId'), '/linkedServices/LocalSynapse_LinkedService')]"
+				"[concat(variables('workspaceId'), '/linkedServices/DataLake2_DemoRG')]"
 			]
 		},
 		{
