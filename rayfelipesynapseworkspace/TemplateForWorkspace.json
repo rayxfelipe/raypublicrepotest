@@ -723,7 +723,7 @@
 						"     tableName: 'CannabisTaxCultivationExciseRevenue',",
 						"     isolationLevel: 'READ_UNCOMMITTED',",
 						"     staged: true) ~> source1",
-						"MapDrifted1 filter(columns('Column1') != '2019') ~> filter1",
+						"MapDrifted1 filter(columns('Column1') == '2019') ~> filter1",
 						"source1 derive(Column1 = toString(byName('Column1')),",
 						"          Column2 = toString(byName('Column2')),",
 						"          Column3 = toString(byName('Column3')),",
