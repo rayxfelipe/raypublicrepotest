@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"linkedService": {
-						"referenceName": "rayfelipesynapseworkspace-WorkspaceDefaultSqlServer",
+						"referenceName": "LocalSynapse_LinkedService",
 						"type": "LinkedServiceReference"
 					},
 					"name": "sink1"
@@ -36,8 +36,8 @@
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     store: 'synapseanalytics',",
-				"     schemaName: '',",
-				"     tableName: '',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'SensorLog',",
 				"     insertable: true,",
 				"     updateable: false,",
 				"     deletable: false,",
