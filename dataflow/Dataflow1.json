@@ -24,6 +24,9 @@
 			"transformations": [
 				{
 					"name": "filter1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -36,7 +39,9 @@
 				"     tableName: 'CannabisTaxCultivationExciseRevenue',",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     staged: true) ~> source1",
-				"source1 filter(columns(\"Column1\") == \"2019\") ~> filter1",
+				"select1 filter(columns(\"Column1\") == \"2019\") ~> filter1",
+				"source1 select(skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
 				"filter1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
