@@ -355,7 +355,6 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/SourceDataset_89p')]",
 				"[concat(variables('workspaceId'), '/datasets/DestinationDataset_89p')]",
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
 				"[concat(variables('workspaceId'), '/dataflows/Dataflow1')]",
 				"[concat(variables('workspaceId'), '/linkedServices/DataLake2_DemoRG')]"
 			]
@@ -713,13 +712,14 @@
 					"scriptLines": [
 						"source(allowSchemaDrift: true,",
 						"     validateSchema: false,",
+						"     limit: 100,",
 						"     format: 'table',",
 						"     store: 'synapseanalytics',",
 						"     schemaName: 'dbo',",
 						"     tableName: 'CannabisTaxCultivationExciseRevenue',",
 						"     isolationLevel: 'READ_UNCOMMITTED',",
 						"     staged: true) ~> source1",
-						"source1 filter(columns('Column1') == \"2019\") ~> filter1",
+						"source1 filter(columns(\"Column1\") == \"2019\") ~> filter1",
 						"filter1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     format: 'table',",
