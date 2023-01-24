@@ -301,6 +301,49 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy_89p",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Dataflow1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {
+								"linkedService": {
+									"referenceName": "DataLake2_DemoRG",
+									"type": "LinkedServiceReference"
+								},
+								"folderPath": "dcc"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
 					}
 				],
 				"policy": {
@@ -311,7 +354,10 @@
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/SourceDataset_89p')]",
-				"[concat(variables('workspaceId'), '/datasets/DestinationDataset_89p')]"
+				"[concat(variables('workspaceId'), '/datasets/DestinationDataset_89p')]",
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
+				"[concat(variables('workspaceId'), '/dataflows/Dataflow1')]",
+				"[concat(variables('workspaceId'), '/linkedServices/DataLake2_DemoRG')]"
 			]
 		},
 		{
