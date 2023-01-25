@@ -669,26 +669,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/Trigger 1')]",
-			"type": "Microsoft.Synapse/workspaces/triggers",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 3,
-						"startTime": "2023-01-23T18:03:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('workspaceName'), '/AutoResolveIntegrationRuntime')]",
 			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
 			"apiVersion": "2019-06-01-preview",
