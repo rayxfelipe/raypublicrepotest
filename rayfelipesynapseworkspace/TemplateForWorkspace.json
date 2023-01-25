@@ -11,10 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DataLake2_DemoRG'"
 		},
-		"DataLakeGen2Sri_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'DataLakeGen2Sri'"
-		},
 		"LocalSynapse_LinkedService_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LocalSynapse_LinkedService'",
@@ -33,10 +29,6 @@
 		"DataLake2_DemoRG_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://datalakaeacctindemorg.dfs.core.windows.net/"
-		},
-		"DataLakeGen2Sri_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://datalakemxiar8l.dfs.core.windows.net/"
 		},
 		"rayfelipesynapseworkspace-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"type": "string",
@@ -501,29 +493,6 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('DataLake2_DemoRG_accountKey')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/DataLakeGen2Sri')]",
-			"type": "Microsoft.Synapse/workspaces/linkedServices",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('DataLakeGen2Sri_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('DataLakeGen2Sri_accountKey')]"
 					}
 				},
 				"connectVia": {
@@ -2848,7 +2817,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "1a13c762-c56e-4b36-a02e-ea0cff1759f3"
+						"spark.autotune.trackingId": "780f51a5-0d42-4191-bc1e-c73a44331f04"
 					}
 				},
 				"metadata": {
@@ -2868,14 +2837,12 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net",
-							"authHeader": null
+							"authResource": "https://dev.azuresynapse.net"
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"extraHeader": null
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -3983,6 +3950,10 @@
 			"properties": {
 				"nbformat": 4,
 				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "SynapseDemoSprk",
+					"type": "BigDataPoolReference"
+				},
 				"sessionProperties": {
 					"driverMemory": "28g",
 					"driverCores": 4,
@@ -3994,14 +3965,11 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "d2d53cc1-6239-484c-8fed-ea3660513f3d"
+						"spark.autotune.trackingId": "6135653a-604d-4e08-bbee-286019ffd711"
 					}
 				},
 				"metadata": {
 					"saveOutput": true,
-					"synapse_widget": {
-						"version": "0.1"
-					},
 					"enableDebugMode": false,
 					"kernelspec": {
 						"name": "synapse_pyspark",
@@ -4009,6 +3977,20 @@
 					},
 					"language_info": {
 						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
+						"name": "SynapseDemoSprk",
+						"type": "Spark",
+						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.2",
+						"nodeCount": 10,
+						"cores": 4,
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -4027,7 +4009,8 @@
 							"print(\"The Match indices list is : \",res)\r\n",
 							""
 						],
-						"outputs": []
+						"outputs": [],
+						"execution_count": null
 					}
 				]
 			},
@@ -4123,21 +4106,21 @@
 				"nbformat": 4,
 				"nbformat_minor": 2,
 				"bigDataPool": {
-					"referenceName": "SynapseDemoSpk2",
+					"referenceName": "SynapseDemoSprk",
 					"type": "BigDataPoolReference"
 				},
 				"sessionProperties": {
-					"driverMemory": "112g",
-					"driverCores": 16,
-					"executorMemory": "112g",
-					"executorCores": 16,
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
 					"numExecutors": 2,
 					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "085ff0d3-48e0-41bf-9b86-bc40ca8afd15"
+						"spark.autotune.trackingId": "4c730462-6031-4a3e-9bcd-70c6eed5ce53"
 					}
 				},
 				"metadata": {
@@ -4151,20 +4134,19 @@
 						"name": "python"
 					},
 					"a365ComputeOptions": {
-						"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSpk2",
-						"name": "SynapseDemoSpk2",
+						"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
+						"name": "SynapseDemoSprk",
 						"type": "Spark",
-						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSpk2",
+						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net",
-							"authHeader": null
+							"authResource": "https://dev.azuresynapse.net"
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
-						"cores": 16,
-						"memory": 112,
-						"extraHeader": null
+						"cores": 4,
+						"memory": 28,
+						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 30
 				},

@@ -8,9 +8,6 @@
 		"DataLake2_DemoRG_accountKey": {
 			"value": ""
 		},
-		"DataLakeGen2Sri_accountKey": {
-			"value": ""
-		},
 		"LocalSynapse_LinkedService_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=\"SQL Dedicated 1\""
 		},
@@ -22,9 +19,6 @@
 		},
 		"DataLake2_DemoRG_properties_typeProperties_url": {
 			"value": "https://datalakaeacctindemorg.dfs.core.windows.net/"
-		},
-		"DataLakeGen2Sri_properties_typeProperties_url": {
-			"value": "https://datalakemxiar8l.dfs.core.windows.net/"
 		},
 		"rayfelipesynapseworkspace-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://rayfelipedlgen2account.dfs.core.windows.net"
