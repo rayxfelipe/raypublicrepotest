@@ -237,7 +237,7 @@
 				]
 			},
 			{
-				"name": "Data flow1",
+				"name": "Data flow2",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
@@ -257,7 +257,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "Dataflow1",
+						"referenceName": "Dataflow2",
 						"type": "DataFlowReference"
 					},
 					"staging": {
