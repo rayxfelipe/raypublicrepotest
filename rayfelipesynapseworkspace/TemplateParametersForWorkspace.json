@@ -11,6 +11,9 @@
 		"LocalSynapse_LinkedService_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=\"SQL Dedicated 1\""
 		},
+		"rayazuresqldb_connectionString": {
+			"value": ""
+		},
 		"rayfelipesynapseworkspace-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:rayfelipesynapseworkspace.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
@@ -22,9 +25,6 @@
 		},
 		"rayfelipesynapseworkspace-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://rayfelipedlgen2account.dfs.core.windows.net"
-		},
-		"raysynapse5-WorkspaceDefaultStorage_properties_typeProperties_url": {
-			"value": "https://raystore5.dfs.core.windows.net"
 		}
 	}
 }
