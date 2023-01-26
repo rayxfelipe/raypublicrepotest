@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_g9q",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "temp"
+		},
+		"sqlPool": {
+			"referenceName": "SQL Dedicated 1",
+			"type": "SqlPoolReference"
+		}
+	}
+}
