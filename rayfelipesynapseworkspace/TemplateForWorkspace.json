@@ -3739,7 +3739,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "119289a0-05a5-4c17-8f26-141e8b98760c"
+						"spark.autotune.trackingId": "9cfd95b2-257a-4345-a694-499f7956b9dc"
 					}
 				},
 				"metadata": {
@@ -3785,7 +3785,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 7
+						"execution_count": 12
 					},
 					{
 						"cell_type": "code",
@@ -4553,7 +4553,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "8acf7aca-f5d2-4df1-96a0-8038eea148a1"
+						"spark.autotune.trackingId": "833449c3-bf31-4a17-a5db-12190a287339"
 					}
 				},
 				"metadata": {
@@ -4578,8 +4578,7 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 60
 				},
@@ -4720,7 +4719,7 @@
 							"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
 						],
 						"outputs": [],
-						"execution_count": 7
+						"execution_count": 6
 					},
 					{
 						"cell_type": "code",
@@ -4750,7 +4749,7 @@
 							"sparksql_df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue2019\")"
 						],
 						"outputs": [],
-						"execution_count": 28
+						"execution_count": 7
 					}
 				]
 			},
