@@ -3739,7 +3739,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "18787677-f80d-4806-9b62-100b80624042"
+						"spark.autotune.trackingId": "1c5bf744-537e-479e-979c-2953a9e8a788"
 					}
 				},
 				"metadata": {
@@ -3764,7 +3764,8 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28
+						"memory": 28,
+						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -3784,7 +3785,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 3
+						"execution_count": 6
 					},
 					{
 						"cell_type": "code",
@@ -3806,7 +3807,7 @@
 							"df.filter(df['Year'] == \"2018\").show()"
 						],
 						"outputs": [],
-						"execution_count": 4
+						"execution_count": 2
 					},
 					{
 						"cell_type": "code",
@@ -3852,10 +3853,10 @@
 							"import matplotlib.pyplot as plt\r\n",
 							"pd_df.hist(bins=10, figsize=(15,8))\r\n",
 							"plt.show()\r\n",
-							"test"
+							""
 						],
 						"outputs": [],
-						"execution_count": 4
+						"execution_count": 5
 					}
 				]
 			},
@@ -4552,7 +4553,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "a2997180-4c74-4720-bc1d-e42d52ff8d50"
+						"spark.autotune.trackingId": "215d96ac-a551-4d1e-8543-a890cb99b76a"
 					}
 				},
 				"metadata": {
@@ -4577,8 +4578,7 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 60
 				},
