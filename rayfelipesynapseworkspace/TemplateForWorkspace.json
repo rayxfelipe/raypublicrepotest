@@ -3739,7 +3739,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "1c5bf744-537e-479e-979c-2953a9e8a788"
+						"spark.autotune.trackingId": "119289a0-05a5-4c17-8f26-141e8b98760c"
 					}
 				},
 				"metadata": {
@@ -3785,7 +3785,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 6
+						"execution_count": 7
 					},
 					{
 						"cell_type": "code",
@@ -3807,7 +3807,7 @@
 							"df.filter(df['Year'] == \"2018\").show()"
 						],
 						"outputs": [],
-						"execution_count": 2
+						"execution_count": 11
 					},
 					{
 						"cell_type": "code",
@@ -3829,7 +3829,7 @@
 							"pd_df.head()"
 						],
 						"outputs": [],
-						"execution_count": 3
+						"execution_count": 9
 					},
 					{
 						"cell_type": "code",
@@ -3856,7 +3856,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 5
+						"execution_count": 10
 					}
 				]
 			},
@@ -4553,7 +4553,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "215d96ac-a551-4d1e-8543-a890cb99b76a"
+						"spark.autotune.trackingId": "8acf7aca-f5d2-4df1-96a0-8038eea148a1"
 					}
 				},
 				"metadata": {
@@ -4578,7 +4578,8 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28
+						"memory": 28,
+						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 60
 				},
@@ -4598,7 +4599,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 2
+						"execution_count": 1
 					},
 					{
 						"cell_type": "code",
@@ -4620,7 +4621,7 @@
 							"df.filter(df['Calendar_Year'] == \"2018\").show()"
 						],
 						"outputs": [],
-						"execution_count": 3
+						"execution_count": 2
 					},
 					{
 						"cell_type": "code",
@@ -4642,7 +4643,7 @@
 							"pd_df.head()"
 						],
 						"outputs": [],
-						"execution_count": 4
+						"execution_count": 3
 					},
 					{
 						"cell_type": "code",
@@ -4671,7 +4672,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 5
+						"execution_count": 4
 					},
 					{
 						"cell_type": "code",
@@ -4694,7 +4695,7 @@
 							"plt.show()"
 						],
 						"outputs": [],
-						"execution_count": 6
+						"execution_count": 5
 					},
 					{
 						"cell_type": "code",
@@ -4714,6 +4715,7 @@
 							"df.printSchema()\r\n",
 							"# display(df.limit(10))\r\n",
 							"display(df)\r\n",
+							"\r\n",
 							"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
 							"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
 						],
