@@ -1,0 +1,57 @@
+{
+	"name": "SourceDataset_r4y",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake2_DemoRG",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "CannabisTaxRevenues.csv",
+				"fileSystem": "dcc"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Calendar_Year",
+				"type": "String"
+			},
+			{
+				"name": "Quarter",
+				"type": "String"
+			},
+			{
+				"name": "Excise_Tax",
+				"type": "String"
+			},
+			{
+				"name": "Cultivation_Tax",
+				"type": "String"
+			},
+			{
+				"name": "Sales_Tax",
+				"type": "String"
+			},
+			{
+				"name": "Total_Tax",
+				"type": "String"
+			},
+			{
+				"name": "Year_Quarter",
+				"type": "String"
+			},
+			{
+				"name": "Taxable_Sales",
+				"type": "String"
+			}
+		]
+	}
+}
