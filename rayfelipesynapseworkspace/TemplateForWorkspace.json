@@ -343,137 +343,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/CopyPipeline_g9q')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy_g9q",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "dbo.dcc"
-							},
-							{
-								"name": "Destination",
-								"value": "dbo.temp"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "SqlPoolSink",
-								"writeBehavior": "Insert",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Calendar Yearx",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Calendar Yearx",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "County",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "County",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Per Capita Sales",
-											"type": "Double",
-											"physicalType": "float"
-										},
-										"sink": {
-											"name": "Per Capita Sales",
-											"type": "Double"
-										}
-									},
-									{
-										"source": {
-											"name": "Total Taxable Sales",
-											"type": "Double",
-											"physicalType": "float"
-										},
-										"sink": {
-											"name": "Total Taxable Sales",
-											"type": "Double"
-										}
-									},
-									{
-										"source": {
-											"name": "Quarter",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Quarter",
-											"type": "Int32"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_g9q",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_g9q",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/datasets/SourceDataset_g9q')]",
-				"[concat(variables('workspaceId'), '/datasets/DestinationDataset_g9q')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('workspaceName'), '/F0_ChannelType_Territory_Channel')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
@@ -1616,27 +1485,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/DestinationDataset_g9q')]",
-			"type": "Microsoft.Synapse/workspaces/datasets",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"annotations": [],
-				"type": "SqlPoolTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "temp"
-				},
-				"sqlPool": {
-					"referenceName": "SQL Dedicated 1",
-					"type": "SqlPoolReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/sqlPools/SQL Dedicated 1')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('workspaceName'), '/SourceDataset_89p')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -1850,6 +1698,20 @@
 				"type": "PowerBIWorkspace",
 				"typeProperties": {
 					"workspaceID": "8f1a7afa-fdce-4495-970b-8e25e49593e9",
+					"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/PBIForCallStreaming')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "PowerBIWorkspace",
+				"typeProperties": {
+					"workspaceID": "75fda1f2-a74e-4110-b447-ed0b5e5e6e55",
 					"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 				}
 			},
@@ -3877,7 +3739,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "dffd4662-fe00-4a37-8501-00a7de6ceeda"
+						"spark.autotune.trackingId": "92b90c4c-a106-49fa-8ed1-4c1d9d341272"
 					}
 				},
 				"metadata": {
@@ -3897,14 +3759,13 @@
 						"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net",
-							"authHeader": null
+							"authResource": "https://dev.azuresynapse.net"
 						},
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
 						"memory": 28,
-						"extraHeader": null
+						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -3924,7 +3785,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 1
+						"execution_count": 3
 					},
 					{
 						"cell_type": "code",
@@ -3946,7 +3807,7 @@
 							"df.filter(df['Year'] == \"2018\").show()"
 						],
 						"outputs": [],
-						"execution_count": 2
+						"execution_count": 4
 					},
 					{
 						"cell_type": "code",
@@ -4692,7 +4553,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "0eb2c6e0-982a-4c4c-9051-9761d33a020b"
+						"spark.autotune.trackingId": "3217c050-01c6-486f-b029-c3fcea34fee9"
 					}
 				},
 				"metadata": {
@@ -4717,7 +4578,8 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28
+						"memory": 28,
+						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 60
 				},
