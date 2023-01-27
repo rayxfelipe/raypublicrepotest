@@ -3739,7 +3739,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "21342864-1fc8-4469-820c-a55c990cec3f"
+						"spark.autotune.trackingId": "18787677-f80d-4806-9b62-100b80624042"
 					}
 				},
 				"metadata": {
@@ -3764,8 +3764,7 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -4553,7 +4552,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "0eb2c6e0-982a-4c4c-9051-9761d33a020b"
+						"spark.autotune.trackingId": "555a9d99-48a2-4e21-861f-c88df37f73fd"
 					}
 				},
 				"metadata": {
@@ -4578,7 +4577,8 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28
+						"memory": 28,
+						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 60
 				},
@@ -4598,7 +4598,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 22
+						"execution_count": 2
 					},
 					{
 						"cell_type": "code",
@@ -4620,7 +4620,7 @@
 							"df.filter(df['Calendar_Year'] == \"2018\").show()"
 						],
 						"outputs": [],
-						"execution_count": 23
+						"execution_count": 3
 					},
 					{
 						"cell_type": "code",
@@ -4642,7 +4642,7 @@
 							"pd_df.head()"
 						],
 						"outputs": [],
-						"execution_count": 24
+						"execution_count": 4
 					},
 					{
 						"cell_type": "code",
@@ -4671,7 +4671,7 @@
 							""
 						],
 						"outputs": [],
-						"execution_count": 25
+						"execution_count": 5
 					},
 					{
 						"cell_type": "code",
@@ -4694,7 +4694,7 @@
 							"plt.show()"
 						],
 						"outputs": [],
-						"execution_count": 26
+						"execution_count": 6
 					},
 					{
 						"cell_type": "code",
@@ -4718,7 +4718,7 @@
 							"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
 						],
 						"outputs": [],
-						"execution_count": 27
+						"execution_count": 7
 					},
 					{
 						"cell_type": "code",
