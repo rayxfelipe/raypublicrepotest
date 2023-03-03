@@ -1,0 +1,17 @@
+{
+	"name": "Query Sample JSON",
+	"properties": {
+		"content": {
+			"query": "select top 10 *\nfrom openrowset(\n        bulk 'https://rayfelipedlgen2account.dfs.core.windows.net/rayfelipedlgen2filesystem/OR OED/BasicJSONExample.json',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
