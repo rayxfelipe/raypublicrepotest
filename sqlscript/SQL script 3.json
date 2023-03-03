@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 3",
+	"properties": {
+		"content": {
+			"query": "create external data source covid\nwith ( location = 'https://pandemicdatalake.blob.core.windows.net/public/curated/covid-19/ecdc_cases' );\ngo\nselect top 10 *\nfrom openrowset(\n        bulk 'latest/ecdc_cases.jsonl',\n        data_source = 'covid',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\ngo\nselect top 10 *\nfrom openrowset(\n        bulk 'latest/ecdc_cases.json',\n        data_source = 'covid',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b',\n        rowterminator = '0x0b' --> You need to override rowterminator to read classic JSON\n    ) with (doc nvarchar(max)) as rows",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

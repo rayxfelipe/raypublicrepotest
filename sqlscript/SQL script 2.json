@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "select\n    JSON_VALUE(doc, '$.date_rep') AS date_reported,\n    JSON_VALUE(doc, '$.countries_and_territories') AS country,\n    CAST(JSON_VALUE(doc, '$.deaths') AS INT) as fatal,\n    JSON_VALUE(doc, '$.cases') as cases,\n    doc\nfrom openrowset(\n        bulk 'https://pandemicdatalake.blob.core.windows.net/public/curated/covid-19/ecdc_cases/latest/ecdc_cases.json',\n        data_source = 'covid',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\norder by JSON_VALUE(doc, '$.geo_id') desc",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
