@@ -23,6 +23,9 @@
 		"DataLake2_DemoRG_properties_typeProperties_url": {
 			"value": "https://datalakaeacctindemorg.dfs.core.windows.net/"
 		},
+		"bing-covid-19-data_sasUri": {
+			"value": ""
+		},
 		"rayfelipesynapseworkspace-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://rayfelipedlgen2account.dfs.core.windows.net"
 		}
