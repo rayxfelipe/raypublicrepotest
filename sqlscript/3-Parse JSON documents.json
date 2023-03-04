@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 2",
+	"name": "3-Parse JSON documents",
 	"properties": {
 		"folder": {
 			"name": "Load JSON to Table"
