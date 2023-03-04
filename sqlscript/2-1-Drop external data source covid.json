@@ -1,6 +1,9 @@
 {
 	"name": "2-1-Drop external data source covid",
 	"properties": {
+		"folder": {
+			"name": "Load JSON to Table"
+		},
 		"content": {
 			"query": "drop external data source covid",
 			"metadata": {
