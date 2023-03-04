@@ -1,0 +1,17 @@
+{
+	"name": "2-1-Drop external data source covid",
+	"properties": {
+		"content": {
+			"query": "drop external data source covid",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQL Serverless 1",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
