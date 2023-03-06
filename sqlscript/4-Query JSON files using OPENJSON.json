@@ -1,0 +1,20 @@
+{
+	"name": "4-Query JSON files using OPENJSON",
+	"properties": {
+		"folder": {
+			"name": "Load JSON to Table"
+		},
+		"content": {
+			"query": "select\n    *\nfrom openrowset(\n        bulk 'latest/ecdc_cases.jsonl',\n        data_source = 'covid',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\n    cross apply openjson (doc)\n        with (  date_rep datetime2,\n                cases int,\n                fatal int '$.deaths',\n                country varchar(100) '$.countries_and_territories')\nwhere country = 'Serbia'\norder by country, date_rep desc;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQL Serverless 1",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
