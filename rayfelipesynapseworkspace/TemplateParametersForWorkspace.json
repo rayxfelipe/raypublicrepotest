@@ -8,6 +8,9 @@
 		"DataLake2_DemoRG_accountKey": {
 			"value": ""
 		},
+		"DataLake2_DemoRG2_accountKey": {
+			"value": ""
+		},
 		"LocalSynapse_LinkedService_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=\"SQL Dedicated 1\""
 		},
@@ -22,6 +25,9 @@
 		},
 		"DataLake2_DemoRG_properties_typeProperties_url": {
 			"value": "https://datalakaeacctindemorg.dfs.core.windows.net/"
+		},
+		"DataLake2_DemoRG2_properties_typeProperties_url": {
+			"value": "https://datalakeindemorg2.dfs.core.windows.net/"
 		},
 		"bing-covid-19-data_sasUri": {
 			"value": ""

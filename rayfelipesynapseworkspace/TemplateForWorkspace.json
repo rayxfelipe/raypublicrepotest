@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DataLake2_DemoRG'"
 		},
+		"DataLake2_DemoRG2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DataLake2_DemoRG2'"
+		},
 		"LocalSynapse_LinkedService_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LocalSynapse_LinkedService'",
@@ -33,6 +37,10 @@
 		"DataLake2_DemoRG_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://datalakaeacctindemorg.dfs.core.windows.net/"
+		},
+		"DataLake2_DemoRG2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakeindemorg2.dfs.core.windows.net/"
 		},
 		"bing-covid-19-data_sasUri": {
 			"type": "secureString",
@@ -2464,6 +2472,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/DataLake2_DemoRG2')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"description": "Canada region for data share",
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('DataLake2_DemoRG2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('DataLake2_DemoRG2_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/LocalSynapse_LinkedService')]",
 			"type": "Microsoft.Synapse/workspaces/linkedServices",
 			"apiVersion": "2019-06-01-preview",
@@ -4246,6 +4278,52 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/3-Query JSON files using JSON_VALUE')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Load JSON to Table"
+				},
+				"content": {
+					"query": "select\n    JSON_VALUE(doc, '$.date_rep') AS date_reported,\n    JSON_VALUE(doc, '$.countries_and_territories') AS country,\n    CAST(JSON_VALUE(doc, '$.deaths') AS INT) as fatal,\n    JSON_VALUE(doc, '$.cases') as cases,\n    doc\nfrom openrowset(\n        bulk 'latest/ecdc_cases.jsonl',\n        data_source = 'covid',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\norder by JSON_VALUE(doc, '$.geo_id') desc",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "SQL Serverless 1",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/4-Query JSON files using OPENJSON')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Load JSON to Table"
+				},
+				"content": {
+					"query": "select\n    *\nfrom openrowset(\n        bulk 'latest/ecdc_cases.jsonl',\n        data_source = 'covid',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\n    cross apply openjson (doc)\n        with (  date_rep datetime2,\n                cases int,\n                fatal int '$.deaths',\n                country varchar(100) '$.countries_and_territories')\nwhere country = 'Serbia'\norder by country, date_rep desc;",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "SQL Serverless 1",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/Create Views Clean')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
@@ -5692,7 +5770,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "7ecbbe8a-aa67-4c76-917b-f0bc518f6139"
+						"spark.autotune.trackingId": "833449c3-bf31-4a17-a5db-12190a287339"
 					}
 				},
 				"metadata": {
@@ -5717,8 +5795,7 @@
 						"sparkVersion": "3.2",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 60
 				},
@@ -7847,52 +7924,6 @@
 			},
 			"dependsOn": [],
 			"location": "westus"
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/3-Query JSON files using JSON_VALUE')]",
-			"type": "Microsoft.Synapse/workspaces/sqlscripts",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"folder": {
-					"name": "Load JSON to Table"
-				},
-				"content": {
-					"query": "select\n    JSON_VALUE(doc, '$.date_rep') AS date_reported,\n    JSON_VALUE(doc, '$.countries_and_territories') AS country,\n    CAST(JSON_VALUE(doc, '$.deaths') AS INT) as fatal,\n    JSON_VALUE(doc, '$.cases') as cases,\n    doc\nfrom openrowset(\n        bulk 'latest/ecdc_cases.jsonl',\n        data_source = 'covid',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\norder by JSON_VALUE(doc, '$.geo_id') desc",
-					"metadata": {
-						"language": "sql"
-					},
-					"currentConnection": {
-						"databaseName": "SQL Serverless 1",
-						"poolName": "Built-in"
-					},
-					"resultLimit": 5000
-				},
-				"type": "SqlQuery"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/4-Query JSON files using OPENJSON')]",
-			"type": "Microsoft.Synapse/workspaces/sqlscripts",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"folder": {
-					"name": "Load JSON to Table"
-				},
-				"content": {
-					"query": "select\n    *\nfrom openrowset(\n        bulk 'latest/ecdc_cases.jsonl',\n        data_source = 'covid',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\n    cross apply openjson (doc)\n        with (  date_rep datetime2,\n                cases int,\n                fatal int '$.deaths',\n                country varchar(100) '$.countries_and_territories')\nwhere country = 'Serbia'\norder by country, date_rep desc;",
-					"metadata": {
-						"language": "sql"
-					},
-					"currentConnection": {
-						"databaseName": "SQL Serverless 1",
-						"poolName": "Built-in"
-					},
-					"resultLimit": 5000
-				},
-				"type": "SqlQuery"
-			},
-			"dependsOn": []
 		}
 	]
 }
