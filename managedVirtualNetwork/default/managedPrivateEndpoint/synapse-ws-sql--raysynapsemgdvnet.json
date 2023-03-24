@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-sql--raysynapsemgdvnet",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet",
+		"groupId": "sql",
+		"fqdns": [
+			"raysynapsemgdvnet.fc646689-416e-41b4-8ddd-9f136cef1578.sql.azuresynapse.net"
+		]
+	}
+}
