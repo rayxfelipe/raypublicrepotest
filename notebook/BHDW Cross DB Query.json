@@ -1,5 +1,5 @@
 {
-	"name": "Purview BCDR",
+	"name": "BHDW Cross DB Query",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b2c7d4a5-278e-430e-9be7-6c4f36f103db"
+				"spark.autotune.trackingId": "b48d76b7-97ab-4663-a0c6-7b4f0fee739e"
 			}
 		},
 		"metadata": {
@@ -51,7 +51,24 @@
 			{
 				"cell_type": "code",
 				"source": [
-					""
+					"// Define connection:\r\n",
+					"Class.forName(\"com.microsoft.sqlserver.jdbc.SQLServerDriver\")\r\n",
+					"\r\n",
+					"val hostname = \"<WORKSPACE NAME>-ondemand.sql.azuresynapse.net\"\r\n",
+					"val port = 1433\r\n",
+					"val database = \"master\" // If needed, change the database \r\n",
+					"val jdbcUrl = s\"jdbc:sqlserver://${hostname}:${port};database=${database}\"\r\n",
+					"\r\n",
+					"// Define connection properties:\r\n",
+					"import java.util.Properties\r\n",
+					"\r\n",
+					"val props = new Properties()\r\n",
+					"props.put(\"user\", \"<sql login name>\")\r\n",
+					"props.put(\"password\", \"<sql login password>\")\r\n",
+					"\r\n",
+					"// Assign driver to connection:\r\n",
+					"val driverClass = \"com.microsoft.sqlserver.jdbc.SQLServerDriver\"\r\n",
+					"props.setProperty(\"Driver\", driverClass)"
 				],
 				"execution_count": null
 			}
