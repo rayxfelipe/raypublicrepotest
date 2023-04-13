@@ -5,6 +5,9 @@
 		"workspaceName": {
 			"value": "rayfelipesynapseworkspace"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
 		"AzureSynapseAnalytics1_connectionString": {
 			"value": ""
 		},
@@ -28,6 +31,9 @@
 		},
 		"raysynapsemgdvnet-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:raysynapsemgdvnet.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://rayfelipedlgen2account.dfs.core.windows.net/"
 		},
 		"DataLake2_DemoRG_properties_typeProperties_url": {
 			"value": "https://datalakaeacctindemorg.dfs.core.windows.net/"
