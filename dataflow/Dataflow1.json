@@ -5,54 +5,74 @@
 		"typeProperties": {
 			"sources": [
 				{
+					"linkedService": {
+						"referenceName": "LocalSynapse_LinkedService",
+						"type": "LinkedServiceReference"
+					},
 					"name": "source1"
 				}
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "AzureSynapseAnalyticsTable1",
-						"type": "DatasetReference"
+					"linkedService": {
+						"referenceName": "LocalSynapse_LinkedService",
+						"type": "LinkedServiceReference"
 					},
 					"name": "sink1"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "MapDrifted1",
+					"description": "Creates an explicit mapping for each drifted column"
+				}
+			],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     store: 'synapse',",
-				"     databaseType: 'spark',",
+				"     limit: 100,",
 				"     format: 'table',",
-				"     database: 'nyctaxi',",
-				"     tableName: 'passengercountstats') ~> source1",
-				"source1 sink(allowSchemaDrift: true,",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'CannabisTaxCultivationExciseRevenue',",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     staged: true) ~> source1",
+				"MapDrifted1 filter(columns('Column1') == '2019') ~> filter1",
+				"source1 derive(Column1 = toString(byName('Column1')),",
+				"          Column2 = toString(byName('Column2')),",
+				"          Column3 = toString(byName('Column3')),",
+				"          Column4 = toString(byName('Column4')),",
+				"          Column5 = toString(byName('Column5')),",
+				"          Column6 = toString(byName('Column6')),",
+				"          Column7 = toString(byName('Column7')),",
+				"          Column8 = toString(byName('Column8')),",
+				"          Column9 = toString(byName('Column9')),",
+				"          Column10 = toString(byName('Column10')),",
+				"          Column11 = toString(byName('Column11')),",
+				"          Column12 = toString(byName('Column12')),",
+				"          Column13 = toString(byName('Column13')),",
+				"          Column14 = toString(byName('Column14')),",
+				"          Column15 = toString(byName('Column15')),",
+				"          Column16 = toString(byName('Column16')),",
+				"          Column17 = toString(byName('Column17'))) ~> MapDrifted1",
+				"filter1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          {City Key} as integer,",
-				"          {WWI City ID} as integer,",
-				"          City as string,",
-				"          {State Province} as string,",
-				"          Country as string,",
-				"          Continent as string,",
-				"          {Sales Territory} as string,",
-				"          Region as string,",
-				"          Subregion as string,",
-				"          Location as binary,",
-				"          {Latest Recorded Population} as long,",
-				"          {Valid From} as timestamp,",
-				"          {Valid To} as timestamp,",
-				"          {Lineage Key} as integer",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
 				"     format: 'table',",
-				"     staged: true,",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'test',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
 				"     allowCopyCommand: true,",
+				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}

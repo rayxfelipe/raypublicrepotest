@@ -1,17 +1,16 @@
 {
-	"name": "DestinationDataset_h3j",
+	"name": "DestinationDataset_89p",
 	"properties": {
 		"annotations": [],
 		"type": "SqlPoolTable",
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "NYCTripSmall"
+			"table": "CannabisTaxCultivationExciseRevenue"
 		},
 		"sqlPool": {
 			"referenceName": "SQL Dedicated 1",
 			"type": "SqlPoolReference"
 		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+	}
 }

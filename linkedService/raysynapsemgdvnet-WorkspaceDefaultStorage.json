@@ -1,9 +1,9 @@
 {
-	"name": "raysynapse5-WorkspaceDefaultStorage",
+	"name": "raysynapsemgdvnet-WorkspaceDefaultStorage",
 	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"typeProperties": {
-			"url": "https://raystore5.dfs.core.windows.net"
+			"url": "https://raysynapsemgdvnetdlacct.dfs.core.windows.net"
 		},
 		"type": "AzureBlobFS",
 		"connectVia": {

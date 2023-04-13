@@ -1,17 +1,16 @@
 {
-	"name": "DestinationDataset_ylf",
+	"name": "DestinationDataset_2gl",
 	"properties": {
 		"annotations": [],
 		"type": "SqlPoolTable",
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "calenviroscreen-3"
+			"table": "CannabisSalesByCounty"
 		},
 		"sqlPool": {
 			"referenceName": "SQL Dedicated 1",
 			"type": "SqlPoolReference"
 		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+	}
 }

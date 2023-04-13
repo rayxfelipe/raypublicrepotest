@@ -1,0 +1,11 @@
+{
+	"name": "PBIForCallStreaming",
+	"properties": {
+		"annotations": [],
+		"type": "PowerBIWorkspace",
+		"typeProperties": {
+			"workspaceID": "75fda1f2-a74e-4110-b447-ed0b5e5e6e55",
+			"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		}
+	}
+}

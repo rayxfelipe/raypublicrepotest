@@ -1,0 +1,217 @@
+{
+	"name": "FormRecognizerTest",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SynapseDemoSprk",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "ccee6741-ff6d-4976-9214-e229a183369b"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
+				"name": "SynapseDemoSprk",
+				"type": "Spark",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.2",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"import pkg_resources\r\n",
+					"for d in pkg_resources.working_set:\r\n",
+					"     print(d)"
+				],
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pip install azure-ai-formrecognizer==3.2.0"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# import libraries\r\n",
+					"import os\r\n",
+					"from azure.ai.formrecognizer import DocumentAnalysisClient\r\n",
+					"from azure.core.credentials import AzureKeyCredential\r\n",
+					"\r\n",
+					"# set `<your-endpoint>` and `<your-key>` variables with the values from the Azure portal\r\n",
+					"endpoint = \"https://westus.api.cognitive.microsoft.com/\"\r\n",
+					"key = \"47bcb670867c43bc868f970e12311944\"\r\n",
+					"\r\n",
+					"def format_bounding_region(bounding_regions):\r\n",
+					"    if not bounding_regions:\r\n",
+					"        return \"N/A\"\r\n",
+					"    return \", \".join(\"Page #{}: {}\".format(region.page_number, format_polygon(region.polygon)) for region in bounding_regions)\r\n",
+					"\r\n",
+					"def format_polygon(polygon):\r\n",
+					"    if not polygon:\r\n",
+					"        return \"N/A\"\r\n",
+					"    return \", \".join([\"[{}, {}]\".format(p.x, p.y) for p in polygon])\r\n",
+					"\r\n",
+					"\r\n",
+					"def analyze_general_documents():\r\n",
+					"    # sample document\r\n",
+					"    docUrl = \"https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf\"\r\n",
+					"\r\n",
+					"    # create your `DocumentAnalysisClient` instance and `AzureKeyCredential` variable\r\n",
+					"    document_analysis_client = DocumentAnalysisClient(endpoint=endpoint, credential=AzureKeyCredential(key))\r\n",
+					"\r\n",
+					"    poller = document_analysis_client.begin_analyze_document_from_url(\r\n",
+					"            \"prebuilt-document\", docUrl)\r\n",
+					"    result = poller.result()\r\n",
+					"\r\n",
+					"    for style in result.styles:\r\n",
+					"        if style.is_handwritten:\r\n",
+					"            print(\"Document contains handwritten content: \")\r\n",
+					"            print(\",\".join([result.content[span.offset:span.offset + span.length] for span in style.spans]))\r\n",
+					"\r\n",
+					"    print(\"----Key-value pairs found in document----\")\r\n",
+					"    for kv_pair in result.key_value_pairs:\r\n",
+					"        if kv_pair.key:\r\n",
+					"            print(\r\n",
+					"                    \"Key '{}' found within '{}' bounding regions\".format(\r\n",
+					"                        kv_pair.key.content,\r\n",
+					"                        format_bounding_region(kv_pair.key.bounding_regions),\r\n",
+					"                    )\r\n",
+					"                )\r\n",
+					"        if kv_pair.value:\r\n",
+					"            print(\r\n",
+					"                    \"Value '{}' found within '{}' bounding regions\\n\".format(\r\n",
+					"                        kv_pair.value.content,\r\n",
+					"                        format_bounding_region(kv_pair.value.bounding_regions),\r\n",
+					"                    )\r\n",
+					"                )\r\n",
+					"\r\n",
+					"    for page in result.pages:\r\n",
+					"        print(\"----Analyzing document from page #{}----\".format(page.page_number))\r\n",
+					"        print(\r\n",
+					"            \"Page has width: {} and height: {}, measured with unit: {}\".format(\r\n",
+					"                page.width, page.height, page.unit\r\n",
+					"            )\r\n",
+					"        )\r\n",
+					"\r\n",
+					"        for line_idx, line in enumerate(page.lines):\r\n",
+					"            print(\r\n",
+					"                \"...Line # {} has text content '{}' within bounding box '{}'\".format(\r\n",
+					"                    line_idx,\r\n",
+					"                    line.content,\r\n",
+					"                    format_polygon(line.polygon),\r\n",
+					"                )\r\n",
+					"            )\r\n",
+					"\r\n",
+					"        for word in page.words:\r\n",
+					"            print(\r\n",
+					"                \"...Word '{}' has a confidence of {}\".format(\r\n",
+					"                    word.content, word.confidence\r\n",
+					"                )\r\n",
+					"            )\r\n",
+					"\r\n",
+					"        for selection_mark in page.selection_marks:\r\n",
+					"            print(\r\n",
+					"                \"...Selection mark is '{}' within bounding box '{}' and has a confidence of {}\".format(\r\n",
+					"                    selection_mark.state,\r\n",
+					"                    format_polygon(selection_mark.polygon),\r\n",
+					"                    selection_mark.confidence,\r\n",
+					"                )\r\n",
+					"            )\r\n",
+					"\r\n",
+					"    for table_idx, table in enumerate(result.tables):\r\n",
+					"        print(\r\n",
+					"            \"Table # {} has {} rows and {} columns\".format(\r\n",
+					"                table_idx, table.row_count, table.column_count\r\n",
+					"            )\r\n",
+					"        )\r\n",
+					"        for region in table.bounding_regions:\r\n",
+					"            print(\r\n",
+					"                \"Table # {} location on page: {} is {}\".format(\r\n",
+					"                    table_idx,\r\n",
+					"                    region.page_number,\r\n",
+					"                    format_polygon(region.polygon),\r\n",
+					"                )\r\n",
+					"            )\r\n",
+					"        for cell in table.cells:\r\n",
+					"            print(\r\n",
+					"                \"...Cell[{}][{}] has content '{}'\".format(\r\n",
+					"                    cell.row_index,\r\n",
+					"                    cell.column_index,\r\n",
+					"                    cell.content,\r\n",
+					"                )\r\n",
+					"            )\r\n",
+					"            for region in cell.bounding_regions:\r\n",
+					"                print(\r\n",
+					"                    \"...content on page {} is within bounding box '{}'\\n\".format(\r\n",
+					"                        region.page_number,\r\n",
+					"                        format_polygon(region.polygon),\r\n",
+					"                    )\r\n",
+					"                )\r\n",
+					"    print(\"----------------------------------------\")\r\n",
+					"\r\n",
+					"\r\n",
+					"if __name__ == \"__main__\":\r\n",
+					"    analyze_general_documents()"
+				],
+				"execution_count": 12
+			}
+		]
+	}
+}

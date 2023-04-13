@@ -1,0 +1,40 @@
+{
+	"name": "SourceDataset_g9q",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rayazuresqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Calendar Yearx",
+				"type": "nvarchar"
+			},
+			{
+				"name": "County",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Per Capita Sales",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Quarter",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Total Taxable Sales",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dcc"
+		}
+	}
+}

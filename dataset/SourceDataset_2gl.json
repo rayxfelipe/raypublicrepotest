@@ -1,0 +1,45 @@
+{
+	"name": "SourceDataset_2gl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake2_DemoRG",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "CannabisSalesByCounty.csv",
+				"fileSystem": "dcc"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "County",
+				"type": "String"
+			},
+			{
+				"name": "Calendar Yearxxxx",
+				"type": "String"
+			},
+			{
+				"name": "Quarter",
+				"type": "String"
+			},
+			{
+				"name": "Per Capita Sales",
+				"type": "String"
+			},
+			{
+				"name": "Total Taxable Sales",
+				"type": "String"
+			}
+		]
+	}
+}

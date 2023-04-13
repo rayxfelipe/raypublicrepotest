@@ -1,0 +1,127 @@
+{
+	"name": "CopyPipeline_2gl",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_2gl",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "dcc//CannabisSalesByCounty.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.CannabisSalesByCounty"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"writeBehavior": "Insert",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "County",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "County",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Calendar Yearxxxx",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Calendar Yearxxxx",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Quarter",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Quarter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Per Capita Sales",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Per Capita Sales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Total Taxable Sales",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Total Taxable Sales",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_2gl",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_2gl",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

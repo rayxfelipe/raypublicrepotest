@@ -1,0 +1,17 @@
+{
+	"name": "2-2-Query External DS",
+	"properties": {
+		"content": {
+			"query": "select top 10 * from data SOURCE covid",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQL Serverless 1",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_wzj",
+	"name": "SourceDataset_r4y",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataLake2_DemoRG",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "CannabisAccountSitesByQuarter.csv",
+				"fileName": "CannabisTaxRevenues.csv",
 				"fileSystem": "dcc"
 			},
 			"columnDelimiter": ",",
@@ -21,7 +21,7 @@
 		},
 		"schema": [
 			{
-				"name": "Year",
+				"name": "Calendar_Year",
 				"type": "String"
 			},
 			{
@@ -29,14 +29,29 @@
 				"type": "String"
 			},
 			{
-				"name": "Active",
+				"name": "Excise_Tax",
 				"type": "String"
 			},
 			{
-				"name": "Ceased",
+				"name": "Cultivation_Tax",
+				"type": "String"
+			},
+			{
+				"name": "Sales_Tax",
+				"type": "String"
+			},
+			{
+				"name": "Total_Tax",
+				"type": "String"
+			},
+			{
+				"name": "Year_Quarter",
+				"type": "String"
+			},
+			{
+				"name": "Taxable_Sales",
 				"type": "String"
 			}
 		]
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+	}
 }

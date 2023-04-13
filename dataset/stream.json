@@ -1,0 +1,32 @@
+{
+	"name": "stream",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake2_DemoRG",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "0_d5cbe250b6ce4227bb05d5c78a1fecc6_1.json",
+				"fileSystem": "streamoutputcontainer"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"WindowEnd": {
+					"type": "string"
+				},
+				"SwitchNum": {
+					"type": "string"
+				},
+				"CallCount": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}
