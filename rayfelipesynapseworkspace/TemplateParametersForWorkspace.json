@@ -9,7 +9,7 @@
 			"value": ""
 		},
 		"AzureSynapseAnalytics1_connectionString": {
-			"value": ""
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=\"SQL Dedicated 1\""
 		},
 		"DataLake2_DemoRG_accountKey": {
 			"value": ""

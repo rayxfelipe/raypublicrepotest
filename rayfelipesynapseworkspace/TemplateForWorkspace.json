@@ -13,7 +13,8 @@
 		},
 		"AzureSynapseAnalytics1_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=\"SQL Dedicated 1\""
 		},
 		"DataLake2_DemoRG_accountKey": {
 			"type": "secureString",
@@ -2546,12 +2547,12 @@
 					"connectionString": "[parameters('AzureSynapseAnalytics1_connectionString')]"
 				},
 				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
+					"referenceName": "AutoIR2",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoIR2')]"
 			]
 		},
 		{
@@ -8062,6 +8063,30 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL Dedicated 1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"collation": "SQL_Latin1_General_CP1_CI_AS",
+				"maxSizeBytes": 263882790666240,
+				"annotations": []
+			},
+			"dependsOn": [],
+			"location": "westus"
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL Dedicated 2')]",
+			"type": "Microsoft.Synapse/workspaces/sqlPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"collation": "SQL_Latin1_General_CP1_CI_AS",
+				"maxSizeBytes": 263882790666240,
+				"annotations": []
+			},
+			"dependsOn": [],
+			"location": "westus"
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SynapseDemoSprk')]",
 			"type": "Microsoft.Synapse/workspaces/bigDataPools",
 			"apiVersion": "2019-06-01-preview",
@@ -8081,30 +8106,6 @@
 				"sparkVersion": "3.2",
 				"isComputeIsolationEnabled": false,
 				"sessionLevelPackagesEnabled": true,
-				"annotations": []
-			},
-			"dependsOn": [],
-			"location": "westus"
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/SQL Dedicated 1')]",
-			"type": "Microsoft.Synapse/workspaces/sqlPools",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"collation": "SQL_Latin1_General_CP1_CI_AS",
-				"maxSizeBytes": 263882790666240,
-				"annotations": []
-			},
-			"dependsOn": [],
-			"location": "westus"
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/SQL Dedicated 2')]",
-			"type": "Microsoft.Synapse/workspaces/sqlPools",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"collation": "SQL_Latin1_General_CP1_CI_AS",
-				"maxSizeBytes": 263882790666240,
 				"annotations": []
 			},
 			"dependsOn": [],
