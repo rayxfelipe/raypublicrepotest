@@ -1,0 +1,20 @@
+{
+	"name": "CETAS-Multiple CSVs",
+	"properties": {
+		"folder": {
+			"name": "CA OES"
+		},
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseDelimitedTextFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat] \n\tWITH ( FORMAT_TYPE = DELIMITEDTEXT ,\n\t       FORMAT_OPTIONS (\n\t\t\t FIELD_TERMINATOR = ',',\n\t\t\t USE_TYPE_DEFAULT = FALSE\n\t\t\t))\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'OES Data Source') \n\tCREATE EXTERNAL DATA SOURCE [OES Data Source] \n\tWITH (\n\t\tLOCATION = 'abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net' \n\t)\nGO\n\nCREATE EXTERNAL TABLE dbo.testmulticsv (\n\t[Calendar_Year] nvarchar(4000),\n\t[Quarter] nvarchar(4000),\n\t[Excise_Tax] nvarchar(4000),\n\t[Cultivation_Tax] nvarchar(4000),\n\t[Sales_Tax] nvarchar(4000),\n\t[Total_Tax] nvarchar(4000),\n\t[Year_Quarter] nvarchar(4000),\n\t[Taxable_Sales] nvarchar(4000)\n\t)\n\tWITH (\n\tLOCATION = 'DCC/TestCSV*.csv',\n\tDATA_SOURCE = [OES Data Source],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM dbo.testmulticsv order by 3\nGO\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "CAOES Serverless",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

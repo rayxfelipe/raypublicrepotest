@@ -1,0 +1,20 @@
+{
+	"name": "Serverless Scripts - OED",
+	"properties": {
+		"folder": {
+			"name": "OR OED"
+		},
+		"content": {
+			"query": "CREATE DATABASE DataExplorationDB \n                COLLATE Latin1_General_100_BIN2_UTF8\n\nCREATE EXTERNAL DATA SOURCE CannabisTax\nWITH ( LOCATION = 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs')\n\n/*\ndrop external table dbo.groups\ndrop external table dbo.groupmemberships\ndrop external data source [OED Data Lake Folder]\n*/\n\n/* Serverless is a query service/engine for data lake (CSV, Parquet).\nUse OPENROWSET with external data source. */\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n            BULK '/DCC/CannabisTaxRevenues.csv',\n            DATA_SOURCE = 'CannabisTax',\n            FORMAT='CSV',\n            PARSER_VERSION = '2.0'\n    ) AS [result]\nWHERE [result].C2='Q3xx'\n\n\n\n\n/* CETAS\nhttps://learn.microsoft.com/en-us/azure/synapse-analytics/sql/develop-tables-cetas\n\nRight click on file, then create external table. Use that script. \nTo ingest into Serverless, a table (external) must exist already. This means external table must be created in advance.\n\n*/\n\n\n\n--- Query multiple CSVs\nSELECT\n    *\nFROM\n    OPENROWSET(\n            BULK '/DCC/TestCSV*.csv',\n            DATA_SOURCE = 'CannabisTax',\n            FORMAT='CSV',\n            PARSER_VERSION = '2.0'\n    ) AS [result]\nWHERE [result].C2='Q3xx'\n\n\n---Then create view, example\nCREATE VIEW [dbo].[myView] AS\nSELECT *\nFROM [dbo].[myTable]\nWHERE [myColumn] = 'myValue'\n\n--- Create view\nCREATE VIEW [dbo].[myView] AS\nSELECT\n    *\nFROM\n    OPENROWSET(\n            BULK '/DCC/TestCSV*.csv',\n            DATA_SOURCE = 'CannabisTax',\n            FORMAT='CSV',\n            PARSER_VERSION = '2.0'\n    ) AS [result]\nWHERE [result].C2='Q3xx'\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "OROED Serverless SQL",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,86 @@
+{
+	"name": "AzureSynapseAnalyticsTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Column1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column12",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column13",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column14",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column15",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column16",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Column17",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "test"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

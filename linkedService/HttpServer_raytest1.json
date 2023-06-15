@@ -1,11 +1,13 @@
 {
-	"name": "AzureSynapseAnalytics1",
+	"name": "HttpServer_raytest1",
 	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
-		"type": "AzureSqlDW",
+		"type": "HttpServer",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=\"SQL Dedicated 1\""
+			"url": "https://www.microsoft.com",
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Anonymous"
 		},
 		"connectVia": {
 			"referenceName": "AutoResolveIntegrationRuntime",

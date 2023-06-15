@@ -1,0 +1,16 @@
+{
+	"name": "RestRayPurview_IntDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestRayPurview",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "https://rayfelipepurviewacct.purview.azure.com/catalog/api/atlas/v2/entity/guid/499bc654-f84c-46c2-952c-b30be508f78c/classifications"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

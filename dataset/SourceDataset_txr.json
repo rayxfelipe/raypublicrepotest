@@ -1,0 +1,50 @@
+{
+	"name": "SourceDataset_txr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Calendar_Year",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quarter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Excise_Tax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Cultivation_Tax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sales_Tax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Total_Tax",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Year_Quarter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Taxable_Sales",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CannabisTaxRevenues"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "stream",
+						"referenceName": "INTDS_Builtin_Serverless_OES_DB",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -14,9 +14,9 @@
 			],
 			"sinks": [
 				{
-					"linkedService": {
-						"referenceName": "LocalSynapse_LinkedService",
-						"type": "LinkedServiceReference"
+					"dataset": {
+						"referenceName": "CalOESDLTarget",
+						"type": "DatasetReference"
 					},
 					"name": "sink1"
 				}
@@ -24,29 +24,37 @@
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          WindowEnd as string,",
-				"          SwitchNum as string,",
-				"          CallCount as integer",
+				"          Calendar_Year as string,",
+				"          Quarter as string,",
+				"          Excise_Tax as string,",
+				"          Cultivation_Tax as string,",
+				"          Sales_Tax as string,",
+				"          Total_Tax as string,",
+				"          Year_Quarter as string,",
+				"          Taxable_Sales as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> source1",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     format: 'table',",
-				"     store: 'synapseanalytics',",
-				"     schemaName: 'dbo',",
-				"     tableName: 'SensorLog',",
-				"     insertable: true,",
-				"     updateable: false,",
-				"     deletable: false,",
-				"     upsertable: false,",
-				"     allowCopyCommand: true,",
-				"     staged: true,",
+				"     input(",
+				"          Column_1 as string,",
+				"          Column_2 as string,",
+				"          Column_3 as string,",
+				"          Column_4 as string,",
+				"          Column_5 as string,",
+				"          Column_6 as string,",
+				"          Column_7 as string,",
+				"          Column_8 as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}

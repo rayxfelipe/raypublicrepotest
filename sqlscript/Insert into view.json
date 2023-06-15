@@ -1,0 +1,20 @@
+{
+	"name": "Insert into view",
+	"properties": {
+		"folder": {
+			"name": "CA OES"
+		},
+		"content": {
+			"query": "\n---\n--https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs\n-- ALL BELOW DOESN'T WORK. DML is not supported in external tables.\n\nINSERT INTO OPENROWSET(\n    BULK '/DCC/TestCSV2.csv',\n    DATA_SOURCE = 'CannabisTax',\n    FORMAT = 'CSV',\n    FIELDTERMINATOR = ',',\n    ROWTERMINATOR = '\\n',\n    FIRSTROW = 2\n) \n\nSELECT *\nFROM [dbo].[myView]\n\nINSERT INTO dbo.myView\nSELECT *\nFROM OPENROWSET(\n   BULK 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/DCC/tests.csv'\n   --FORMATFILE = 'C:\\MyFolder\\MyFormatFile.fmt'\n) AS DataFile;\n\n\nBULK INSERT dbo.myView\nFROM 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/DCC/TestCSV2.csv'\nWITH (\n    FORMAT = 'CSV',\n    FIRSTROW = 2,\n    FIELDTERMINATOR = ',',\n    ROWTERMINATOR = '\\n'\n);\n\n\ninsert into dbo.myView values()\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "DataExplorationDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

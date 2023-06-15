@@ -1,0 +1,207 @@
+{
+	"name": "Connect to DB using Spark Ded Pool Connector",
+	"properties": {
+		"folder": {
+			"name": "OR BHDW"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool3",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": true,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "f91ecbfe-8459-4c66-b9a2-9ef3985c6594"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool3",
+				"name": "SparkPool3",
+				"type": "Spark",
+				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool3",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"# Add required imports\r\n",
+					"import com.microsoft.spark.sqlanalytics\r\n",
+					"from com.microsoft.spark.sqlanalytics.Constants import Constants\r\n",
+					"from pyspark.sql.functions import col\r\n",
+					"\r\n",
+					"# Read from existing internal table\r\n",
+					"dfToReadFromTable = (spark.read\r\n",
+					"    # If `Constants.SERVER` is not provided, the `<database_name>` from the three-part table name argument\r\n",
+					"    # to `synapsesql` method is used to infer the Synapse Dedicated SQL End Point.\r\n",
+					"    .option(Constants.SERVER, \"rayfelipesynapseworkspace.sql.azuresynapse.net\")\r\n",
+					"    # Defaults to storage path defined in the runtime configurations\r\n",
+					"    #.option(Constants.TEMP_FOLDER, \"abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/<some_base_path_for_temporary_staging_folders>\")\r\n",
+					"    #https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs\r\n",
+					"    #.option(Constants.TEMP_FOLDER, \"abfss://raysynapsemgdvnet@raysynapsemgdvnetdlacct.dfs.core.windows.net/staging\")\r\n",
+					"    # Three-part table name from where data will be read.\r\n",
+					"    #.synapsesql(\"'SQL Dedicated 1'.dbo.test\")\r\n",
+					"    .synapsesql(\"dedpool1.dbo.students\")\r\n",
+					"    # Column-pruning i.e., query select column values.\r\n",
+					"    .select(\"*\")\r\n",
+					"    # Push-down filter criteria that gets translated to SQL Push-down Predicates.\r\n",
+					"    #.filter(col(\"firstname\").contains(\"ray\"))\r\n",
+					"    # Fetch a sample of 10 records\r\n",
+					"    .limit(10))\r\n",
+					"\r\n",
+					"# Show contents of the dataframe\r\n",
+					"dfToReadFromTable.show()"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Add required imports\r\n",
+					"import com.microsoft.spark.sqlanalytics\r\n",
+					"from com.microsoft.spark.sqlanalytics.Constants import Constants\r\n",
+					"from pyspark.sql.functions import col\r\n",
+					"\r\n",
+					"from pyspark.sql import SparkSession\r\n",
+					"\r\n",
+					"\r\n",
+					"# Read from existing internal table\r\n",
+					"dfToReadFromTable = (spark.read\r\n",
+					"    .option(Constants.SERVER, \"rayfelipesynapseworkspace.sql.azuresynapse.net\")\r\n",
+					"    .synapsesql(\"dedpool1.dbo.students\")\r\n",
+					"    # Column-pruning i.e., query select column values.\r\n",
+					"    .select(\"*\")\r\n",
+					"    )\r\n",
+					"\r\n",
+					"# Show contents of the dataframe\r\n",
+					"dfToReadFromTable.show()\r\n",
+					"\r\n",
+					"# dfToReadFromTable.createTempView(\"tempview\")\r\n",
+					"df8 = spark.sql(\"SELECT * FROM tempview\")\r\n",
+					"df8.show()"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql import SparkSession\r\n",
+					"\r\n",
+					"spark = SparkSession.builder.appName(\"sample\").getOrCreate()\r\n",
+					"\r\n",
+					"df = spark.read.load(\"TERR.txt\")\r\n",
+					"\r\n",
+					"df.createTempView(\"example\")\r\n",
+					"df2 = spark.sql(\"SELECT * FROM example\")"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"create user [raysynapsemgdvnet] from external PROVIDER;\r\n",
+					"\r\n",
+					"exec sp_addrolemember 'db_datareader', 'raysynapsemgdvnet'\r\n",
+					"\r\n",
+					"exec sp_addrolemember 'db_owner', 'raysynapsemgdvnet'\r\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Write using AAD Auth to internal table\r\n",
+					"# Add required imports\r\n",
+					"import com.microsoft.spark.sqlanalytics\r\n",
+					"from com.microsoft.spark.sqlanalytics.Constants import Constants\r\n",
+					"\r\n",
+					"# Configure and submit the request to write to Synapse Dedicated SQL Pool\r\n",
+					"# Sample below is using AAD-based authentication approach; See further examples to leverage SQL Basic auth.\r\n",
+					"(df.write\r\n",
+					" # If `Constants.SERVER` is not provided, the `<database_name>` from the three-part table name argument\r\n",
+					" # to `synapsesql` method is used to infer the Synapse Dedicated SQL End Point.\r\n",
+					" .option(Constants.SERVER, \"rayfelipesynapseworkspace.sql.azuresynapse.net\")\r\n",
+					" # Like-wise, if `Constants.TEMP_FOLDER` is not provided, the connector will use the runtime staging directory config (see section on Configuration Options for details).\r\n",
+					" .option(Constants.TEMP_FOLDER, \"abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/<some_base_path_for_temporary_staging_folders>\")\r\n",
+					" # Choose a save mode that is apt for your use case.\r\n",
+					" # Options for save modes are \"error\" or \"errorifexists\" (default), \"overwrite\", \"append\", \"ignore\".\r\n",
+					" # refer to https://spark.apache.org/docs/latest/sql-data-sources-load-save-functions.html#save-modes\r\n",
+					" .mode(\"overwrite\")\r\n",
+					" # Required parameter - Three-part table name to which data will be written\r\n",
+					" .synapsesql(\"sqlpool01.dbo.SampleTable\"))"
+				],
+				"execution_count": 2
+			}
+		]
+	}
+}

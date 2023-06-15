@@ -1,0 +1,56 @@
+{
+	"name": "AzureSynapseAnalyticsTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Calendar_Year",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Quarter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Excise_Tax",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Cultivation_Tax",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Sales_Tax",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Total_Tax",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Year_Quarter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Taxable_Sales",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NYCTripSmall"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "Manually Create Ext Table",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL TABLE [dbo].[OES_ExternalTable2]\n(\n\t [Calendar] nvarchar(20),\n\t [Col2] nvarchar(20)\n)\nWITH\n(\n\tLOCATION = 'DCC/CannabisTaxRevenues.csv',\n\tDATA_SOURCE = [raysynapsemgdvnetdlacctfs_raysynapsemgdvnetdlacct_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n)\n\n\n--drop external table dbo.oes_externaltable2",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "CAOES Serverless",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

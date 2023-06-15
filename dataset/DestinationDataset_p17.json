@@ -1,0 +1,24 @@
+{
+	"name": "DestinationDataset_p17",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "raysynapsemgdvnet-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "raytest444.csv",
+				"folderPath": "OR OED",
+				"fileSystem": "raysynapsemgdvnetdlacctfs"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

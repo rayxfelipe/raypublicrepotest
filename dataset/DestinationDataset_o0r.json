@@ -1,0 +1,21 @@
+{
+	"name": "DestinationDataset_o0r",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "raysynapsemgdvnet-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ORHCS.csv",
+				"folderPath": "OR OED",
+				"fileSystem": "raysynapsemgdvnetdlacctfs"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

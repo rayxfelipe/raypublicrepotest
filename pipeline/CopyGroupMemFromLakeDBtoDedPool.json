@@ -1,0 +1,158 @@
+{
+	"name": "CopyGroupMemFromLakeDBtoDedPool",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_bff",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "raysynapsemgdvnetdlacctfs/synapse/workspaces/raysynapsemgdvnet/warehouse/oed_lake_db.db/groupmemberships/part-00000-a64ef838-6081-4b5a-bb7f-bbb9064270bc-c000.snappy.parquet"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.groupmemberships"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"writeBehavior": "Insert",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Id",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Group Id",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Group Id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "User Id",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "User Id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Default3",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Default3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "group memberships Index (generated)",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "group memberships Index (generated)",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Default5",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Default5",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Updated At",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Updated At",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Document Index (generated)",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "Document Index (generated)",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_bff",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_bff",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-04-26T19:51:04Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

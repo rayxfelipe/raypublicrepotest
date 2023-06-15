@@ -1,0 +1,55 @@
+{
+	"name": "SourceDataset_bff",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "raysynapsemgdvnet-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "part-00000-a64ef838-6081-4b5a-bb7f-bbb9064270bc-c000.snappy.parquet",
+				"folderPath": "synapse/workspaces/raysynapsemgdvnet/warehouse/oed_lake_db.db/groupmemberships",
+				"fileSystem": "raysynapsemgdvnetdlacctfs"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Id",
+				"type": "UTF8"
+			},
+			{
+				"name": "Group Id",
+				"type": "UTF8"
+			},
+			{
+				"name": "User Id",
+				"type": "UTF8"
+			},
+			{
+				"name": "Default3",
+				"type": "UTF8"
+			},
+			{
+				"name": "group memberships Index (generated)",
+				"type": "UTF8"
+			},
+			{
+				"name": "Default5",
+				"type": "UTF8"
+			},
+			{
+				"name": "Updated At",
+				"type": "UTF8"
+			},
+			{
+				"name": "Document Index (generated)",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

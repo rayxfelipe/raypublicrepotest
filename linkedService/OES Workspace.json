@@ -1,11 +1,11 @@
 {
-	"name": "PowerBIWorkspace1",
+	"name": "OES Workspace",
 	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "PowerBIWorkspace",
 		"typeProperties": {
-			"workspaceID": "d85a53b7-f583-499d-a0aa-f0594aa220da",
+			"workspaceID": "a461a13c-d775-43db-a216-9a1dffefcac9",
 			"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 		}
 	}

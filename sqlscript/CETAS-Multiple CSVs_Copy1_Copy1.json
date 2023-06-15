@@ -1,0 +1,20 @@
+{
+	"name": "CETAS-Multiple CSVs_Copy1_Copy1",
+	"properties": {
+		"folder": {
+			"name": "CA OES"
+		},
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseDelimitedTextFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat] \n\tWITH ( FORMAT_TYPE = DELIMITEDTEXT ,\n\t       FORMAT_OPTIONS (\n\t\t\t FIELD_TERMINATOR = ',',\n\t\t\t USE_TYPE_DEFAULT = FALSE\n\t\t\t))\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'OES Data Source') \n\tCREATE EXTERNAL DATA SOURCE [OES Data Source] \n\tWITH (\n\t\tLOCATION = 'abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net' \n\t)\nGO\n\nCREATE EXTERNAL TABLE dbo.testmulticsv_with_where (\n\t[C1] nvarchar(100),\n\t[C2] nvarchar(4000),\n\t[C3] nvarchar(4000),\n\t[C4] nvarchar(4000),\n\t[C5] nvarchar(4000),\n\t[C6] nvarchar(4000),\n\t[C7] nvarchar(4000),\n\t[C8] nvarchar(4000)\n\t)\n\tWITH (\n\t--LOCATION = '/DCC/TestCSV*.csv',\n\tDATA_SOURCE = [OES Data Source],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\n\tAS\n\tSELECT C1, C2, C3, C4, C5, C6, C7, C8\n\tFROM\n\t\tOPENROWSET(\n\t\t\t\tBULK '/DCC/TestCSV*.csv',\n\t\t\t\tDATA_SOURCE = 'OES Data Source',\n\t\t\t\tFORMAT='CSV',\n\t\t\t\tPARSER_VERSION = '2.0'\n\t\t\t\t--,HEADER_ROW = TRUE\n\t\t) AS [result]\n\t--WHERE [result].C2='Q3xx'\nGO\n\n\nSELECT TOP 100 * FROM dbo.testmulticsv_with_where order by 3\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "CAOES Serverless",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

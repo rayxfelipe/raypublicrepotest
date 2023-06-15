@@ -1,0 +1,17 @@
+{
+	"name": "SourceDataset_wom",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer_RayLaptop",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimProduct"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

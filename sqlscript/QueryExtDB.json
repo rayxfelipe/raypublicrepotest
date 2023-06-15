@@ -1,0 +1,20 @@
+{
+	"name": "QueryExtDB",
+	"properties": {
+		"folder": {
+			"name": "OR DHS"
+		},
+		"content": {
+			"query": "SELECT * FROM OPENROWSET('SQLNCLI', 'ray-azuresql-server.database.windows.net;\nDatabase=rayazuresqldb1;Uid=CloudSA99f7c585;Pwd=abcd1234!',\n'SELECT * FROM external_table_name');\n\nThis is currenlty not supported in Synapse, this Openrowset format",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

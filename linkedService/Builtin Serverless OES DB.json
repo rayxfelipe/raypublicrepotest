@@ -1,0 +1,15 @@
+{
+	"name": "Builtin Serverless OES DB",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=raysynapsemgdvnet-ondemand.sql.azuresynapse.net;Initial Catalog=\"CAOES Serverless\""
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

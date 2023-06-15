@@ -2,6 +2,9 @@
 	"name": "synapse-ws-custstgacct--raysynapsemgdvnet-raysynapsemgdvnetdlacct",
 	"properties": {
 		"privateLinkResourceId": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Storage/storageAccounts/raysynapsemgdvnetdlacct",
-		"groupId": "dfs"
+		"groupId": "dfs",
+		"fqdns": [
+			"raysynapsemgdvnetdlacct.dfs.core.windows.net"
+		]
 	}
 }

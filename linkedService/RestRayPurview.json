@@ -1,0 +1,18 @@
+{
+	"name": "RestRayPurview",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://rayfelipepurviewacct.purview.azure.com/catalog/api/atlas/v2/entity/guid/499bc654-f84c-46c2-952c-b30be508f78c/classifications",
+			"enableServerCertificateValidation": false,
+			"authenticationType": "ManagedServiceIdentity",
+			"aadResourceId": "https://management.core.windows.net"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

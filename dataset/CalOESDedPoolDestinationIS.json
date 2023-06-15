@@ -1,0 +1,20 @@
+{
+	"name": "CalOESDedPoolDestinationIS",
+	"properties": {
+		"folder": {
+			"name": "CalOES"
+		},
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "destination_table"
+		},
+		"sqlPool": {
+			"referenceName": "SQL Pool Dedicated in mgdvnet",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

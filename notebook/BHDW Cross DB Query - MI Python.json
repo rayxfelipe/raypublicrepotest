@@ -1,0 +1,83 @@
+{
+	"name": "BHDW Cross DB Query - MI Python",
+	"properties": {
+		"folder": {
+			"name": "OR BHDW"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool3",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": true,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "66ed0115-504c-4e37-b42a-a3da139a9b85"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool3",
+				"name": "SparkPool3",
+				"type": "Spark",
+				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool3",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"from azure.identity import DefaultAzureCredential\r\n",
+					"import pyodbc, struct\r\n",
+					"\r\n",
+					"# Uncomment one of the two lines depending on the identity type\r\n",
+					"credential = DefaultAzureCredential() # system-assigned identity\r\n",
+					"# credential = DefaultAzureCredential(managed_identity_client_id='rayfelipe@microsoft.com') # user-assigned identity\r\n",
+					"# credential = DefaultAzureCredential(managed_identity_client_id='raysynapsemgdvnet') # user-assigned identity\r\n",
+					"\r\n",
+					"# Get token for Azure SQL Database and convert to UTF-16-LE for SQL Server driver\r\n",
+					"token = credential.get_token(\"https://database.windows.net/.default\").token.encode(\"UTF-16-LE\")\r\n",
+					"# token = credential.get_token(\"https://raysynapsemgdvnet.sql.azuresynapse.net/.default\").token.encode(\"UTF-16-LE\")\r\n",
+					"\r\n",
+					"# token = credential.get_token(\"sqlserver://rayfelipesynapseworkspace.sql.azuresynapse.net\").token.encode(\"UTF-16-LE\")\r\n",
+					"token_struct = struct.pack(f'<I{len(token)}s', len(token), token)\r\n",
+					"\r\n",
+					"# Connect with the token\r\n",
+					"SQL_COPT_SS_ACCESS_TOKEN = 1256\r\n",
+					"connString = f\"Driver={{ODBC Driver 18 for SQL Server}};SERVER=rayfelipesynapseworkspace.sql.azuresynapse.net;DATABASE=master\"\r\n",
+					"conn = pyodbc.connect(connString, attrs_before={SQL_COPT_SS_ACCESS_TOKEN: token_struct})"
+				],
+				"execution_count": 5
+			}
+		]
+	}
+}

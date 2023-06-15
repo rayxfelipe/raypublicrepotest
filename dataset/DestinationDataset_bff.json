@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_bff",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "groupmemberships"
+		},
+		"sqlPool": {
+			"referenceName": "SQL Pool Dedicated in mgdvnet",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
