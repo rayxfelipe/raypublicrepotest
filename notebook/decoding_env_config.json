@@ -1,0 +1,60 @@
+{
+	"name": "decoding_env_config",
+	"properties": {
+		"folder": {
+			"name": "WADOL"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "3f04e575-5ea6-4255-93ca-6bb824c3c6dd"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"import os\r\n",
+					"\r\n",
+					"databases = {\r\n",
+					"    'vin_group_db': 'RPOdataTEAM',\r\n",
+					"    'vin_group_server': '',\r\n",
+					"    'nhtsa_db': 'vPICList_Lite',\r\n",
+					"    'nhtsa_server': '',\r\n",
+					"    'output_db': 'RPOdataTEAM',\r\n",
+					"    'output_server': '',\r\n",
+					"    'output_table': 'NHTSA_Staging'\r\n",
+					"}\r\n",
+					"\r\n",
+					"\"\"\"\r\n",
+					"The configuration is set to decode against RAO's\r\n",
+					"copy of NHTSA's database.\r\n",
+					"\r\n",
+					"\"\"\""
+				],
+				"execution_count": null
+			}
+		]
+	}
+}
