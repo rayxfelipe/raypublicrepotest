@@ -1,6 +1,9 @@
 {
 	"name": "setup_nhtsa",
 	"properties": {
+		"folder": {
+			"name": "WA DOL"
+		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
@@ -17,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "9346bf60-8dc1-4db8-979d-736dd2decf37"
+				"spark.autotune.trackingId": "641069ef-34a5-4942-a483-791db00df803"
 			}
 		},
 		"metadata": {
