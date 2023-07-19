@@ -2,7 +2,7 @@
 	"name": "decoding_env_config",
 	"properties": {
 		"folder": {
-			"name": "New folder"
+			"name": "WA DOL"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -16,7 +16,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "3206409e-2674-4339-81c5-96c3802557aa"
+				"spark.autotune.trackingId": "61d152b7-0e40-417a-b380-cda54b5cc3cb"
 			}
 		},
 		"metadata": {
