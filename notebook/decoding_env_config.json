@@ -1,9 +1,6 @@
 {
 	"name": "decoding_env_config",
 	"properties": {
-		"folder": {
-			"name": "WA DOL"
-		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
@@ -20,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "48221570-a3ea-4b1a-979f-64abd83f7813"
+				"spark.autotune.trackingId": "65d04867-d2eb-4731-8212-29239703aa98"
 			}
 		},
 		"metadata": {
@@ -77,7 +74,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 2
+				"execution_count": 3
 			}
 		]
 	}
