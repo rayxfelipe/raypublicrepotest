@@ -2,14 +2,10 @@
 	"name": "decoding_env_config",
 	"properties": {
 		"folder": {
-			"name": "WADOL"
+			"name": "New folder"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
-		"bigDataPool": {
-			"referenceName": "SparkPool2",
-			"type": "BigDataPoolReference"
-		},
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -20,7 +16,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "82208298-905e-4aee-9c99-e402cc7bd6f8"
+				"spark.autotune.trackingId": "9c3d4c72-eb5b-4525-8fc9-6313d74a4415"
 			}
 		},
 		"metadata": {
@@ -28,25 +24,10 @@
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
-				"display_name": "Synapse PySpark"
+				"display_name": "python"
 			},
 			"language_info": {
 				"name": "python"
-			},
-			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
-				"name": "SparkPool2",
-				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
-				"auth": {
-					"type": "AAD",
-					"authResource": "https://dev.azuresynapse.net"
-				},
-				"sparkVersion": "3.3",
-				"nodeCount": 10,
-				"cores": 4,
-				"memory": 28,
-				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},
@@ -72,7 +53,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 1
+				"execution_count": null
 			}
 		]
 	}
