@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "07b45f96-1b74-4aff-986b-f9279ace6a63"
+				"spark.autotune.trackingId": "1f249518-e62b-4824-a910-6fbe2dc6349e"
 			}
 		},
 		"metadata": {
@@ -52,6 +52,24 @@
 			"sessionKeepAliveTimeout": 30
 		},
 		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"print(\"hi\")"
+				],
+				"execution_count": 109
+			},
 			{
 				"cell_type": "code",
 				"metadata": {
@@ -223,7 +241,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 85
+				"execution_count": 92
 			},
 			{
 				"cell_type": "code",
@@ -258,7 +276,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 86
+				"execution_count": 93
 			},
 			{
 				"cell_type": "code",
@@ -291,7 +309,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 87
+				"execution_count": 94
 			},
 			{
 				"cell_type": "code",
@@ -320,7 +338,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 88
+				"execution_count": 96
 			},
 			{
 				"cell_type": "code",
@@ -367,7 +385,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 89
+				"execution_count": 97
 			},
 			{
 				"cell_type": "code",
@@ -421,7 +439,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 90
+				"execution_count": 98
 			},
 			{
 				"cell_type": "code",
@@ -497,7 +515,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 91
+				"execution_count": 100
 			}
 		]
 	}
