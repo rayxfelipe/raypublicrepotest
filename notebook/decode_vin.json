@@ -7,21 +7,21 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool2",
+			"referenceName": "SparkPool1",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "56g",
-			"driverCores": 8,
-			"executorMemory": "56g",
-			"executorCores": 8,
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
 			"numExecutors": 1,
 			"runAsWorkspaceSystemIdentity": true,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
-				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "755e84e5-3a7d-4f51-ac69-ab668f44a679"
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "7c9eef5e-d21e-4060-bd7f-5b33e7431ec9"
 			}
 		},
 		"metadata": {
@@ -35,18 +35,18 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
-				"name": "SparkPool2",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool1",
+				"name": "SparkPool1",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
+				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool1",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.3",
 				"nodeCount": 10,
-				"cores": 8,
-				"memory": 56,
+				"cores": 4,
+				"memory": 28,
 				"automaticScaleJobs": true
 			},
 			"sessionKeepAliveTimeout": 30
@@ -223,7 +223,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 34
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -258,7 +258,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 35
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -291,7 +291,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 36
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -320,7 +320,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 37
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -367,7 +367,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 38
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -421,7 +421,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 39
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -497,7 +497,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 41
+				"execution_count": 7
 			}
 		]
 	}
