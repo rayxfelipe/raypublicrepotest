@@ -1,0 +1,131 @@
+{
+	"name": "CopyPipeline_WADOLVin",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_lwx",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "raysynapsemgdvnetdlacctfs/WADOL/MS_POC.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.DrivesVINGroups_20230703"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink"
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "VINGroup",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "VINGroup",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "VehicleCount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "VehicleCount",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ModelYear",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ModelYear",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "Original VIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Original VIN",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Data Source",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Data Source",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_lwx",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_lwx",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
