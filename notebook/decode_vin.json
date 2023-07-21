@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "eb3e0d49-f159-4d0a-ba1c-25b8d044d1aa"
+				"spark.autotune.trackingId": "09a19e99-f8be-46d9-bae3-d2e441c4db18"
 			}
 		},
 		"metadata": {
@@ -223,7 +223,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 30
+				"execution_count": 38
 			},
 			{
 				"cell_type": "code",
@@ -258,7 +258,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 31
+				"execution_count": 39
 			},
 			{
 				"cell_type": "code",
@@ -282,7 +282,7 @@
 					"import argparse # used by parse_args\r\n",
 					"import sys\r\n",
 					"import datetime\r\n",
-					"# import os\r\n",
+					"import os\r\n",
 					"\r\n",
 					"# RAO files\r\n",
 					"# import setup_nhtsa # RAO defined file, from columns on 5/22\r\n",
@@ -291,7 +291,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 32
+				"execution_count": 40
 			},
 			{
 				"cell_type": "code",
@@ -320,7 +320,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 33
+				"execution_count": 41
 			},
 			{
 				"cell_type": "code",
@@ -367,7 +367,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 34
+				"execution_count": 42
 			},
 			{
 				"cell_type": "code",
@@ -421,7 +421,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 35
+				"execution_count": 43
 			},
 			{
 				"cell_type": "code",
@@ -497,7 +497,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 36
+				"execution_count": 44
 			}
 		]
 	}
