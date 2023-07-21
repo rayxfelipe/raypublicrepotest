@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "e4fa7533-be3d-4db3-849e-19729359dbe9"
+				"spark.autotune.trackingId": "8bfa1a93-c111-4baa-a013-aaacd3fcaa93"
 			}
 		},
 		"metadata": {
@@ -447,7 +447,7 @@
 					"    # RAY -params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
 					"    # params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
 					"    params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
-					"        + \";UID=sqladmin;PASSWORD=abcd123..4!\")\r\n",
+					"        + \";UID=sqladmin;PASSWORD=abcd1234!\")\r\n",
 					"\r\n",
 					"    engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"    \r\n",
