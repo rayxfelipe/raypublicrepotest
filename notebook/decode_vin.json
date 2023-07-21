@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "47e4072e-877e-4cce-af4d-66e67288247f"
+				"spark.autotune.trackingId": "eb3e0d49-f159-4d0a-ba1c-25b8d044d1aa"
 			}
 		},
 		"metadata": {
@@ -223,7 +223,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 23
+				"execution_count": 30
 			},
 			{
 				"cell_type": "code",
@@ -258,7 +258,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 24
+				"execution_count": 31
 			},
 			{
 				"cell_type": "code",
@@ -291,7 +291,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 25
+				"execution_count": 32
 			},
 			{
 				"cell_type": "code",
@@ -320,7 +320,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 26
+				"execution_count": 33
 			},
 			{
 				"cell_type": "code",
@@ -367,7 +367,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 27
+				"execution_count": 34
 			},
 			{
 				"cell_type": "code",
@@ -421,7 +421,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 28
+				"execution_count": 35
 			},
 			{
 				"cell_type": "code",
@@ -497,7 +497,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 29
+				"execution_count": 36
 			}
 		]
 	}
