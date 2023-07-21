@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "603dd058-3d01-4204-bc30-2dac3faae98e"
+				"spark.autotune.trackingId": "b39c9f87-e05c-419c-988c-2d4f5eeb0319"
 			}
 		},
 		"metadata": {
@@ -62,11 +62,11 @@
 					"import os\r\n",
 					"\r\n",
 					"databases = {\r\n",
-					"    'vin_group_db': 'vin_db', # server DB - vin table\r\n",
+					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
 					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
 					"    'nhtsa_db': 'vPICList_lite_2023_07vv', # NHTSA source DB\r\n",
 					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
-					"    'output_db': 'vin_db', # output for Python results transofmration\r\n",
+					"    'output_db': 'RPOdataTEAM', # output for Python results transofmration\r\n",
 					"    'output_server': '', # output for Python results.... host.\r\n",
 					"    'output_table': 'NHTSA_Staging' # output for Python results.... table. AKA NHTSA master table?\r\n",
 					"}\r\n",
@@ -77,7 +77,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 2
+				"execution_count": 3
 			}
 		]
 	}
