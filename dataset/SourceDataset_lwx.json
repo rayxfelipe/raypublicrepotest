@@ -1,0 +1,45 @@
+{
+	"name": "SourceDataset_lwx",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "raysynapsemgdvnet-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MS_POC.csv",
+				"folderPath": "WADOL",
+				"fileSystem": "raysynapsemgdvnetdlacctfs"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "VINGroup",
+				"type": "String"
+			},
+			{
+				"name": "VehicleCount",
+				"type": "String"
+			},
+			{
+				"name": "ModelYear",
+				"type": "String"
+			},
+			{
+				"name": "Original VIN",
+				"type": "String"
+			},
+			{
+				"name": "Data Source",
+				"type": "String"
+			}
+		]
+	}
+}
