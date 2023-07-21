@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "7d5bec23-033c-4839-b458-fdb027b81d43"
+				"spark.autotune.trackingId": "0a1a6712-5068-4480-8f04-95b4a7984ab3"
 			}
 		},
 		"metadata": {
@@ -62,11 +62,11 @@
 					"import os\r\n",
 					"\r\n",
 					"databases = {\r\n",
-					"    'vin_group_db': 'vin_dbll', # server DB - vin table\r\n",
+					"    'vin_group_db': 'vin_db', # server DB - vin table\r\n",
 					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
 					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
 					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
-					"    'output_db': 'vin_dbll', # output for Python results transofmration\r\n",
+					"    'output_db': 'vin_db', # output for Python results transofmration\r\n",
 					"    'output_server': '', # output for Python results.... host.\r\n",
 					"    'output_table': 'NHTSA_Staging' # output for Python results.... table. AKA NHTSA master table?\r\n",
 					"}\r\n",
