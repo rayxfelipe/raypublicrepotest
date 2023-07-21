@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "b39c9f87-e05c-419c-988c-2d4f5eeb0319"
+				"spark.autotune.trackingId": "cc358bff-0b5e-4df8-b5ce-c8a9bb7da1ff"
 			}
 		},
 		"metadata": {
@@ -64,7 +64,7 @@
 					"databases = {\r\n",
 					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
 					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
-					"    'nhtsa_db': 'vPICList_lite_2023_07vv', # NHTSA source DB\r\n",
+					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
 					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
 					"    'output_db': 'RPOdataTEAM', # output for Python results transofmration\r\n",
 					"    'output_server': '', # output for Python results.... host.\r\n",
