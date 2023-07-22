@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "306dc3f0-c8da-49fb-b0b6-041ce3dbb91f"
+				"spark.autotune.trackingId": "7ee90029-e89b-4143-a5a6-ecf09e2e2f14"
 			}
 		},
 		"metadata": {
@@ -67,9 +67,9 @@
 				},
 				"source": [
 					"\r\n",
-					"%pip install alabaster arrow asttokens atomicwrites attrs autopop8 babel backcall backports packports.fucntools_lru_cache bcrypt beautifulsoup4 binaryornot black bleach brotlipy bzip2 ca-certificates certifi cffi chardet charset-normalizer click cloudpickle colorama comm cookiecutter cryptography debugpy decorator defusedxml diff-match-patch dill docstring-to-markdown docutils entrypoints exceptiongroup executing flake8 gettext glib glib-tools greenlet gst-plugins-base gstreamer icu idna imagesize importlib-metadata importlib_metadata importlib_resources inflection iniconfig intel-openmp intervaltree ipykernel ipython ipython_genutils isort jaraco.classes jedi=0.18.2 jellyfish jinja2 jinja2-time jsonschema jupyter_client jupyter_core jupyterlab_pygments"
+					"%pip install alabaster arrow asttokens atomicwrites attrs autopop8 babel backcall backports packports.fucntools_lru_cache bcrypt beautifulsoup4 binaryornot black bleach brotlipy bzip2 ca-certificates certifi cffi chardet charset-normalizer click cloudpickle colorama comm cookiecutter cryptography debugpy decorator defusedxml diff-match-patch dill docstring-to-markdown docutils entrypoints exceptiongroup executing flake8 gettext glib glib-tools greenlet gst-plugins-base gstreamer icu idna imagesize importlib-metadata importlib_metadata importlib_resources inflection iniconfig intel-openmp intervaltree ipykernel ipython ipython_genutils isort jaraco.classes jedi jellyfish jinja2 jinja2-time jsonschema jupyter_client jupyter_core jupyterlab_pygments libsqlite"
 				],
-				"execution_count": 174
+				"execution_count": 206
 			},
 			{
 				"cell_type": "code",
@@ -242,7 +242,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 175
+				"execution_count": 207
 			},
 			{
 				"cell_type": "code",
@@ -277,7 +277,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 176
+				"execution_count": 208
 			},
 			{
 				"cell_type": "code",
@@ -310,7 +310,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 177
+				"execution_count": 209
 			},
 			{
 				"cell_type": "code",
@@ -339,7 +339,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 178
+				"execution_count": 210
 			},
 			{
 				"cell_type": "code",
@@ -361,10 +361,17 @@
 					"    Get the table name of the most recently created DRIVESVINGroups_YYYYMMDD.\r\n",
 					"\tThis helps us pick up aborted runs or test runs.\r\n",
 					"    \"\"\"\r\n",
+					"\r\n",
+					"    print(\"RAY 2222\")\r\n",
+					"\r\n",
 					"    mostRecentVinGroups = pd.read_sql_query(\"SELECT top 1 name \\\r\n",
 					"                                        FROM sys.tables \\\r\n",
 					"                                        WHERE name like 'DRIVESVINGroups%' \\\r\n",
 					"                                        ORDER BY create_date DESC\", con = dbengine)\r\n",
+					"\r\n",
+					"    \r\n",
+					"    print(\"RAY 333\")\r\n",
+					"\r\n",
 					"    if(all_or_new == 'all'):\r\n",
 					"        print('Getting VIN groups from ', mostRecentVinGroups.name[0])\r\n",
 					"        query = \"SELECT DISTINCT VINGroup, ModelYear FROM \" + mostRecentVinGroups.name[0]\r\n",
@@ -386,7 +393,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 179
+				"execution_count": 211
 			},
 			{
 				"cell_type": "code",
@@ -440,7 +447,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 180
+				"execution_count": 212
 			},
 			{
 				"cell_type": "code",
@@ -516,7 +523,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 181
+				"execution_count": 213
 			}
 		]
 	}
