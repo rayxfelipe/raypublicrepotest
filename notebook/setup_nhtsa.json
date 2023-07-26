@@ -2,7 +2,7 @@
 	"name": "setup_nhtsa",
 	"properties": {
 		"folder": {
-			"name": "WA DOL"
+			"name": "WADOL"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "641069ef-34a5-4942-a483-791db00df803"
+				"spark.autotune.trackingId": "4257fc32-b840-4c4b-ad99-24e87a941da6"
 			}
 		},
 		"metadata": {

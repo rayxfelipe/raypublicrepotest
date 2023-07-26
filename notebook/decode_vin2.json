@@ -2,7 +2,7 @@
 	"name": "decode_vin2",
 	"properties": {
 		"folder": {
-			"name": "WA DOL"
+			"name": "WADOL"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "640286bb-9f94-4b8f-9ab1-4220b96bd0f2"
+				"spark.autotune.trackingId": "2ae973be-f901-4d8b-be78-aef3dc2835c6"
 			}
 		},
 		"metadata": {
@@ -28,7 +28,7 @@
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
-				"display_name": "python"
+				"display_name": "Synapse PySpark"
 			},
 			"language_info": {
 				"name": "python"
@@ -51,6 +51,27 @@
 			"sessionKeepAliveTimeout": 30
 		},
 		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import sys\r\n",
+					"sys.path.append('https://web.azuresynapse.net/authoring/analyze/notebooks/setup_nhtsa?workspace=%2Fsubscriptions%2F499bc654-f84c-46c2-952c-b30be508f78c%2FresourceGroups%2FSynapseMgdVnet-Demo%2Fproviders%2FMicrosoft.Synapse%2Fworkspaces%2Fraysynapsemgdvnet%Fsetup_nhtsa.py')\r\n",
+					"import setup_nhtsa\r\n",
+					""
+				],
+				"execution_count": 3
+			},
 			{
 				"cell_type": "code",
 				"source": [
@@ -232,7 +253,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": null
+				"execution_count": 1
 			}
 		]
 	}

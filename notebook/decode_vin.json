@@ -2,7 +2,7 @@
 	"name": "decode_vin",
 	"properties": {
 		"folder": {
-			"name": "WA DOL"
+			"name": "WADOL"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "0a5f5ccf-1f73-4cab-ad7f-6d731da08360"
+				"spark.autotune.trackingId": "99b96297-fd5a-4054-ac5c-72a175030643"
 			}
 		},
 		"metadata": {
