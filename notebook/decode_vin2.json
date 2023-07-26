@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b06dbb1e-6659-4556-a066-08146dbf3a41"
+				"spark.autotune.trackingId": "20079690-42cd-49b4-b567-fdfb42d1cdaf"
 			}
 		},
 		"metadata": {
@@ -223,7 +223,7 @@
 					"      ,'Windows']\r\n",
 					""
 				],
-				"execution_count": 25
+				"execution_count": 28
 			},
 			{
 				"cell_type": "code",
@@ -257,7 +257,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 26
+				"execution_count": 29
 			},
 			{
 				"cell_type": "code",
@@ -318,7 +318,7 @@
 					"                LEFT JOIN %s AS nr \\\r\n",
 					"                    ON vg.VINGroup = nr.DOL_VINGroup \\\r\n",
 					"                    AND vg.ModelYear = nr.DOL_ModelYear\\\r\n",
-					"                WHERE nr.DOL_VINGroup IS NULL\" % cfg.databases['output_table']\r\n",
+					"                WHERE nr.DOL_VINGroup IS NULL\" % databases['output_table']\r\n",
 					"\r\n",
 					"    vin_groups = {}\r\n",
 					"    vin_groups['data'] = pd.read_sql_query(query, con = dbengine)\r\n",
@@ -445,7 +445,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 27
+				"execution_count": 30
 			}
 		]
 	}
