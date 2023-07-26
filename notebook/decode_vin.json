@@ -7,21 +7,21 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool1",
+			"referenceName": "SparkPool2",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "28g",
-			"driverCores": 4,
-			"executorMemory": "28g",
-			"executorCores": 4,
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
 			"numExecutors": 1,
 			"runAsWorkspaceSystemIdentity": true,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
-				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "7ee90029-e89b-4143-a5a6-ecf09e2e2f14"
+				"spark.dynamicAllocation.maxExecutors": "3",
+				"spark.autotune.trackingId": "ba479ae8-3195-4692-aeb9-033893c7a841"
 			}
 		},
 		"metadata": {
@@ -35,18 +35,18 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool1",
-				"name": "SparkPool1",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
+				"name": "SparkPool2",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool1",
+				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.3",
 				"nodeCount": 10,
-				"cores": 4,
-				"memory": 28,
+				"cores": 8,
+				"memory": 56,
 				"automaticScaleJobs": true
 			},
 			"sessionKeepAliveTimeout": 30
@@ -69,7 +69,7 @@
 					"\r\n",
 					"%pip install alabaster arrow asttokens atomicwrites attrs autopop8 babel backcall backports packports.fucntools_lru_cache bcrypt beautifulsoup4 binaryornot black bleach brotlipy bzip2 ca-certificates certifi cffi chardet charset-normalizer click cloudpickle colorama comm cookiecutter cryptography debugpy decorator defusedxml diff-match-patch dill docstring-to-markdown docutils entrypoints exceptiongroup executing flake8 gettext glib glib-tools greenlet gst-plugins-base gstreamer icu idna imagesize importlib-metadata importlib_metadata importlib_resources inflection iniconfig intel-openmp intervaltree ipykernel ipython ipython_genutils isort jaraco.classes jedi jellyfish jinja2 jinja2-time jsonschema jupyter_client jupyter_core jupyterlab_pygments libsqlite"
 				],
-				"execution_count": 206
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -242,7 +242,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 207
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -261,15 +261,14 @@
 					"import os\r\n",
 					"\r\n",
 					"databases = {\r\n",
-					"    'vin_group_db': 'RPOdataTEAM',\r\n",
-					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net',\r\n",
-					"    'nhtsa_db': 'vPICList_lite_2023_07',\r\n",
-					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net',\r\n",
-					"    'output_db': 'RPOdataTEAM',\r\n",
-					"    'output_server': '',\r\n",
-					"    'output_table': 'NHTSA_Staging'\r\n",
+					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
+					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
+					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
+					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
+					"    'output_db': 'RPOdataTEAM', # output for Python results transofmration\r\n",
+					"    'output_server': 'ray-azuresql2-server.database.windows.net', # output for Python results.... host.\r\n",
+					"    'output_table': 'NHTSA_Master' # output for Python results.... table. AKA NHTSA master table?\r\n",
 					"}\r\n",
-					"\r\n",
 					"\r\n",
 					"\"\"\"\r\n",
 					"The configuration is set to decode against RAO's\r\n",
@@ -277,7 +276,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 208
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -310,7 +309,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 209
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -339,7 +338,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 210
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -393,7 +392,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 211
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -447,7 +446,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 212
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
@@ -523,7 +522,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 213
+				"execution_count": 8
 			}
 		]
 	}
