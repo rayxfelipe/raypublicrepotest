@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "20079690-42cd-49b4-b567-fdfb42d1cdaf"
+				"spark.autotune.trackingId": "f867bc9e-ea8a-4523-9990-978270e8f238"
 			}
 		},
 		"metadata": {
@@ -223,7 +223,7 @@
 					"      ,'Windows']\r\n",
 					""
 				],
-				"execution_count": 28
+				"execution_count": 31
 			},
 			{
 				"cell_type": "code",
@@ -257,7 +257,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 29
+				"execution_count": 32
 			},
 			{
 				"cell_type": "code",
@@ -381,7 +381,7 @@
 					"    print(type(databases))\r\n",
 					"\r\n",
 					"    # RAY - params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + cfg.databases['vin_group_server'] + \";DATABASE=\" + cfg.databases['vin_group_db'])\r\n",
-					"    params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + cfg.databases['vin_group_db']\r\n",
+					"    params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
 					"        + \";UID=sqladmin;PWD=abcd1234!\")\r\n",
 					"    \r\n",
 					"    engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
@@ -397,14 +397,14 @@
 					"    \r\n",
 					"    try:\r\n",
 					"        # set up connections for decoding\r\n",
-					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['nhtsa_server'] + \";DATABASE=\" + cfg.databases['nhtsa_db']\r\n",
+					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['nhtsa_server'] + \";DATABASE=\" + databases['nhtsa_db']\r\n",
 					"             + \";UID=sqladmin;PWD=abcd1234!\")\r\n",
 					"        engine_decoding = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"\r\n",
 					"        print(\"Ray 55\")\r\n",
 					"        \r\n",
 					"        # set up connection for writing output\r\n",
-					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['output_server'] + \";DATABASE=\" + cfg.databases['output_db'] \r\n",
+					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['output_server'] + \";DATABASE=\" + databases['output_db'] \r\n",
 					"            + \";UID=sqladmin;PWD=abcd1234!\")\r\n",
 					"        engine_write = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params, use_setinputsizes=False)\r\n",
 					"\r\n",
@@ -445,7 +445,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 30
+				"execution_count": 33
 			}
 		]
 	}
