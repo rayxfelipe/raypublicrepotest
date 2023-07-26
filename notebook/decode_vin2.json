@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "41b4c952-2b7e-4a6b-8002-fa6ef560d39d"
+				"spark.autotune.trackingId": "c8784a3d-7058-4ed3-9119-7e28937bb8d6"
 			}
 		},
 		"metadata": {
@@ -223,7 +223,7 @@
 					"      ,'Windows']\r\n",
 					""
 				],
-				"execution_count": 13
+				"execution_count": 17
 			},
 			{
 				"cell_type": "code",
@@ -240,7 +240,7 @@
 					"\r\n",
 					"# RAO files\r\n",
 					"# import setup_nhtsa # RAO defined file, from columns on 5/22\r\n",
-					"import decoding_env_config as cfg # holds database info\r\n",
+					"# import decoding_env_config as cfg # holds database info\r\n",
 					"\r\n",
 					"# Ray\r\n",
 					"# import yaml\r\n",
@@ -406,7 +406,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 14
+				"execution_count": 18
 			}
 		]
 	}
