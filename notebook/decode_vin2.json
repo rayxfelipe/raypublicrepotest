@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "c8784a3d-7058-4ed3-9119-7e28937bb8d6"
+				"spark.autotune.trackingId": "b06dbb1e-6659-4556-a066-08146dbf3a41"
 			}
 		},
 		"metadata": {
@@ -223,7 +223,41 @@
 					"      ,'Windows']\r\n",
 					""
 				],
-				"execution_count": 17
+				"execution_count": 25
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import os\r\n",
+					"\r\n",
+					"databases = {\r\n",
+					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
+					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
+					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
+					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
+					"    'output_db': 'RPOdataTEAM', # output for Python results transofmration\r\n",
+					"    'output_server': 'ray-azuresql2-server.database.windows.net', # output for Python results.... host.\r\n",
+					"    'output_table': 'NHTSA_Master' # output for Python results.... table. AKA NHTSA master table?\r\n",
+					"}\r\n",
+					"\r\n",
+					"\"\"\"\r\n",
+					"The configuration is set to decode against RAO's\r\n",
+					"copy of NHTSA's database.\r\n",
+					"\r\n",
+					"\"\"\""
+				],
+				"execution_count": 26
 			},
 			{
 				"cell_type": "code",
@@ -333,16 +367,21 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					"\r\n",
 					"def main():\r\n",
+					"    # RAY - hard coding for now\r\n",
+					"    # ['--decode_all_or_new', 'all']\r\n",
+					"    arg_list = ['--decode_all_or_new', 'all']\r\n",
+					"\r\n",
 					"    # parse command line arguments\r\n",
-					"    parser = parse_args(sys.argv[1:])\r\n",
+					"    # parser = parse_args(sys.argv[1:])\r\n",
+					"    parser = parse_args(arg_list)\r\n",
 					"\r\n",
 					"    # connect to db with VIN groups\r\n",
 					"    # RAY\r\n",
 					"    print(\"RAy:\")\r\n",
-					"    print(type(cfg.databases))\r\n",
+					"    print(type(databases))\r\n",
 					"\r\n",
 					"    # RAY - params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + cfg.databases['vin_group_server'] + \";DATABASE=\" + cfg.databases['vin_group_db'])\r\n",
-					"    params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + cfg.databases['vin_group_server'] + \";DATABASE=\" + cfg.databases['vin_group_db']\r\n",
+					"    params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + cfg.databases['vin_group_db']\r\n",
 					"        + \";UID=sqladmin;PWD=abcd1234!\")\r\n",
 					"    \r\n",
 					"    engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
@@ -358,14 +397,14 @@
 					"    \r\n",
 					"    try:\r\n",
 					"        # set up connections for decoding\r\n",
-					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + cfg.databases['nhtsa_server'] + \";DATABASE=\" + cfg.databases['nhtsa_db']\r\n",
+					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['nhtsa_server'] + \";DATABASE=\" + cfg.databases['nhtsa_db']\r\n",
 					"             + \";UID=sqladmin;PWD=abcd1234!\")\r\n",
 					"        engine_decoding = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"\r\n",
 					"        print(\"Ray 55\")\r\n",
 					"        \r\n",
 					"        # set up connection for writing output\r\n",
-					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + cfg.databases['output_server'] + \";DATABASE=\" + cfg.databases['output_db'] \r\n",
+					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['output_server'] + \";DATABASE=\" + cfg.databases['output_db'] \r\n",
 					"            + \";UID=sqladmin;PWD=abcd1234!\")\r\n",
 					"        engine_write = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params, use_setinputsizes=False)\r\n",
 					"\r\n",
@@ -387,12 +426,12 @@
 					"\r\n",
 					"            if row % 500 == 0 and row != 0:\r\n",
 					"                # save result\r\n",
-					"                write_to_database(lst, nhtsa_df_format, cfg.databases['output_table'], engine_write)\r\n",
+					"                write_to_database(lst, nhtsa_df_format, databases['output_table'], engine_write)\r\n",
 					"                lst = []\r\n",
 					"                print('Wrote ' + str(row+1) + ' VIN decodes')\r\n",
 					"\r\n",
 					"        # Write any remainder to db\r\n",
-					"        write_to_database(lst, nhtsa_df_format, cfg.databases['output_table'], engine_write)\r\n",
+					"        write_to_database(lst, nhtsa_df_format, databases['output_table'], engine_write)\r\n",
 					"        print('Wrote ' + str(row+1) + ' VIN decodes')\r\n",
 					"\r\n",
 					"        print('Source of VIN groups: ', vin_groups_to_decode['source'])\r\n",
@@ -406,7 +445,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 18
+				"execution_count": 27
 			}
 		]
 	}
