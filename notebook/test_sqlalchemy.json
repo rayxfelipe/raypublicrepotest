@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "eea42140-e920-40ad-9f97-0b977b6636a7"
+				"spark.autotune.trackingId": "be54d457-2eb0-466a-b5e2-9623aeccbec5"
 			}
 		},
 		"metadata": {
@@ -72,6 +72,8 @@
 					}
 				},
 				"source": [
+					"\r\n",
+					"\r\n",
 					"import sqlalchemy"
 				],
 				"execution_count": null
@@ -108,7 +110,58 @@
 					}
 				},
 				"source": [
-					""
+					"base = declarative_base()\r\n",
+					"class Customers(base):\r\n",
+					"\t__tablename__ = \"Customers\"\r\n",
+					"\tCity = Column(String,primary_key=True)\r\n",
+					"\tBalance = Column(String)\r\n",
+					"\t..."
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"engine = create_engine(\"sparksql:///?Server=127.0.0.1\")\r\n",
+					"factory = sessionmaker(bind=engine)\r\n",
+					"session = factory()\r\n",
+					"for instance in session.query(Customers).filter_by(Country=\"US\"):\r\n",
+					"\tprint(\"City: \", instance.City)\r\n",
+					"\tprint(\"Balance: \", instance.Balance)\r\n",
+					"\tprint(\"---------\")"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"Customers_table = Customers.metadata.tables[\"Customers\"]\r\n",
+					"for instance in session.execute(Customers_table.select().where(Customers_table.c.Country == \"US\")):\r\n",
+					"print(\"City: \", instance.City)\r\n",
+					"print(\"Balance: \", instance.Balance)\r\n",
+					"print(\"---------\")"
 				],
 				"execution_count": null
 			}
