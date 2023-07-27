@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "caf8a50e-fdb5-408f-b352-63c7544284b5"
+				"spark.autotune.trackingId": "f43bed15-1cd9-4407-ba38-ea5773e2b496"
 			}
 		},
 		"metadata": {
@@ -115,7 +115,7 @@
 					"# engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=tcp:ray-azuresql2-server.database.windows.net;DATABASE=RPOdataTEAM;UID=sqladmin;PWD=abcd1234!\")"
 				],
-				"execution_count": 38
+				"execution_count": 40
 			},
 			{
 				"cell_type": "code",

@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "6a6cb7e0-c196-4f76-a295-ee2e4aa312ad"
+				"spark.autotune.trackingId": "56e7378a-aa67-45a4-a95f-cbc3434332db"
 			}
 		},
 		"metadata": {
@@ -88,7 +88,7 @@
 					"%conda install -c anaconda sqlalchemy\r\n",
 					""
 				],
-				"execution_count": 30
+				"execution_count": 38
 			},
 			{
 				"cell_type": "code",
@@ -261,7 +261,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": null
+				"execution_count": 39
 			},
 			{
 				"cell_type": "code",
@@ -295,7 +295,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": null
+				"execution_count": 40
 			},
 			{
 				"cell_type": "code",
@@ -328,7 +328,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": null
+				"execution_count": 41
 			},
 			{
 				"cell_type": "code",
@@ -344,8 +344,6 @@
 					}
 				},
 				"source": [
-					"\r\n",
-					"\r\n",
 					"def parse_args(args):\r\n",
 					"    # Setup reading arguments from command line\r\n",
 					"    msg = \"Decodes VIN against NHTSA's database\"\r\n",
@@ -357,7 +355,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": null
+				"execution_count": 42
 			},
 			{
 				"cell_type": "code",
@@ -411,7 +409,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": null
+				"execution_count": 43
 			},
 			{
 				"cell_type": "code",
@@ -465,7 +463,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": null
+				"execution_count": 44
 			},
 			{
 				"cell_type": "code",
@@ -490,8 +488,9 @@
 					"    # connect to db with VIN groups\r\n",
 					"    # RAY -params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
 					"    # params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
-					"    params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
+					"    params = urllib.parse.quote_plus(\"DRIVER={ODBC Driver 18 for SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
 					"        + \";UID=sqladmin;PASSWORD=abcd1234!\")\r\n",
+					"\r\n",
 					"\r\n",
 					"    engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"    \r\n",
@@ -541,7 +540,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": null
+				"execution_count": 45
 			}
 		]
 	}
