@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "8e633aba-9171-49c0-9a3d-d6dfe1a9930f"
+				"spark.autotune.trackingId": "cee301cc-6e32-4dbf-a484-ca599301d94a"
 			}
 		},
 		"metadata": {
@@ -45,8 +45,8 @@
 				},
 				"sparkVersion": "3.3",
 				"nodeCount": 10,
-				"cores": 4,
-				"memory": 28,
+				"cores": 8,
+				"memory": 56,
 				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
@@ -487,7 +487,6 @@
 					"\r\n",
 					"    # connect to db with VIN groups\r\n",
 					"    # RAY -params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
-					"    # params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
 					"    params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
 					"        + \";UID=sqladmin; PWD=abcd1234!\")\r\n",
 					"\r\n",
