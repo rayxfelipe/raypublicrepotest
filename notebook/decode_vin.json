@@ -7,21 +7,21 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool1",
+			"referenceName": "SparkPool2",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "28g",
-			"driverCores": 4,
-			"executorMemory": "28g",
-			"executorCores": 4,
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
 			"numExecutors": 1,
 			"runAsWorkspaceSystemIdentity": true,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
-				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "842f6e95-68f0-408d-92e6-43f82ab168ef"
+				"spark.dynamicAllocation.maxExecutors": "3",
+				"spark.autotune.trackingId": "00da40c2-48c5-4d98-a4af-a32aee1507be"
 			}
 		},
 		"metadata": {
@@ -35,18 +35,18 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool1",
-				"name": "SparkPool1",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
+				"name": "SparkPool2",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool1",
+				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.3",
 				"nodeCount": 10,
-				"cores": 16,
-				"memory": 112,
+				"cores": 8,
+				"memory": 56,
 				"automaticScaleJobs": true
 			},
 			"sessionKeepAliveTimeout": 30
@@ -69,7 +69,7 @@
 					"\r\n",
 					"# %pip install alabaster arrow asttokens atomicwrites attrs autopop8 babel backcall backports packports.fucntools_lru_cache bcrypt beautifulsoup4 binaryornot black bleach brotlipy bzip2 ca-certificates certifi cffi chardet charset-normalizer click cloudpickle colorama comm cookiecutter cryptography debugpy decorator defusedxml diff-match-patch dill docstring-to-markdown docutils entrypoints exceptiongroup executing flake8 gettext glib glib-tools greenlet gst-plugins-base gstreamer icu idna imagesize importlib-metadata importlib_metadata importlib_resources inflection iniconfig intel-openmp intervaltree ipykernel ipython ipython_genutils isort jaraco.classes jedi jellyfish jinja2 jinja2-time jsonschema jupyter_client jupyter_core jupyterlab_pygments libsqlite"
 				],
-				"execution_count": null
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
