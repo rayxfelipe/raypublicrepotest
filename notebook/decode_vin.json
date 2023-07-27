@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "349e4efd-3055-496a-9d90-69ade333afb4"
+				"spark.autotune.trackingId": "a22886ae-fffd-41d8-a236-aacdf4a7bf87"
 			}
 		},
 		"metadata": {
@@ -508,7 +508,7 @@
 					"        # set up connection for writing output\r\n",
 					"        params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['output_server'] + \";DATABASE=\" + databases['output_db'])\r\n",
 					"        engine_write = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params, use_setinputsizes=False)\r\n",
-					"        nhtsa_df_format = pd.DataFrame(columns=setup_nhtsa.nhtsa_columns) # initialize empty dataframe in the NHTSA_Master/Staging format\r\n",
+					"        nhtsa_df_format = pd.DataFrame(columns=nhtsa_columns) # initialize empty dataframe in the NHTSA_Master/Staging format\r\n",
 					"\r\n",
 					"        lst = [] # empty list to hold the decoding returns\r\n",
 					"        for row in range(len(vin_groups_to_decode['data'])):\r\n",
