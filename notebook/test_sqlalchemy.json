@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "be368189-62f2-42ea-b204-f051dfca2287"
+				"spark.autotune.trackingId": "1fcf66fd-b111-40e7-9acd-cf1005e118c3"
 			}
 		},
 		"metadata": {
@@ -73,9 +73,11 @@
 				"cell_type": "code",
 				"source": [
 					"# %pip install sqlalchemy\r\n",
-					"%pip list"
+					"# %pip install pyodbc\r\n",
+					"# %pip install langchain\r\n",
+					"# %pip list"
 				],
-				"execution_count": 5
+				"execution_count": 32
 			},
 			{
 				"cell_type": "code",
@@ -94,7 +96,7 @@
 					"import sqlalchemy\r\n",
 					"import pandas as pd"
 				],
-				"execution_count": 13
+				"execution_count": 23
 			},
 			{
 				"cell_type": "code",
@@ -111,9 +113,61 @@
 				},
 				"source": [
 					"# engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
-					"engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=ray-azuresql2-server.database.windows.net;UID=sqladmin;PWD=abcd1234!\")"
+					"# engine = sqlalchemy.create_engine(\"mssql:///?odbc_connect=tcp:ray-azuresql2-server.database.windows.net;DATABASE=RPOdataTEAM;UID=sqladmin;PWD=abcd1234!\")"
 				],
-				"execution_count": 14
+				"execution_count": 30
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import pyodbc \r\n",
+					"# Some other example server values are\r\n",
+					"# server = 'localhost\\sqlexpress' # for a named instance\r\n",
+					"# server = 'myserver,port' # to specify an alternate port\r\n",
+					"server = 'tcp:ray-azuresql2-server.database.windows.net' \r\n",
+					"database = 'RPOdataTEAM' \r\n",
+					"username = 'sqladmin' \r\n",
+					"password = 'abcd1234!' \r\n",
+					"# ENCRYPT defaults to yes starting in ODBC Driver 18. It's good to always specify ENCRYPT=yes on the client side to avoid MITM attacks.\r\n",
+					"cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
+					"cursor = cnxn.cursor()"
+				],
+				"execution_count": 33
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#Sample select query\r\n",
+					"# cursor.execute(\"SELECT @@version;\") \r\n",
+					"cursor.execute(\"SELECT * from sys.tables;\") \r\n",
+					"row = cursor.fetchone() \r\n",
+					"while row: \r\n",
+					"    print(row[0])\r\n",
+					"    row = cursor.fetchone()"
+				],
+				"execution_count": 35
 			},
 			{
 				"cell_type": "code",
@@ -131,7 +185,7 @@
 				"source": [
 					"    mostRecentVinGroups = pd.read_sql_query(\"select * from sys.tables\", con = engine)"
 				],
-				"execution_count": 15
+				"execution_count": 31
 			},
 			{
 				"cell_type": "code",
