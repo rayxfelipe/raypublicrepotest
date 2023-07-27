@@ -1,5 +1,5 @@
 {
-	"name": "test_sqlalchemy",
+	"name": "test_sqlalchemy_pyodbc",
 	"properties": {
 		"folder": {
 			"name": "WADOL"
@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "7c11ea8d-a2ed-49af-ade6-fe691edcec12"
+				"spark.autotune.trackingId": "caf8a50e-fdb5-408f-b352-63c7544284b5"
 			}
 		},
 		"metadata": {
@@ -113,9 +113,9 @@
 				},
 				"source": [
 					"# engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
-					"# engine = sqlalchemy.create_engine(\"mssql:///?odbc_connect=tcp:ray-azuresql2-server.database.windows.net;DATABASE=RPOdataTEAM;UID=sqladmin;PWD=abcd1234!\")"
+					"engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=tcp:ray-azuresql2-server.database.windows.net;DATABASE=RPOdataTEAM;UID=sqladmin;PWD=abcd1234!\")"
 				],
-				"execution_count": 30
+				"execution_count": 38
 			},
 			{
 				"cell_type": "code",
@@ -185,7 +185,7 @@
 				"source": [
 					"    mostRecentVinGroups = pd.read_sql_query(\"select * from sys.tables\", con = engine)"
 				],
-				"execution_count": 31
+				"execution_count": 39
 			},
 			{
 				"cell_type": "code",
