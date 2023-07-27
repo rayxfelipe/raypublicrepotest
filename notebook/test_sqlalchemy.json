@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "0d6aee17-2987-49d7-8399-d3e7944d75db"
+				"spark.autotune.trackingId": "be368189-62f2-42ea-b204-f051dfca2287"
 			}
 		},
 		"metadata": {
@@ -72,9 +72,10 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"%pip install sqlalchemy"
+					"# %pip install sqlalchemy\r\n",
+					"%pip list"
 				],
-				"execution_count": 1
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -90,9 +91,10 @@
 					}
 				},
 				"source": [
-					"import sqlalchemy"
+					"import sqlalchemy\r\n",
+					"import pandas as pd"
 				],
-				"execution_count": 2
+				"execution_count": 13
 			},
 			{
 				"cell_type": "code",
@@ -108,9 +110,28 @@
 					}
 				},
 				"source": [
-					"engine = create_engine(\"sparksql:///?Server=ray-azuresql2-server.database.windows.net;UID=sqladmin;PWD=abcd1234!\")"
+					"# engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
+					"engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=ray-azuresql2-server.database.windows.net;UID=sqladmin;PWD=abcd1234!\")"
 				],
-				"execution_count": null
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"    mostRecentVinGroups = pd.read_sql_query(\"select * from sys.tables\", con = engine)"
+				],
+				"execution_count": 15
 			},
 			{
 				"cell_type": "code",
