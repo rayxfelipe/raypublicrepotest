@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "3af54853-f0de-43ce-92b7-d4ea90e6a71d"
+				"spark.autotune.trackingId": "0d7c8fe3-aa18-4dd4-a78c-27a71dd791cb"
 			}
 		},
 		"metadata": {
@@ -324,7 +324,6 @@
 					"\r\n",
 					"# RAO files\r\n",
 					"# import setup_nhtsa # RAO defined file, from columns on 5/22\r\n",
-					"\r\n",
 					"# import decoding_env_config as cfg # holds database info\r\n",
 					"\r\n",
 					""
