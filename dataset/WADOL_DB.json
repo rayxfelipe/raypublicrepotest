@@ -1,0 +1,648 @@
+{
+	"name": "WADOL_DB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "WADOLDB_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "index",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "DOL_ModelYear",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "DOL_VINGroup",
+				"type": "varchar"
+			},
+			{
+				"name": "Date_VINDecoded",
+				"type": "varchar"
+			},
+			{
+				"name": "NHTSA_Count",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NHTSA_Message",
+				"type": "varchar"
+			},
+			{
+				"name": "NHTSA_SearchCriteria",
+				"type": "varchar"
+			},
+			{
+				"name": "ABS",
+				"type": "varchar"
+			},
+			{
+				"name": "ActiveSafetySysNote",
+				"type": "varchar"
+			},
+			{
+				"name": "AdaptiveCruiseControl",
+				"type": "varchar"
+			},
+			{
+				"name": "AdaptiveDrivingBeam",
+				"type": "varchar"
+			},
+			{
+				"name": "AdaptiveHeadlights",
+				"type": "varchar"
+			},
+			{
+				"name": "AdditionalErrorText",
+				"type": "varchar"
+			},
+			{
+				"name": "AirBagLocCurtain",
+				"type": "varchar"
+			},
+			{
+				"name": "AirBagLocFront",
+				"type": "varchar"
+			},
+			{
+				"name": "AirBagLocKnee",
+				"type": "varchar"
+			},
+			{
+				"name": "AirBagLocSeatCushion",
+				"type": "varchar"
+			},
+			{
+				"name": "AirBagLocSide",
+				"type": "varchar"
+			},
+			{
+				"name": "AutoReverseSystem",
+				"type": "varchar"
+			},
+			{
+				"name": "AutomaticPedestrianAlertingSound",
+				"type": "varchar"
+			},
+			{
+				"name": "AxleConfiguration",
+				"type": "varchar"
+			},
+			{
+				"name": "Axles",
+				"type": "varchar"
+			},
+			{
+				"name": "BasePrice",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryA",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryA_to",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryCells",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryInfo",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryKWh",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryKWh_to",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryModules",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryPacks",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryType",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryV",
+				"type": "varchar"
+			},
+			{
+				"name": "BatteryV_to",
+				"type": "varchar"
+			},
+			{
+				"name": "BedLengthIN",
+				"type": "varchar"
+			},
+			{
+				"name": "BedType",
+				"type": "varchar"
+			},
+			{
+				"name": "BlindSpotIntervention",
+				"type": "varchar"
+			},
+			{
+				"name": "BlindSpotMon",
+				"type": "varchar"
+			},
+			{
+				"name": "BodyCabType",
+				"type": "varchar"
+			},
+			{
+				"name": "BodyClass",
+				"type": "varchar"
+			},
+			{
+				"name": "BrakeSystemDesc",
+				"type": "varchar"
+			},
+			{
+				"name": "BrakeSystemType",
+				"type": "varchar"
+			},
+			{
+				"name": "BusFloorConfigType",
+				"type": "varchar"
+			},
+			{
+				"name": "BusLength",
+				"type": "varchar"
+			},
+			{
+				"name": "BusType",
+				"type": "varchar"
+			},
+			{
+				"name": "CAN_AACN",
+				"type": "varchar"
+			},
+			{
+				"name": "CIB",
+				"type": "varchar"
+			},
+			{
+				"name": "CashForClunkers",
+				"type": "varchar"
+			},
+			{
+				"name": "ChargerLevel",
+				"type": "varchar"
+			},
+			{
+				"name": "ChargerPowerKW",
+				"type": "varchar"
+			},
+			{
+				"name": "CoolingType",
+				"type": "varchar"
+			},
+			{
+				"name": "CurbWeightLB",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomMotorcycleType",
+				"type": "varchar"
+			},
+			{
+				"name": "DaytimeRunningLight",
+				"type": "varchar"
+			},
+			{
+				"name": "DestinationMarket",
+				"type": "varchar"
+			},
+			{
+				"name": "DisplacementCC",
+				"type": "varchar"
+			},
+			{
+				"name": "DisplacementCI",
+				"type": "varchar"
+			},
+			{
+				"name": "DisplacementL",
+				"type": "varchar"
+			},
+			{
+				"name": "Doors",
+				"type": "varchar"
+			},
+			{
+				"name": "DriveType",
+				"type": "varchar"
+			},
+			{
+				"name": "DriverAssist",
+				"type": "varchar"
+			},
+			{
+				"name": "DynamicBrakeSupport",
+				"type": "varchar"
+			},
+			{
+				"name": "EDR",
+				"type": "varchar"
+			},
+			{
+				"name": "ESC",
+				"type": "varchar"
+			},
+			{
+				"name": "EVDriveUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ElectrificationLevel",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineConfiguration",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineCycles",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineCylinders",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineHP",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineHP_to",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineKW",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineManufacturer",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineModel",
+				"type": "varchar"
+			},
+			{
+				"name": "EntertainmentSystem",
+				"type": "varchar"
+			},
+			{
+				"name": "ErrorCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ErrorText",
+				"type": "varchar"
+			},
+			{
+				"name": "ForwardCollisionWarning",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelInjectionType",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelTypePrimary",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelTypeSecondary",
+				"type": "varchar"
+			},
+			{
+				"name": "GCWR",
+				"type": "varchar"
+			},
+			{
+				"name": "GCWR_to",
+				"type": "varchar"
+			},
+			{
+				"name": "GVWR",
+				"type": "varchar"
+			},
+			{
+				"name": "GVWR_to",
+				"type": "varchar"
+			},
+			{
+				"name": "KeylessIgnition",
+				"type": "varchar"
+			},
+			{
+				"name": "LaneCenteringAssistance",
+				"type": "varchar"
+			},
+			{
+				"name": "LaneDepartureWarning",
+				"type": "varchar"
+			},
+			{
+				"name": "LaneKeepSystem",
+				"type": "varchar"
+			},
+			{
+				"name": "LowerBeamHeadlampLightSource",
+				"type": "varchar"
+			},
+			{
+				"name": "Make",
+				"type": "varchar"
+			},
+			{
+				"name": "MakeID",
+				"type": "varchar"
+			},
+			{
+				"name": "Manufacturer",
+				"type": "varchar"
+			},
+			{
+				"name": "ManufacturerId",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "ModelID",
+				"type": "varchar"
+			},
+			{
+				"name": "ModelYear",
+				"type": "varchar"
+			},
+			{
+				"name": "MotorcycleChassisType",
+				"type": "varchar"
+			},
+			{
+				"name": "MotorcycleSuspensionType",
+				"type": "varchar"
+			},
+			{
+				"name": "NCSABodyType",
+				"type": "varchar"
+			},
+			{
+				"name": "NCSAMake",
+				"type": "varchar"
+			},
+			{
+				"name": "NCSAMapExcApprovedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "NCSAMapExcApprovedOn",
+				"type": "varchar"
+			},
+			{
+				"name": "NCSAMappingException",
+				"type": "varchar"
+			},
+			{
+				"name": "NCSAModel",
+				"type": "varchar"
+			},
+			{
+				"name": "NCSANote",
+				"type": "varchar"
+			},
+			{
+				"name": "NonLandUse",
+				"type": "varchar"
+			},
+			{
+				"name": "Note",
+				"type": "varchar"
+			},
+			{
+				"name": "OtherBusInfo",
+				"type": "varchar"
+			},
+			{
+				"name": "OtherEngineInfo",
+				"type": "varchar"
+			},
+			{
+				"name": "OtherMotorcycleInfo",
+				"type": "varchar"
+			},
+			{
+				"name": "OtherRestraintSystemInfo",
+				"type": "varchar"
+			},
+			{
+				"name": "OtherTrailerInfo",
+				"type": "varchar"
+			},
+			{
+				"name": "ParkAssist",
+				"type": "varchar"
+			},
+			{
+				"name": "PedestrianAutomaticEmergencyBraking",
+				"type": "varchar"
+			},
+			{
+				"name": "PlantCity",
+				"type": "varchar"
+			},
+			{
+				"name": "PlantCompanyName",
+				"type": "varchar"
+			},
+			{
+				"name": "PlantCountry",
+				"type": "varchar"
+			},
+			{
+				"name": "PlantState",
+				"type": "varchar"
+			},
+			{
+				"name": "PossibleValues",
+				"type": "varchar"
+			},
+			{
+				"name": "Pretensioner",
+				"type": "varchar"
+			},
+			{
+				"name": "RearAutomaticEmergencyBraking",
+				"type": "varchar"
+			},
+			{
+				"name": "RearCrossTrafficAlert",
+				"type": "varchar"
+			},
+			{
+				"name": "RearVisibilitySystem",
+				"type": "varchar"
+			},
+			{
+				"name": "SAEAutomationLevel",
+				"type": "varchar"
+			},
+			{
+				"name": "SAEAutomationLevel_to",
+				"type": "varchar"
+			},
+			{
+				"name": "SeatBeltsAll",
+				"type": "varchar"
+			},
+			{
+				"name": "SeatRows",
+				"type": "varchar"
+			},
+			{
+				"name": "Seats",
+				"type": "varchar"
+			},
+			{
+				"name": "SemiautomaticHeadlampBeamSwitching",
+				"type": "varchar"
+			},
+			{
+				"name": "Series",
+				"type": "varchar"
+			},
+			{
+				"name": "Series2",
+				"type": "varchar"
+			},
+			{
+				"name": "SteeringLocation",
+				"type": "varchar"
+			},
+			{
+				"name": "SuggestedVIN",
+				"type": "varchar"
+			},
+			{
+				"name": "TPMS",
+				"type": "varchar"
+			},
+			{
+				"name": "TopSpeedMPH",
+				"type": "varchar"
+			},
+			{
+				"name": "TrackWidth",
+				"type": "varchar"
+			},
+			{
+				"name": "TractionControl",
+				"type": "varchar"
+			},
+			{
+				"name": "TrailerBodyType",
+				"type": "varchar"
+			},
+			{
+				"name": "TrailerLength",
+				"type": "varchar"
+			},
+			{
+				"name": "TrailerType",
+				"type": "varchar"
+			},
+			{
+				"name": "TransmissionSpeeds",
+				"type": "varchar"
+			},
+			{
+				"name": "TransmissionStyle",
+				"type": "varchar"
+			},
+			{
+				"name": "Trim",
+				"type": "varchar"
+			},
+			{
+				"name": "Trim2",
+				"type": "varchar"
+			},
+			{
+				"name": "Turbo",
+				"type": "varchar"
+			},
+			{
+				"name": "VIN",
+				"type": "varchar"
+			},
+			{
+				"name": "ValveTrainDesign",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleDescriptor",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleType",
+				"type": "varchar"
+			},
+			{
+				"name": "WheelBaseLong",
+				"type": "varchar"
+			},
+			{
+				"name": "WheelBaseShort",
+				"type": "varchar"
+			},
+			{
+				"name": "WheelBaseType",
+				"type": "varchar"
+			},
+			{
+				"name": "WheelSizeFront",
+				"type": "varchar"
+			},
+			{
+				"name": "WheelSizeRear",
+				"type": "varchar"
+			},
+			{
+				"name": "Wheels",
+				"type": "varchar"
+			},
+			{
+				"name": "Windows",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NHTSA_Master"
+		}
+	}
+}

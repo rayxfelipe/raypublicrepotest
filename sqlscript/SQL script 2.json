@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "SELECT    MIN(Date_VINDecoded)\n        , MAX(Date_VINDecoded)\n        , DATEDIFF(mi, MIN(Date_VINDecoded), MAX(Date_VINDecoded)) AS Runtime\n        , COUNT(*) AS Records\nFROM    [RPOdataTEAM].[dbo].[NHTSA_Master]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

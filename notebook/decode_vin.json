@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "c26e306b-0f2b-4c27-87f9-c20b48cd8073"
+				"spark.autotune.trackingId": "842f6e95-68f0-408d-92e6-43f82ab168ef"
 			}
 		},
 		"metadata": {
@@ -69,7 +69,7 @@
 					"\r\n",
 					"# %pip install alabaster arrow asttokens atomicwrites attrs autopop8 babel backcall backports packports.fucntools_lru_cache bcrypt beautifulsoup4 binaryornot black bleach brotlipy bzip2 ca-certificates certifi cffi chardet charset-normalizer click cloudpickle colorama comm cookiecutter cryptography debugpy decorator defusedxml diff-match-patch dill docstring-to-markdown docutils entrypoints exceptiongroup executing flake8 gettext glib glib-tools greenlet gst-plugins-base gstreamer icu idna imagesize importlib-metadata importlib_metadata importlib_resources inflection iniconfig intel-openmp intervaltree ipykernel ipython ipython_genutils isort jaraco.classes jedi jellyfish jinja2 jinja2-time jsonschema jupyter_client jupyter_core jupyterlab_pygments libsqlite"
 				],
-				"execution_count": 1
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
