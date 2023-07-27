@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "1784bfe8-9e31-4b4b-8655-bca0ca0390db"
+				"spark.autotune.trackingId": "662e56cb-cd88-43c7-8ae6-d07cd8147d98"
 			}
 		},
 		"metadata": {
@@ -90,8 +90,6 @@
 					}
 				},
 				"source": [
-					"\r\n",
-					"\r\n",
 					"import sqlalchemy"
 				],
 				"execution_count": null
