@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "c69c7e59-6369-4769-a1ee-4944ef151215"
+				"spark.autotune.trackingId": "0d6aee17-2987-49d7-8399-d3e7944d75db"
 			}
 		},
 		"metadata": {
@@ -92,7 +92,7 @@
 				"source": [
 					"import sqlalchemy"
 				],
-				"execution_count": null
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -108,7 +108,7 @@
 					}
 				},
 				"source": [
-					"engine = create_engine(\"sparksql:///?Server=127.0.0.1\")"
+					"engine = create_engine(\"sparksql:///?Server=ray-azuresql2-server.database.windows.net;UID=sqladmin;PWD=abcd1234!\")"
 				],
 				"execution_count": null
 			},
