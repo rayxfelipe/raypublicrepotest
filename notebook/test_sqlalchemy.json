@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "1fcf66fd-b111-40e7-9acd-cf1005e118c3"
+				"spark.autotune.trackingId": "7c11ea8d-a2ed-49af-ade6-fe691edcec12"
 			}
 		},
 		"metadata": {
@@ -143,7 +143,7 @@
 					"cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
 					"cursor = cnxn.cursor()"
 				],
-				"execution_count": 33
+				"execution_count": 36
 			},
 			{
 				"cell_type": "code",
@@ -167,7 +167,7 @@
 					"    print(row[0])\r\n",
 					"    row = cursor.fetchone()"
 				],
-				"execution_count": 35
+				"execution_count": 37
 			},
 			{
 				"cell_type": "code",
