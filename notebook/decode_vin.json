@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "56e7378a-aa67-45a4-a95f-cbc3434332db"
+				"spark.autotune.trackingId": "72c240b0-da58-45c3-a8b3-85c5241d3374"
 			}
 		},
 		"metadata": {
@@ -69,7 +69,7 @@
 					"\r\n",
 					"%pip install alabaster arrow asttokens atomicwrites attrs autopop8 babel backcall backports packports.fucntools_lru_cache bcrypt beautifulsoup4 binaryornot black bleach brotlipy bzip2 ca-certificates certifi cffi chardet charset-normalizer click cloudpickle colorama comm cookiecutter cryptography debugpy decorator defusedxml diff-match-patch dill docstring-to-markdown docutils entrypoints exceptiongroup executing flake8 gettext glib glib-tools greenlet gst-plugins-base gstreamer icu idna imagesize importlib-metadata importlib_metadata importlib_resources inflection iniconfig intel-openmp intervaltree ipykernel ipython ipython_genutils isort jaraco.classes jedi jellyfish jinja2 jinja2-time jsonschema jupyter_client jupyter_core jupyterlab_pygments libsqlite"
 				],
-				"execution_count": 29
+				"execution_count": 47
 			},
 			{
 				"cell_type": "code",
@@ -88,7 +88,7 @@
 					"%conda install -c anaconda sqlalchemy\r\n",
 					""
 				],
-				"execution_count": 38
+				"execution_count": 48
 			},
 			{
 				"cell_type": "code",
@@ -261,7 +261,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 39
+				"execution_count": 49
 			},
 			{
 				"cell_type": "code",
@@ -295,7 +295,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 40
+				"execution_count": 50
 			},
 			{
 				"cell_type": "code",
@@ -328,7 +328,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 41
+				"execution_count": 51
 			},
 			{
 				"cell_type": "code",
@@ -355,7 +355,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 42
+				"execution_count": 52
 			},
 			{
 				"cell_type": "code",
@@ -409,7 +409,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 43
+				"execution_count": 53
 			},
 			{
 				"cell_type": "code",
@@ -463,7 +463,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 44
+				"execution_count": 54
 			},
 			{
 				"cell_type": "code",
@@ -488,7 +488,7 @@
 					"    # connect to db with VIN groups\r\n",
 					"    # RAY -params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
 					"    # params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
-					"    params = urllib.parse.quote_plus(\"DRIVER={ODBC Driver 18 for SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
+					"    params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
 					"        + \";UID=sqladmin;PASSWORD=abcd1234!\")\r\n",
 					"\r\n",
 					"\r\n",
@@ -540,7 +540,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 45
+				"execution_count": 55
 			}
 		]
 	}
