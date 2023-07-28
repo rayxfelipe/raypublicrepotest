@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "446200d8-cd02-41fe-b2c5-110e5d2b08e5"
+				"spark.autotune.trackingId": "b9642ac6-c396-4022-94cf-5bfc02bfde25"
 			}
 		},
 		"metadata": {
@@ -239,24 +239,6 @@
 				"execution_count": 16
 			},
 			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": true
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"%pip list"
-				],
-				"execution_count": 17
-			},
-			{
 				"cell_type": "markdown",
 				"metadata": {
 					"nteract": {
@@ -396,16 +378,12 @@
 					"\tThis helps us pick up aborted runs or test runs.\r\n",
 					"    \"\"\"\r\n",
 					"\r\n",
-					"    print(\"RAY 2222\")\r\n",
-					"\r\n",
 					"    mostRecentVinGroups = pd.read_sql_query(\"SELECT top 1 name \\\r\n",
 					"                                        FROM sys.tables \\\r\n",
 					"                                        WHERE name like 'DRIVESVINGroups%' \\\r\n",
 					"                                        ORDER BY create_date DESC\", con = dbengine)\r\n",
 					"\r\n",
 					"    \r\n",
-					"    print(\"RAY 333\")\r\n",
-					"\r\n",
 					"    if(all_or_new == 'all'):\r\n",
 					"        print('Getting VIN groups from ', mostRecentVinGroups.name[0])\r\n",
 					"        query = \"SELECT DISTINCT VINGroup, ModelYear FROM \" + mostRecentVinGroups.name[0]\r\n",
