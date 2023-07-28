@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "74f840df-0e26-4bfe-876c-44b5255a6c9a"
+				"spark.autotune.trackingId": "446200d8-cd02-41fe-b2c5-110e5d2b08e5"
 			}
 		},
 		"metadata": {
@@ -236,7 +236,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 8
+				"execution_count": 16
 			},
 			{
 				"cell_type": "code",
@@ -254,7 +254,7 @@
 				"source": [
 					"%pip list"
 				],
-				"execution_count": 15
+				"execution_count": 17
 			},
 			{
 				"cell_type": "markdown",
@@ -301,7 +301,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 9
+				"execution_count": 18
 			},
 			{
 				"cell_type": "markdown",
@@ -346,7 +346,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 10
+				"execution_count": 19
 			},
 			{
 				"cell_type": "code",
@@ -373,7 +373,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 11
+				"execution_count": 20
 			},
 			{
 				"cell_type": "code",
@@ -427,7 +427,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 12
+				"execution_count": 21
 			},
 			{
 				"cell_type": "code",
@@ -481,7 +481,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 13
+				"execution_count": 22
 			},
 			{
 				"cell_type": "markdown",
@@ -523,7 +523,7 @@
 					"    # connect to db with VIN groups\r\n",
 					"    # ORIGINAL -> params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + cfg.databases['vin_group_server'] + \";DATABASE=\" + cfg.databases['vin_group_db'])\r\n",
 					"    params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
-					"        + \";UID=sqladmin; PWD=abcd1234!\")\r\n",
+					"        + \";UID=xxxx; PWD=xxxx!\")\r\n",
 					"\r\n",
 					"    engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"    \r\n",
@@ -535,12 +535,12 @@
 					"    try:\r\n",
 					"        # set up connections for decoding\r\n",
 					"        params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['nhtsa_server'] + \";DATABASE=\" + databases['nhtsa_db']\r\n",
-					"            + \";UID=sqladmin; PWD=abcd1234!\")\r\n",
+					"            + \";UID=xxx; PWD=xxxx\")\r\n",
 					"        engine_decoding = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"\r\n",
 					"        # set up connection for writing output\r\n",
 					"        params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['output_server'] + \";DATABASE=\" + databases['output_db']\r\n",
-					"            + \";UID=sqladmin; PWD=abcd1234!\")\r\n",
+					"            + \";UID=xxxxx; PWD=xxxxx\")\r\n",
 					"        engine_write = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params, use_setinputsizes=False)\r\n",
 					"        nhtsa_df_format = pd.DataFrame(columns=nhtsa_columns) # initialize empty dataframe in the NHTSA_Master/Staging format\r\n",
 					"\r\n",
@@ -575,7 +575,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 14
+				"execution_count": 23
 			}
 		]
 	}
