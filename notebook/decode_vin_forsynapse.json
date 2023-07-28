@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "f366413a-8bae-437d-aff6-b496e8ac638e"
+				"spark.autotune.trackingId": "74f840df-0e26-4bfe-876c-44b5255a6c9a"
 			}
 		},
 		"metadata": {
@@ -493,7 +493,11 @@
 					}
 				},
 				"source": [
-					"## The main function below has been updated with the the correct DRIVER parameter, the \"_ODBC Driver 18 for SQL Server_.\" In addition, the _params_ variable also has the added UID and PWD parameter for the database. You'll need to update this with the UID and PWD for your Azure SQL NHTSA DB."
+					"### The main function below has been updated with the the correct DRIVER parameter, the \"_ODBC Driver 18 for SQL Server_.\" In addition, the _params_ variable also has the added UID and PWD parameter for the database. You'll need to update this with the UID and PWD for your Azure SQL NHTSA DB.\r\n",
+					"\r\n",
+					"### In addition, because we commented-out the _import decoding_vin_config as cfg_ statement above, all \"cfg\" references must be removed from the code below.\r\n",
+					"\r\n",
+					"### For ex. _cfg.databases['vin_group_server']_ must now be _databases['vin_group_server']_"
 				]
 			},
 			{
@@ -517,7 +521,7 @@
 					"    parser = parse_args(arg_list)\r\n",
 					"\r\n",
 					"    # connect to db with VIN groups\r\n",
-					"    # RAY -params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db'])\r\n",
+					"    # ORIGINAL -> params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + cfg.databases['vin_group_server'] + \";DATABASE=\" + cfg.databases['vin_group_db'])\r\n",
 					"    params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
 					"        + \";UID=sqladmin; PWD=abcd1234!\")\r\n",
 					"\r\n",
