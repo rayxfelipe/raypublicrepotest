@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "bdde0483-ef99-453e-952c-bbd3a3572603"
+				"spark.autotune.trackingId": "f366413a-8bae-437d-aff6-b496e8ac638e"
 			}
 		},
 		"metadata": {
@@ -243,7 +243,7 @@
 				"metadata": {
 					"jupyter": {
 						"source_hidden": false,
-						"outputs_hidden": false
+						"outputs_hidden": true
 					},
 					"nteract": {
 						"transient": {
