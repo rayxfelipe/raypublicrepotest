@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b9642ac6-c396-4022-94cf-5bfc02bfde25"
+				"spark.autotune.trackingId": "be2f6fdb-f1ff-4b92-a980-8cc0fdbcbe23"
 			}
 		},
 		"metadata": {
@@ -62,7 +62,11 @@
 					}
 				},
 				"source": [
-					"## The cell below is from _setup_nhtsa.py_ file. It is included here for simplicity, so the script runs in one Notebook."
+					"## WA DOL NHTSA DB ETL with Python Scripts\r\n",
+					"\r\n",
+					"### This notebook has been re-factored to run in Synapse in the most simplified way in order to quickly meet POC objectives. The POC objectives - lift and shift the current data process onprem into Azure as-is to minimize operational changes and also minimize cloud adoption upskilling.\r\n",
+					"\r\n",
+					"### The cell below is from _setup_nhtsa.py_ file. It is included here for simplicity, so the script runs in one Notebook."
 				]
 			},
 			{
@@ -236,7 +240,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 16
+				"execution_count": 24
 			},
 			{
 				"cell_type": "markdown",
@@ -283,7 +287,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 18
+				"execution_count": 25
 			},
 			{
 				"cell_type": "markdown",
@@ -295,7 +299,7 @@
 					}
 				},
 				"source": [
-					"## The \"import setup_nhtsa\" and \"import decoding_env_config\" statements below have been commented out since we plugged-in that script directly into this Notebook."
+					"## The \"_import setup_nhtsa_\" and \"_import decoding_env_config_\" statements below have been commented out since we copied-in those scripts or modules directly into this Notebook."
 				]
 			},
 			{
@@ -325,10 +329,9 @@
 					"# RAO files\r\n",
 					"# import setup_nhtsa # RAO defined file, from columns on 5/22\r\n",
 					"# import decoding_env_config as cfg # holds database info\r\n",
-					"\r\n",
 					""
 				],
-				"execution_count": 19
+				"execution_count": 26
 			},
 			{
 				"cell_type": "code",
@@ -355,7 +358,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 20
+				"execution_count": 27
 			},
 			{
 				"cell_type": "code",
@@ -405,7 +408,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 21
+				"execution_count": 28
 			},
 			{
 				"cell_type": "code",
@@ -459,7 +462,7 @@
 					"    vehicle_information.to_sql(dbtable, schema = 'dbo', con = dbengine, if_exists='append', index=False) # write to SQL server\r\n",
 					""
 				],
-				"execution_count": 22
+				"execution_count": 29
 			},
 			{
 				"cell_type": "markdown",
@@ -553,7 +556,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 23
+				"execution_count": 30
 			}
 		]
 	}
