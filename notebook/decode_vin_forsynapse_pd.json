@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "07b95f0d-1b11-439b-b58f-cb18666f5d5b"
+				"spark.autotune.trackingId": "66d62342-e558-40b5-a014-4dcbc20823d8"
 			}
 		},
 		"metadata": {
@@ -361,6 +361,63 @@
 				"execution_count": 4
 			},
 			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Start of DB Connectivity with Managed Identity"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Add required imports\r\n",
+					"import com.microsoft.spark.sqlanalytics\r\n",
+					"from com.microsoft.spark.sqlanalytics.Constants import Constants\r\n",
+					"\r\n",
+					"from pyspark.sql import SparkSession\r\n",
+					"\r\n",
+					"# Read from existing internal table\r\n",
+					"df = (spark.read\r\n",
+					"    .option(Constants.SERVER, \\\r\n",
+					"    \"rayfelipesynapseworkspace.sql.azuresynapse.net\")\r\n",
+					"    .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
+					"    # Column-pruning i.e., query select column values.\r\n",
+					"    .select(\"*\")\r\n",
+					"    )\r\n",
+					"\r\n",
+					"# Show contents of the dataframe\r\n",
+					"df.show()\r\n",
+					"\r\n",
+					"# Create a temp view for running SQL statements\r\n",
+					"spark.catalog.dropTempView(\"tempview\")\r\n",
+					"df.createTempView(\"tempview\")\r\n",
+					"\r\n",
+					"sql = \"SELECT * FROM tempview where subject = 'physics'\"\r\n",
+					"df = spark.sql(sql)\r\n",
+					"\r\n",
+					"# Show contents of dataframe after SQL with where clause\r\n",
+					"df.show()"
+				],
+				"execution_count": null
+			},
+			{
 				"cell_type": "code",
 				"metadata": {
 					"jupyter": {
@@ -386,6 +443,9 @@
 					"                                        WHERE name like 'DRIVESVINGroups%' \\\r\n",
 					"                                        ORDER BY create_date DESC\", con = dbengine)\r\n",
 					"\r\n",
+					"    print(\"RAY\")\r\n",
+					"    print(type(mostRecentVinGroups))\r\n",
+					"    print(\"RAY\")\r\n",
 					"    \r\n",
 					"    if(all_or_new == 'all'):\r\n",
 					"        print('Getting VIN groups from ', mostRecentVinGroups.name[0])\r\n",
@@ -408,7 +468,7 @@
 					"def same_merge(x): return ', '.join(x[x.notnull()].astype(str))\r\n",
 					"    # helper to concatenate values from duplicate columns"
 				],
-				"execution_count": 5
+				"execution_count": 11
 			},
 			{
 				"cell_type": "code",
@@ -557,7 +617,7 @@
 					"    main()\r\n",
 					""
 				],
-				"execution_count": 7
+				"execution_count": 12
 			}
 		]
 	}
