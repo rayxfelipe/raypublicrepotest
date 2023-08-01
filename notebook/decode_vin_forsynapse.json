@@ -7,21 +7,21 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool4",
+			"referenceName": "SparkPool1",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "56g",
-			"driverCores": 8,
-			"executorMemory": "56g",
-			"executorCores": 8,
-			"numExecutors": 2,
+			"driverMemory": "112g",
+			"driverCores": 16,
+			"executorMemory": "112g",
+			"executorCores": 16,
+			"numExecutors": 1,
 			"runAsWorkspaceSystemIdentity": true,
 			"conf": {
-				"spark.dynamicAllocation.enabled": "false",
-				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.enabled": "true",
+				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "bb03c847-5f97-44fc-8b97-332ad814ee9b"
+				"spark.autotune.trackingId": "c1639d89-63c3-40aa-933e-852bacfb81e7"
 			}
 		},
 		"metadata": {
@@ -35,19 +35,19 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool4",
-				"name": "SparkPool4",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool1",
+				"name": "SparkPool1",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool4",
+				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool1",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.3",
 				"nodeCount": 10,
-				"cores": 8,
-				"memory": 56,
-				"automaticScaleJobs": false
+				"cores": 16,
+				"memory": 112,
+				"automaticScaleJobs": true
 			},
 			"sessionKeepAliveTimeout": 30
 		},
