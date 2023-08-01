@@ -16,7 +16,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "0fd45d85-026e-44e0-b0d0-b4ccfe358ab6"
+				"spark.autotune.trackingId": "ea879828-7770-41e3-a6a6-aac7cb0102d3"
 			}
 		},
 		"metadata": {
@@ -48,7 +48,42 @@
 			{
 				"cell_type": "code",
 				"source": [
-					""
+					"# The servername is in the format \"jdbc:sqlserver://<AzureSQLServerName>.database.windows.net:1433\"\r\n",
+					"servername = \"<< server name >>\"\r\n",
+					"dbname = \"<< database name >>\"\r\n",
+					"url = servername + \";\" + \"databaseName=\" + dbname + \";\"\r\n",
+					"dbtable = \"<< table name >> \"\r\n",
+					"user = \"<< username >>\" \r\n",
+					"principal_client_id = \"<< service principal client id >>\" \r\n",
+					"principal_secret = \"<< service principal secret ho>>\"\r\n",
+					"password = mssparkutils.credentials.getSecret('azure key vault name','secret name')"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#Read from SQL table using MS SQL Connector\r\n",
+					"print(\"read data from SQL server table  \")\r\n",
+					"jdbcDF = spark.read \\\r\n",
+					"        .format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"        .option(\"url\", url) \\\r\n",
+					"        .option(\"dbtable\", dbtable) \\\r\n",
+					"        .option(\"user\", user) \\\r\n",
+					"        .option(\"password\", password).load()\r\n",
+					"\r\n",
+					"jdbcDF.show(5)"
 				],
 				"execution_count": null
 			}
