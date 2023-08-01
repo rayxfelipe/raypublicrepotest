@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "6ada1e35-c96b-4023-9223-0dd99c9ff4c5"
+				"spark.autotune.trackingId": "3cf47297-d938-43e9-b6ed-a0986a161ecd"
 			}
 		},
 		"metadata": {
@@ -370,7 +370,7 @@
 					}
 				},
 				"source": [
-					"## Cell for DB Connectivity with Managed Identity"
+					"## Cell for DB Connectivity with Linked Service"
 				]
 			},
 			{
@@ -387,34 +387,28 @@
 					}
 				},
 				"source": [
-					"# Add required imports\r\n",
-					"import com.microsoft.spark.sqlanalytics\r\n",
-					"from com.microsoft.spark.sqlanalytics.Constants import Constants\r\n",
+					"sql_server_name = \"rayfelipesynapseworkspace\"\r\n",
+					"db_port = 1433\r\n",
+					"db_name = \"dedpool1\"\r\n",
+					"linked_service_name = \"AzureSynapseAnalytics1\"\r\n",
+					"access_token = mssparkutils.credentials.\\\r\n",
+					"getConnectionStringOrCreds(linked_service_name)\r\n",
 					"\r\n",
-					"from pyspark.sql import SparkSession\r\n",
+					"db_table = \"dbo.students\"\r\n",
 					"\r\n",
-					"# Read from existing internal table\r\n",
-					"df = (spark.read\r\n",
-					"    .option(Constants.SERVER, \\\r\n",
-					"    \"rayfelipesynapseworkspace.sql.azuresynapse.net\")\r\n",
-					"    # .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
-					"    .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
-					"    # Column-pruning i.e., query select column values.\r\n",
-					"    .select(\"*\")\r\n",
-					"    )\r\n",
+					"# Read a table, store results in a dataframe\r\n",
+					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"    .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
+					"    (sql_server_name, db_port)) \\\r\n",
+					"    .option(\"dbtable\", db_table) \\\r\n",
+					"    .option(\"accessToken\", access_token) \\\r\n",
+					"    .option(\"encrypt\", \"true\") \\\r\n",
+					"    .option(\"databaseName\", db_name) \\\r\n",
+					"    .option(\"hostNameInCertificate\", \"*.database.windows.net\") \\\r\n",
+					"    .load()\r\n",
 					"\r\n",
-					"# Show contents of the dataframe\r\n",
 					"df.show()\r\n",
-					"\r\n",
-					"# Create a temp view for running SQL statements\r\n",
-					"spark.catalog.dropTempView(\"tempview\")\r\n",
-					"df.createTempView(\"tempview\")\r\n",
-					"\r\n",
-					"sql = \"SELECT * FROM tempview where subject = 'physics'\"\r\n",
-					"df = spark.sql(sql)\r\n",
-					"\r\n",
-					"# Show contents of dataframe after SQL with where clause\r\n",
-					"df.show()"
+					""
 				],
 				"execution_count": 23
 			},
