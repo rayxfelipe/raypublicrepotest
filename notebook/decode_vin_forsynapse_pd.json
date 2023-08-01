@@ -16,12 +16,12 @@
 			"executorMemory": "56g",
 			"executorCores": 8,
 			"numExecutors": 2,
-			"runAsWorkspaceSystemIdentity": false,
+			"runAsWorkspaceSystemIdentity": true,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "48533a2c-4057-48da-826e-45cf1f2c8fab"
+				"spark.autotune.trackingId": "d8a0a2e4-f557-4eb6-8ccb-279513917171"
 			}
 		},
 		"metadata": {
@@ -442,7 +442,7 @@
 					"    .option(Constants.SERVER, \\\r\n",
 					"    \"ray-azuresql2-server.database.windows.net\")\r\n",
 					"    # .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
-					"    .synapsesql(\"rayazuresqldb2.Customer\")\r\n",
+					"    .synapsesql(\"rayazuresqldb2.SalesLT.Customer\")\r\n",
 					"    # Column-pruning i.e., query select column values.\r\n",
 					"    .select(\"*\")\r\n",
 					"    )\r\n",
