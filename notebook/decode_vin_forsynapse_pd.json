@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "d8a0a2e4-f557-4eb6-8ccb-279513917171"
+				"spark.autotune.trackingId": "7122faf6-86f9-4aec-b8f0-368240d11e16"
 			}
 		},
 		"metadata": {
@@ -240,7 +240,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 1
+				"execution_count": 2
 			},
 			{
 				"cell_type": "markdown",
@@ -287,7 +287,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 2
+				"execution_count": 3
 			},
 			{
 				"cell_type": "markdown",
@@ -331,7 +331,7 @@
 					"# import decoding_env_config as cfg # holds database info\r\n",
 					""
 				],
-				"execution_count": 3
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -358,7 +358,7 @@
 					"\r\n",
 					"    return parser.parse_args(args)"
 				],
-				"execution_count": 4
+				"execution_count": 5
 			},
 			{
 				"cell_type": "markdown",
@@ -415,7 +415,7 @@
 					"# Show contents of dataframe after SQL with where clause\r\n",
 					"df.show()"
 				],
-				"execution_count": 13
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -447,20 +447,9 @@
 					"    .select(\"*\")\r\n",
 					"    )\r\n",
 					"\r\n",
-					"# Show contents of the dataframe\r\n",
-					"df.show()\r\n",
-					"\r\n",
-					"# Create a temp view for running SQL statements\r\n",
-					"spark.catalog.dropTempView(\"tempview\")\r\n",
-					"df.createTempView(\"tempview\")\r\n",
-					"\r\n",
-					"sql = \"SELECT * FROM tempview where subject = 'physics'\"\r\n",
-					"df = spark.sql(sql)\r\n",
-					"\r\n",
-					"# Show contents of dataframe after SQL with where clause\r\n",
-					"df.show()"
+					""
 				],
-				"execution_count": 19
+				"execution_count": 8
 			},
 			{
 				"cell_type": "code",
