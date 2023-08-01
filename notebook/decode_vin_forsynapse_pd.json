@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "3cf47297-d938-43e9-b6ed-a0986a161ecd"
+				"spark.autotune.trackingId": "23c815e8-3ba5-4d19-9382-6027b2827a67"
 			}
 		},
 		"metadata": {
@@ -387,6 +387,8 @@
 					}
 				},
 				"source": [
+					"from pyspark.sql import SparkSession\r\n",
+					"\r\n",
 					"sql_server_name = \"rayfelipesynapseworkspace\"\r\n",
 					"db_port = 1433\r\n",
 					"db_name = \"dedpool1\"\r\n",
@@ -395,6 +397,47 @@
 					"getConnectionStringOrCreds(linked_service_name)\r\n",
 					"\r\n",
 					"db_table = \"dbo.students\"\r\n",
+					"\r\n",
+					"df = spark.sql(\"select * from dbo.students\")\r\n",
+					"'''\r\n",
+					"# Read a table, store results in a dataframe\r\n",
+					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"    .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
+					"    (sql_server_name, db_port)) \\\r\n",
+					"    .option(\"dbtable\", db_table) \\\r\n",
+					"    .option(\"accessToken\", access_token) \\\r\n",
+					"    .option(\"encrypt\", \"true\") \\\r\n",
+					"    .option(\"databaseName\", db_name) \\\r\n",
+					"    .option(\"hostNameInCertificate\", \"*.database.windows.net\") \\\r\n",
+					"    .load()\r\n",
+					"\r\n",
+					"df.show()\r\n",
+					"'''"
+				],
+				"execution_count": 42
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"sql_server_name = \"ray-azuresqldb2-\"\r\n",
+					"db_port = 1433\r\n",
+					"db_name = \"rayzauresqldb2\"\r\n",
+					"linked_service_name = \"wadoldb\"\r\n",
+					"access_token = mssparkutils.credentials.\\\r\n",
+					"getConnectionStringOrCreds(linked_service_name)\r\n",
+					"\r\n",
+					"db_table = \"SalesLT.Customer\"\r\n",
 					"\r\n",
 					"# Read a table, store results in a dataframe\r\n",
 					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
