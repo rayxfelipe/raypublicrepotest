@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "84945d9f-49a3-4209-a9cc-73a8d426938a"
+				"spark.autotune.trackingId": "357a6c56-33e1-4a2e-a530-00fadd0a4278"
 			}
 		},
 		"metadata": {
@@ -440,7 +440,8 @@
 					"# Read from existing internal table\r\n",
 					"df = (spark.read\r\n",
 					"    .option(Constants.SERVER, \\\r\n",
-					"    \"rayfelipesynapseworkspace.sql.azuresynapse.net\")\r\n",
+					"    \"ray-azuresql2-server.database.windows.net\")\r\n",
+					"    # .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
 					"    .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
 					"    # Column-pruning i.e., query select column values.\r\n",
 					"    .select(\"*\")\r\n",
@@ -459,7 +460,7 @@
 					"# Show contents of dataframe after SQL with where clause\r\n",
 					"df.show()"
 				],
-				"execution_count": null
+				"execution_count": 14
 			},
 			{
 				"cell_type": "code",
