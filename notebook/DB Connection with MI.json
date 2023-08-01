@@ -16,7 +16,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "2293f9da-4475-4d98-8c2f-36f233c234dd"
+				"spark.autotune.trackingId": "3d7455bf-8613-4891-865a-8fdd0f1aa14b"
 			}
 		},
 		"metadata": {
@@ -90,100 +90,6 @@
 					""
 				],
 				"execution_count": 6
-			},
-			{
-				"cell_type": "markdown",
-				"metadata": {
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"# Query another table\r\n",
-					"\r\n",
-					"##### To query another table, a new spark.read call can be initated. "
-				]
-			},
-			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"# Read another table, store results in a dataframe\r\n",
-					"db_table = \"dbo.classroom\"\r\n",
-					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
-					"    .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
-					"    (sql_server_name, db_port)) \\\r\n",
-					"    .option(\"dbtable\", db_table) \\\r\n",
-					"    .option(\"accessToken\", access_token) \\\r\n",
-					"    .option(\"encrypt\", \"true\") \\\r\n",
-					"    .option(\"databaseName\", db_name) \\\r\n",
-					"    .option(\"hostNameInCertificate\", \"*.database.windows.net\") \\\r\n",
-					"    .load()\r\n",
-					"\r\n",
-					"df.show()"
-				],
-				"execution_count": 8
-			},
-			{
-				"cell_type": "markdown",
-				"metadata": {
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"# Streamline _spark.read_ to a database having multiple tables\r\n",
-					"\r\n",
-					"##### The option above is not efficient because several _spark.read_ is required for each table in a database that needs querying. Therefore, to avoid creating multiple spark.reads to multiple tables, use a _for loop_"
-				]
-			},
-			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"table_list = [\"dbo.students\",\"dbo.classroom\"]\r\n",
-					"# The table list above will be created by the notebook developer, \r\n",
-					"    #in the assumption that they know which tables they need to work on.\r\n",
-					"\r\n",
-					"for i in table_list:\r\n",
-					"    df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
-					"        .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
-					"        (sql_server_name, db_port)) \\\r\n",
-					"        .option(\"dbtable\", i) \\\r\n",
-					"        .option(\"accessToken\", access_token) \\\r\n",
-					"        .option(\"encrypt\", \"true\") \\\r\n",
-					"        .option(\"databaseName\", db_name) \\\r\n",
-					"        .option(\"hostNameInCertificate\", \"*.database.windows.net\") \\\r\n",
-					"        .load()\r\n",
-					"    df.show()\r\n",
-					"\r\n",
-					""
-				],
-				"execution_count": 14
 			},
 			{
 				"cell_type": "markdown",
