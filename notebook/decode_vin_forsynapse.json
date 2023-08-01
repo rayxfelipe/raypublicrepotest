@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "c1639d89-63c3-40aa-933e-852bacfb81e7"
+				"spark.autotune.trackingId": "7eb717ec-cf24-4cfc-a89c-e6844a0d7143"
 			}
 		},
 		"metadata": {
@@ -505,7 +505,7 @@
 					"    # connect to db with VIN groups\r\n",
 					"    # ORIGINAL -> params = urllib.parse.quote_plus(\"DRIVER={SQL Server};SERVER=\" + cfg.databases['vin_group_server'] + \";DATABASE=\" + cfg.databases['vin_group_db'])\r\n",
 					"    params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
-					"        + \";UID=xxxx; PWD=xxxx!\")\r\n",
+					"        + \";UID=sqladmin; PWD=abcd1234!\")\r\n",
 					"\r\n",
 					"    engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"    \r\n",
@@ -517,12 +517,12 @@
 					"    try:\r\n",
 					"        # set up connections for decoding\r\n",
 					"        params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['nhtsa_server'] + \";DATABASE=\" + databases['nhtsa_db']\r\n",
-					"            + \";UID=xxx; PWD=xxxx\")\r\n",
+					"            + \";UID=sqladmin; PWD=abcd1234!\")\r\n",
 					"        engine_decoding = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
 					"\r\n",
 					"        # set up connection for writing output\r\n",
 					"        params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['output_server'] + \";DATABASE=\" + databases['output_db']\r\n",
-					"            + \";UID=xxxxx; PWD=xxxxx\")\r\n",
+					"            + \";UID=sqladmin; PWD=abcd1234!\")\r\n",
 					"        engine_write = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params, use_setinputsizes=False)\r\n",
 					"        nhtsa_df_format = pd.DataFrame(columns=nhtsa_columns) # initialize empty dataframe in the NHTSA_Master/Staging format\r\n",
 					"\r\n",
