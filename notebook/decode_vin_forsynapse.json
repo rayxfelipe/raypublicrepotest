@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b9f223d1-fb11-4abc-8f21-6b3b62da4bc7"
+				"spark.autotune.trackingId": "bb03c847-5f97-44fc-8b97-332ad814ee9b"
 			}
 		},
 		"metadata": {
@@ -272,13 +272,13 @@
 					"import os\r\n",
 					"\r\n",
 					"databases = {\r\n",
-					"    'vin_group_db': 'RPOxxxxM', # server DB - vin table\r\n",
-					"    'vin_group_server': 'ray-xxxx.database.windows.net', # server host DB - vin table\r\n",
-					"    'nhtsa_db': 'vPICLxxxxx', # NHTSA source DB\r\n",
-					"    'nhtsa_server': 'ray-xxxxx-server.database.windows.net', # NHTSA source host DB\r\n",
-					"    'output_db': 'RPOxxxxx', # output for Python results transformation\r\n",
-					"    'output_server': 'ray-xxxxx-server.database.windows.net', # output for Python results.... host.\r\n",
-					"    'output_table': 'NHTSxxxxx' # output for Python results.... table. AKA NHTSA master table?\r\n",
+					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
+					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
+					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
+					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
+					"    'output_db': 'RPOdataTEAM', # output for Python results transformation\r\n",
+					"    'output_server': 'ray-azuresql2-server.database.windows.net', # output for Python results.... host.\r\n",
+					"    'output_table': 'NHTSA_Master' # output for Python results.... table. AKA NHTSA master table?\r\n",
 					"}\r\n",
 					"\r\n",
 					"\"\"\"\r\n",
