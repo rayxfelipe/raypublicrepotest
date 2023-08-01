@@ -1,0 +1,326 @@
+{
+	"name": "DB Connection with MI",
+	"properties": {
+		"folder": {
+			"name": "WADOL"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "2293f9da-4475-4d98-8c2f-36f233c234dd"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Connect to external DB using Spark.read with LinkedService credentials\r\n",
+					"\r\n",
+					"##### To connect to an external dedicated SQL database located in another Synapse Workspace without using a username and password, _spark.read_ function can be applied using the Linkedservice credentials.\r\n",
+					"\r\n",
+					"_Please note that the examples below require the right privileges to the database you are connecting to, outlined below:\r\n",
+					"create user [_synapse_identity_] from external PROVIDER;\r\n",
+					"exec sp_addrolemember 'db_datareader', '_synapse_identity_'\r\n",
+					"exec sp_addrolemember 'd_owner', '_synapse_identity_'_"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"sql_server_name = \"rayfelipesynapseworkspace\"\r\n",
+					"db_port = 1433\r\n",
+					"db_name = \"dedpool1\"\r\n",
+					"linked_service_name = \"AzureSynapseAnalytics1\"\r\n",
+					"access_token = mssparkutils.credentials.\\\r\n",
+					"getConnectionStringOrCreds(linked_service_name)\r\n",
+					"\r\n",
+					"db_table = \"dbo.students\"\r\n",
+					"\r\n",
+					"# Read a table, store results in a dataframe\r\n",
+					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"    .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
+					"    (sql_server_name, db_port)) \\\r\n",
+					"    .option(\"dbtable\", db_table) \\\r\n",
+					"    .option(\"accessToken\", access_token) \\\r\n",
+					"    .option(\"encrypt\", \"true\") \\\r\n",
+					"    .option(\"databaseName\", db_name) \\\r\n",
+					"    .option(\"hostNameInCertificate\", \"*.database.windows.net\") \\\r\n",
+					"    .load()\r\n",
+					"\r\n",
+					"df.show()\r\n",
+					""
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Query another table\r\n",
+					"\r\n",
+					"##### To query another table, a new spark.read call can be initated. "
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Read another table, store results in a dataframe\r\n",
+					"db_table = \"dbo.classroom\"\r\n",
+					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"    .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
+					"    (sql_server_name, db_port)) \\\r\n",
+					"    .option(\"dbtable\", db_table) \\\r\n",
+					"    .option(\"accessToken\", access_token) \\\r\n",
+					"    .option(\"encrypt\", \"true\") \\\r\n",
+					"    .option(\"databaseName\", db_name) \\\r\n",
+					"    .option(\"hostNameInCertificate\", \"*.database.windows.net\") \\\r\n",
+					"    .load()\r\n",
+					"\r\n",
+					"df.show()"
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Streamline _spark.read_ to a database having multiple tables\r\n",
+					"\r\n",
+					"##### The option above is not efficient because several _spark.read_ is required for each table in a database that needs querying. Therefore, to avoid creating multiple spark.reads to multiple tables, use a _for loop_"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"table_list = [\"dbo.students\",\"dbo.classroom\"]\r\n",
+					"# The table list above will be created by the notebook developer, \r\n",
+					"    #in the assumption that they know which tables they need to work on.\r\n",
+					"\r\n",
+					"for i in table_list:\r\n",
+					"    df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"        .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
+					"        (sql_server_name, db_port)) \\\r\n",
+					"        .option(\"dbtable\", i) \\\r\n",
+					"        .option(\"accessToken\", access_token) \\\r\n",
+					"        .option(\"encrypt\", \"true\") \\\r\n",
+					"        .option(\"databaseName\", db_name) \\\r\n",
+					"        .option(\"hostNameInCertificate\", \"*.database.windows.net\") \\\r\n",
+					"        .load()\r\n",
+					"    df.show()\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Use full SQL statements when working with data\r\n",
+					"\r\n",
+					"##### You can use SQL statements to analyze data using _SparkSession_ along with _spark.sql_."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql import SparkSession\r\n",
+					"\r\n",
+					"# Delete tempview if it already exist, then create one\r\n",
+					"spark.catalog.dropTempView(\"tempview\")\r\n",
+					"df.createTempView(\"tempview\")\r\n",
+					"\r\n",
+					"# Example query to demonstrate full SQL capability\r\n",
+					"sql = \"SELECT * FROM tempview where subject = 'history'\"\r\n",
+					"df = spark.sql(sql)\r\n",
+					"\r\n",
+					"df.show()"
+				],
+				"execution_count": 22
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Use SparkSession with managed identity enabled\r\n",
+					"\r\n",
+					"##### This approach, as you will see below, does not require _access tokens_ compared to the options above. Instead, it uses the managed identity to connect to the external databases."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Add required imports\r\n",
+					"import com.microsoft.spark.sqlanalytics\r\n",
+					"from com.microsoft.spark.sqlanalytics.Constants import Constants\r\n",
+					"\r\n",
+					"from pyspark.sql import SparkSession\r\n",
+					"\r\n",
+					"# Read from existing internal table\r\n",
+					"df = (spark.read\r\n",
+					"    .option(Constants.SERVER, \\\r\n",
+					"    \"rayfelipesynapseworkspace.sql.azuresynapse.net\")\r\n",
+					"    .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
+					"    # Column-pruning i.e., query select column values.\r\n",
+					"    .select(\"*\")\r\n",
+					"    )\r\n",
+					"\r\n",
+					"# Show contents of the dataframe\r\n",
+					"df.show()\r\n",
+					"\r\n",
+					"# Create a temp view for running SQL statements\r\n",
+					"spark.catalog.dropTempView(\"tempview\")\r\n",
+					"df.createTempView(\"tempview\")\r\n",
+					"\r\n",
+					"sql = \"SELECT * FROM tempview where subject = 'physics'\"\r\n",
+					"df = spark.sql(sql)\r\n",
+					"\r\n",
+					"# Show contents of dataframe after SQL with where clause\r\n",
+					"df.show()"
+				],
+				"execution_count": 21
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Persist the data in a Lake Database\r\n",
+					"\r\n",
+					"##### The data result, i.e. the Dataframe, can be perisisted in a Lake Database using standard SQL statements."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS raytemp11db\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"raytemp11db.raytemp11table\")"
+				],
+				"execution_count": 19
+			}
+		]
+	}
+}
