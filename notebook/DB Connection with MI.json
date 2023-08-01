@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "ff69863f-a002-412d-a37d-9e885fbfb25a"
+				"spark.autotune.trackingId": "7ed1c551-d6d6-4caf-8859-73d086ef5dfd"
 			}
 		},
 		"metadata": {
@@ -253,7 +253,7 @@
 					"# Show contents of dataframe after SQL with where clause\r\n",
 					"df.show()"
 				],
-				"execution_count": null
+				"execution_count": 20
 			},
 			{
 				"cell_type": "markdown",
