@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "067ba478-330a-4344-8ee3-0699c8247ce4"
+				"spark.autotune.trackingId": "6ada1e35-c96b-4023-9223-0dd99c9ff4c5"
 			}
 		},
 		"metadata": {
@@ -397,6 +397,7 @@
 					"df = (spark.read\r\n",
 					"    .option(Constants.SERVER, \\\r\n",
 					"    \"rayfelipesynapseworkspace.sql.azuresynapse.net\")\r\n",
+					"    # .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
 					"    .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
 					"    # Column-pruning i.e., query select column values.\r\n",
 					"    .select(\"*\")\r\n",
@@ -415,7 +416,52 @@
 					"# Show contents of dataframe after SQL with where clause\r\n",
 					"df.show()"
 				],
-				"execution_count": 6
+				"execution_count": 23
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql import SparkSession\r\n",
+					"\r\n",
+					"spark = SparkSession.builder \\\r\n",
+					"    .appName(\"Read from Azure SQL Database\") \\\r\n",
+					"    .config(\"spark.sql.analytics.enabled\", \"true\") \\\r\n",
+					"    .getOrCreate()\r\n",
+					"\r\n",
+					"database = \"rayzauresqldb2\"\r\n",
+					"table = \"SalesLT.Customer\"\r\n",
+					"\r\n",
+					"df = spark.read.jdbc(\r\n",
+					"    url=f\"jdbc:sqlserver://ray-azuresql2-server.database.windows.net:1433;database={database};\",\r\n",
+					"    table=table,\r\n",
+					"    properties={\r\n",
+					"        \"user\": \"\",\r\n",
+					"        \"password\": \"\",\r\n",
+					"        \"encrypt\": \"true\",\r\n",
+					"        \"trustServerCertificate\": \"false\",\r\n",
+					"        \"hostNameInCertificate\": \"*.database.windows.net\",\r\n",
+					"        \"loginTimeout\": \"30\",\r\n",
+					"        \"authentication\": \"ActiveDirectoryMsi\"\r\n",
+					"    }\r\n",
+					")\r\n",
+					"\r\n",
+					"df.show()\r\n",
+					"\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 30
 			},
 			{
 				"cell_type": "code",
@@ -439,8 +485,7 @@
 					"\r\n",
 					"# Read from existing internal table\r\n",
 					"df = (spark.read\r\n",
-					"    .option(Constants.SERVER, \\\r\n",
-					"    \"ray-azuresql2-server.database.windows.net\")\r\n",
+					"    .option(Constants.SERVER, \"ray-azuresql2-server.database.windows.net\")\r\n",
 					"    # .synapsesql(\"dedpool1.dbo.classroom\")\r\n",
 					"    .synapsesql(\"rayazuresqldb2.SalesLT.Customer\")\r\n",
 					"    # Column-pruning i.e., query select column values.\r\n",
@@ -460,7 +505,7 @@
 					"# Show contents of dataframe after SQL with where clause\r\n",
 					"df.show()"
 				],
-				"execution_count": 9
+				"execution_count": 32
 			},
 			{
 				"cell_type": "code",
