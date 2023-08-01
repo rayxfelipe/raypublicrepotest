@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "66d62342-e558-40b5-a014-4dcbc20823d8"
+				"spark.autotune.trackingId": "e7cefc33-643f-4606-a5d5-5d57f2012dea"
 			}
 		},
 		"metadata": {
@@ -370,7 +370,7 @@
 					}
 				},
 				"source": [
-					"## Start of DB Connectivity with Managed Identity"
+					"## Cell for DB Connectivity with Managed Identity"
 				]
 			},
 			{
