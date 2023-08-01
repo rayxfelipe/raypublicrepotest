@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "11221ef9-7602-4d92-95bb-685a8e9dd02d"
+				"spark.autotune.trackingId": "b17ba15e-b27d-45a0-a74b-383720434263"
 			}
 		},
 		"metadata": {
@@ -71,6 +71,33 @@
 					"exec sp_addrolemember 'db_datareader', '_synapse_identity_'\r\n",
 					"exec sp_addrolemember 'd_owner', '_synapse_identity_'_"
 				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#Read from SQL table using MS SQL Connector\r\n",
+					"print(\"read data from SQL server table  \")\r\n",
+					"jdbcDF = spark.read \\\r\n",
+					"        .format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"        .option(\"url\", url) \\\r\n",
+					"        .option(\"dbtable\", dbtable) \\\r\n",
+					"        .option(\"user\", user) \\\r\n",
+					"        .option(\"password\", password).load()\r\n",
+					"\r\n",
+					"jdbcDF.show(5)"
+				],
+				"execution_count": 8
 			},
 			{
 				"cell_type": "code",
