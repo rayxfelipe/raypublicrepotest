@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "835b9033-3df3-4c17-a4cd-fecf9390dfdc"
+				"spark.autotune.trackingId": "bbbdcf66-b493-40d8-90b7-a53729bac729"
 			}
 		},
 		"metadata": {
@@ -66,6 +66,40 @@
 			},
 			{
 				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import os\r\n",
+					"\r\n",
+					"databases = {\r\n",
+					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
+					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
+					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
+					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
+					"    'output_db': 'RPOdataTEAM', # output for Python results transofmration\r\n",
+					"    'output_server': 'ray-azuresql2-server.database.windows.net', # output for Python results.... host.\r\n",
+					"    'output_table': 'NHTSA_Master' # output for Python results.... table. AKA NHTSA master table?\r\n",
+					"}\r\n",
+					"\r\n",
+					"\"\"\"\r\n",
+					"The configuration is set to decode against RAO's\r\n",
+					"copy of NHTSA's database.\r\n",
+					"\r\n",
+					"\"\"\""
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
 				"source": [
 					"# The servername is in the format \"jdbc:sqlserver://<AzureSQLServerName>.database.windows.net:1433\"\r\n",
 					"servername = \"<< server name >>\"\r\n",
@@ -103,6 +137,40 @@
 					"        .option(\"password\", password).load()\r\n",
 					"\r\n",
 					"jdbcDF.show(5)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import os\r\n",
+					"\r\n",
+					"databases = {\r\n",
+					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
+					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
+					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
+					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
+					"    'output_db': 'RPOdataTEAM', # output for Python results transofmration\r\n",
+					"    'output_server': 'ray-azuresql2-server.database.windows.net', # output for Python results.... host.\r\n",
+					"    'output_table': 'NHTSA_Master' # output for Python results.... table. AKA NHTSA master table?\r\n",
+					"}\r\n",
+					"\r\n",
+					"\"\"\"\r\n",
+					"The configuration is set to decode against RAO's\r\n",
+					"copy of NHTSA's database.\r\n",
+					"\r\n",
+					"\"\"\""
 				],
 				"execution_count": null
 			}
