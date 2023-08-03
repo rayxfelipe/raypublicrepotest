@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "a493d985-7c71-474a-90d2-4c66eb82654a"
+				"spark.autotune.trackingId": "ec94fb3e-7847-4763-aa5a-7dd1db949dfc"
 			}
 		},
 		"metadata": {
@@ -74,7 +74,8 @@
 					"import argparse # used by parse_args\r\n",
 					"import sys\r\n",
 					"import datetime\r\n",
-					"import os"
+					"import os\r\n",
+					"import com.microsoft.sqlserver.jdbc.SQLServerDriver"
 				],
 				"execution_count": 5
 			},
