@@ -7,7 +7,7 @@
 			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=dedpool1"
 		},
 		"connectVia": {
-			"referenceName": "AutoResolveIntegrationRuntime",
+			"referenceName": "AutoIR2",
 			"type": "IntegrationRuntimeReference"
 		}
 	},
