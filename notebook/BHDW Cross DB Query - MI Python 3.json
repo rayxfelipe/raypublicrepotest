@@ -7,7 +7,7 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool2",
+			"referenceName": "SynapseDemoSprk",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "f250b197-6536-4a4e-b87d-3c4941b00fb1"
+				"spark.autotune.trackingId": "e1b13903-e5f1-48d8-ac12-a086324873fc"
 			}
 		},
 		"metadata": {
@@ -35,20 +35,19 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
-				"name": "SparkPool2",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
+				"name": "SynapseDemoSprk",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
 				"auth": {
 					"type": "AAD",
-					"authResource": "https://dev.azuresynapse.net",
-					"authHeader": null
+					"authResource": "https://dev.azuresynapse.net"
 				},
-				"sparkVersion": "3.3",
+				"sparkVersion": "3.2",
 				"nodeCount": 10,
 				"cores": 4,
 				"memory": 28,
-				"extraHeader": null
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},
@@ -73,7 +72,7 @@
 					"connString = f\"Driver={{ODBC Driver 17 for SQL Server}};SERVER=rayfelipesynapseworkspace.sql.azuresynapse.net;DATABASE=dedpool1\"\r\n",
 					"conn = pyodbc.connect(connString, attrs_before={SQL_COPT_SS_ACCESS_TOKEN: token_struct})"
 				],
-				"execution_count": 24
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -134,7 +133,8 @@
 					"\r\n",
 					"connection_string = token_library.GetSecret(\"<AZURE KEY VAULT NAME>\", \"<SECRET KEY>\", \"<LINKED SERVICE NAME>\")\r\n",
 					"print(connection_string)"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -153,7 +153,8 @@
 					"import pyodbc\r\n",
 					"server=\"rayfelipesynapseworkspace.sql.azuresynapse.net\"\r\n",
 					"cnxn = pyodbc.connect('DRIVER={Devart ODBC Driver 18 for SQL Server};User=raysynapsemgdvnet;Authentication=Active Directory Interactive;Server=rayfelipesynapseworkspace.sql.azuresynapse.net;Database=dedpool1;')"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -171,7 +172,8 @@
 				"source": [
 					"import pyodbc\r\n",
 					"cnxn = pyodbc.connect('DRIVER={ODBC Driver for SQL Server};Server=tcp:rayfelipesynapseworkspace.sql.azuresynapse.net;Authentication=ActiveDirectoryInteractive;Database=dedpool1;')"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -193,7 +195,8 @@
 					"%%pyspark\r\n",
 					"df = spark.sql(\"SELECT * FROM nyctaxi.trip\")\r\n",
 					"df.show(10)"
-				]
+				],
+				"execution_count": null
 			}
 		]
 	}
