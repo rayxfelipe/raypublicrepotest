@@ -7,7 +7,7 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SynapseDemoSprk",
+			"referenceName": "SparkPoolA",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
@@ -16,12 +16,12 @@
 			"executorMemory": "28g",
 			"executorCores": 4,
 			"numExecutors": 2,
-			"runAsWorkspaceSystemIdentity": false,
+			"runAsWorkspaceSystemIdentity": true,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "ec94fb3e-7847-4763-aa5a-7dd1db949dfc"
+				"spark.autotune.trackingId": "1d64f359-a5f6-4899-b33d-22b21f223ac7"
 			}
 		},
 		"metadata": {
@@ -35,15 +35,15 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
-				"name": "SynapseDemoSprk",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SparkPoolA",
+				"name": "SparkPoolA",
 				"type": "Spark",
-				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPoolA",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
-				"sparkVersion": "3.2",
+				"sparkVersion": "3.3",
 				"nodeCount": 10,
 				"cores": 4,
 				"memory": 28,
@@ -75,9 +75,9 @@
 					"import sys\r\n",
 					"import datetime\r\n",
 					"import os\r\n",
-					"import com.microsoft.sqlserver.jdbc.SQLServerDriver"
+					"import mssql"
 				],
-				"execution_count": 5
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -95,7 +95,7 @@
 				"source": [
 					"!pip install mssql"
 				],
-				"execution_count": 12
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -122,10 +122,10 @@
 					"password = 'abcd1234!' \r\n",
 					"# ENCRYPT defaults to yes starting in ODBC Driver 18. It's good to always specify ENCRYPT=yes on the client side to avoid MITM attacks.\r\n",
 					"# cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
-					"cnxn = pyodbc.connect('DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
+					"cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
 					"cursor = cnxn.cursor()"
 				],
-				"execution_count": 2
+				"execution_count": 12
 			},
 			{
 				"cell_type": "code",
@@ -143,13 +143,13 @@
 				"source": [
 					"#Sample select query\r\n",
 					"# cursor.execute(\"SELECT @@version;\") \r\n",
-					"cursor.execute(\"SELECT * from dbo.test;\") \r\n",
+					"cursor.execute(\"SELECT * from dbo.students;\") \r\n",
 					"row = cursor.fetchone() \r\n",
 					"while row: \r\n",
-					"    print(row[0])\r\n",
+					"    print(row[1])\r\n",
 					"    row = cursor.fetchone()"
 				],
-				"execution_count": 4
+				"execution_count": 14
 			},
 			{
 				"cell_type": "markdown",
