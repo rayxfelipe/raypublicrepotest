@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "f38fa7f4-b520-4292-be92-288c7ea1d56d"
+				"spark.autotune.trackingId": "0cd9e345-81ae-4498-a09c-9b46283cc9e6"
 			}
 		},
 		"metadata": {
@@ -98,7 +98,7 @@
 					"\r\n",
 					"!pip install mssql"
 				],
-				"execution_count": 1
+				"execution_count": 9
 			},
 			{
 				"cell_type": "code",
@@ -124,7 +124,8 @@
 					"db_table = \"dbo.students\"\r\n",
 					"\r\n",
 					"# Read a table, store results in a dataframe\r\n",
-					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"# df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"df = spark.read.format(\"jdbc\") \\\r\n",
 					"    .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
 					"    (sql_server_name, db_port)) \\\r\n",
 					"    .option(\"dbtable\", db_table) \\\r\n",
@@ -137,7 +138,7 @@
 					"df.show()\r\n",
 					""
 				],
-				"execution_count": 3
+				"execution_count": 15
 			},
 			{
 				"cell_type": "markdown",
