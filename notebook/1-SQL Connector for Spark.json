@@ -1,5 +1,5 @@
 {
-	"name": "SQL Connector for Spark",
+	"name": "1-SQL Connector for Spark",
 	"properties": {
 		"folder": {
 			"name": "WADOL"
@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "df8ada21-4254-421a-a6dc-2802837bd7a6"
+				"spark.autotune.trackingId": "835b9033-3df3-4c17-a4cd-fecf9390dfdc"
 			}
 		},
 		"metadata": {
