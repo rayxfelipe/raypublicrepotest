@@ -7,21 +7,21 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool2",
+			"referenceName": "SparkPool4",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "56g",
-			"driverCores": 8,
-			"executorMemory": "56g",
-			"executorCores": 8,
-			"numExecutors": 1,
-			"runAsWorkspaceSystemIdentity": true,
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
 			"conf": {
-				"spark.dynamicAllocation.enabled": "true",
-				"spark.dynamicAllocation.minExecutors": "1",
-				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "cd930bf3-aae8-4756-a742-7f9bc1e36714"
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "22b24eac-d9cc-46d1-ae0f-9a7828f2960f"
 			}
 		},
 		"metadata": {
@@ -35,19 +35,19 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
-				"name": "SparkPool2",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool4",
+				"name": "SparkPool4",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
+				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool4",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.3",
 				"nodeCount": 10,
-				"cores": 8,
-				"memory": 56,
-				"automaticScaleJobs": true
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},
@@ -287,7 +287,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": null
+				"execution_count": 2
 			},
 			{
 				"cell_type": "markdown",
@@ -387,8 +387,6 @@
 					}
 				},
 				"source": [
-					"from pyspark.sql import SparkSession\r\n",
-					"\r\n",
 					"sql_server_name = \"rayfelipesynapseworkspace\"\r\n",
 					"db_port = 1433\r\n",
 					"db_name = \"dedpool1\"\r\n",
@@ -398,10 +396,10 @@
 					"\r\n",
 					"db_table = \"dbo.students\"\r\n",
 					"\r\n",
-					"df = spark.sql(\"select * from dbo.students\")\r\n",
-					"'''\r\n",
+					"\r\n",
 					"# Read a table, store results in a dataframe\r\n",
-					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"# df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"df = spark.read.format(\"jdbc\") \\\r\n",
 					"    .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
 					"    (sql_server_name, db_port)) \\\r\n",
 					"    .option(\"dbtable\", db_table) \\\r\n",
@@ -412,9 +410,9 @@
 					"    .load()\r\n",
 					"\r\n",
 					"df.show()\r\n",
-					"'''"
+					""
 				],
-				"execution_count": 42
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -430,17 +428,19 @@
 					}
 				},
 				"source": [
-					"sql_server_name = \"ray-azuresqldb2-\"\r\n",
+					"sql_server_name = \"ray-azuresql2-server\"\r\n",
 					"db_port = 1433\r\n",
-					"db_name = \"rayzauresqldb2\"\r\n",
-					"linked_service_name = \"wadoldb\"\r\n",
+					"db_name = databases['vin_group_db']\r\n",
+					"linked_service_name = \"WADOLDB_LinkedService\"\r\n",
 					"access_token = mssparkutils.credentials.\\\r\n",
 					"getConnectionStringOrCreds(linked_service_name)\r\n",
 					"\r\n",
-					"db_table = \"SalesLT.Customer\"\r\n",
+					"db_table = \"dbo.NHTSA_Master\"\r\n",
+					"\r\n",
 					"\r\n",
 					"# Read a table, store results in a dataframe\r\n",
-					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"# df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
+					"df = spark.read.format(\"jdbc\") \\\r\n",
 					"    .option(\"url\", \"jdbc:sqlserver://%s.database.windows.net:%d\" % \\\r\n",
 					"    (sql_server_name, db_port)) \\\r\n",
 					"    .option(\"dbtable\", db_table) \\\r\n",
@@ -453,7 +453,7 @@
 					"df.show()\r\n",
 					""
 				],
-				"execution_count": 23
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
