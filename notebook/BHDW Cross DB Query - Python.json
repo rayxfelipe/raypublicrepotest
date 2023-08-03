@@ -16,12 +16,12 @@
 			"executorMemory": "28g",
 			"executorCores": 4,
 			"numExecutors": 2,
-			"runAsWorkspaceSystemIdentity": true,
+			"runAsWorkspaceSystemIdentity": false,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "1d64f359-a5f6-4899-b33d-22b21f223ac7"
+				"spark.autotune.trackingId": "63e59ad1-db68-451c-b649-85ca2445419d"
 			}
 		},
 		"metadata": {
@@ -125,7 +125,7 @@
 					"cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
 					"cursor = cnxn.cursor()"
 				],
-				"execution_count": 12
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -149,7 +149,7 @@
 					"    print(row[1])\r\n",
 					"    row = cursor.fetchone()"
 				],
-				"execution_count": 14
+				"execution_count": 3
 			},
 			{
 				"cell_type": "markdown",
