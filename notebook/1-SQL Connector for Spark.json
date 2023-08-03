@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "be066bdc-2aec-4cdc-bd35-7e7180fbb4e1"
+				"spark.autotune.trackingId": "7b1be16a-2673-4a19-acbb-4823d71b946a"
 			}
 		},
 		"metadata": {
@@ -96,22 +96,22 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 1
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
 				"source": [
 					"# The servername is in the format \"jdbc:sqlserver://<AzureSQLServerName>.database.windows.net:1433\"\r\n",
-					"servername = \"database[vin_group_server]\"\r\n",
-					"dbname = \"<< database name >>\"\r\n",
+					"servername = databases['vin_group_server']\r\n",
+					"dbname = databases['vin_group_db']\r\n",
 					"url = servername + \";\" + \"databaseName=\" + dbname + \";\"\r\n",
-					"dbtable = \"<< table name >> \"\r\n",
-					"user = \"<< username >>\" \r\n",
+					"dbtable = databases['output_table']\r\n",
+					"user = \"sqladmin\" \r\n",
 					"principal_client_id = \"<< service principal client id >>\" \r\n",
 					"principal_secret = \"<< service principal secret ho>>\"\r\n",
 					"password = mssparkutils.credentials.getSecret('azure key vault name','secret name')"
 				],
-				"execution_count": 2
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
