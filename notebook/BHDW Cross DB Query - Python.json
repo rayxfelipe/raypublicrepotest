@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "1d2d53bf-2eb9-4c6e-b736-fa7908062795"
+				"spark.autotune.trackingId": "2067ad85-e2e4-484e-8b45-8e4be551826f"
 			}
 		},
 		"metadata": {
@@ -92,6 +92,24 @@
 					}
 				},
 				"source": [
+					"!pip install mssql"
+				],
+				"execution_count": 12
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"import pyodbc \r\n",
 					"# Some other example server values are\r\n",
 					"# server = 'localhost\\sqlexpress' # for a named instance\r\n",
@@ -102,11 +120,11 @@
 					"username = 'sqladminuser' \r\n",
 					"password = 'abcd1234!' \r\n",
 					"# ENCRYPT defaults to yes starting in ODBC Driver 18. It's good to always specify ENCRYPT=yes on the client side to avoid MITM attacks.\r\n",
-					"cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
-					"# cnxn = pyodbc.connect('DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
+					"# cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
+					"cnxn = pyodbc.connect('DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)\r\n",
 					"cursor = cnxn.cursor()"
 				],
-				"execution_count": 8
+				"execution_count": 21
 			},
 			{
 				"cell_type": "code",
