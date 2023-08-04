@@ -1,5 +1,5 @@
 {
-	"name": "decode_vin_forsynapse_pd",
+	"name": "3-decode_vin_forsynapse_pd",
 	"properties": {
 		"folder": {
 			"name": "WADOL"
@@ -16,12 +16,12 @@
 			"executorMemory": "28g",
 			"executorCores": 4,
 			"numExecutors": 2,
-			"runAsWorkspaceSystemIdentity": false,
+			"runAsWorkspaceSystemIdentity": true,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "22b24eac-d9cc-46d1-ae0f-9a7828f2960f"
+				"spark.autotune.trackingId": "6a933ae6-f7ab-4a73-bfbc-d74923284f76"
 			}
 		},
 		"metadata": {
@@ -240,7 +240,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 2
+				"execution_count": 3
 			},
 			{
 				"cell_type": "markdown",
@@ -430,7 +430,7 @@
 				"source": [
 					"sql_server_name = \"ray-azuresql2-server\"\r\n",
 					"db_port = 1433\r\n",
-					"db_name = databases['vin_group_db']\r\n",
+					"db_name = \"RPOdataTEAM\"\r\n",
 					"linked_service_name = \"WADOLDB_LinkedService\"\r\n",
 					"access_token = mssparkutils.credentials.\\\r\n",
 					"getConnectionStringOrCreds(linked_service_name)\r\n",
@@ -453,7 +453,7 @@
 					"df.show()\r\n",
 					""
 				],
-				"execution_count": 5
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
