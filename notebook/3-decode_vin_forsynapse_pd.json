@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "6a933ae6-f7ab-4a73-bfbc-d74923284f76"
+				"spark.autotune.trackingId": "77e37b24-c2ed-4fc6-bbdd-09c92cc7e23d"
 			}
 		},
 		"metadata": {
@@ -240,7 +240,7 @@
 					"      ,'Wheels'\r\n",
 					"      ,'Windows']"
 				],
-				"execution_count": 3
+				"execution_count": 4
 			},
 			{
 				"cell_type": "markdown",
@@ -287,7 +287,7 @@
 					"\r\n",
 					"\"\"\""
 				],
-				"execution_count": 2
+				"execution_count": 5
 			},
 			{
 				"cell_type": "markdown",
@@ -412,7 +412,7 @@
 					"df.show()\r\n",
 					""
 				],
-				"execution_count": 4
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -453,7 +453,7 @@
 					"df.show()\r\n",
 					""
 				],
-				"execution_count": 2
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
