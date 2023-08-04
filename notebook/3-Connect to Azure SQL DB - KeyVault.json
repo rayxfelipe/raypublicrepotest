@@ -16,7 +16,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "7b785739-ec1b-4679-ab73-6b3ecf1e87ff"
+				"spark.autotune.trackingId": "90e7b16f-646c-4966-ad15-d9cfd58ecb8e"
 			}
 		},
 		"metadata": {
@@ -46,8 +46,8 @@
 					}
 				},
 				"source": [
-					"username = mssparkutils.credentials.getSecret('dobbinskv','az-sql-username','LS_AKV')\r\n",
-					"mypassword = mssparkutils.credentials.getSecret('dobbinskv','az-sql-password','LS_AKV')"
+					"username = mssparkutils.credentials.getSecret('dobbinskv','az-sql-username','RayAzureKeyVault')\r\n",
+					"mypassword = mssparkutils.credentials.getSecret('dobbinskv','az-sql-password','RayAzureKeyVault')"
 				],
 				"execution_count": 4
 			},
