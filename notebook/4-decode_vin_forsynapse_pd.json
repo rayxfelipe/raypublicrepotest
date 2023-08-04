@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "c675b907-3b58-441f-a3de-ec03c2b14714"
+				"spark.autotune.trackingId": "d4e28de3-a163-45b5-a312-16548eee7f4e"
 			}
 		},
 		"metadata": {
@@ -545,7 +545,7 @@
 					"client = SecretClient(vault_url=KVUri, credential=credential)\r\n",
 					"\r\n",
 					"secretName = \"raysecret-username\"\r\n",
-					"secretValue = \"abcd1234!\"\r\n",
+					"secretValue = \"raysecret-password\"\r\n",
 					"\r\n",
 					"print(f\"Creating a secret in KV_NAME called '{secretName}' with the value '{secretValue}' ...\")\r\n",
 					"\r\n",
@@ -566,7 +566,7 @@
 					"print(\" done.\")\r\n",
 					""
 				],
-				"execution_count": 36
+				"execution_count": 39
 			},
 			{
 				"cell_type": "code",
@@ -597,7 +597,7 @@
 					"  \"driver\" : \"com.microsoft.sqlserver.jdbc.SQLServerDriver\"\r\n",
 					"}"
 				],
-				"execution_count": 35
+				"execution_count": 40
 			},
 			{
 				"cell_type": "code",
