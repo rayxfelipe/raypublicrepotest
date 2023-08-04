@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "2739871e-183a-44aa-b308-3a7a4195210a"
+				"spark.autotune.trackingId": "c675b907-3b58-441f-a3de-ec03c2b14714"
 			}
 		},
 		"metadata": {
@@ -498,6 +498,106 @@
 					"df.show()"
 				],
 				"execution_count": 19
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"!pip install azure-keyvault\r\n",
+					"!pip install azure-identity"
+				],
+				"execution_count": 25
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"\r\n",
+					"\r\n",
+					"import os\r\n",
+					"from azure.keyvault.secrets import SecretClient\r\n",
+					"from azure.identity import DefaultAzureCredential\r\n",
+					"\r\n",
+					"keyVaultName = \"RayFKeyVault\"\r\n",
+					"KVUri = f\"https://rayfkeyvault.vault.azure.net\"\r\n",
+					"\r\n",
+					"credential = DefaultAzureCredential()\r\n",
+					"client = SecretClient(vault_url=KVUri, credential=credential)\r\n",
+					"\r\n",
+					"secretName = \"raysecret-username\"\r\n",
+					"secretValue = \"abcd1234!\"\r\n",
+					"\r\n",
+					"print(f\"Creating a secret in KV_NAME called '{secretName}' with the value '{secretValue}' ...\")\r\n",
+					"\r\n",
+					"client.set_secret(secretName, secretValue)\r\n",
+					"\r\n",
+					"print(\" done.\")\r\n",
+					"\r\n",
+					"print(f\"Retrieving your secret from KV_NAME.\")\r\n",
+					"\r\n",
+					"retrieved_secret = client.get_secret(secretName)\r\n",
+					"\r\n",
+					"print(f\"Your secret is '{retrieved_secret.value}'.\")\r\n",
+					"print(f\"Deleting your secret from KV_NAME ...\")\r\n",
+					"\r\n",
+					"poller = client.begin_delete_secret(secretName)\r\n",
+					"deleted_secret = poller.result()\r\n",
+					"\r\n",
+					"print(\" done.\")\r\n",
+					""
+				],
+				"execution_count": 36
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"username = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-username','RayAzureKeyVault')\r\n",
+					"mypassword = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-password','RayAzureKeyVault')\r\n",
+					"\r\n",
+					"servername = \"jdobbins-sql.database.windows.net\"\r\n",
+					"dbname = \"dobbinsdb\"\r\n",
+					"table_name = \"logs.CopyActivityLog\"\r\n",
+					"\r\n",
+					"jdbcPort = 1433\r\n",
+					"jdbcUrl = \"jdbc:sqlserver://{0}:{1};database={2}\".format(servername, jdbcPort, dbname)\r\n",
+					"connectionProperties = {\r\n",
+					"  \"user\" : username,\r\n",
+					"  \"password\" : mypassword,\r\n",
+					"  \"driver\" : \"com.microsoft.sqlserver.jdbc.SQLServerDriver\"\r\n",
+					"}"
+				],
+				"execution_count": 35
 			},
 			{
 				"cell_type": "code",
