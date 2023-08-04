@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "d8ccc98d-1905-4901-9557-d4fc6f315670"
+				"spark.autotune.trackingId": "316ed82d-9265-475f-ab6b-dcd81815672e"
 			}
 		},
 		"metadata": {
@@ -98,7 +98,7 @@
 					"\r\n",
 					"!pip install mssql"
 				],
-				"execution_count": 9
+				"execution_count": 19
 			},
 			{
 				"cell_type": "code",
@@ -138,7 +138,7 @@
 					"df.show()\r\n",
 					""
 				],
-				"execution_count": 16
+				"execution_count": 20
 			},
 			{
 				"cell_type": "markdown",
