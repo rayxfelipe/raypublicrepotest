@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "d4e28de3-a163-45b5-a312-16548eee7f4e"
+				"spark.autotune.trackingId": "c9e70e62-ea4c-43da-a120-18ab791c152a"
 			}
 		},
 		"metadata": {
@@ -597,7 +597,7 @@
 					"  \"driver\" : \"com.microsoft.sqlserver.jdbc.SQLServerDriver\"\r\n",
 					"}"
 				],
-				"execution_count": 40
+				"execution_count": 41
 			},
 			{
 				"cell_type": "code",
