@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "fe21c120-aec2-44d9-a22e-0a6cc854b3c6"
+				"spark.autotune.trackingId": "7b5267d6-12ab-4baf-951f-e93743129edc"
 			}
 		},
 		"metadata": {
@@ -566,7 +566,7 @@
 					"print(\" done.\")\r\n",
 					""
 				],
-				"execution_count": 2
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -602,7 +602,7 @@
 					"df2 = spark.read.jdbc(url=jdbcUrl, table=table_name, properties=connectionProperties)\r\n",
 					"display(df2)"
 				],
-				"execution_count": 3
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
