@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "9d850830-8fc8-4302-993d-de35e5b015d3"
+				"spark.autotune.trackingId": "2739871e-183a-44aa-b308-3a7a4195210a"
 			}
 		},
 		"metadata": {
@@ -488,16 +488,16 @@
 					"df.show()\r\n",
 					"\r\n",
 					"# Create a temp view for running SQL statements\r\n",
-					"spark.catalog.dropTempView(\"tempview\")\r\n",
-					"df.createTempView(\"tempview\")\r\n",
+					"# spark.catalog.dropTempView(\"tempview\")\r\n",
+					"# df.createTempView(\"tempview\")\r\n",
 					"\r\n",
-					"sql = \"SELECT * FROM tempview where subject = 'physics'\"\r\n",
-					"df = spark.sql(sql)\r\n",
+					"# sql = \"SELECT * FROM tempview where subject = 'physics'\"\r\n",
+					"# df = spark.sql(sql)\r\n",
 					"\r\n",
 					"# Show contents of dataframe after SQL with where clause\r\n",
 					"df.show()"
 				],
-				"execution_count": 14
+				"execution_count": 19
 			},
 			{
 				"cell_type": "code",
