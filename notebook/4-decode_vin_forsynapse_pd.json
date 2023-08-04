@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "c9e70e62-ea4c-43da-a120-18ab791c152a"
+				"spark.autotune.trackingId": "41ea4d10-a797-41ec-8c19-75a6384c6cd2"
 			}
 		},
 		"metadata": {
@@ -585,8 +585,8 @@
 					"username = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-username','RayAzureKeyVault')\r\n",
 					"mypassword = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-password','RayAzureKeyVault')\r\n",
 					"\r\n",
-					"servername = \"jdobbins-sql.database.windows.net\"\r\n",
-					"dbname = \"dobbinsdb\"\r\n",
+					"servername = \"ray-azuresql2-server.database.windows.net\"\r\n",
+					"dbname = \"rayazuresqldb2\"\r\n",
 					"table_name = \"logs.CopyActivityLog\"\r\n",
 					"\r\n",
 					"jdbcPort = 1433\r\n",
@@ -595,9 +595,14 @@
 					"  \"user\" : username,\r\n",
 					"  \"password\" : mypassword,\r\n",
 					"  \"driver\" : \"com.microsoft.sqlserver.jdbc.SQLServerDriver\"\r\n",
-					"}"
+					"}\r\n",
+					"\r\n",
+					"connectionProperties\r\n",
+					"\r\n",
+					"df2 = spark.read.jdbc(url=jdbcUrl, table=table_name, properties=connectionProperties)\r\n",
+					"display(df2)"
 				],
-				"execution_count": 41
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
