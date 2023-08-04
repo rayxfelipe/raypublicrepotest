@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "c5b20e5a-8df2-45ed-b325-e2f3b49280fe"
+				"spark.autotune.trackingId": "52c12185-d612-43d4-bd57-3248c7f86182"
 			}
 		},
 		"metadata": {
@@ -68,7 +68,7 @@
 					"username = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-username','RayAzureKeyVault')\r\n",
 					"mypassword = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-password','RayAzureKeyVault')"
 				],
-				"execution_count": 4
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
