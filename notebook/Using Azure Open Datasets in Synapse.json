@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "6ad00437-86b9-4c68-852e-9abe865c789e"
+				"spark.autotune.trackingId": "52111b0b-7a3b-4cea-8eb7-94f96d9cf443"
 			}
 		},
 		"metadata": {
@@ -79,7 +79,7 @@
 					"nyc_tlc = NycTlcGreen(start_date=start_date, end_date=end_date)\n",
 					"nyc_tlc_df = nyc_tlc.to_spark_dataframe()"
 				],
-				"execution_count": 2
+				"execution_count": 30
 			},
 			{
 				"cell_type": "code",
@@ -98,18 +98,66 @@
 				"source": [
 					"nyc_tlc_df_pd = nyc_tlc_df.toPandas()\r\n",
 					"\r\n",
-					"print(nyc_tlc_df_pd[1:2])"
+					"nyc_tlc_df_pd.head()"
 				],
-				"execution_count": 24
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
 				"source": [
-					"# Display 5 rows\n",
-					"\n",
-					"nyc_tlc_df.show(5, truncate = False)"
+					"nyc_tlc_df_pd.iloc[0:19, :4]"
 				],
-				"execution_count": 2
+				"execution_count": 22
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"nyc_tlc_df_pd[\"vendorID\"]"
+				],
+				"execution_count": 25
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"nyc_tlc_df_pd[\"vendorID\"] == 1\r\n",
+					"\r\n",
+					"dff = nyc_tlc_df_pd.filter(\"vendorID\" == 1)\r\n",
+					"dff.show()"
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
