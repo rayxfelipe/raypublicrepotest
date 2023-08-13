@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "6bc2077d-71f6-4850-a2a6-48a033e99cb5"
+				"spark.autotune.trackingId": "09be7bc6-eda0-4973-bede-272f9db4ca9f"
 			}
 		},
 		"metadata": {
@@ -69,14 +69,14 @@
 					"import pandas as pd\r\n",
 					" \r\n",
 					"# list of strings\r\n",
-					"lst = ['Geeks', 'For', 'Geeks', 'is', \r\n",
-					"            'portal', 'for', 'Geeks']\r\n",
+					"lst = ['a', 'b', 'c', 'd', \r\n",
+					"            'e', 'f', 'g']\r\n",
 					" \r\n",
 					"# Calling DataFrame constructor on list\r\n",
 					"df = pd.DataFrame(lst)\r\n",
 					"print(df)"
 				],
-				"execution_count": 54
+				"execution_count": 86
 			},
 			{
 				"cell_type": "markdown",
@@ -121,7 +121,7 @@
 					"# Print the output.\r\n",
 					"print(df)"
 				],
-				"execution_count": 55
+				"execution_count": 101
 			},
 			{
 				"cell_type": "code",
@@ -152,7 +152,7 @@
 					"# select two columns\r\n",
 					"print(df[['Name', 'Qualification']])"
 				],
-				"execution_count": 56
+				"execution_count": 103
 			},
 			{
 				"cell_type": "markdown",
@@ -185,7 +185,6 @@
 					"import pandas as pd\r\n",
 					" \r\n",
 					"# making data frame from csv file\r\n",
-					"#https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/OR BHDW/nba.csv\r\n",
 					"data = pd.read_csv(\"abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/OR BHDW/nba.csv\", index_col =\"Name\")\r\n",
 					" \r\n",
 					"# retrieving row by loc method\r\n",
@@ -195,7 +194,7 @@
 					" \r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 57
+				"execution_count": 105
 			},
 			{
 				"cell_type": "code",
@@ -224,7 +223,7 @@
 					" \r\n",
 					"print(first)"
 				],
-				"execution_count": 58
+				"execution_count": 90
 			},
 			{
 				"cell_type": "code",
@@ -253,7 +252,7 @@
 					" \r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 59
+				"execution_count": 91
 			},
 			{
 				"cell_type": "code",
@@ -280,7 +279,7 @@
 					" \r\n",
 					"print(row2)"
 				],
-				"execution_count": 60
+				"execution_count": 92
 			},
 			{
 				"cell_type": "markdown",
@@ -326,7 +325,7 @@
 					"# using isnull() function  \r\n",
 					"df.isnull()"
 				],
-				"execution_count": 61
+				"execution_count": 93
 			},
 			{
 				"cell_type": "code",
@@ -359,7 +358,7 @@
 					"# filling missing value using fillna()  \r\n",
 					"df.fillna(0)"
 				],
-				"execution_count": 62
+				"execution_count": 94
 			},
 			{
 				"cell_type": "code",
@@ -392,7 +391,7 @@
 					"   \r\n",
 					"df"
 				],
-				"execution_count": 63
+				"execution_count": 95
 			},
 			{
 				"cell_type": "code",
@@ -426,7 +425,7 @@
 					"# using dropna() function  \r\n",
 					"df.dropna()"
 				],
-				"execution_count": 64
+				"execution_count": 96
 			},
 			{
 				"cell_type": "markdown",
@@ -468,7 +467,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": 65
+				"execution_count": 97
 			},
 			{
 				"cell_type": "code",
@@ -500,7 +499,7 @@
 					"    print(i, j)\r\n",
 					"    print()"
 				],
-				"execution_count": 66
+				"execution_count": 98
 			},
 			{
 				"cell_type": "code",
@@ -529,7 +528,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": 67
+				"execution_count": 99
 			},
 			{
 				"cell_type": "code",
@@ -553,7 +552,7 @@
 					"    # printing the third element of the column\r\n",
 					"    print (df[i][2])"
 				],
-				"execution_count": 68
+				"execution_count": 100
 			}
 		]
 	}
