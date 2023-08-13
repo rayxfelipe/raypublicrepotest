@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "f5f1cf16-a7d1-43cd-80b8-d87093f600f2"
+				"spark.autotune.trackingId": "6bc2077d-71f6-4850-a2a6-48a033e99cb5"
 			}
 		},
 		"metadata": {
@@ -49,6 +49,20 @@
 		},
 		"cells": [
 			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Creating a Pandas DataFrame\r\n",
+					"## "
+				]
+			},
+			{
 				"cell_type": "code",
 				"source": [
 					"# import pandas as pd\r\n",
@@ -62,7 +76,20 @@
 					"df = pd.DataFrame(lst)\r\n",
 					"print(df)"
 				],
-				"execution_count": 11
+				"execution_count": 54
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Dealing with rows and columns"
+				]
 			},
 			{
 				"cell_type": "code",
@@ -94,7 +121,7 @@
 					"# Print the output.\r\n",
 					"print(df)"
 				],
-				"execution_count": 12
+				"execution_count": 55
 			},
 			{
 				"cell_type": "code",
@@ -125,7 +152,20 @@
 					"# select two columns\r\n",
 					"print(df[['Name', 'Qualification']])"
 				],
-				"execution_count": 13
+				"execution_count": 56
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Indexing and selecting data"
+				]
 			},
 			{
 				"cell_type": "code",
@@ -155,7 +195,7 @@
 					" \r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 20
+				"execution_count": 57
 			},
 			{
 				"cell_type": "code",
@@ -184,7 +224,7 @@
 					" \r\n",
 					"print(first)"
 				],
-				"execution_count": 23
+				"execution_count": 58
 			},
 			{
 				"cell_type": "code",
@@ -213,7 +253,7 @@
 					" \r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 25
+				"execution_count": 59
 			},
 			{
 				"cell_type": "code",
@@ -240,7 +280,20 @@
 					" \r\n",
 					"print(row2)"
 				],
-				"execution_count": 26
+				"execution_count": 60
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Working with missing data"
+				]
 			},
 			{
 				"cell_type": "code",
@@ -273,7 +326,7 @@
 					"# using isnull() function  \r\n",
 					"df.isnull()"
 				],
-				"execution_count": 27
+				"execution_count": 61
 			},
 			{
 				"cell_type": "code",
@@ -306,7 +359,7 @@
 					"# filling missing value using fillna()  \r\n",
 					"df.fillna(0)"
 				],
-				"execution_count": 28
+				"execution_count": 62
 			},
 			{
 				"cell_type": "code",
@@ -339,7 +392,7 @@
 					"   \r\n",
 					"df"
 				],
-				"execution_count": 29
+				"execution_count": 63
 			},
 			{
 				"cell_type": "code",
@@ -373,7 +426,20 @@
 					"# using dropna() function  \r\n",
 					"df.dropna()"
 				],
-				"execution_count": 30
+				"execution_count": 64
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Iterating over rows and columns"
+				]
 			},
 			{
 				"cell_type": "code",
@@ -402,7 +468,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": 31
+				"execution_count": 65
 			},
 			{
 				"cell_type": "code",
@@ -434,7 +500,7 @@
 					"    print(i, j)\r\n",
 					"    print()"
 				],
-				"execution_count": 32
+				"execution_count": 66
 			},
 			{
 				"cell_type": "code",
@@ -463,7 +529,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": 33
+				"execution_count": 67
 			},
 			{
 				"cell_type": "code",
@@ -487,7 +553,7 @@
 					"    # printing the third element of the column\r\n",
 					"    print (df[i][2])"
 				],
-				"execution_count": 34
+				"execution_count": 68
 			}
 		]
 	}
