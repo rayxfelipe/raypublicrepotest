@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e62fa38f-193e-4e12-8baf-b7d27e05e7a0"
+				"spark.autotune.trackingId": "f5f1cf16-a7d1-43cd-80b8-d87093f600f2"
 			}
 		},
 		"metadata": {
@@ -175,7 +175,7 @@
 					"import pandas as pd\r\n",
 					" \r\n",
 					"# making data frame from csv file\r\n",
-					"data = pd.read_csv(\"nba.csv\", index_col =\"Name\")\r\n",
+					"data = pd.read_csv(\"abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/OR BHDW/nba.csv\", index_col =\"Name\")\r\n",
 					" \r\n",
 					"# retrieving columns by indexing operator\r\n",
 					"first = data[\"Age\"]\r\n",
@@ -184,7 +184,7 @@
 					" \r\n",
 					"print(first)"
 				],
-				"execution_count": null
+				"execution_count": 23
 			},
 			{
 				"cell_type": "code",
@@ -204,7 +204,7 @@
 					"import pandas as pd\r\n",
 					" \r\n",
 					"# making data frame from csv file\r\n",
-					"data = pd.read_csv(\"nba.csv\", index_col =\"Name\")\r\n",
+					"data = pd.read_csv(\"abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/OR BHDW/nba.csv\", index_col =\"Name\")\r\n",
 					" \r\n",
 					"# retrieving row by loc method\r\n",
 					"first = data.loc[\"Avery Bradley\"]\r\n",
@@ -213,7 +213,7 @@
 					" \r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": null
+				"execution_count": 25
 			},
 			{
 				"cell_type": "code",
@@ -232,7 +232,7 @@
 					"import pandas as pd\r\n",
 					" \r\n",
 					"# making data frame from csv file\r\n",
-					"data = pd.read_csv(\"nba.csv\", index_col =\"Name\")\r\n",
+					"data = pd.read_csv(\"abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/OR BHDW/nba.csv\", index_col =\"Name\")\r\n",
 					" \r\n",
 					" \r\n",
 					"# retrieving rows by iloc method \r\n",
@@ -240,7 +240,7 @@
 					" \r\n",
 					"print(row2)"
 				],
-				"execution_count": null
+				"execution_count": 26
 			},
 			{
 				"cell_type": "code",
@@ -273,7 +273,7 @@
 					"# using isnull() function  \r\n",
 					"df.isnull()"
 				],
-				"execution_count": null
+				"execution_count": 27
 			},
 			{
 				"cell_type": "code",
@@ -306,7 +306,7 @@
 					"# filling missing value using fillna()  \r\n",
 					"df.fillna(0)"
 				],
-				"execution_count": null
+				"execution_count": 28
 			},
 			{
 				"cell_type": "code",
@@ -339,7 +339,7 @@
 					"   \r\n",
 					"df"
 				],
-				"execution_count": null
+				"execution_count": 29
 			},
 			{
 				"cell_type": "code",
@@ -373,7 +373,7 @@
 					"# using dropna() function  \r\n",
 					"df.dropna()"
 				],
-				"execution_count": null
+				"execution_count": 30
 			},
 			{
 				"cell_type": "code",
@@ -402,7 +402,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": null
+				"execution_count": 31
 			},
 			{
 				"cell_type": "code",
@@ -434,7 +434,7 @@
 					"    print(i, j)\r\n",
 					"    print()"
 				],
-				"execution_count": null
+				"execution_count": 32
 			},
 			{
 				"cell_type": "code",
@@ -463,7 +463,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": null
+				"execution_count": 33
 			},
 			{
 				"cell_type": "code",
@@ -487,7 +487,7 @@
 					"    # printing the third element of the column\r\n",
 					"    print (df[i][2])"
 				],
-				"execution_count": null
+				"execution_count": 34
 			}
 		]
 	}
