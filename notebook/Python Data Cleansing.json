@@ -3,17 +3,21 @@
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool1",
+			"type": "BigDataPoolReference"
+		},
 		"sessionProperties": {
-			"driverMemory": "28g",
-			"driverCores": 4,
-			"executorMemory": "28g",
-			"executorCores": 4,
-			"numExecutors": 2,
+			"driverMemory": "112g",
+			"driverCores": 16,
+			"executorMemory": "112g",
+			"executorCores": 16,
+			"numExecutors": 1,
 			"conf": {
-				"spark.dynamicAllocation.enabled": "false",
-				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.enabled": "true",
+				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "3c7ba790-04d2-4209-a3cc-0ee584e01f2a"
+				"spark.autotune.trackingId": "61f98a44-7377-4fba-b3a5-0c3fde5abfb8"
 			}
 		},
 		"metadata": {
@@ -21,10 +25,25 @@
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
-				"display_name": "python"
+				"display_name": "Synapse PySpark"
 			},
 			"language_info": {
 				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool1",
+				"name": "SparkPool1",
+				"type": "Spark",
+				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool1",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 16,
+				"memory": 112,
+				"automaticScaleJobs": true
 			},
 			"sessionKeepAliveTimeout": 30
 		},
@@ -32,7 +51,441 @@
 			{
 				"cell_type": "code",
 				"source": [
-					""
+					"# import pandas as pd\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# list of strings\r\n",
+					"lst = ['Geeks', 'For', 'Geeks', 'is', \r\n",
+					"            'portal', 'for', 'Geeks']\r\n",
+					" \r\n",
+					"# Calling DataFrame constructor on list\r\n",
+					"df = pd.DataFrame(lst)\r\n",
+					"print(df)"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Python code demonstrate creating \r\n",
+					"# DataFrame from dict narray / lists \r\n",
+					"# By default addresses.\r\n",
+					" \r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# intialise data of lists.\r\n",
+					"data = {'Name':['Tom', 'nick', 'krish', 'jack'],\r\n",
+					"        'Age':[20, 21, 19, 18]}\r\n",
+					" \r\n",
+					"# Create DataFrame\r\n",
+					"df = pd.DataFrame(data)\r\n",
+					" \r\n",
+					"# Print the output.\r\n",
+					"print(df)"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Import pandas package\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# Define a dictionary containing employee data\r\n",
+					"data = {'Name':['Jai', 'Princi', 'Gaurav', 'Anuj'],\r\n",
+					"        'Age':[27, 24, 22, 32],\r\n",
+					"        'Address':['Delhi', 'Kanpur', 'Allahabad', 'Kannauj'],\r\n",
+					"        'Qualification':['Msc', 'MA', 'MCA', 'Phd']}\r\n",
+					" \r\n",
+					"# Convert the dictionary into DataFrame \r\n",
+					"df = pd.DataFrame(data)\r\n",
+					" \r\n",
+					"# select two columns\r\n",
+					"print(df[['Name', 'Qualification']])"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas package\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# making data frame from csv file\r\n",
+					"#https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/OR BHDW/nba.csv\r\n",
+					"data = pd.read_csv(\"nba.csv\", index_col =\"Name\")\r\n",
+					" \r\n",
+					"# retrieving row by loc method\r\n",
+					"first = data.loc[\"Avery Bradley\"]\r\n",
+					"second = data.loc[\"R.J. Hunter\"]\r\n",
+					" \r\n",
+					" \r\n",
+					"print(first, \"\\n\\n\\n\", second)"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas package\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# making data frame from csv file\r\n",
+					"data = pd.read_csv(\"nba.csv\", index_col =\"Name\")\r\n",
+					" \r\n",
+					"# retrieving columns by indexing operator\r\n",
+					"first = data[\"Age\"]\r\n",
+					" \r\n",
+					" \r\n",
+					" \r\n",
+					"print(first)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas package\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# making data frame from csv file\r\n",
+					"data = pd.read_csv(\"nba.csv\", index_col =\"Name\")\r\n",
+					" \r\n",
+					"# retrieving row by loc method\r\n",
+					"first = data.loc[\"Avery Bradley\"]\r\n",
+					"second = data.loc[\"R.J. Hunter\"]\r\n",
+					" \r\n",
+					" \r\n",
+					"print(first, \"\\n\\n\\n\", second)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# making data frame from csv file\r\n",
+					"data = pd.read_csv(\"nba.csv\", index_col =\"Name\")\r\n",
+					" \r\n",
+					" \r\n",
+					"# retrieving rows by iloc method \r\n",
+					"row2 = data.iloc[3] \r\n",
+					" \r\n",
+					"print(row2)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas as pd\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# importing numpy as np\r\n",
+					"import numpy as np\r\n",
+					" \r\n",
+					"# dictionary of lists\r\n",
+					"dict = {'First Score':[100, 90, np.nan, 95],\r\n",
+					"        'Second Score': [30, 45, 56, np.nan],\r\n",
+					"        'Third Score':[np.nan, 40, 80, 98]}\r\n",
+					" \r\n",
+					"# creating a dataframe from list\r\n",
+					"df = pd.DataFrame(dict)\r\n",
+					" \r\n",
+					"# using isnull() function  \r\n",
+					"df.isnull()"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas as pd\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# importing numpy as np\r\n",
+					"import numpy as np\r\n",
+					" \r\n",
+					"# dictionary of lists\r\n",
+					"dict = {'First Score':[100, 90, np.nan, 95],\r\n",
+					"        'Second Score': [30, 45, 56, np.nan],\r\n",
+					"        'Third Score':[np.nan, 40, 80, 98]}\r\n",
+					" \r\n",
+					"# creating a dataframe from dictionary\r\n",
+					"df = pd.DataFrame(dict)\r\n",
+					" \r\n",
+					"# filling missing value using fillna()  \r\n",
+					"df.fillna(0)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas as pd\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# importing numpy as np\r\n",
+					"import numpy as np\r\n",
+					" \r\n",
+					"# dictionary of lists\r\n",
+					"dict = {'First Score':[100, 90, np.nan, 95],\r\n",
+					"        'Second Score': [30, np.nan, 45, 56],\r\n",
+					"        'Third Score':[52, 40, 80, 98],\r\n",
+					"        'Fourth Score':[np.nan, np.nan, np.nan, 65]}\r\n",
+					" \r\n",
+					"# creating a dataframe from dictionary\r\n",
+					"df = pd.DataFrame(dict)\r\n",
+					"   \r\n",
+					"df"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas as pd\r\n",
+					"import pandas as pd\r\n",
+					" \r\n",
+					"# importing numpy as np\r\n",
+					"import numpy as np\r\n",
+					" \r\n",
+					"# dictionary of lists\r\n",
+					"dict = {'First Score':[100, 90, np.nan, 95],\r\n",
+					"        'Second Score': [30, np.nan, 45, 56],\r\n",
+					"        'Third Score':[52, 40, 80, 98],\r\n",
+					"        'Fourth Score':[np.nan, np.nan, np.nan, 65]}\r\n",
+					" \r\n",
+					"# creating a dataframe from dictionary\r\n",
+					"df = pd.DataFrame(dict)\r\n",
+					" \r\n",
+					"# using dropna() function  \r\n",
+					"df.dropna()"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas as pd\r\n",
+					"import pandas as pd\r\n",
+					"  \r\n",
+					"# dictionary of lists\r\n",
+					"dict = {'name':[\"aparna\", \"pankaj\", \"sudhir\", \"Geeku\"],\r\n",
+					"        'degree': [\"MBA\", \"BCA\", \"M.Tech\", \"MBA\"],\r\n",
+					"        'score':[90, 40, 80, 98]}\r\n",
+					" \r\n",
+					"# creating a dataframe from a dictionary \r\n",
+					"df = pd.DataFrame(dict)\r\n",
+					" \r\n",
+					"print(df)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas as pd\r\n",
+					"import pandas as pd\r\n",
+					"  \r\n",
+					"# dictionary of lists\r\n",
+					"dict = {'name':[\"aparna\", \"pankaj\", \"sudhir\", \"Geeku\"],\r\n",
+					"        'degree': [\"MBA\", \"BCA\", \"M.Tech\", \"MBA\"],\r\n",
+					"        'score':[90, 40, 80, 98]}\r\n",
+					" \r\n",
+					"# creating a dataframe from a dictionary \r\n",
+					"df = pd.DataFrame(dict)\r\n",
+					" \r\n",
+					"# iterating over rows using iterrows() function \r\n",
+					"for i, j in df.iterrows():\r\n",
+					"    print(i, j)\r\n",
+					"    print()"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# importing pandas as pd\r\n",
+					"import pandas as pd\r\n",
+					"   \r\n",
+					"# dictionary of lists\r\n",
+					"dict = {'name':[\"aparna\", \"pankaj\", \"sudhir\", \"Geeku\"],\r\n",
+					"        'degree': [\"MBA\", \"BCA\", \"M.Tech\", \"MBA\"],\r\n",
+					"        'score':[90, 40, 80, 98]}\r\n",
+					"  \r\n",
+					"# creating a dataframe from a dictionary \r\n",
+					"df = pd.DataFrame(dict)\r\n",
+					" \r\n",
+					"print(df)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# creating a list of dataframe columns\r\n",
+					"columns = list(df)\r\n",
+					" \r\n",
+					"for i in columns:\r\n",
+					" \r\n",
+					"    # printing the third element of the column\r\n",
+					"    print (df[i][2])"
 				],
 				"execution_count": null
 			}
