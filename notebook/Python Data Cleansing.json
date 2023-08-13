@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "09be7bc6-eda0-4973-bede-272f9db4ca9f"
+				"spark.autotune.trackingId": "9df36393-1df0-4b47-8d33-dc64c5902356"
 			}
 		},
 		"metadata": {
@@ -76,7 +76,7 @@
 					"df = pd.DataFrame(lst)\r\n",
 					"print(df)"
 				],
-				"execution_count": 86
+				"execution_count": 122
 			},
 			{
 				"cell_type": "markdown",
@@ -121,7 +121,7 @@
 					"# Print the output.\r\n",
 					"print(df)"
 				],
-				"execution_count": 101
+				"execution_count": 123
 			},
 			{
 				"cell_type": "code",
@@ -152,7 +152,7 @@
 					"# select two columns\r\n",
 					"print(df[['Name', 'Qualification']])"
 				],
-				"execution_count": 103
+				"execution_count": 124
 			},
 			{
 				"cell_type": "markdown",
@@ -186,15 +186,33 @@
 					" \r\n",
 					"# making data frame from csv file\r\n",
 					"data = pd.read_csv(\"abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/OR BHDW/nba.csv\", index_col =\"Name\")\r\n",
-					" \r\n",
+					"\r\n",
+					"print(data.head())\r\n",
+					" "
+				],
+				"execution_count": 125
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"# retrieving row by loc method\r\n",
 					"first = data.loc[\"Avery Bradley\"]\r\n",
 					"second = data.loc[\"R.J. Hunter\"]\r\n",
-					" \r\n",
-					" \r\n",
+					"\r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 105
+				"execution_count": 126
 			},
 			{
 				"cell_type": "code",
@@ -218,12 +236,11 @@
 					" \r\n",
 					"# retrieving columns by indexing operator\r\n",
 					"first = data[\"Age\"]\r\n",
-					" \r\n",
-					" \r\n",
+					"\r\n",
 					" \r\n",
 					"print(first)"
 				],
-				"execution_count": 90
+				"execution_count": 127
 			},
 			{
 				"cell_type": "code",
@@ -252,7 +269,7 @@
 					" \r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 91
+				"execution_count": 128
 			},
 			{
 				"cell_type": "code",
@@ -279,7 +296,7 @@
 					" \r\n",
 					"print(row2)"
 				],
-				"execution_count": 92
+				"execution_count": 129
 			},
 			{
 				"cell_type": "markdown",
@@ -321,11 +338,13 @@
 					" \r\n",
 					"# creating a dataframe from list\r\n",
 					"df = pd.DataFrame(dict)\r\n",
-					" \r\n",
+					"\r\n",
+					"print(df)\r\n",
+					"\r\n",
 					"# using isnull() function  \r\n",
 					"df.isnull()"
 				],
-				"execution_count": 93
+				"execution_count": 130
 			},
 			{
 				"cell_type": "code",
@@ -358,7 +377,7 @@
 					"# filling missing value using fillna()  \r\n",
 					"df.fillna(0)"
 				],
-				"execution_count": 94
+				"execution_count": 131
 			},
 			{
 				"cell_type": "code",
@@ -391,7 +410,7 @@
 					"   \r\n",
 					"df"
 				],
-				"execution_count": 95
+				"execution_count": 132
 			},
 			{
 				"cell_type": "code",
@@ -425,7 +444,7 @@
 					"# using dropna() function  \r\n",
 					"df.dropna()"
 				],
-				"execution_count": 96
+				"execution_count": 133
 			},
 			{
 				"cell_type": "markdown",
@@ -467,7 +486,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": 97
+				"execution_count": 134
 			},
 			{
 				"cell_type": "code",
@@ -499,7 +518,7 @@
 					"    print(i, j)\r\n",
 					"    print()"
 				],
-				"execution_count": 98
+				"execution_count": 135
 			},
 			{
 				"cell_type": "code",
@@ -528,7 +547,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": 99
+				"execution_count": 136
 			},
 			{
 				"cell_type": "code",
@@ -552,7 +571,7 @@
 					"    # printing the third element of the column\r\n",
 					"    print (df[i][2])"
 				],
-				"execution_count": 100
+				"execution_count": 137
 			}
 		]
 	}
