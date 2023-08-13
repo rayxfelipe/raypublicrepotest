@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "61f98a44-7377-4fba-b3a5-0c3fde5abfb8"
+				"spark.autotune.trackingId": "e62fa38f-193e-4e12-8baf-b7d27e05e7a0"
 			}
 		},
 		"metadata": {
@@ -62,7 +62,7 @@
 					"df = pd.DataFrame(lst)\r\n",
 					"print(df)"
 				],
-				"execution_count": 2
+				"execution_count": 11
 			},
 			{
 				"cell_type": "code",
@@ -94,7 +94,7 @@
 					"# Print the output.\r\n",
 					"print(df)"
 				],
-				"execution_count": 3
+				"execution_count": 12
 			},
 			{
 				"cell_type": "code",
@@ -125,7 +125,7 @@
 					"# select two columns\r\n",
 					"print(df[['Name', 'Qualification']])"
 				],
-				"execution_count": 4
+				"execution_count": 13
 			},
 			{
 				"cell_type": "code",
@@ -146,7 +146,7 @@
 					" \r\n",
 					"# making data frame from csv file\r\n",
 					"#https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/OR BHDW/nba.csv\r\n",
-					"data = pd.read_csv(\"nba.csv\", index_col =\"Name\")\r\n",
+					"data = pd.read_csv(\"abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/OR BHDW/nba.csv\", index_col =\"Name\")\r\n",
 					" \r\n",
 					"# retrieving row by loc method\r\n",
 					"first = data.loc[\"Avery Bradley\"]\r\n",
@@ -155,7 +155,7 @@
 					" \r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 5
+				"execution_count": 20
 			},
 			{
 				"cell_type": "code",
