@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "9df36393-1df0-4b47-8d33-dc64c5902356"
+				"spark.autotune.trackingId": "1b92b5fa-7ece-4285-b1f7-f8f52a95be2e"
 			}
 		},
 		"metadata": {
@@ -76,7 +76,7 @@
 					"df = pd.DataFrame(lst)\r\n",
 					"print(df)"
 				],
-				"execution_count": 122
+				"execution_count": 17
 			},
 			{
 				"cell_type": "markdown",
@@ -121,7 +121,7 @@
 					"# Print the output.\r\n",
 					"print(df)"
 				],
-				"execution_count": 123
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -152,7 +152,7 @@
 					"# select two columns\r\n",
 					"print(df[['Name', 'Qualification']])"
 				],
-				"execution_count": 124
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -190,7 +190,7 @@
 					"print(data.head())\r\n",
 					" "
 				],
-				"execution_count": 125
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -212,7 +212,7 @@
 					"\r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 126
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -240,7 +240,7 @@
 					" \r\n",
 					"print(first)"
 				],
-				"execution_count": 127
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -269,7 +269,7 @@
 					" \r\n",
 					"print(first, \"\\n\\n\\n\", second)"
 				],
-				"execution_count": 128
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
@@ -296,7 +296,7 @@
 					" \r\n",
 					"print(row2)"
 				],
-				"execution_count": 129
+				"execution_count": 8
 			},
 			{
 				"cell_type": "markdown",
@@ -344,7 +344,7 @@
 					"# using isnull() function  \r\n",
 					"df.isnull()"
 				],
-				"execution_count": 130
+				"execution_count": 22
 			},
 			{
 				"cell_type": "code",
@@ -375,9 +375,10 @@
 					"df = pd.DataFrame(dict)\r\n",
 					" \r\n",
 					"# filling missing value using fillna()  \r\n",
-					"df.fillna(0)"
+					"df.fillna(0)\r\n",
+					""
 				],
-				"execution_count": 131
+				"execution_count": 24
 			},
 			{
 				"cell_type": "code",
@@ -410,7 +411,7 @@
 					"   \r\n",
 					"df"
 				],
-				"execution_count": 132
+				"execution_count": 25
 			},
 			{
 				"cell_type": "code",
@@ -444,7 +445,7 @@
 					"# using dropna() function  \r\n",
 					"df.dropna()"
 				],
-				"execution_count": 133
+				"execution_count": 26
 			},
 			{
 				"cell_type": "markdown",
@@ -486,7 +487,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": 134
+				"execution_count": 27
 			},
 			{
 				"cell_type": "code",
@@ -518,7 +519,7 @@
 					"    print(i, j)\r\n",
 					"    print()"
 				],
-				"execution_count": 135
+				"execution_count": 14
 			},
 			{
 				"cell_type": "code",
@@ -547,7 +548,7 @@
 					" \r\n",
 					"print(df)"
 				],
-				"execution_count": 136
+				"execution_count": 15
 			},
 			{
 				"cell_type": "code",
@@ -571,7 +572,7 @@
 					"    # printing the third element of the column\r\n",
 					"    print (df[i][2])"
 				],
-				"execution_count": 137
+				"execution_count": 16
 			}
 		]
 	}
