@@ -2,7 +2,7 @@
 	"name": "CETAS 2",
 	"properties": {
 		"content": {
-			"query": "CREATE EXTERNAL TABLE dbo.byquarter22021\n\tWITH (\n\tLOCATION = 'BYQUARTER/',\n\tDATA_SOURCE = [raysynapsemgdvnetdlacctfs_raysynapsemgdvnetdlacct_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\nAS\nSELECT\n    [YEAR], [QUARTER], [ACTIVE], [CEASED]\nFROM\n    OPENROWSET(\n        BULK 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/DCC/CannabisAccountSitesByQuarter.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW = TRUE\n    ) AS [result]\nGO\n\nSELECT TOP 100 * FROM dbo.byquarter\nGO",
+			"query": "CREATE EXTERNAL TABLE dbo.byquarter2021\n\tWITH (\n\tLOCATION = 'BYQUARTER/data1',\n\tDATA_SOURCE = [raysynapsemgdvnetdlacctfs_raysynapsemgdvnetdlacct_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\nAS\nSELECT\n    [YEAR], [QUARTER], [ACTIVE], [CEASED]\nFROM\n    OPENROWSET(\n        BULK 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/DCC/CannabisAccountSitesByQuarter.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW = TRUE\n    ) AS [result]\nWHERE [YEAR] = '2021'\nGO\n\nSELECT TOP 100 * FROM dbo.byquarter2021\nGO",
 			"metadata": {
 				"language": "sql"
 			},
