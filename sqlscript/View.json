@@ -5,12 +5,12 @@
 			"name": "BHDW"
 		},
 		"content": {
-			"query": "CREATE VIEW [QuarterSales_view]\nAS\nSELECT [column1], [column2], ...\nFROM [table_name]\nWHERE [condition];\n",
+			"query": "CREATE VIEW [QuarterSales_view]\nAS\nSELECT\n    [YEAR], [QUARTER], [ACTIVE], [CEASED]\nFROM\n    OPENROWSET(\n        BULK 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/DCC/CannabisAccountSitesByQuarter.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW = TRUE\n    ) AS [result]\nWHERE [YEAR] = '2022'\nGO\n",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "master",
+				"databaseName": "BHDW",
 				"poolName": "Built-in"
 			},
 			"resultLimit": 5000
