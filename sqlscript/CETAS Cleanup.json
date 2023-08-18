@@ -1,0 +1,17 @@
+{
+	"name": "CETAS Cleanup",
+	"properties": {
+		"content": {
+			"query": "drop external table dbo.byquarter\ndrop external data source raysynapsemgdvnetdlacctfs_raysynapsemgdvnetdlacct_dfs_core_windows_net\ndrop external FILE FORMAT SynapseDelimitedTextFormat\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "BHDW",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
