@@ -1,8 +1,8 @@
 {
-	"name": "4-Cannabis Tax Revenues",
+	"name": "1-Write to Lake DB",
 	"properties": {
 		"folder": {
-			"name": "DCC"
+			"name": "BHDW"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "f41c11d3-cb4a-43ba-94b5-de69c8befafa"
+				"spark.autotune.trackingId": "c989aad2-f280-4423-b1f1-56d299b42e2d"
 			}
 		},
 		"metadata": {
