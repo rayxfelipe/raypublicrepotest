@@ -1,0 +1,22 @@
+{
+	"name": "BHDW_LakeDB1",
+	"properties": {
+		"Name": "BHDW_LakeDB1",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/BHDW_LakeDB1",
+			"Properties": {
+				"FormatType": "csv",
+				"LinkedServiceName": "raysynapsemgdvnet-WorkspaceDefaultStorage"
+			}
+		}
+	},
+	"type": "DATABASE"
+}
