@@ -98,21 +98,21 @@
 				"FormatType": "csv",
 				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
 				"Properties": {
-					"path": "abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/OR BHDW/Lake DB/moviesDB.csv",
+					"path": "abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/BHDW_LakeDB1/BHDW_LakeTable1",
 					"delimiter": ",",
 					"multiLine": "false",
 					"firstRowAsHeader": "true",
 					"serialization.format": "1",
-					"FormatTypeSetToDatabaseDefault": false,
+					"FormatTypeSetToDatabaseDefault": true,
 					"header": "true"
 				}
 			},
 			"Source": {
 				"Provider": "ADLS",
-				"Location": "abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/OR BHDW/Lake DB/moviesDB.csv",
+				"Location": "abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/BHDW_LakeDB1/BHDW_LakeTable1",
 				"Properties": {
 					"LinkedServiceName": "raysynapsemgdvnet-WorkspaceDefaultStorage",
-					"LocationSetToDatabaseDefault": false
+					"LocationSetToDatabaseDefault": true
 				}
 			},
 			"Properties": {
