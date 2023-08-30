@@ -1,7 +1,7 @@
 {
-	"name": "BHDW_LakeDB1",
+	"name": "BHDW_LakeTable1",
 	"properties": {
-		"Name": "BHDW_LakeDB1",
+		"Name": "BHDW_LakeTable1",
 		"EntityType": "TABLE",
 		"Namespace": {
 			"DatabaseName": "BHDW_LakeDB1"
