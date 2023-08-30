@@ -1,0 +1,22 @@
+{
+	"name": "movies",
+	"properties": {
+		"Name": "movies",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://raysynapsemgdvnetdlacctfs@raysynapsemgdvnetdlacct.dfs.core.windows.net/movies",
+			"Properties": {
+				"FormatType": "csv",
+				"LinkedServiceName": "raysynapsemgdvnet-WorkspaceDefaultStorage"
+			}
+		}
+	},
+	"type": "DATABASE"
+}
