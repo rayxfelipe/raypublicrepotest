@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e12939df-4bad-42d7-9c7e-a3f5b2ae4f3e"
+				"spark.autotune.trackingId": "31b8eaab-e909-4798-a848-acf69077c1b5"
 			}
 		},
 		"metadata": {
@@ -230,15 +230,32 @@
 					}
 				},
 				"source": [
-					"df.createOrReplaceTempView(\"my_view\")\r\n",
+					"spark.sql(\"create view cannabis.the_view as select * from cannabis.taxrevenue\")\r\n",
+					"view_query_result = spark.sql(\"select * from cannabis.the_view\")\r\n",
+					"view_query_result.show()\r\n",
 					"\r\n",
-					"# Query the view\r\n",
-					"result = spark.sql(\"SELECT * FROM my_view\")\r\n",
-					"\r\n",
-					"# Show the result\r\n",
-					"result.show()"
+					""
 				],
-				"execution_count": 9
+				"execution_count": 33
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# To delete the view\r\n",
+					"spark.sql(\"drop view cannabis.ray_view\")"
+				],
+				"execution_count": 38
 			}
 		]
 	}
