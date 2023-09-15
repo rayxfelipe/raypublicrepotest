@@ -5,12 +5,12 @@
 			"name": "OR DHS"
 		},
 		"content": {
-			"query": "INSERT INTO OPENROWSET(\n    BULK 'https://myaccount.blob.core.windows.net/mycontainer/myfile.csv',\n    FORMAT = 'CSV',\n    DATA_SOURCE = 'MyDataSource',\n    CREDENTIAL = 'MyCredential'\n)\n\nSELECT * FROM MyTable;",
+			"query": "INSERT INTO OPENROWSET (\n    --BULK 'https://rayfelipedlgen2account.dfs.core.windows.net/rayfelipedlgen2filesystem/BHDW/outputtest.csv',\n    FORMAT = 'CSV',\n    DATA_SOURCE = 'rayfelipedlgen2account'\n    --CREDENTIAL = 'MyCredential'\n)\nSELECT TOP (100) [Quarter], [Year_Quarter] FROM [dbo].[cannabistaxrevenues];\n\n--https://rayfelipedlgen2account.dfs.core.windows.net/rayfelipedlgen2filesystem\n--https://web.azuresynapse.net/en/authoring/explore/linked/storageaccounts/rayfelipesynapseworkspace-WorkspaceDefaultStorage-rayfelipedlgen2account%2Frayfelipedlgen2filesystem?subFolderPath=&workspace=%2Fsubscriptions%2F499bc654-f84c-46c2-952c-b30be508f78c%2FresourceGroups%2FSynapse-Demo%2Fproviders%2FMicrosoft.Synapse%2Fworkspaces%2Frayfelipesynapseworkspace\n\n\n\n\n",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "master",
+				"databaseName": "DataExplorationDB",
 				"poolName": "Built-in"
 			},
 			"resultLimit": 5000
