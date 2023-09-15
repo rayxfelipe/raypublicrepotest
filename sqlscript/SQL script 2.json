@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "INSERT INTO OPENROWSET(\n    BULK 'https://myaccount.blob.core.windows.net/mycontainer/myfile.csv',\n    FORMAT = 'CSV',\n    DATA_SOURCE = 'MyDataSource',\n    CREDENTIAL = 'MyCredential'\n)\n\nSELECT * FROM MyTable;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
