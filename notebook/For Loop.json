@@ -1,0 +1,66 @@
+{
+	"name": "For Loop",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPoolA",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "ee808157-1992-4386-b745-806f508a5348"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SparkPoolA",
+				"name": "SparkPoolA",
+				"type": "Spark",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPoolA",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"# Define a list of numbers\r\n",
+					"numbers = [1, 2, 3, 4, 5]\r\n",
+					"\r\n",
+					"# Loop through the list and print each number\r\n",
+					"for number in numbers:\r\n",
+					"    print(number)\r\n",
+					""
+				],
+				"execution_count": 1
+			}
+		]
+	}
+}
