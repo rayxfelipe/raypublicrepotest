@@ -7,7 +7,7 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool2",
+			"referenceName": "SparkPoolA",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "da0de9ff-a0c5-432d-bbd0-b63f1bde300d"
+				"spark.autotune.trackingId": "3a8f87f2-df0e-4f34-8b7b-ab6a1364152a"
 			}
 		},
 		"metadata": {
@@ -35,20 +35,19 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
-				"name": "SparkPool2",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SparkPoolA",
+				"name": "SparkPoolA",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
+				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPoolA",
 				"auth": {
 					"type": "AAD",
-					"authResource": "https://dev.azuresynapse.net",
-					"authHeader": null
+					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.3",
 				"nodeCount": 10,
 				"cores": 4,
 				"memory": 28,
-				"extraHeader": null
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},
@@ -63,6 +62,7 @@
 					"linked_service_name = \"AzureSynapseAnalytics1\"\r\n",
 					"\r\n",
 					"access_token = mssparkutils.credentials.getConnectionStringOrCreds(linked_service_name)\r\n",
+					"print(\"access_token: \"+str(type(access_token)))\r\n",
 					"\r\n",
 					"# Read a table, store results in a dataframe\r\n",
 					"df = spark.read.format(\"com.microsoft.sqlserver.jdbc.spark\") \\\r\n",
@@ -88,7 +88,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 3
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
