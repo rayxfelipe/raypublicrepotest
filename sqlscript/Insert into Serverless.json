@@ -1,5 +1,5 @@
 {
-	"name": "Instert into Serverless",
+	"name": "Insert into Serverless",
 	"properties": {
 		"content": {
 			"query": "SELECT TOP (100) [Calendar]\n,[Col2]\n FROM [dbo].[OES_ExternalTable2]\n\n\n\n-- CONVERSTION ERROR BELOW. Do data mergt in CSV instead, build external data source from there.\nINSERT INTO [dbo].[OES_ExternalTable2]\nSELECT\n    [C1], [C2]\nFROM\n    OPENROWSET(\n        BULK 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/DCC/CannabisTaxRevenues.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0'\n    ) AS [result]\n\n\n\n-- Insert the whole CSV\nINSERT INTO [dbo].[CannabisTaxRevExtTable]\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/DCC/CannabisTaxRevenues.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0'\n    ) AS [result]\n\n--NOTE: Can't insert to external table because it is \"the\" CSV.",

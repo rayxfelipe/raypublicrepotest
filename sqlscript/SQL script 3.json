@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 3",
+	"properties": {
+		"content": {
+			"query": "\n\nCREATE PROCEDURE MyProcedure @param1 int, @param2 varchar(50)\nAS\nSELECT TOP (100) [C1]\n,[C2]\n,[C3]\n,[C4]\n,[C5]\n,[C6]\n,[C7]\n,[C8]\n FROM [dbo].[CannabisTaxRevenues]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "DataExplorationDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 5",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [C1]\n,[C2]\n,[C3]\n,[C4]\n,[C5]\n,[C6]\n,[C7]\n,[C8]\n FROM [dbo].[CannabisTaxRevenues]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "CannabisDataExplorationDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
