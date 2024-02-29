@@ -1,0 +1,11 @@
+{
+	"name": "US CSU",
+	"properties": {
+		"annotations": [],
+		"type": "PowerBIWorkspace",
+		"typeProperties": {
+			"workspaceID": "27c7d904-4022-4943-bcf7-2c7af72d8e7d",
+			"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		}
+	}
+}
