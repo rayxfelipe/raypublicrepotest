@@ -1,0 +1,11 @@
+{
+	"name": "RayFabricDemo",
+	"properties": {
+		"annotations": [],
+		"type": "PowerBIWorkspace",
+		"typeProperties": {
+			"workspaceID": "ee14bd77-49a6-4944-9d84-b00d41f5652a",
+			"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		}
+	}
+}
