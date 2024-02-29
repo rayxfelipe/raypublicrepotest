@@ -1,0 +1,11 @@
+{
+	"name": "RayTempWorkspace",
+	"properties": {
+		"annotations": [],
+		"type": "PowerBIWorkspace",
+		"typeProperties": {
+			"workspaceID": "5a7574b7-d49d-4354-8e97-e8d68ebb1fb7",
+			"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		}
+	}
+}
