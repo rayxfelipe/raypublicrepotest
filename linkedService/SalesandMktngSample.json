@@ -1,0 +1,11 @@
+{
+	"name": "SalesandMktngSample",
+	"properties": {
+		"annotations": [],
+		"type": "PowerBIWorkspace",
+		"typeProperties": {
+			"workspaceID": "83963d30-32c7-4885-9d6f-e42020bff43e",
+			"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		}
+	}
+}
