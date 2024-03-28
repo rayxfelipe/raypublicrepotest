@@ -1,0 +1,312 @@
+{
+	"name": "Run Notebooks in Prallel2",
+	"properties": {
+		"folder": {
+			"name": "WA-DOL/Parallel Notebooks"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPoolXL",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "224g",
+			"driverCores": 32,
+			"executorMemory": "224g",
+			"executorCores": 32,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "8db561ed-a401-45b8-8f6f-edc29d17dbc7"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPoolXL",
+				"name": "SparkPoolXL",
+				"type": "Spark",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPoolXL",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 32,
+				"memory": 224,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"Run notebooks in parallel\r\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"print(\"wake up\")"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"mssparkutils.notebook.runMultiple([\"decode_vin_forsynapse_kv_v4\", \"decode_vin_forsynapse_kv_v4\"])"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# run multiple notebooks with parameters\r\n",
+					"DAG = {\r\n",
+					"    \"activities\": [\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_first3\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            \"timeoutPerCellInSeconds\": 120, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"p1\": \"changed value\", \"p2\": 100}, # notebook parameters\r\n",
+					"        },\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_second3\",\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\",\r\n",
+					"            \"timeoutPerCellInSeconds\": 120,\r\n",
+					"            \"args\": {\"p1\": \"changed value 2\", \"p2\": 200}\r\n",
+					"        }\r\n",
+					"    ]\r\n",
+					"}\r\n",
+					"mssparkutils.notebook.runMultiple(DAG)"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# run multiple notebooks with parameters\r\n",
+					"DAG = {\r\n",
+					"    \"activities\": [\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_first3\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            \"timeoutPerCellInSeconds\": 240, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"ray_a\": \"1\", \"ray_b\": \"3\"}, # notebook parameters\r\n",
+					"        },\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_second3\",\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\",\r\n",
+					"            \"timeoutPerCellInSeconds\": 240,\r\n",
+					"            \"args\": {\"ray_a\": \"4\", \"ray_b\": \"7\"}\r\n",
+					"        }\r\n",
+					"    ]\r\n",
+					"}\r\n",
+					"mssparkutils.notebook.runMultiple(DAG)"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# run multiple notebooks with parameters\r\n",
+					"DAG = {\r\n",
+					"    \"activities\": [\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_first1k\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            # \"timeoutPerCellInSeconds\": 240, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"ray_a\": \"1\", \"ray_b\": \"10000\"}, # notebook parameters\r\n",
+					"        }\r\n",
+					"    ]\r\n",
+					"}\r\n",
+					"mssparkutils.notebook.runMultiple(DAG)"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# run multiple notebooks with parameters\r\n",
+					"DAG = {\r\n",
+					"    \"activities\": [\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_first1k\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            #\"timeoutPerCellInSeconds\": 240, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"ray_a\": \"1\", \"ray_b\": \"5000\"}, # notebook parameters\r\n",
+					"        },\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_second1k\",\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\",\r\n",
+					"            #\"timeoutPerCellInSeconds\": 240,\r\n",
+					"            \"args\": {\"ray_a\": \"5001\", \"ray_b\": \"10000\"}\r\n",
+					"        }\r\n",
+					"    ]\r\n",
+					"}\r\n",
+					"mssparkutils.notebook.runMultiple(DAG)"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# run multiple notebooks with parameters\r\n",
+					"DAG = {\r\n",
+					"    \"activities\": [\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_a\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            \"timeoutPerCellInSeconds\": 240, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"ray_a\": \"1\", \"ray_b\": \"1000\"}, # notebook parameters\r\n",
+					"        },\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_b\",\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\",\r\n",
+					"            \"timeoutPerCellInSeconds\": 240,\r\n",
+					"            \"args\": {\"ray_a\": \"1001\", \"ray_b\": \"2000\"}\r\n",
+					"        }\r\n",
+					"                {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_c\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            \"timeoutPerCellInSeconds\": 240, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"ray_a\": \"2001\", \"ray_b\": \"3000\"}, # notebook parameters\r\n",
+					"        },\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_d\",\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\",\r\n",
+					"            \"timeoutPerCellInSeconds\": 240,\r\n",
+					"            \"args\": {\"ray_a\": \"3001\", \"ray_b\": \"4000\"}\r\n",
+					"        }\r\n",
+					"                {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_e\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            \"timeoutPerCellInSeconds\": 240, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"ray_a\": \"4001\", \"ray_b\": \"5000\"}, # notebook parameters\r\n",
+					"        },\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_f\",\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\",\r\n",
+					"            \"timeoutPerCellInSeconds\": 240,\r\n",
+					"            \"args\": {\"ray_a\": \"5001\", \"ray_b\": \"6000\"}\r\n",
+					"        }\r\n",
+					"                {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_g\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            \"timeoutPerCellInSeconds\": 240, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"ray_a\": \"6001\", \"ray_b\": \"7000\"}, # notebook parameters\r\n",
+					"        },\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_h\",\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\",\r\n",
+					"            \"timeoutPerCellInSeconds\": 240,\r\n",
+					"            \"args\": {\"ray_a\": \"7001\", \"ray_b\": \"8000\"}\r\n",
+					"        }\r\n",
+					"                {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_i\", # activity name, must be unique\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\", # notebook path\r\n",
+					"            \"timeoutPerCellInSeconds\": 240, # max timeout for each cell, default to 90 seconds\r\n",
+					"            \"args\": {\"ray_a\": \"8001\", \"ray_b\": \"9000\"}, # notebook parameters\r\n",
+					"        },\r\n",
+					"        {\r\n",
+					"            \"name\": \"decode_vin_forsynapse_kv_v4_j\",\r\n",
+					"            \"path\": \"decode_vin_forsynapse_kv_v4\",\r\n",
+					"            \"timeoutPerCellInSeconds\": 240,\r\n",
+					"            \"args\": {\"ray_a\": \"9001\", \"ray_b\": \"10000\"}\r\n",
+					"        }\r\n",
+					"    ]\r\n",
+					"}\r\n",
+					"mssparkutils.notebook.runMultiple(DAG)"
+				]
+			}
+		]
+	}
+}

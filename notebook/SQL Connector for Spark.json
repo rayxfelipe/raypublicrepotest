@@ -1,0 +1,210 @@
+{
+	"name": "SQL Connector for Spark",
+	"properties": {
+		"folder": {
+			"name": "WA-DOL/DB Connection"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool11",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "f6025265-e3d7-4d8a-8ee5-cb13036f0583"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool11",
+				"name": "SparkPool11",
+				"type": "Spark",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool11",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"Reference: https://learn.microsoft.com/en-us/azure/synapse-analytics/spark/data-sources/apache-spark-sql-connector"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import os\r\n",
+					"\r\n",
+					"databases = {\r\n",
+					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
+					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
+					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
+					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
+					"    'output_db': 'RPOdataTEAM', # output for Python results transofmration\r\n",
+					"    'output_server': 'ray-azuresql2-server.database.windows.net', # output for Python results.... host.\r\n",
+					"    'output_table': 'NHTSA_Master' # output for Python results.... table. AKA NHTSA master table?\r\n",
+					"}\r\n",
+					"\r\n",
+					"\"\"\"\r\n",
+					"The configuration is set to decode against RAO's\r\n",
+					"copy of NHTSA's database.\r\n",
+					"\r\n",
+					"\"\"\""
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# third party packages\r\n",
+					"import sqlalchemy\r\n",
+					"import pyodbc\r\n",
+					"import pandas as pd\r\n",
+					"import urllib\r\n",
+					"import argparse # used by parse_args\r\n",
+					"import sys\r\n",
+					"import datetime\r\n",
+					"import os\r\n",
+					"\r\n",
+					"!pip install mssql"
+				],
+				"execution_count": 26
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# The servername is in the format \"jdbc:sqlserver://<AzureSQLServerName>.database.windows.net:1433\"\r\n",
+					"servername = databases['vin_group_server']\r\n",
+					"dbname = databases['vin_group_db']\r\n",
+					"url = servername + \";\" + \"databaseName=\" + dbname + \";\"\r\n",
+					"dbtable = databases['output_table']\r\n",
+					"user = \"sqladmin\" \r\n",
+					"principal_client_id = \"<< service principal client id >>\" \r\n",
+					"principal_secret = \"<< service principal secret ho>>\"\r\n",
+					"password = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-password')"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql import SparkSession\r\n",
+					"spark = SparkSession.builder.getOrCreate()\r\n",
+					"\r\n",
+					"#Read from SQL table using MS SQL Connector\r\n",
+					"print(\"read data from SQL server table  \")\r\n",
+					"jdbcDF = spark.read \\\r\n",
+					"        .format(\"com.microsoft.sqlserver.jdbc.SQLServerDriver\") \\\r\n",
+					"        .option(\"url\", url) \\\r\n",
+					"        .option(\"dbtable\", dbtable) \\\r\n",
+					"        .option(\"user\", user) \\\r\n",
+					"        .option(\"password\", password).load()\r\n",
+					"\r\n",
+					"jdbcDF.show(5)"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import os\r\n",
+					"\r\n",
+					"databases = {\r\n",
+					"    'vin_group_db': 'RPOdataTEAM', # server DB - vin table\r\n",
+					"    'vin_group_server': 'ray-azuresql2-server.database.windows.net', # server host DB - vin table\r\n",
+					"    'nhtsa_db': 'vPICList_lite_2023_07', # NHTSA source DB\r\n",
+					"    'nhtsa_server': 'ray-azuresql2-server.database.windows.net', # NHTSA source host DB\r\n",
+					"    'output_db': 'RPOdataTEAM', # output for Python results transofmration\r\n",
+					"    'output_server': 'ray-azuresql2-server.database.windows.net', # output for Python results.... host.\r\n",
+					"    'output_table': 'NHTSA_Master' # output for Python results.... table. AKA NHTSA master table?\r\n",
+					"}\r\n",
+					"\r\n",
+					"\"\"\"\r\n",
+					"The configuration is set to decode against RAO's\r\n",
+					"copy of NHTSA's database.\r\n",
+					"\r\n",
+					"\"\"\""
+				]
+			}
+		]
+	}
+}

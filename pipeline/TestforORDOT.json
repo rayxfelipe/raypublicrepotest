@@ -1,0 +1,324 @@
+{
+	"name": "TestforORDOT",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_u7w",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_u7w",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.schema}.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "dlsynapsefromscratchfs/OR-DOT/@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"validateDataConsistency": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_u7w",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_u7w",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Table_1"
+						},
+						"destination": {
+							"fileName": "dboTable_1.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "action"
+						},
+						"destination": {
+							"fileName": "dssaction.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "agent"
+						},
+						"destination": {
+							"fileName": "dssagent.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "agent_instance"
+						},
+						"destination": {
+							"fileName": "dssagent_instance.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "agent_version"
+						},
+						"destination": {
+							"fileName": "dssagent_version.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "configuration"
+						},
+						"destination": {
+							"fileName": "dssconfiguration.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "EnumType"
+						},
+						"destination": {
+							"fileName": "dssEnumType.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "MetaInformation"
+						},
+						"destination": {
+							"fileName": "dssMetaInformation.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "scaleunitlimits"
+						},
+						"destination": {
+							"fileName": "dssscaleunitlimits.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "ScheduleTask"
+						},
+						"destination": {
+							"fileName": "dssScheduleTask.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "subscription"
+						},
+						"destination": {
+							"fileName": "dsssubscription.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "syncgroup"
+						},
+						"destination": {
+							"fileName": "dsssyncgroup.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "syncgroupmember"
+						},
+						"destination": {
+							"fileName": "dsssyncgroupmember.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "SyncObjectData"
+						},
+						"destination": {
+							"fileName": "dssSyncObjectData.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "task"
+						},
+						"destination": {
+							"fileName": "dsstask.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "taskdependency"
+						},
+						"destination": {
+							"fileName": "dsstaskdependency.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "UIHistory"
+						},
+						"destination": {
+							"fileName": "dssUIHistory.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "dss",
+							"table": "userdatabase"
+						},
+						"destination": {
+							"fileName": "dssuserdatabase.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "Customer"
+						},
+						"destination": {
+							"fileName": "SalesLTCustomer.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "Product"
+						},
+						"destination": {
+							"fileName": "SalesLTProduct.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "TaskHosting",
+							"table": "Job"
+						},
+						"destination": {
+							"fileName": "TaskHostingJob.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "TaskHosting",
+							"table": "MessageQueue"
+						},
+						"destination": {
+							"fileName": "TaskHostingMessageQueue.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "TaskHosting",
+							"table": "MetaInformation"
+						},
+						"destination": {
+							"fileName": "TaskHostingMetaInformation.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "TaskHosting",
+							"table": "Schedule"
+						},
+						"destination": {
+							"fileName": "TaskHostingSchedule.csv"
+						}
+					},
+					{
+						"source": {
+							"schema": "TaskHosting",
+							"table": "ScheduleTask"
+						},
+						"destination": {
+							"fileName": "TaskHostingScheduleTask.csv"
+						}
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-20T18:14:05Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

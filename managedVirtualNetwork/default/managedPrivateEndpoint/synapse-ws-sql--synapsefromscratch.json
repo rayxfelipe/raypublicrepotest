@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-sql--synapsefromscratch",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch",
+		"groupId": "sql",
+		"fqdns": [
+			"synapsefromscratch.ad615057-70f5-4318-8868-f9fe8b7a7e63.sql.azuresynapse.net"
+		]
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"name": "Notebook 2",
+	"properties": {
+		"folder": {
+			"name": "WA-DOL/Run Powershell"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "0b0fbb0a-6dcf-4edb-8350-c0a3375ba96d"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"import subprocess\r\n",
+					"command='Write-Host(\"Installing module PSWindowsUpdate if not already installed...\")'\r\n",
+					"subprocess.Popen('powershell -command '+\"'\"+command+\"'\")"
+				]
+			}
+		]
+	}
+}

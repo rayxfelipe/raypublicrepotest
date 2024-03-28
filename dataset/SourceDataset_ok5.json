@@ -1,0 +1,20 @@
+{
+	"name": "SourceDataset_ok5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "StorageForAzureBatch",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Sample Excel File.xlsx",
+				"folderPath": "OR-HCS",
+				"container": "dlsynapsefromscratchfs"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

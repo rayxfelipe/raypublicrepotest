@@ -1,0 +1,20 @@
+{
+	"name": "DestinationDataset_ok5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "excelcopy.xls",
+				"folderPath": "OR-HCS/test",
+				"fileSystem": "dlsynapsefromscratchfs"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

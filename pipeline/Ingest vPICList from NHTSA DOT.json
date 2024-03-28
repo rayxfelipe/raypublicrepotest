@@ -1,0 +1,266 @@
+{
+	"name": "Ingest vPICList from NHTSA DOT",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Bak file from NHTSA",
+				"description": "Note, for reference:\nvPICList_lite_2023_08.bak.zip\nconcat('vPICList_lite_2023_',formatDateTime(utcNow(),'MM'),'.bak.zip')\nconcat('vPICList_lite_2023_',formatDateTime(utcNow(),'yyyy'),'.bak.zip')\n",
+				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "NHTSADB",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "NHTSA_DB_Destination",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Restore Bak file",
+				"description": "Restore Bak file from Data Lake into SQL VM",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "5 mins",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderStoredProcedureName": "[dbo].[sp_forsynapse_createdb]",
+						"storedProcedureParameters": {
+							"dbName": {
+								"type": "String",
+								"value": "testdb"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "NHTSDB_IntDS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "NHTSA_DB_RestorOutput",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "5 mins",
+				"type": "Wait",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
+					{
+						"activity": "Call Pipeline SQL VM Start Stop to START",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 300
+				}
+			},
+			{
+				"name": "Run Decode Vin Script",
+				"type": "SynapseNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
+					{
+						"activity": "Restore Bak file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "decode_vin_forsynapse_kv_v3",
+						"type": "NotebookReference"
+					},
+					"snapshot": true,
+					"sparkPool": {
+						"referenceName": "SparkPool11",
+						"type": "BigDataPoolReference"
+					}
+				}
+			},
+			{
+				"name": "Call Pipeline SQL VM Start Stop to START",
+				"description": "Start VM",
+				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
+					{
+						"activity": "Get Bak file from NHTSA",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL VM Start Stop or Stop",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"SubscriptionId": "499bc654-f84c-46c2-952c-b30be508f78c",
+						"ResourceGroupName": "azuresqlvm2-demo",
+						"Region": "West US 3",
+						"VMName": "ray-azuresqlvm2"
+					}
+				}
+			},
+			{
+				"name": "Call Pipeline SQL VM Start Stop to STOP",
+				"description": "Stop VM",
+				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
+					{
+						"activity": "Run Decode Vin Script",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SQL VM Start Stop or Stop",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"SubscriptionId": "499bc654-f84c-46c2-952c-b30be508f78c",
+						"ResourceGroupName": "azuresqlvm2-demo",
+						"Region": "West US 3",
+						"VMName": "ray-azuresqlvm2"
+					}
+				}
+			},
+			{
+				"name": "Get Bak failed",
+				"type": "Fail",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
+					{
+						"activity": "Get Bak file from NHTSA",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"message": {
+						"value": "@concat('vPICList_lite_',formatDateTime(utcNow(),'yyyy'),'_',formatDateTime(utcNow(),'MM'),'.bak.zip')\n",
+						"type": "Expression"
+					},
+					"errorCode": "500"
+				}
+			}
+		],
+		"variables": {
+			"Command": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "WA-DOL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-20T18:34:27Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

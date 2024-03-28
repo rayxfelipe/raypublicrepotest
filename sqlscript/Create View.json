@@ -1,0 +1,20 @@
+{
+	"name": "Create View",
+	"properties": {
+		"folder": {
+			"name": "OR-DHS"
+		},
+		"content": {
+			"query": "CREATE VIEW covid_cases AS\nSELECT TOP (100) [date]\n,[area]\n,[area_type]\n,[population]\n,[cases]\n,[cumulative_cases]\n,[deaths]\n,[cumulative_deaths]\n,[total_tests]\n,[cumulative_total_tests]\n,[positive_tests]\n,[cumulative_positive_tests]\n,[reported_cases]\n,[cumulative_reported_cases]\n,[reported_deaths]\n,[cumulative_reported_deaths]\n,[reported_tests]\n FROM [dbo].[cases]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "covid database",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

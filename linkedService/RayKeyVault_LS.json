@@ -1,0 +1,11 @@
+{
+	"name": "RayKeyVault_LS",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://RayFKeyVault.vault.azure.net/"
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"name": "NHTSDB_IntDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "NHTSA SQLVM",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "WA-DOL"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

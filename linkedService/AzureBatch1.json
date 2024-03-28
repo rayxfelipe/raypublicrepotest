@@ -1,0 +1,21 @@
+{
+	"name": "AzureBatch1",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBatch",
+		"typeProperties": {
+			"batchUri": "https://rayazurebatch.westus.batch.azure.com",
+			"poolName": "rayazurebatchpool3",
+			"accountName": "rayazurebatch",
+			"linkedServiceName": {
+				"referenceName": "StorageForAzureBatch",
+				"type": "LinkedServiceReference"
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

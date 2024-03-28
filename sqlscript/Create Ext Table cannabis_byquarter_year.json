@@ -1,0 +1,20 @@
+{
+	"name": "Create Ext Table cannabis_byquarter_year",
+	"properties": {
+		"folder": {
+			"name": "OR-DHS/Sep 18 2023"
+		},
+		"content": {
+			"query": "\n-- TEMPLATE\nCREATE EXTERNAL TABLE byquarter_year\nWITH (\n    LOCATION = '/mycontainer/myfolder/',\n    DATA_SOURCE = MyAzureBlobStorage,\n    FILE_FORMAT = MyCsvFormat,\n)\nAS\nSELECT Column1, Column2, Column3\n    FROM MyExternalTable1;\n\n\n\nCREATE EXTERNAL TABLE dbo.byquarter_year_csv\n\tWITH (\n\tLOCATION = 'OR-DHS/cannabis/byquarter_year_csv/csv_output.csv',\n\tDATA_SOURCE = [dlsynapsefromscratchfs_dlsynapsefromscratchacct_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\nAS\nSELECT * FROM [dbo].[byquarter]\nWHERE YEAR = 2021\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "cannabis",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,112 @@
+{
+	"name": "SQL VM Start Stop backup",
+	"properties": {
+		"activities": [
+			{
+				"name": "Check Azure VM Status",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": {
+						"value": "@concat('https://management.azure.com/subscriptions/',pipeline().parameters.SubscriptionId,'/resourceGroups/',pipeline().parameters.ResourceGroupName,'/providers/Microsoft.Compute/virtualMachines/',pipeline().parameters.VMName,'/InstanceView?api-version=2020-12-01') ",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.azure.com/"
+					}
+				}
+			},
+			{
+				"name": "Start or Deallocate",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Check Azure VM Status",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@or(and(equals(activity('Check Azure VM Status').output.statuses[1].displayStatus,'VM deallocated'), equals(pipeline().parameters.Command,'Start')),and(equals(activity('Check Azure VM Status').output.statuses[1].displayStatus,'VM running'), equals(pipeline().parameters.Command,'Deallocate')))",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Start or Pause Azure VM",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 3,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"url": {
+									"value": "@concat('https://management.azure.com/subscriptions/',pipeline().parameters.SubscriptionId,'/resourceGroups/',pipeline().parameters.ResourceGroupName,'/providers/Microsoft.Compute/virtualMachines/',pipeline().parameters.VMName,'/',pipeline().parameters.Command) ",
+									"type": "Expression"
+								},
+								"connectVia": {
+									"referenceName": "AutoResolveIntegrationRuntime",
+									"type": "IntegrationRuntimeReference"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://management.azure.com"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"SubscriptionId": {
+				"type": "string",
+				"defaultValue": "499bc654-f84c-46c2-952c-b30be508f78c"
+			},
+			"ResourceGroupName": {
+				"type": "string",
+				"defaultValue": "azuresqlvm2-demo"
+			},
+			"Region": {
+				"type": "string",
+				"defaultValue": "West US 3"
+			},
+			"VMName": {
+				"type": "string",
+				"defaultValue": "ray-azuresqlvm2"
+			},
+			"Command": {
+				"type": "string",
+				"defaultValue": "Start"
+			}
+		},
+		"folder": {
+			"name": "WA-DOL/VM StopStart"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-30T15:07:51Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

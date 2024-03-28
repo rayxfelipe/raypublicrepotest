@@ -1,0 +1,146 @@
+{
+	"name": "SQL VM Start Stop or Stop",
+	"properties": {
+		"activities": [
+			{
+				"name": "Check Azure VM Status",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": {
+						"value": "@concat('https://management.azure.com/subscriptions/',pipeline().parameters.SubscriptionId,'/resourceGroups/',pipeline().parameters.ResourceGroupName,'/providers/Microsoft.Compute/virtualMachines/',pipeline().parameters.VMName,'/InstanceView?api-version=2020-12-01') ",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.azure.com/"
+					}
+				}
+			},
+			{
+				"name": "On or Off",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Check Azure VM Status",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('Check Azure VM Status').output.statuses[1].displayStatus,'VM deallocated')",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Set Command Variable to Deallocate",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Command",
+								"value": "Deallocate"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Set Command Variable Start",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Command",
+								"value": "Start"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Turn On or Off",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "On or Off",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": {
+						"value": "@concat('https://management.azure.com/subscriptions/',pipeline().parameters.SubscriptionId,'/resourceGroups/',pipeline().parameters.ResourceGroupName,'/providers/Microsoft.Compute/virtualMachines/',pipeline().parameters.VMName,'/',variables('Command'),'?api-version=2020-12-01') ",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.azure.com"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"SubscriptionId": {
+				"type": "string"
+			},
+			"ResourceGroupName": {
+				"type": "string"
+			},
+			"Region": {
+				"type": "string"
+			},
+			"VMName": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"Command": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "WA-DOL/VM StopStart"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-30T15:07:53Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

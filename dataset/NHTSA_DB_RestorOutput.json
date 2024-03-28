@@ -1,0 +1,27 @@
+{
+	"name": "NHTSA_DB_RestorOutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "WA-DOL"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "WA-DOL",
+				"fileSystem": "dlsynapsefromscratchfs"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,169 @@
+{
+	"name": "Pipeline 4 Process",
+	"properties": {
+		"activities": [
+			{
+				"name": "Notebook1",
+				"type": "SynapseNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "decode_vin_forsynapse_kv_v3",
+						"type": "NotebookReference"
+					},
+					"parameters": {
+						"ray_a": {
+							"value": "1",
+							"type": "string"
+						},
+						"ray_b": {
+							"value": "100",
+							"type": "string"
+						}
+					},
+					"snapshot": true,
+					"sparkPool": {
+						"referenceName": "SparkPool11",
+						"type": "BigDataPoolReference"
+					},
+					"executorSize": "Small",
+					"conf": {
+						"spark.dynamicAllocation.enabled": true
+					},
+					"driverSize": "Small"
+				}
+			},
+			{
+				"name": "Notebook2",
+				"type": "SynapseNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "decode_vin_forsynapse_kv_v3",
+						"type": "NotebookReference"
+					},
+					"parameters": {
+						"ray_a": {
+							"value": "101",
+							"type": "string"
+						},
+						"ray_b": {
+							"value": "200",
+							"type": "string"
+						}
+					},
+					"snapshot": true,
+					"sparkPool": {
+						"referenceName": "SparkPool12",
+						"type": "BigDataPoolReference"
+					},
+					"executorSize": "Small",
+					"conf": {
+						"spark.dynamicAllocation.enabled": true
+					},
+					"driverSize": "Small"
+				}
+			},
+			{
+				"name": "Notebook3",
+				"type": "SynapseNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "decode_vin_forsynapse_kv_v3",
+						"type": "NotebookReference"
+					},
+					"parameters": {
+						"ray_a": {
+							"value": "201",
+							"type": "string"
+						},
+						"ray_b": {
+							"value": "300",
+							"type": "string"
+						}
+					},
+					"snapshot": true,
+					"sparkPool": {
+						"referenceName": "SparkPool13",
+						"type": "BigDataPoolReference"
+					},
+					"executorSize": "Small",
+					"conf": {
+						"spark.dynamicAllocation.enabled": true
+					},
+					"driverSize": "Small"
+				}
+			},
+			{
+				"name": "Notebook4",
+				"type": "SynapseNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "decode_vin_forsynapse_kv_v3",
+						"type": "NotebookReference"
+					},
+					"parameters": {
+						"ray_a": {
+							"value": "301",
+							"type": "string"
+						},
+						"ray_b": {
+							"value": "400",
+							"type": "string"
+						}
+					},
+					"snapshot": true,
+					"sparkPool": {
+						"referenceName": "SparkPool14",
+						"type": "BigDataPoolReference"
+					},
+					"executorSize": "Small",
+					"conf": {
+						"spark.dynamicAllocation.enabled": true
+					},
+					"driverSize": "Small"
+				}
+			}
+		],
+		"folder": {
+			"name": "WA-DOL/ParallelNotebook"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-30T15:06:23Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

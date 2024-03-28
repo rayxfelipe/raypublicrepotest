@@ -1,0 +1,17 @@
+{
+	"name": "CETAS_Movies",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL TABLE dbo.Movies\n\tWITH (\n\tLOCATION = 'OR-BHDW/cannabis/Movies',\n\tDATA_SOURCE = [dlsynapsefromscratchfs_dlsynapsefromscratchacct_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\nAS\nSELECT Movie, Title, Genres, Year, Rating, RottenTomato\nFROM\n    OPENROWSET(\n        BULK 'https://dlsynapsefromscratchacct.dfs.core.windows.net/dlsynapsefromscratchfs/OR-BHDW/moviesDB_OR.csv',\n        FORMAT = 'CSV',\n        HEADER_ROW = TRUE,\n        PARSER_VERSION = '2.0'\n    ) AS [result]\n\n\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "cannabis",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

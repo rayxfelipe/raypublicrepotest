@@ -1,0 +1,17 @@
+{
+	"name": "SourceDataset_9nk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ray_azuresql2_server",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "Customer"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

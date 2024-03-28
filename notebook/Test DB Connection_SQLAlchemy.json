@@ -1,0 +1,233 @@
+{
+	"name": "Test DB Connection_SQLAlchemy",
+	"properties": {
+		"folder": {
+			"name": "WA-DOL/DB Connection"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool12",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 1,
+			"runAsWorkspaceSystemIdentity": true,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "true",
+				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.maxExecutors": "4",
+				"spark.autotune.trackingId": "a738bb59-5fd4-458b-9dd4-b0c365b9d6fa"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool12",
+				"name": "SparkPool12",
+				"type": "Spark",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool12",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import os\r\n",
+					"\r\n",
+					"databases = {\r\n",
+					"    'vin_group_db': 'RPOdataTEAM_Copy', # server DB - vin table\r\n",
+					"    'vin_group_server': 'ray-azuresql-server.database.windows.net', # server host DB - vin table\r\n",
+					"    'nhtsa_db': 'vPICList_Lite_Sep19', # NHTSA source DB\r\n",
+					"    'nhtsa_server': 'ray-azuresqlvm2.westus3.cloudapp.azure.com,1433', # NHTSA source host DB\r\n",
+					"    'output_db': 'RPOdataTEAM_Copy', # output for Python results transformation\r\n",
+					"    'output_server': 'ray-azuresql-server.database.windows.net', # output for Python results.... host.\r\n",
+					"    'output_table': 'NHTSA_Master' # output for Python results.... table. AKA NHTSA master table?\r\n",
+					"}\r\n",
+					"\r\n",
+					"\"\"\"\r\n",
+					"The configuration is set to decode against RAO's\r\n",
+					"copy of NHTSA's database.\r\n",
+					"\r\n",
+					"\"\"\""
+				],
+				"execution_count": 13
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# third party packages\r\n",
+					"import sqlalchemy\r\n",
+					"import pyodbc\r\n",
+					"import pandas as pd\r\n",
+					"import urllib\r\n",
+					"import argparse # used by parse_args\r\n",
+					"import sys\r\n",
+					"import datetime\r\n",
+					"import os\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#username = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-username','RayKeyVault_LS')\r\n",
+					"#mypassword = mssparkutils.credentials.getSecret('RayFKeyVault','raysecret-password','RayKeyVault_LS')\r\n",
+					"\r\n",
+					"#RAY Temp\r\n",
+					"mypassword = \"abcd1234!\"\r\n",
+					"username2 = \"CloudSA99f7c585\"\r\n",
+					""
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"tags": [
+						"parameters"
+					]
+				},
+				"source": [
+					"params = urllib.parse.quote_plus(\"DRIVER={ODBC+Driver+18+for+SQL+Server};SERVER=\" + databases['vin_group_server'] + \";DATABASE=\" + databases['vin_group_db']\r\n",
+					"    + \";UID=\" + username2 + \"; PWD=\" + mypassword)\r\n",
+					"\r\n",
+					"engine = sqlalchemy.create_engine(\"mssql+pyodbc:///?odbc_connect=%s\" % params)\r\n",
+					"   \r\n",
+					""
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"mostRecentVinGroups = pd.read_sql_query(\"SELECT top 1 name \\\r\n",
+					"                                        FROM sys.tables \\\r\n",
+					"                                        WHERE name like 'DRIVESVINGroups%' \\\r\n",
+					"                                        ORDER BY create_date DESC\", con = engine)\r\n",
+					"\r\n",
+					"\r\n",
+					"print(mostRecentVinGroups.name[0])\r\n",
+					""
+				],
+				"execution_count": 17
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import subprocess\r\n",
+					"command = 'nslookup ray-azuresql-server.database.windows.netxxx'\r\n",
+					"r = subprocess.check_output(command, shell=True, executable='/bin/bash')\r\n",
+					"print(r)"
+				],
+				"execution_count": 20
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import datetime\r\n",
+					"\r\n",
+					"now = datetime.datetime.now()\r\n",
+					"\r\n",
+					"print(\"END: Current Time =\", now.strftime(\"%H:%M:%S\"))\r\n",
+					"\r\n",
+					""
+				]
+			}
+		]
+	}
+}

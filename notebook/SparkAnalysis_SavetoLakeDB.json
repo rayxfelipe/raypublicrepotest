@@ -1,0 +1,205 @@
+{
+	"name": "SparkAnalysis_SavetoLakeDB",
+	"properties": {
+		"folder": {
+			"name": "WA-DOL/DB Connection"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "5f776f88-d145-45f6-a9e5-f7473d42f8dc"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisTaxRevenues.csv', format='csv', header='true')\r\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.show()\r\n",
+					"df.printSchema()\r\n",
+					"df.select('Calendar_Year').show()\r\n",
+					"df.filter(df['Calendar_Year'] == \"2018\").show()"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pd_df = df.toPandas()\r\n",
+					"pd_df.info()\r\n",
+					"pd_df.describe()\r\n",
+					"pd_df.head()"
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pd_df['Calendar_Year'] = pd_df['Calendar_Year'].astype(int)\r\n",
+					"pd_df['Quarter'] = pd_df['Quarter'].astype(str)\r\n",
+					"pd_df['Excise_Tax'] = pd_df['Excise_Tax'].astype(int)\r\n",
+					"pd_df['Cultivation_Tax'] = pd_df['Cultivation_Tax'].astype(str)\r\n",
+					"pd_df['Total_Tax'] = pd_df['Total_Tax'].astype(int)\r\n",
+					"pd_df['Taxable_Sales'] = pd_df['Taxable_Sales'].astype(int)\r\n",
+					"\r\n",
+					"import matplotlib.pyplot as plt\r\n",
+					"pd_df.hist(bins=10, figsize=(15,8))\r\n",
+					"plt.show()"
+				],
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pd_df.plot(figsize=(10,5))\r\n",
+					"pd_df.plot.scatter(x='Excise_Tax', y='Calendar_Year', figsize=(5,5))\r\n",
+					"# pd_df.plot.scatter(x='Number of Returns Filed', y='16. Total Cannabis Excise Tax Due', figsize=(5,5))\r\n",
+					"\r\n",
+					"plt.show()"
+				],
+				"execution_count": 10
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df.printSchema()\r\n",
+					"# display(df.limit(10))\r\n",
+					"display(df)\r\n",
+					"\r\n",
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"sparksql_df = spark.sql(\"\"\"\r\n",
+					"   SELECT *\r\n",
+					"   FROM cannabis.taxrevenue\r\n",
+					"   WHERE Calendar_Year == \"2019\"\r\n",
+					"\"\"\") \r\n",
+					"display(sparksql_df)\r\n",
+					"sparksql_df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue2019\")"
+				],
+				"execution_count": 12
+			}
+		]
+	}
+}

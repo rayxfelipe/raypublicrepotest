@@ -1,11 +1,11 @@
 {
-	"name": "Collate Change",
+	"name": "Drop External Table",
 	"properties": {
 		"folder": {
-			"name": "OR-DHS"
+			"name": "OR-DHS/Sep 18 2023"
 		},
 		"content": {
-			"query": "ALTER DATABASE CURRENT COLLATE Latin1_General_100_BIN2_UTF8",
+			"query": "drop EXTERNAL table dbo.byquarter",
 			"metadata": {
 				"language": "sql"
 			},

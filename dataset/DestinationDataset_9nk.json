@@ -1,0 +1,25 @@
+{
+	"name": "DestinationDataset_9nk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "santaclaratest2.csv",
+				"folderPath": "WA-DOL",
+				"fileSystem": "dlsynapsefromscratchfs"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -2,7 +2,7 @@
 	"name": "View",
 	"properties": {
 		"folder": {
-			"name": "BHDW"
+			"name": "OR-DHS"
 		},
 		"content": {
 			"query": "CREATE VIEW [QuarterSales_view]\nAS\nSELECT\n    [YEAR], [QUARTER], [ACTIVE], [CEASED]\nFROM\n    OPENROWSET(\n        BULK 'https://raysynapsemgdvnetdlacct.dfs.core.windows.net/raysynapsemgdvnetdlacctfs/DCC/CannabisAccountSitesByQuarter.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW = TRUE\n    ) AS [result]\nWHERE [YEAR] = '2022'\nGO\n",
@@ -10,7 +10,7 @@
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "BHDW",
+				"databaseName": "master",
 				"poolName": "Built-in"
 			},
 			"resultLimit": 5000

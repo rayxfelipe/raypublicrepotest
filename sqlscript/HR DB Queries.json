@@ -1,0 +1,17 @@
+{
+	"name": "HR DB Queries",
+	"properties": {
+		"content": {
+			"query": "-- QUERYING DATA\nSELECT * FROM employees;\n\nSELECT \n    first_name, \n    last_name, \n    salary, \n    salary * 1.05\nFROM\n    employees;\n\nSELECT \n    first_name, \n    last_name, \n    salary, \n    salary * 1.05 AS new_salary\nFROM\n    employees;\n\n\n-- FILTERING DATA\nSELECT \n    DISTINCT salary\nFROM\n    employees\nORDER BY salary DESC;\n\nSELECT\n\tjob_id,\n\tsalary\nFROM\n\temployees\nORDER BY\n\tjob_id,\n\tsalary DESC;\n\nSELECT DISTINCT\n\tjob_id,\n\tsalary\nFROM\n\temployees\nORDER BY\n\tjob_id,\n\tsalary DESC;\n\n\nSELECT \n    employee_id, first_name, last_name, department_id\nFROM\n    employees\nWHERE\n    department_id <> 8\n        AND department_id <> 10\nORDER BY first_name , last_name; \n\nSELECT \n    employee_id, first_name, last_name, salary\nFROM\n    employees\nWHERE\n    salary > 10000\nORDER BY salary DESC;\n\nSELECT \n    first_name, last_name, salary\nFROM\n    employees\nWHERE\n    salary > 5000 AND salary < 7000\nORDER BY salary;\n\nSELECT \n    first_name,\n    last_name,\n    hire_date,\n    CASE (2000 - YEAR(hire_date))\n        WHEN 1 THEN '1 year'\n        WHEN 3 THEN '3 years'\n        WHEN 5 THEN '5 years'\n        WHEN 10 THEN '10 years'\n        WHEN 15 THEN '15 years'\n        WHEN 20 THEN '20 years'\n        WHEN 25 THEN '25 years'\n        WHEN 30 THEN '30 years'\n    END aniversary\nFROM\n    employees\nORDER BY first_name;\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "HR Database",
+				"poolName": "HR Database"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-custstgacct--synapsefromscratch-dlsynapsefromscratchacct",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Storage/storageAccounts/dlsynapsefromscratchacct",
+		"groupId": "dfs",
+		"fqdns": [
+			"dlsynapsefromscratchacct.dfs.core.windows.net"
+		]
+	}
+}

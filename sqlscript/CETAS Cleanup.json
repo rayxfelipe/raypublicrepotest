@@ -2,15 +2,15 @@
 	"name": "CETAS Cleanup",
 	"properties": {
 		"folder": {
-			"name": "BHDW"
+			"name": "OR-DHS"
 		},
 		"content": {
-			"query": "drop external table dbo.byquarter\ndrop external table dbo.byquarter2021\ndrop external table dbo.ClientorMedicaid\ndrop external data source raysynapsemgdvnetdlacctfs_raysynapsemgdvnetdlacct_dfs_core_windows_net\ndrop external FILE FORMAT SynapseDelimitedTextFormat\n",
+			"query": "drop EXTERNAL table dbo.Movies\ndrop external table dbo.byquarter\ndrop external table dbo.byquarter2021\ndrop external table dbo.ClientorMedicaid\ndrop external data source raysynapsemgdvnetdlacctfs_raysynapsemgdvnetdlacct_dfs_core_windows_net\ndrop external FILE FORMAT SynapseDelimitedTextFormat\n",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "BHDW",
+				"databaseName": "cannabis",
 				"poolName": "Built-in"
 			},
 			"resultLimit": 5000

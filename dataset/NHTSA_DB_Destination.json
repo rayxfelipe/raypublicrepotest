@@ -1,0 +1,26 @@
+{
+	"name": "NHTSA_DB_Destination",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "WA-DOL"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('vPICList_lite_',formatDateTime(utcNow(),'yyyy'),'_',formatDateTime(utcNow(),'MM'),'.bak.zip')",
+					"type": "Expression"
+				},
+				"folderPath": "WA-DOL",
+				"fileSystem": "dlsynapsefromscratchfs"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

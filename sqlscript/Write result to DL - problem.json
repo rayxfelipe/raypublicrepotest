@@ -1,0 +1,20 @@
+{
+	"name": "Write result to DL - problem",
+	"properties": {
+		"folder": {
+			"name": "OR-DHS/Sep 18 2023"
+		},
+		"content": {
+			"query": "INSERT INTO OPENROWSET(\n    BULK 'https://myaccount.blob.core.windows.net/mycontainer/myfile.csv',\n    FORMAT = 'CSV',\n    DATA_SOURCE = 'MyDataSource',\n    CREDENTIAL = 'MyCredential'\n)\nSELECT *\nFROM MyTable;\n\n\nCREATE EXTERNAL TABLE dbo.byquarter_year\n\tWITH (\n\tLOCATION = 'OR-DHS/cannabis/byquarter_year',\n\tDATA_SOURCE = [dlsynapsefromscratchfs_dlsynapsefromscratchacct_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\nAS\nSELECT * FROM [dbo].[byquarter]\nWHERE YEAR = 2021\n\n\n\nINSERT INTO OPENROWSET(\n    BULK 'https://dlsynapsefromscratchacct.dfs.core.windows.net/dlsynapsefromscratchfs/OR-DHS/cannabis/byquarter_year/test.csv',\n    FORMAT = 'CSV',\n    DATA_SOURCE = [dlsynapsefromscratchfs_dlsynapsefromscratchacct_dfs_core_windows_net],\n    CREDENTIAL = 'MyCredential'\n)\nSELECT * FROM [dbo].[byquarter]\nWHERE YEAR = 2021\n\nSELECT * FROM [dbo].[byquarter]\nWHERE YEAR = 2021\nINTO 'OR-DHS/cannabis/byquarter_year'\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "cannabis",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

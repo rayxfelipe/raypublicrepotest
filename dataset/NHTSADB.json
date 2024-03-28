@@ -1,0 +1,28 @@
+{
+	"name": "NHTSADB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "NHTSA DOT",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "WA-DOL"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@concat('vPICList_lite_',formatDateTime(utcNow(),'yyyy'),'_',formatDateTime(utcNow(),'MM'),'.bak.zip')",
+					"type": "Expression"
+				}
+			},
+			"compression": {
+				"type": "ZipDeflate",
+				"level": "Optimal"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

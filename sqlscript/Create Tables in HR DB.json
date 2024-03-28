@@ -1,0 +1,17 @@
+{
+	"name": "Create Tables in HR DB",
+	"properties": {
+		"content": {
+			"query": "\nCREATE TABLE regions (\n\tregion_id INT IDENTITY(1,1),\n\tregion_name VARCHAR (25) DEFAULT NULL\n);\n\nCREATE TABLE countries (\n\tcountry_id CHAR (2),\n\tcountry_name VARCHAR (40) DEFAULT NULL,\n\tregion_id INT NOT NULL\n\t--FOREIGN KEY (region_id) REFERENCES regions (region_id) ON DELETE CASCADE ON UPDATE CASCADE\n);\n\nCREATE TABLE locations (\n\tlocation_id INT IDENTITY(1,1),\n\tstreet_address VARCHAR (40) DEFAULT NULL,\n\tpostal_code VARCHAR (12) DEFAULT NULL,\n\tcity VARCHAR (30) NOT NULL,\n\tstate_province VARCHAR (25) DEFAULT NULL,\n\tcountry_id CHAR (2) NOT NULL\n\t--FOREIGN KEY (country_id) REFERENCES countries (country_id) ON DELETE CASCADE ON UPDATE CASCADE\n);\n\nCREATE TABLE jobs (\n\tjob_id INT IDENTITY(1,1),\n\tjob_title VARCHAR (35) NOT NULL,\n\tmin_salary DECIMAL (8, 2) DEFAULT NULL,\n\tmax_salary DECIMAL (8, 2) DEFAULT NULL\n);\n\nCREATE TABLE departments (\n\tdepartment_id INT IDENTITY(1,1),\n\tdepartment_name VARCHAR (30) NOT NULL,\n\tlocation_id INT DEFAULT NULL\n\t--FOREIGN KEY (location_id) REFERENCES locations (location_id) ON DELETE CASCADE ON UPDATE CASCADE\n);\n\nCREATE TABLE employees (\n\temployee_id INT IDENTITY(1,1),\n\tfirst_name VARCHAR (20) DEFAULT NULL,\n\tlast_name VARCHAR (25) NOT NULL,\n\temail VARCHAR (100) NOT NULL,\n\tphone_number VARCHAR (20) DEFAULT NULL,\n\thire_date DATE NOT NULL,\n\tjob_id INT NOT NULL,\n\tsalary DECIMAL (8, 2) NOT NULL,\n\tmanager_id INT DEFAULT NULL,\n\tdepartment_id INT DEFAULT NULL\n\t--FOREIGN KEY (job_id) REFERENCES jobs (job_id) ON DELETE CASCADE ON UPDATE CASCADE,\n\t--FOREIGN KEY (department_id) REFERENCES departments (department_id) ON DELETE CASCADE ON UPDATE CASCADE,\n\t--FOREIGN KEY (manager_id) REFERENCES employees (employee_id)\n);\n\nCREATE TABLE dependents (\n\tdependent_id INT IDENTITY(1,1),\n\tfirst_name VARCHAR (50) NOT NULL,\n\tlast_name VARCHAR (50) NOT NULL,\n\trelationship VARCHAR (25) NOT NULL,\n\temployee_id INT NOT NULL\n\t--FOREIGN KEY (employee_id) REFERENCES employees (employee_id) ON DELETE CASCADE ON UPDATE CASCADE\n);",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "HR Database",
+				"poolName": "HR Database"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
