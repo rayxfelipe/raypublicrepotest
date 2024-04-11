@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "b44c8e0d-8674-4cdd-a442-5282789ca519"
+				"spark.autotune.trackingId": "76dd624d-1906-4037-952f-a62501787767"
 			}
 		},
 		"metadata": {
@@ -107,7 +107,7 @@
 					"\r\n",
 					"deltaTable.toDF().show()"
 				],
-				"execution_count": 3
+				"execution_count": 1
 			}
 		]
 	}
