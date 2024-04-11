@@ -1,0 +1,114 @@
+{
+	"name": "Delta Lake Example",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool12",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 1,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "true",
+				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.maxExecutors": "4",
+				"spark.autotune.trackingId": "b44c8e0d-8674-4cdd-a442-5282789ca519"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool12",
+				"name": "SparkPool12",
+				"type": "Spark",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool12",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": true
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"data = spark.range(5, 10)\r\n",
+					"data.write.format(\"delta\").mode(\"overwrite\").save(\"/tmp/delta-table\")"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from delta.tables import *\r\n",
+					"from pyspark.sql.functions import *\r\n",
+					"\r\n",
+					"deltaTable = DeltaTable.forPath(spark, \"/tmp/delta-table\")\r\n",
+					"\r\n",
+					"# Update every even value by adding 100 to it\r\n",
+					"deltaTable.update(\r\n",
+					"  condition = expr(\"id % 2 == 0\"),\r\n",
+					"  set = { \"id\": expr(\"id + 100\") })\r\n",
+					"\r\n",
+					"# Delete every even value\r\n",
+					"deltaTable.delete(condition = expr(\"id % 2 == 0\"))\r\n",
+					"\r\n",
+					"# Upsert (merge) new data\r\n",
+					"newData = spark.range(0, 20)\r\n",
+					"\r\n",
+					"deltaTable.alias(\"oldData\") \\\r\n",
+					"  .merge(\r\n",
+					"    newData.alias(\"newData\"),\r\n",
+					"    \"oldData.id = newData.id\") \\\r\n",
+					"  .whenMatchedUpdate(set = { \"id\": col(\"newData.id\") }) \\\r\n",
+					"  .whenNotMatchedInsert(values = { \"id\": col(\"newData.id\") }) \\\r\n",
+					"  .execute()\r\n",
+					"\r\n",
+					"deltaTable.toDF().show()"
+				],
+				"execution_count": 3
+			}
+		]
+	}
+}
