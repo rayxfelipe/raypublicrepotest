@@ -1,0 +1,133 @@
+{
+	"name": "Read DL File System",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SampleSpark1",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "c3ebac69-3ac2-4ffd-a3ce-876588a1ea96"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SampleSpark1",
+				"name": "SampleSpark1",
+				"type": "Spark",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SampleSpark1",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://dlsynapsefromscratchfs@dlsynapsefromscratchacct.dfs.core.windows.net/OR-BHDW/cannabis/Movies/3ACD603B-B8F7-4453-97B1-72E5D958B57F_95_0-1.csv', format='csv'\r\n",
+					"## If header exists uncomment line below\r\n",
+					"##, header=True\r\n",
+					")\r\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"!pip install azure-storage-file-datalake\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from azure.storage.filedatalake import DataLakeServiceClient\r\n",
+					"\r\n",
+					"\r\n",
+					"def list_files(storage_account_name, storage_account_key, file_system_name):\r\n",
+					"    try:\r\n",
+					"        service_client = DataLakeServiceClient(account_url=\"{}://{}.dfs.core.windows.net\".format(\r\n",
+					"            \"https\", storage_account_name), credential=storage_account_key)\r\n",
+					"\r\n",
+					"        file_system_client = service_client.get_file_system_client(file_system_name)\r\n",
+					"\r\n",
+					"        paths = file_system_client.get_paths()\r\n",
+					"\r\n",
+					"        for path in paths:\r\n",
+					"            print(path.name)\r\n",
+					"\r\n",
+					"    except Exception as e:\r\n",
+					"        print(e)\r\n",
+					"\r\n",
+					"\r\n",
+					"# Replace with your storage account name, key and file system name\r\n",
+					"storage_account_name = \"dlsynapsefromscratchacct\"\r\n",
+					"storage_account_key = \"cxvFE17krNK3949U6SfetjT0o64iAhpwUS2SuxWTWsD+fGrS1vubbVPpdtc4wHOIJete85T/yP0J+AStMONYxw==\"\r\n",
+					"file_system_name = \"dlsynapsefromscratchfs\"\r\n",
+					"\r\n",
+					"list_files(storage_account_name, storage_account_key, file_system_name)"
+				],
+				"execution_count": 5
+			}
+		]
+	}
+}
