@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "675001ac-913b-4b5a-b2e3-d0cdb0af0725"
+				"spark.autotune.trackingId": "c7e5a92a-188b-4238-b466-706ff6e741b6"
 			}
 		},
 		"metadata": {
@@ -114,7 +114,7 @@
 					"\r\n",
 					"        #for path in paths:\r\n",
 					"        #    print(path.name)\r\n",
-					"            \r\n",
+					"        file_system_client.create_file(\"testwritefile.txt\")\r\n",
 					"        \r\n",
 					"    except Exception as e:\r\n",
 					"        print(e)\r\n",
@@ -135,7 +135,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 13
+				"execution_count": 17
 			}
 		]
 	}
