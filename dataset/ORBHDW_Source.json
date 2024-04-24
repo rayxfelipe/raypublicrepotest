@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": "OR-BHDW/CSVs_tobe_merged",
-				"fileSystem": "dlsynapsefromscratchfs"
+				"fileSystem": "dlsynapsefromscratchfsxx"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
