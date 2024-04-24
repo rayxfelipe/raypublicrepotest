@@ -21,7 +21,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFolderPath": "OR-BHDW/CSVs_tobe_merged",
-							"wildcardFileName": "*.csv",
+							"wildcardFileName": "*.csvxx",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
