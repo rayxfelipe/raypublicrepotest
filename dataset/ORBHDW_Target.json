@@ -12,7 +12,7 @@
 				"type": "AzureBlobFSLocation",
 				"fileName": "moviesDB_OR_Merged.csv",
 				"folderPath": "OR-BHDWx",
-				"fileSystem": "dlsynapsefromscratchfs"
+				"fileSystem": "dlsynapsefromscratchfsxx"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
