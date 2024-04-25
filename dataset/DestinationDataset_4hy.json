@@ -9,7 +9,7 @@
 			"table": "CannabisAccountSitesByQuarter"
 		},
 		"sqlPool": {
-			"referenceName": "SQL Dedicated 1",
+			"referenceName": "dedpool1",
 			"type": "SqlPoolReference"
 		}
 	}
