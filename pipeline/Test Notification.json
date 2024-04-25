@@ -1,6 +1,7 @@
 {
-	"name": "Merge CSVs",
+	"name": "Test Notification",
 	"properties": {
+		"description": "Using Alerts at the resource level",
 		"activities": [
 			{
 				"name": "Copy data1",
@@ -62,10 +63,27 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Fail1",
+				"type": "Fail",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"message": "fail message",
+					"errorCode": "1"
+				}
 			}
 		],
 		"folder": {
-			"name": "OR-DHS"
+			"name": "OR DOT"
 		},
 		"annotations": [],
 		"lastPublishTime": "2023-10-02T21:57:48Z"
