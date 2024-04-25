@@ -1,0 +1,114 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "synapsefromscratch"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureFunction1_functionKey": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=dedpool1"
+		},
+		"DataLake2_DemoRG_accountKey": {
+			"value": ""
+		},
+		"DataLake2_DemoRG2_accountKey": {
+			"value": ""
+		},
+		"LocalSynapse_LinkedService_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rayfelipesynapseworkspace.sql.azuresynapse.net;Initial Catalog=\"SQL Dedicated 1\""
+		},
+		"NHTSA SQLVM_connectionString": {
+			"value": ""
+		},
+		"NHTSASQLVM2_connectionString": {
+			"value": ""
+		},
+		"StorageForAzureBatch_connectionString": {
+			"value": ""
+		},
+		"ThisSynapse_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=synapsefromscratch.sql.azuresynapse.net;Initial Catalog=vPICList_lite_2023_07"
+		},
+		"WADOLAzureSQLServer_connectionString": {
+			"value": ""
+		},
+		"WADOLDB_LinkedService_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=ray-azuresql2-server.database.windows.net;Initial Catalog=RPOdataTEAM"
+		},
+		"WADOL_DB_LS_connectionString": {
+			"value": ""
+		},
+		"ray_azuresql2_server_connectionString": {
+			"value": ""
+		},
+		"rayazuresqldb_connectionString": {
+			"value": ""
+		},
+		"rayfelipesynapseworkspace-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:rayfelipesynapseworkspace.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"raysynapse5-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:raysynapse5.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"raysynapsemgdvnet-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:raysynapsemgdvnet.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapsefromscratch-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapsefromscratch.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"AzureBatch1_properties_typeProperties_batchUri": {
+			"value": "https://rayazurebatch.westus.batch.azure.com"
+		},
+		"AzureBatch1_properties_typeProperties_poolName": {
+			"value": "rayazurebatchpool3"
+		},
+		"AzureBatch1_properties_typeProperties_accountName": {
+			"value": "rayazurebatch"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://rayfelipedlgen2account.dfs.core.windows.net/"
+		},
+		"AzureFunction1_properties_typeProperties_functionAppUrl": {
+			"value": "https://ray-function-app.azurewebsites.net"
+		},
+		"DataLake2_DemoRG_properties_typeProperties_url": {
+			"value": "https://datalakeindemorg2.dfs.core.windows.net/"
+		},
+		"DataLake2_DemoRG2_properties_typeProperties_url": {
+			"value": "https://datalakeindemorg2.dfs.core.windows.net/"
+		},
+		"NHTSA DOT_properties_typeProperties_url": {
+			"value": "https://vpic.nhtsa.dot.gov/api/"
+		},
+		"RayAzureKeyVault_LS_properties_typeProperties_baseUrl": {
+			"value": "https://RayFKeyVault.vault.azure.net/"
+		},
+		"RayKeyVault_LS_properties_typeProperties_baseUrl": {
+			"value": "https://RayFKeyVault.vault.azure.net/"
+		},
+		"Storage_forazurebatch_properties_typeProperties_serviceEndpoint": {
+			"value": "https://raysynapsemgdvnetdlacct.blob.core.windows.net/"
+		},
+		"bing-covid-19-data_sasUri": {
+			"value": ""
+		},
+		"rayfelipesynapseworkspace-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://rayfelipedlgen2account.dfs.core.windows.net"
+		},
+		"raysynapsemgdvnet-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://raysynapsemgdvnetdlacct.dfs.core.windows.net"
+		},
+		"synapsefromscratch-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://dlsynapsefromscratchacct.dfs.core.windows.net"
+		},
+		"us-producer-price-index-commodities_sasUri": {
+			"value": ""
+		}
+	}
+}
