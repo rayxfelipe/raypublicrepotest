@@ -2,7 +2,7 @@
 	"name": "ORBHDW_Source",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "DataLake2_DemoRG",
+			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
