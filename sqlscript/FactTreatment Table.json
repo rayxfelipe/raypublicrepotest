@@ -1,0 +1,20 @@
+{
+	"name": "FactTreatment Table",
+	"properties": {
+		"folder": {
+			"name": "OR ODE DW Scripts"
+		},
+		"content": {
+			"query": "CREATE TABLE ode.FactTreatment \n(\n    treatment_id int,\n    client_id int,\n    treatment_type_id int,\n    facility_id int\n) \nWITH (HEAP);\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "ODE",
+				"poolName": "ODE"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

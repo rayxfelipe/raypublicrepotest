@@ -1,0 +1,20 @@
+{
+	"name": "DimTreatmentType",
+	"properties": {
+		"folder": {
+			"name": "OR ODE DW Scripts"
+		},
+		"content": {
+			"query": "CREATE TABLE ode.DimTreatmentType\n(\n    treatment_type_id int,\n    treatment_type NVARCHAR(MAX),\n    tretment_desc NVARCHAR(MAX)\n) \nWITH (HEAP);\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "ODE",
+				"poolName": "ODE"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
