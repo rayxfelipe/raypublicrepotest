@@ -1,0 +1,20 @@
+{
+	"name": "DimClient Table",
+	"properties": {
+		"folder": {
+			"name": "OR ODE DW Scripts"
+		},
+		"content": {
+			"query": "CREATE TABLE ode.DimClient \n(\n    first_name NVARCHAR(MAX), \n    last_name NVARCHAR(MAX), \n    dob NVARCHAR(MAX), \n    gender NVARCHAR(MAX), \n    primary_health_ins NVARCHAR(MAX), \n    ethnicity NVARCHAR(MAX), \n    living_arrangement NVARCHAR(MAX), \n) \nWITH (HEAP);\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "ODE",
+				"poolName": "ODE"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
