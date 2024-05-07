@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "1dcdc794-3d0f-4dbe-8b7d-192bcf863651",
+				"spark.autotune.trackingId": "d28dbd58-c5e7-436d-92d3-3ca600396f8d",
 				"spark.synapse.library.python.env": "name: myenv\r\nchannels:\r\n  - conda-forge\r\ndependencies:\r\n  - numpy=1.21.2\r\n",
 				"spark.synapse.library.python.env.name": "ordot.yml"
 			}
