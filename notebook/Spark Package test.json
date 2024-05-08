@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "c7d53556-e647-41de-aa6f-85ba3610ee26"
+				"spark.autotune.trackingId": "a1d1ccd8-5204-4972-864a-8dc8f05065d5"
 			}
 		},
 		"metadata": {
@@ -58,7 +58,29 @@
 					"print(array)\r\n",
 					""
 				],
-				"execution_count": 1
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Command to list wheels needed for your input libraries.\r\n",
+					"# This command will list only new dependencies that are\r\n",
+					"   # not already part of the built-in Azure Synapse environment.\r\n",
+					"%pip install -r kkkkk.txt > pip_output.txt\r\n",
+					"cat pip_output.txt | grep \"Using cached *\""
+				],
+				"execution_count": 7
 			}
 		]
 	}
