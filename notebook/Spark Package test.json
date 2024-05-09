@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "30db5fad-5e05-43bc-a10f-f4fe0b665bf2"
+				"spark.autotune.trackingId": "940e06d6-2931-468a-ae50-efeb707d705f"
 			}
 		},
 		"metadata": {
@@ -52,9 +52,10 @@
 				"cell_type": "code",
 				"source": [
 					"# import numpy as np\r\n",
+					"# import numpy\r\n",
 					"\r\n",
 					"# Create a NumPy array\r\n",
-					"array = np.array([1, 2, 3, 4, 5])\r\n",
+					"array = numpy.array([1, 2, 3, 4, 5])\r\n",
 					"print(array)\r\n",
 					""
 				],
