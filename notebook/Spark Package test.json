@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "f94ff9e1-afd7-4e2e-9d4f-bfe23412f13b"
+				"spark.autotune.trackingId": "2be00cdf-0d5e-40ba-b9f8-6ffdb87f2e7e"
 			}
 		},
 		"metadata": {
@@ -74,7 +74,7 @@
 					}
 				},
 				"source": [
-					"from bs4 import BeautifulSoup\r\n",
+					"#from bs4 import BeautifulSoup\r\n",
 					"import requests\r\n",
 					"\r\n",
 					"# Make an HTTP request to the website\r\n",
@@ -88,7 +88,7 @@
 					"# print(target_id.text)\r\n",
 					""
 				],
-				"execution_count": 10
+				"execution_count": 3
 			}
 		]
 	}
