@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "362f4c52-89b9-45ae-a8dd-9ddcfacef6b5"
+				"spark.autotune.trackingId": "5d6c65bd-f806-4631-96fd-5eea30f80758"
 			}
 		},
 		"metadata": {
@@ -74,13 +74,21 @@
 					}
 				},
 				"source": [
-					"# Command to list wheels needed for your input libraries.\r\n",
-					"# This command will list only new dependencies that are\r\n",
-					"   # not already part of the built-in Azure Synapse environment.\r\n",
-					"%pip install -r kkkkk.txt > pip_output.txt\r\n",
-					"cat pip_output.txt | grep \"Using cached *\""
+					"from bs4 import BeautifulSoup\r\n",
+					"import requests\r\n",
+					"\r\n",
+					"# Make an HTTP request to the website\r\n",
+					"website = requests.get('http://microsoft.com/')\r\n",
+					"\r\n",
+					"# Parse the HTML content\r\n",
+					"soup = BeautifulSoup(website.content, 'html.parser')\r\n",
+					"\r\n",
+					"# Find an element by its ID and print its text\r\n",
+					"# target_id = soup.find(id='enter the target id here')\r\n",
+					"# print(target_id.text)\r\n",
+					""
 				],
-				"execution_count": 7
+				"execution_count": 9
 			}
 		]
 	}
