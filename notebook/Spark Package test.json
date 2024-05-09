@@ -4,7 +4,7 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool10",
+			"referenceName": "SparkPool12",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
@@ -12,12 +12,12 @@
 			"driverCores": 4,
 			"executorMemory": "28g",
 			"executorCores": 4,
-			"numExecutors": 2,
+			"numExecutors": 1,
 			"conf": {
-				"spark.dynamicAllocation.enabled": "false",
-				"spark.dynamicAllocation.minExecutors": "2",
-				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e7a5f998-13df-4247-ba03-b0382e8d151d"
+				"spark.dynamicAllocation.enabled": "true",
+				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.maxExecutors": "4",
+				"spark.autotune.trackingId": "b56be9fe-b9c6-487a-bef4-835355385a99"
 			}
 		},
 		"metadata": {
@@ -31,19 +31,19 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool10",
-				"name": "SparkPool10",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool12",
+				"name": "SparkPool12",
 				"type": "Spark",
-				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool10",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool12",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
-				"sparkVersion": "3.4",
+				"sparkVersion": "3.3",
 				"nodeCount": 10,
 				"cores": 4,
 				"memory": 28,
-				"automaticScaleJobs": false
+				"automaticScaleJobs": true
 			},
 			"sessionKeepAliveTimeout": 30
 		},
@@ -76,8 +76,8 @@
 				},
 				"source": [
 					"#from bs4 import BeautifulSoup\r\n",
-					"#import BeautifulSoup\r\n",
-					"#import requests\r\n",
+					"import BeautifulSoup\r\n",
+					"import requests\r\n",
 					"\r\n",
 					"# Make an HTTP request to the website\r\n",
 					"website = requests.get('http://microsoft.com/')\r\n",
@@ -90,7 +90,7 @@
 					"# print(target_id.text)\r\n",
 					""
 				],
-				"execution_count": 8
+				"execution_count": 4
 			}
 		]
 	}
