@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "359da88e-45da-4250-8964-503436986d68"
+				"spark.autotune.trackingId": "e7a5f998-13df-4247-ba03-b0382e8d151d"
 			}
 		},
 		"metadata": {
@@ -75,9 +75,9 @@
 					}
 				},
 				"source": [
-					"from bs4 import BeautifulSoup\r\n",
+					"#from bs4 import BeautifulSoup\r\n",
 					"#import BeautifulSoup\r\n",
-					"import requests\r\n",
+					"#import requests\r\n",
 					"\r\n",
 					"# Make an HTTP request to the website\r\n",
 					"website = requests.get('http://microsoft.com/')\r\n",
