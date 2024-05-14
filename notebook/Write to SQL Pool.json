@@ -13,7 +13,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "df71829b-823e-491e-900a-0a0e98171c95"
+				"spark.autotune.trackingId": "c37909d4-fee7-4565-b9bd-e933c274a698"
 			}
 		},
 		"metadata": {
@@ -35,6 +35,19 @@
 					"writing from Notebook to sql pool does not work"
 				],
 				"execution_count": null
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"writing from Notebook to sql pool does not work"
+				]
 			}
 		]
 	}
