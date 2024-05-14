@@ -7,21 +7,21 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool1",
+			"referenceName": "SparkPool10",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "112g",
-			"driverCores": 16,
-			"executorMemory": "112g",
-			"executorCores": 16,
-			"numExecutors": 1,
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
 			"runAsWorkspaceSystemIdentity": false,
 			"conf": {
-				"spark.dynamicAllocation.enabled": "true",
-				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "524a4984-98fc-446b-88cd-573b2b574057"
+				"spark.autotune.trackingId": "caa9e2a5-fdd0-4915-a474-5505c63fa339"
 			}
 		},
 		"metadata": {
@@ -35,19 +35,19 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool1",
-				"name": "SparkPool1",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool10",
+				"name": "SparkPool10",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool1",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool10",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
-				"sparkVersion": "3.3",
+				"sparkVersion": "3.4",
 				"nodeCount": 10,
-				"cores": 16,
-				"memory": 112,
-				"automaticScaleJobs": true
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 60
 		},
@@ -55,6 +55,15 @@
 			{
 				"cell_type": "code",
 				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
 					"microsoft": {
 						"language": "python"
 					},
@@ -62,11 +71,13 @@
 				},
 				"source": [
 					"%%pyspark\r\n",
-					"df = spark.read.load('abfss://dcc@datalakaeacctindemorg.dfs.core.windows.net/CannabisTaxRevenues.csv', format='csv', header='true')\r\n",
-					"display(df.limit(10))\r\n",
-					""
+					"df = spark.read.load('abfss://dlsynapsefromscratchfs@dlsynapsefromscratchacct.dfs.core.windows.net/SampleDataSets/CannabisTaxRevenues.csv', format='csv'\r\n",
+					"## If header exists uncomment line below\r\n",
+					", header=True\r\n",
+					")\r\n",
+					"display(df.limit(10))"
 				],
-				"execution_count": 1
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
