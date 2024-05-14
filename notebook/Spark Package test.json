@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "870213c5-c70f-4b8b-b761-abcafeda0074"
+				"spark.autotune.trackingId": "2bb9448c-5ca2-481a-b9e5-69084058e8c4"
 			}
 		},
 		"metadata": {
@@ -105,7 +105,7 @@
 				"source": [
 					"!pip list"
 				],
-				"execution_count": 19
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -127,7 +127,7 @@
 					"print(\"\\n\".join(installed_packages_list))\r\n",
 					""
 				],
-				"execution_count": 20
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
