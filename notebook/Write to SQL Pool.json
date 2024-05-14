@@ -13,7 +13,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "0c9c05ae-cea6-4f02-9f52-1935803ea206"
+				"spark.autotune.trackingId": "df71829b-823e-491e-900a-0a0e98171c95"
 			}
 		},
 		"metadata": {
@@ -32,7 +32,7 @@
 			{
 				"cell_type": "code",
 				"source": [
-					""
+					"writing from Notebook to sql pool does not work"
 				],
 				"execution_count": null
 			}

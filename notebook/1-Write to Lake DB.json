@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "caa9e2a5-fdd0-4915-a474-5505c63fa339"
+				"spark.autotune.trackingId": "2c327ee9-01b1-41ab-91fe-24e0fb4d3a38"
 			}
 		},
 		"metadata": {
@@ -98,7 +98,7 @@
 					"df.select('Calendar_Year').show()\r\n",
 					"df.filter(df['Calendar_Year'] == \"2018\").show()"
 				],
-				"execution_count": 2
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -119,7 +119,7 @@
 					"pd_df.describe()\r\n",
 					"pd_df.head()"
 				],
-				"execution_count": 3
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -147,7 +147,7 @@
 					"plt.show()\r\n",
 					""
 				],
-				"execution_count": 4
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -169,7 +169,7 @@
 					"\r\n",
 					"plt.show()"
 				],
-				"execution_count": 5
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
@@ -188,15 +188,15 @@
 				"source": [
 					"df.printSchema()\r\n",
 					"# display(df.limit(10))\r\n",
-					"display(df)\r\n",
+					"# display(df)\r\n",
 					"\r\n",
-					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis\")\r\n",
-					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue\")\r\n",
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS cannabis2\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"cannabis2.taxrevenue2\")\r\n",
 					"\r\n",
-					"df_select_rs = spark.sql(\"select Calendar_Year from cannabis.taxrevenue\")\r\n",
+					"df_select_rs = spark.sql(\"select Calendar_Year from cannabis2.taxrevenue2\")\r\n",
 					"display(df_select_rs)"
 				],
-				"execution_count": 6
+				"execution_count": 13
 			},
 			{
 				"cell_type": "code",
