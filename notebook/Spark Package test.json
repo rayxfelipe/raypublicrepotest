@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "a9061213-e583-490a-94e6-a4d64813a87c"
+				"spark.autotune.trackingId": "668a11ae-ae0f-4aca-83d8-327f46b7a34a"
 			}
 		},
 		"metadata": {
@@ -62,7 +62,7 @@
 					}
 				},
 				"source": [
-					"%pip install -r requirements.txt"
+					"%pip install --upgrade -r requirements.txt"
 				],
 				"execution_count": 36
 			},
