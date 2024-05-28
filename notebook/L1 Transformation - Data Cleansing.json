@@ -1,7 +1,7 @@
 {
 	"name": "L1 Transformation - Data Cleansing",
 	"properties": {
-		"description": "Update Null values\nRemove column x",
+		"description": "1. Visual Scan Data\n2. Update Null values\n3. Remove column x",
 		"folder": {
 			"name": "RUHS"
 		},
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "240e5433-c480-4c88-beba-cc7f69f614de"
+				"spark.autotune.trackingId": "a0ad6982-3ce9-45c9-9744-f91f01aaee80"
 			}
 		},
 		"metadata": {
