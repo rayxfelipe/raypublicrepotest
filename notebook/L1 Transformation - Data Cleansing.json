@@ -2,6 +2,9 @@
 	"name": "L1 Transformation - Data Cleansing",
 	"properties": {
 		"description": "Update Null values\nRemove column x",
+		"folder": {
+			"name": "RUHS"
+		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
@@ -18,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "f344d15e-20e9-4952-a287-0cfb9c2a7db6"
+				"spark.autotune.trackingId": "240e5433-c480-4c88-beba-cc7f69f614de"
 			}
 		},
 		"metadata": {
