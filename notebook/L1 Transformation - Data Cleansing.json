@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "829a938d-b013-4e2d-abb9-de54a910d1ab"
+				"spark.autotune.trackingId": "edd57991-3d0e-4f33-8ae8-697942c0ad79"
 			}
 		},
 		"metadata": {
@@ -75,7 +75,7 @@
 					"df = spark.read.parquet(wasbs_path)\n",
 					"display(df.limit(10))"
 				],
-				"execution_count": 54
+				"execution_count": 62
 			},
 			{
 				"cell_type": "code",
@@ -96,7 +96,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 55
+				"execution_count": 63
 			},
 			{
 				"cell_type": "code",
@@ -114,7 +114,7 @@
 				"source": [
 					"display(df.count())"
 				],
-				"execution_count": 56
+				"execution_count": 64
 			},
 			{
 				"cell_type": "code",
@@ -134,7 +134,7 @@
 					"df = df.filter(df[\"deaths\"] < 50)\r\n",
 					"display(df)"
 				],
-				"execution_count": 57
+				"execution_count": 65
 			},
 			{
 				"cell_type": "code",
@@ -152,7 +152,7 @@
 				"source": [
 					"display(df.count())"
 				],
-				"execution_count": 58
+				"execution_count": 66
 			},
 			{
 				"cell_type": "code",
@@ -168,10 +168,10 @@
 					}
 				},
 				"source": [
-					"list_of_columns_to_be_removed = ['longitude','latitude']\r\n",
-					"df.drop(*list_of_columns_to_be_removed)"
+					"list_of_columns_to_be_removed = ['longitude','latitude','iso2','iso3','iso_subdivision','recovered_change','admin_region_2']\r\n",
+					"df = df.drop(*list_of_columns_to_be_removed)"
 				],
-				"execution_count": 59
+				"execution_count": 67
 			},
 			{
 				"cell_type": "code",
@@ -190,7 +190,7 @@
 				"source": [
 					"display(df.limit(10))"
 				],
-				"execution_count": 60
+				"execution_count": 68
 			},
 			{
 				"cell_type": "code",
@@ -211,7 +211,7 @@
 					"#display(df.len())\r\n",
 					"# display(df.select(\"country_region\").limit(10))"
 				],
-				"execution_count": 61
+				"execution_count": 69
 			}
 		]
 	}
