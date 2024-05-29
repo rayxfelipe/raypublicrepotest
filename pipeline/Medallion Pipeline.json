@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Ingest Raw Data (Bronze)",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -19,11 +19,11 @@
 				}
 			},
 			{
-				"name": "Data Enrichment Notebook",
+				"name": "Data Enrichment Notebook for Silver",
 				"type": "SynapseNotebook",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "Ingest Raw Data (Bronze)",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -42,11 +42,11 @@
 				}
 			},
 			{
-				"name": "Create View",
+				"name": "Create Curated Data for Gold",
 				"type": "SqlPoolStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Data Enrichment Notebook",
+						"activity": "Data Enrichment Notebook for Silver",
 						"dependencyConditions": [
 							"Completed"
 						]
