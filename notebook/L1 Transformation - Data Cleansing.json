@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e0a53ff5-8d80-4eee-b1ef-514aa9c621ed"
+				"spark.autotune.trackingId": "42fad8ee-f7e4-4f75-bf85-98d2c0d165f6"
 			}
 		},
 		"metadata": {
@@ -75,7 +75,7 @@
 					"df = spark.read.parquet(wasbs_path)\n",
 					"display(df.limit(10))"
 				],
-				"execution_count": 118
+				"execution_count": 137
 			},
 			{
 				"cell_type": "code",
@@ -96,7 +96,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 119
+				"execution_count": 138
 			},
 			{
 				"cell_type": "code",
@@ -114,7 +114,7 @@
 				"source": [
 					"display(df.count())"
 				],
-				"execution_count": 120
+				"execution_count": 139
 			},
 			{
 				"cell_type": "code",
@@ -131,10 +131,10 @@
 					"collapsed": false
 				},
 				"source": [
-					"df = df.filter(df[\"deaths\"] < 50)\r\n",
+					"df = df.filter(df[\"deaths\"] <= 50)\r\n",
 					"display(df)"
 				],
-				"execution_count": 121
+				"execution_count": 140
 			},
 			{
 				"cell_type": "code",
@@ -152,7 +152,7 @@
 				"source": [
 					"display(df.count())"
 				],
-				"execution_count": 122
+				"execution_count": 141
 			},
 			{
 				"cell_type": "code",
@@ -169,10 +169,10 @@
 				},
 				"source": [
 					"list_of_columns_to_be_removed = ['longitude','latitude','iso2','iso3','iso_subdivision','recovered_change','admin_region_2','admin_region_1',\r\n",
-					"'updated','confirmed_change','recovered']\r\n",
+					"'updated','confirmed_change','recovered','deaths_change']\r\n",
 					"df = df.drop(*list_of_columns_to_be_removed)"
 				],
-				"execution_count": 123
+				"execution_count": 142
 			},
 			{
 				"cell_type": "code",
@@ -191,7 +191,7 @@
 				"source": [
 					"display(df.limit(10))"
 				],
-				"execution_count": 124
+				"execution_count": 143
 			},
 			{
 				"cell_type": "code",
@@ -212,7 +212,7 @@
 					"display(df.count())\r\n",
 					"# display(df.select(\"country_region\").limit(10))"
 				],
-				"execution_count": 125
+				"execution_count": 144
 			},
 			{
 				"cell_type": "code",
@@ -229,10 +229,32 @@
 					"collapsed": false
 				},
 				"source": [
-					"df = df.sort(\"deaths\",\"country_region\", ascending = True)\r\n",
+					"df = df.sort(\"deaths\",\"country_region\", ascending = False)\r\n",
 					"display(df.limit(10))"
 				],
-				"execution_count": 126
+				"execution_count": 145
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"spark.sql(\"CREATE DATABASE IF NOT EXISTS ruhs_covid_silver_data\")\r\n",
+					"df.write.mode(\"overwrite\").saveAsTable(\"ruhs_covid_silver_data.covid_under_50\")\r\n",
+					"\r\n",
+					"df_select_rs = spark.sql(\"select Calendar_Year from cannabis2.taxrevenue2\")\r\n",
+					"display(df_select_rs)"
+				],
+				"execution_count": null
 			}
 		]
 	}
