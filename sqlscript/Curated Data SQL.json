@@ -1,6 +1,9 @@
 {
 	"name": "Curated Data SQL",
 	"properties": {
+		"folder": {
+			"name": "RUHS"
+		},
 		"content": {
 			"query": "DROP VIEW IF EXISTS Covid_View_for_US;\nGO\nCREATE VIEW Covid_View_for_US AS\nSELECT TOP (100) [id]\n,[confirmed]\n,[deaths]\n,[country_region]\n,[load_time]\n FROM [dbo].[covid_50]\n where [country_region] = 'United States'",
 			"metadata": {
