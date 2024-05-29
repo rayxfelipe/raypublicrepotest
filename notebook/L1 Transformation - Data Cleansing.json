@@ -1,7 +1,7 @@
 {
 	"name": "L1 Transformation - Data Cleansing",
 	"properties": {
-		"description": "1. Visual Scan Data\n2. Update Null values\n3. Remove column x",
+		"description": "1. Visual scan data\n2. Remove columns unwanted\n3. Filter data",
 		"folder": {
 			"name": "RUHS"
 		},
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "edd57991-3d0e-4f33-8ae8-697942c0ad79"
+				"spark.autotune.trackingId": "e0a53ff5-8d80-4eee-b1ef-514aa9c621ed"
 			}
 		},
 		"metadata": {
@@ -75,7 +75,7 @@
 					"df = spark.read.parquet(wasbs_path)\n",
 					"display(df.limit(10))"
 				],
-				"execution_count": 62
+				"execution_count": 118
 			},
 			{
 				"cell_type": "code",
@@ -96,7 +96,7 @@
 					"\r\n",
 					""
 				],
-				"execution_count": 63
+				"execution_count": 119
 			},
 			{
 				"cell_type": "code",
@@ -114,7 +114,7 @@
 				"source": [
 					"display(df.count())"
 				],
-				"execution_count": 64
+				"execution_count": 120
 			},
 			{
 				"cell_type": "code",
@@ -134,7 +134,7 @@
 					"df = df.filter(df[\"deaths\"] < 50)\r\n",
 					"display(df)"
 				],
-				"execution_count": 65
+				"execution_count": 121
 			},
 			{
 				"cell_type": "code",
@@ -152,7 +152,7 @@
 				"source": [
 					"display(df.count())"
 				],
-				"execution_count": 66
+				"execution_count": 122
 			},
 			{
 				"cell_type": "code",
@@ -168,10 +168,11 @@
 					}
 				},
 				"source": [
-					"list_of_columns_to_be_removed = ['longitude','latitude','iso2','iso3','iso_subdivision','recovered_change','admin_region_2']\r\n",
+					"list_of_columns_to_be_removed = ['longitude','latitude','iso2','iso3','iso_subdivision','recovered_change','admin_region_2','admin_region_1',\r\n",
+					"'updated','confirmed_change','recovered']\r\n",
 					"df = df.drop(*list_of_columns_to_be_removed)"
 				],
-				"execution_count": 67
+				"execution_count": 123
 			},
 			{
 				"cell_type": "code",
@@ -190,7 +191,7 @@
 				"source": [
 					"display(df.limit(10))"
 				],
-				"execution_count": 68
+				"execution_count": 124
 			},
 			{
 				"cell_type": "code",
@@ -207,11 +208,31 @@
 					"collapsed": false
 				},
 				"source": [
-					"display(df.filter(df[\"country_region\"] != \"Worldwide\").sort(\"country_region\", ascending = False))\r\n",
-					"#display(df.len())\r\n",
+					"df = df.filter(df[\"country_region\"] != \"Worldwide\")\r\n",
+					"display(df.count())\r\n",
 					"# display(df.select(\"country_region\").limit(10))"
 				],
-				"execution_count": 69
+				"execution_count": 125
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df = df.sort(\"deaths\",\"country_region\", ascending = True)\r\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": 126
 			}
 		]
 	}
