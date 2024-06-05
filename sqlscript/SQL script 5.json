@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 5",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW sqlpackagetestview AS\nSELECT TOP (100) [MovieID]\n,[Title]\n,[Genre]\n,[Year]\n,[Rating]\n,[RottenTomato]\n FROM [dbo].[Movies]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "dedpool1",
+				"poolName": "dedpool1"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
