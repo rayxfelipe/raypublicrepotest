@@ -62,15 +62,6 @@
 		"synapsefromscratch-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapsefromscratch.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
-		"AzureBatch1_properties_typeProperties_batchUri": {
-			"value": "https://rayazurebatch.westus.batch.azure.com"
-		},
-		"AzureBatch1_properties_typeProperties_poolName": {
-			"value": "rayazurebatchpool3"
-		},
-		"AzureBatch1_properties_typeProperties_accountName": {
-			"value": "rayazurebatch"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://rayfelipedlgen2account.dfs.core.windows.net/"
 		},
