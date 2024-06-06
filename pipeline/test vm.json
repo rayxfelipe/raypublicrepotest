@@ -25,10 +25,6 @@
 						"linkedServices": [],
 						"datasets": []
 					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureBatch1",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
