@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "1be4c21c-05f4-453a-909b-8105a552752c"
+				"spark.autotune.trackingId": "c5d719ad-5fd3-4056-a2b0-d999a9eb50a3"
 			}
 		},
 		"metadata": {
@@ -83,7 +83,7 @@
 					}
 				},
 				"source": [
-					"df.write.parquet(\"abfss://dlsynapsefromscratchfs@dlsynapsefromscratchacct.dfs.core.windows.net/RUHS/ruhscovidtests.parquet\")"
+					"#df.write.parquet(\"abfss://dlsynapsefromscratchfs@dlsynapsefromscratchacct.dfs.core.windows.net/RUHS/ruhscovidtests.parquet\")"
 				],
 				"execution_count": 2
 			}
