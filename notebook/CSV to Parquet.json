@@ -1,5 +1,5 @@
 {
-	"name": "Notebook 6",
+	"name": "CSV to Parquet",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "8aeb620a-6b51-4c34-aaa0-ee29987b7cc7"
+				"spark.autotune.trackingId": "9b9a31ba-7290-4576-af0e-814746c9dd4c"
 			}
 		},
 		"metadata": {
