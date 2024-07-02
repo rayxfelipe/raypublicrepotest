@@ -53,7 +53,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "TestProcedure"
+					"storedProcedureName": "dbo.TestProcedure"
 				},
 				"linkedServiceName": {
 					"referenceName": "RUHSServerless",
