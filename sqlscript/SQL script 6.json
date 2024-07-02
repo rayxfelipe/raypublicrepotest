@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 6",
+	"properties": {
+		"content": {
+			"query": "CREATE PROCEDURE TestProcedure\nAS\nBEGIN\n   SELECT TOP (100) [_c0]\n    ,[_c1]\n    ,[_c2]\n    ,[_c3]\n    ,[_c4]\n    FROM [dbo].[ruhscovidtest]\nEND;\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "RUHS",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
