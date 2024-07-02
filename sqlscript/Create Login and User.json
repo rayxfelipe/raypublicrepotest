@@ -5,7 +5,7 @@
 			"name": "RUHS"
 		},
 		"content": {
-			"query": "--CREATE LOGIN ray WITH PASSWORD = 'abcd1234!';\n--CREATE USER ray FROM LOGIN ray;\n--REVOKE EXECUTE ON object::TestProcedure TO ray\n--GRANT EXECUTE ON object::TestProcedure TO ray\n\nALTER ROLE db_owner ADD MEMBER [user_name];\n\n",
+			"query": "--CREATE LOGIN ray WITH PASSWORD = 'abcd1234!';\n--CREATE USER ray FROM LOGIN ray;\n--REVOKE EXECUTE ON object::TestProcedure TO ray\n--GRANT EXECUTE ON object::TestProcedure TO ray\n\nALTER ROLE db_owner ADD MEMBER ray;\n\n",
 			"metadata": {
 				"language": "sql"
 			},
