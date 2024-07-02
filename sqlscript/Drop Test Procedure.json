@@ -1,6 +1,9 @@
 {
 	"name": "Drop Test Procedure",
 	"properties": {
+		"folder": {
+			"name": "RUHS"
+		},
 		"content": {
 			"query": "drop procedure TestProcedure",
 			"metadata": {
