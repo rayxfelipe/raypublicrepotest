@@ -40,7 +40,7 @@
 					{
 						"activity": "CSV to Parquet",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
