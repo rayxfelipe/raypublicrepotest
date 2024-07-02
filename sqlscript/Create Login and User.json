@@ -1,0 +1,17 @@
+{
+	"name": "Create Login and User",
+	"properties": {
+		"content": {
+			"query": "--CREATE LOGIN ray WITH PASSWORD = 'abcd1234!';\n\nCREATE USER ray FROM LOGIN ray;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "RUHS",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
