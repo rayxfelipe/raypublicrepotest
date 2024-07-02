@@ -5,7 +5,7 @@
 			"name": "RUHS"
 		},
 		"content": {
-			"query": "drop procedure TestProcedure",
+			"query": "drop procedure TestProcedure\n\n--exec TestProcedure\n\ndrop EXTERNAL TABLE dbo.teststoredproc\n\n",
 			"metadata": {
 				"language": "sql"
 			},
