@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "ce648dca-13f8-41f8-a8d4-8683ad9c69b2"
+				"spark.autotune.trackingId": "5ac9f62b-5448-4994-a9ab-c8e8d23a9fbb"
 			}
 		},
 		"metadata": {
@@ -67,7 +67,7 @@
 					")\r\n",
 					"display(df.limit(10))"
 				],
-				"execution_count": 1
+				"execution_count": 10
 			},
 			{
 				"cell_type": "code",
@@ -83,31 +83,9 @@
 					}
 				},
 				"source": [
-					"%%pip install fastparquet"
+					"df.write.parquet(\"abfss://dlsynapsefromscratchfs@dlsynapsefromscratchacct.dfs.core.windows.net/RUHS/ruhs.parquet\")"
 				],
-				"execution_count": 3
-			},
-			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					"import pandas as pd\r\n",
-					"\r\n",
-					"df = df.toPandas()\r\n",
-					"df.to_parquet('ruhsdata.parquet', engine='pyarrow')\r\n",
-					""
-				],
-				"execution_count": 5
+				"execution_count": 11
 			}
 		]
 	}
