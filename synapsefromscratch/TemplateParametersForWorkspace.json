@@ -29,6 +29,9 @@
 		"NHTSASQLVM2_connectionString": {
 			"value": ""
 		},
+		"RUHSServerless_password": {
+			"value": ""
+		},
 		"StorageForAzureBatch_connectionString": {
 			"value": ""
 		},
@@ -76,6 +79,15 @@
 		},
 		"NHTSA DOT_properties_typeProperties_url": {
 			"value": "https://vpic.nhtsa.dot.gov/api/"
+		},
+		"RUHSServerless_properties_typeProperties_server": {
+			"value": "synapsefromscratch-ondemand.sql.azuresynapse.net"
+		},
+		"RUHSServerless_properties_typeProperties_database": {
+			"value": "RUHS"
+		},
+		"RUHSServerless_properties_typeProperties_userName": {
+			"value": "ray"
 		},
 		"RayAzureKeyVault_LS_properties_typeProperties_baseUrl": {
 			"value": "https://RayFKeyVault.vault.azure.net/"
