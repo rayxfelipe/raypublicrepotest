@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "5ac9f62b-5448-4994-a9ab-c8e8d23a9fbb"
+				"spark.autotune.trackingId": "1d9991b6-b29b-4708-8871-4d8c0156719d"
 			}
 		},
 		"metadata": {
@@ -67,7 +67,7 @@
 					")\r\n",
 					"display(df.limit(10))"
 				],
-				"execution_count": 10
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -83,9 +83,9 @@
 					}
 				},
 				"source": [
-					"df.write.parquet(\"abfss://dlsynapsefromscratchfs@dlsynapsefromscratchacct.dfs.core.windows.net/RUHS/ruhs.parquet\")"
+					"df.write.parquet(\"abfss://dlsynapsefromscratchfs@dlsynapsefromscratchacct.dfs.core.windows.net/RUHS/ruhscovidtests.parquet\")"
 				],
-				"execution_count": 11
+				"execution_count": 2
 			}
 		]
 	}
