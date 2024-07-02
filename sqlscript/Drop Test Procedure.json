@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 6",
+	"name": "Drop Test Procedure",
 	"properties": {
 		"content": {
 			"query": "drop procedure TestProcedure",
