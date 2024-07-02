@@ -32,7 +32,7 @@
 				}
 			},
 			{
-				"name": "Stored procedure1",
+				"name": "Parquet to Serverless",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
