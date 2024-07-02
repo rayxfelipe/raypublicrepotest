@@ -1,6 +1,9 @@
 {
 	"name": "CSV to Parquet",
 	"properties": {
+		"folder": {
+			"name": "RUHS"
+		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
@@ -17,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "9b9a31ba-7290-4576-af0e-814746c9dd4c"
+				"spark.autotune.trackingId": "2d97df35-6c01-4e95-8b58-954f588a05fc"
 			}
 		},
 		"metadata": {
