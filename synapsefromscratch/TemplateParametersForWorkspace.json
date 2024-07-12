@@ -5,9 +5,6 @@
 		"workspaceName": {
 			"value": "synapsefromscratch"
 		},
-		"AzureDataLakeStorage1_accountKey": {
-			"value": ""
-		},
 		"AzureFunction1_functionKey": {
 			"value": ""
 		},
@@ -64,9 +61,6 @@
 		},
 		"synapsefromscratch-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapsefromscratch.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
-		},
-		"AzureDataLakeStorage1_properties_typeProperties_url": {
-			"value": "https://rayfelipedlgen2account.dfs.core.windows.net/"
 		},
 		"AzureFunction1_properties_typeProperties_functionAppUrl": {
 			"value": "https://ray-function-app.azurewebsites.net"
