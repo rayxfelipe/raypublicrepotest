@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "d29bd415-fcbd-460f-93bb-e54d947b1bec"
+				"spark.autotune.trackingId": "1988c69d-8bf7-4476-bcac-42edfbcfce3a"
 			}
 		},
 		"metadata": {
@@ -98,7 +98,7 @@
 					"#from dotenv import load_dotenv\r\n",
 					"\r\n",
 					"# Add Azure OpenAI package\r\n",
-					"#from openai import AzureOpenAI\r\n",
+					"from openai import AzureOpenAI\r\n",
 					"\r\n",
 					"def main(): \r\n",
 					"        \r\n",
@@ -165,7 +165,7 @@
 					"if __name__ == '__main__': \r\n",
 					"    main()"
 				],
-				"execution_count": 8
+				"execution_count": 9
 			}
 		]
 	}
