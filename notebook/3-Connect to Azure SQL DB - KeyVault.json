@@ -2,7 +2,7 @@
 	"name": "3-Connect to Azure SQL DB - KeyVault",
 	"properties": {
 		"folder": {
-			"name": "WADOL"
+			"name": "WA-DOL/WA-DOL2"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -45,8 +45,7 @@
 				"sparkVersion": "3.3",
 				"nodeCount": 10,
 				"cores": 8,
-				"memory": 56,
-				"automaticScaleJobs": false
+				"memory": 56
 			},
 			"sessionKeepAliveTimeout": 30
 		},
