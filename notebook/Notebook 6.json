@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "42b29bda-39e9-464a-a54f-69a6b36bd0c3"
+				"spark.autotune.trackingId": "6817a983-7bd9-49d7-bb7f-477f48f1fdd9"
 			}
 		},
 		"metadata": {
@@ -54,10 +54,6 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"AZURE_OAI_ENDPOINT=\"https://azureoaieastus.openai.azure.com/\"\r\n",
-					"AZURE_OAI_KEY=\"cf51c0f74e7f4117979ccfd4154e8de3\"\r\n",
-					"AZURE_OAI_DEPLOYMENT=\"gpt-4o\"\r\n",
-					"\r\n",
 					""
 				],
 				"execution_count": 3
