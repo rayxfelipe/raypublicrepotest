@@ -1,0 +1,154 @@
+{
+	"name": "Notebook 6",
+	"properties": {
+		"folder": {
+			"name": "WA-DOL/OAI"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool10",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "32a72cad-9ca6-48d1-b806-5ceb1742b7ad"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool10",
+				"name": "SparkPool10",
+				"type": "Spark",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool10",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"AZURE_OAI_ENDPOINT=\"https://azureoaieastus.openai.azure.com/\"\r\n",
+					"AZURE_OAI_KEY=\"cf51c0f74e7f4117979ccfd4154e8de3\"\r\n",
+					"AZURE_OAI_DEPLOYMENT=\"gpt-4o\"\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#import os\r\n",
+					"#from dotenv import load_dotenv\r\n",
+					"\r\n",
+					"# Add Azure OpenAI package\r\n",
+					"from openai import AzureOpenAI\r\n",
+					"\r\n",
+					"def main(): \r\n",
+					"        \r\n",
+					"    try: \r\n",
+					"    \r\n",
+					"        # Get configuration settings \r\n",
+					"        #load_dotenv()\r\n",
+					"        #azure_oai_endpoint = os.getenv(\"AZURE_OAI_ENDPOINT\")\r\n",
+					"        #azure_oai_key = os.getenv(\"AZURE_OAI_KEY\")\r\n",
+					"        #azure_oai_deployment = os.getenv(\"AZURE_OAI_DEPLOYMENT\")\r\n",
+					"        azure_oai_endpoint = AZURE_OAI_ENDPOINT\r\n",
+					"        azure_oai_key = AZURE_OAI_KEY\r\n",
+					"        azure_oai_deployment = AZURE_OAI_DEPLOYMENT\r\n",
+					"        \r\n",
+					"\r\n",
+					"        # Initialize the Azure OpenAI client...\r\n",
+					"        # Initialize the Azure OpenAI client\r\n",
+					"        client = AzureOpenAI(\r\n",
+					"            azure_endpoint=azure_oai_endpoint, \r\n",
+					"            api_key=azure_oai_key,  \r\n",
+					"            api_version=\"2024-02-15-preview\"\r\n",
+					"            )\r\n",
+					"\r\n",
+					"        # Create a system message\r\n",
+					"        system_message = \"\"\"I am a hiking enthusiast named Forest who helps people discover hikes in their area. \r\n",
+					"            If no area is specified, I will default to near Rainier National Park. \r\n",
+					"            I will then provide three suggestions for nearby hikes that vary in length. \r\n",
+					"            I will also share an interesting fact about the local nature on the hikes when making a recommendation.\r\n",
+					"            \"\"\"\r\n",
+					"\r\n",
+					"        while True:\r\n",
+					"            # Get input text\r\n",
+					"            input_text = input(\"Enter the prompt (or type 'quit' to exit): \")\r\n",
+					"            if input_text.lower() == \"quit\":\r\n",
+					"                break\r\n",
+					"            if len(input_text) == 0:\r\n",
+					"                print(\"Please enter a prompt.\")\r\n",
+					"                continue\r\n",
+					"\r\n",
+					"            print(\"\\nSending request for summary to Azure OpenAI endpoint...\\n\\n\")\r\n",
+					"            \r\n",
+					"            # Add code to send request...\r\n",
+					"            # Add code to send request...\r\n",
+					"            # Send request to Azure OpenAI model\r\n",
+					"            response = client.chat.completions.create(\r\n",
+					"                model=azure_oai_deployment,\r\n",
+					"                temperature=0.7,\r\n",
+					"                max_tokens=400,\r\n",
+					"                messages=[\r\n",
+					"                    {\"role\": \"system\", \"content\": system_message},\r\n",
+					"                    {\"role\": \"user\", \"content\": input_text}\r\n",
+					"                ]\r\n",
+					"            )\r\n",
+					"            generated_text = response.choices[0].message.content\r\n",
+					"\r\n",
+					"            # Print the response\r\n",
+					"            print(\"Response: \" + generated_text + \"\\n\")\r\n",
+					"            \r\n",
+					"            \r\n",
+					"\r\n",
+					"    except Exception as ex:\r\n",
+					"        print(ex)\r\n",
+					"\r\n",
+					"if __name__ == '__main__': \r\n",
+					"    main()"
+				],
+				"execution_count": 2
+			}
+		]
+	}
+}
