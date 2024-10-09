@@ -7,20 +7,20 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool1",
+			"referenceName": "SparkPool10",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "56g",
-			"driverCores": 8,
-			"executorMemory": "56g",
-			"executorCores": 8,
-			"numExecutors": 1,
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
 			"conf": {
-				"spark.dynamicAllocation.enabled": "true",
-				"spark.dynamicAllocation.minExecutors": "1",
-				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "b033a3f0-0bc3-491e-a313-95585e8495b8"
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "020860c3-a964-4d17-a974-1d1ca6ccf011"
 			}
 		},
 		"metadata": {
@@ -34,18 +34,19 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool1",
-				"name": "SparkPool1",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool10",
+				"name": "SparkPool10",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool1",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool10",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
-				"sparkVersion": "3.3",
+				"sparkVersion": "3.4",
 				"nodeCount": 10,
-				"cores": 16,
-				"memory": 112
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},

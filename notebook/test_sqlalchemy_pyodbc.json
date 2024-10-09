@@ -7,20 +7,20 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool2",
+			"referenceName": "SparkPool10",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "56g",
-			"driverCores": 8,
-			"executorMemory": "56g",
-			"executorCores": 8,
-			"numExecutors": 1,
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
 			"conf": {
-				"spark.dynamicAllocation.enabled": "true",
-				"spark.dynamicAllocation.minExecutors": "1",
-				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "f43bed15-1cd9-4407-ba38-ea5773e2b496"
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "2e1d83eb-484d-41e7-a821-092799fa6494"
 			}
 		},
 		"metadata": {
@@ -34,18 +34,19 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
-				"name": "SparkPool2",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool10",
+				"name": "SparkPool10",
 				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool10",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
-				"sparkVersion": "3.3",
+				"sparkVersion": "3.4",
 				"nodeCount": 10,
-				"cores": 8,
-				"memory": 56
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},
