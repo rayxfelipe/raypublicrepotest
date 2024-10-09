@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "c075d4ac-4aac-4f59-b667-0357a2aaa8a0"
+				"spark.autotune.trackingId": "05b4e883-8811-4e57-856f-3a793e0daf4b"
 			}
 		},
 		"metadata": {
@@ -28,7 +28,7 @@
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
-				"display_name": "python"
+				"display_name": "Synapse PySpark"
 			},
 			"language_info": {
 				"name": "python"
@@ -61,7 +61,7 @@
 					"# Configuration\r\n",
 					"API_KEY = \"00b13c63c4ed4a13a105e6e9abb34551\"\r\n",
 					"IMAGE_PATH = \"image1.png\"\r\n",
-					"encoded_image = base64.b64encode(open(IMAGE_PATH, 'rb').read()).decode('ascii')\r\n",
+					"#encoded_image = base64.b64encode(open(IMAGE_PATH, 'rb').read()).decode('ascii')\r\n",
 					"headers = {\r\n",
 					"    \"Content-Type\": \"application/json\",\r\n",
 					"    \"api-key\": API_KEY,\r\n",
@@ -115,7 +115,7 @@
 					"# Handle the response as needed (e.g., print or process)\r\n",
 					"print(response.json())"
 				],
-				"execution_count": null
+				"execution_count": 1
 			}
 		]
 	}
