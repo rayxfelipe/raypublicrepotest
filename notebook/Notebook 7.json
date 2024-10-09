@@ -1,0 +1,122 @@
+{
+	"name": "Notebook 7",
+	"properties": {
+		"folder": {
+			"name": "WA-DOL"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool13",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 1,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "true",
+				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.maxExecutors": "4",
+				"spark.autotune.trackingId": "c075d4ac-4aac-4f59-b667-0357a2aaa8a0"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool13",
+				"name": "SparkPool13",
+				"type": "Spark",
+				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool13",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": true
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"import os\r\n",
+					"import requests\r\n",
+					"import base64\r\n",
+					"\r\n",
+					"# Configuration\r\n",
+					"API_KEY = \"00b13c63c4ed4a13a105e6e9abb34551\"\r\n",
+					"IMAGE_PATH = \"image1.png\"\r\n",
+					"encoded_image = base64.b64encode(open(IMAGE_PATH, 'rb').read()).decode('ascii')\r\n",
+					"headers = {\r\n",
+					"    \"Content-Type\": \"application/json\",\r\n",
+					"    \"api-key\": API_KEY,\r\n",
+					"}\r\n",
+					"\r\n",
+					"# Payload for the request\r\n",
+					"payload = {\r\n",
+					"  \"messages\": [\r\n",
+					"    {\r\n",
+					"      \"role\": \"system\",\r\n",
+					"      \"content\": [\r\n",
+					"        {\r\n",
+					"          \"type\": \"text\",\r\n",
+					"          \"text\": \"You are an AI assistant that helps people find information.\"\r\n",
+					"        }\r\n",
+					"      ]\r\n",
+					"    },\r\n",
+					"    {\r\n",
+					"      \"role\": \"user\",\r\n",
+					"      \"content\": [\r\n",
+					"        {\r\n",
+					"          \"type\": \"text\",\r\n",
+					"          \"text\": \"how many planets in the solar system?\"\r\n",
+					"        }\r\n",
+					"      ]\r\n",
+					"    },\r\n",
+					"    {\r\n",
+					"      \"role\": \"assistant\",\r\n",
+					"      \"content\": [\r\n",
+					"        {\r\n",
+					"          \"type\": \"text\",\r\n",
+					"          \"text\": \"Sure, here you go:\\n\\nWhy don't scientists trust atoms?\\n\\nBecause they make up everything!\"\r\n",
+					"        }\r\n",
+					"      ]\r\n",
+					"    }\r\n",
+					"  ],\r\n",
+					"  \"temperature\": 0.7,\r\n",
+					"  \"top_p\": 0.95,\r\n",
+					"  \"max_tokens\": 800\r\n",
+					"}\r\n",
+					"\r\n",
+					"ENDPOINT = \"https://azureoaieastus.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview\"\r\n",
+					"\r\n",
+					"# Send request\r\n",
+					"try:\r\n",
+					"    response = requests.post(ENDPOINT, headers=headers, json=payload)\r\n",
+					"    response.raise_for_status()  # Will raise an HTTPError if the HTTP request returned an unsuccessful status code\r\n",
+					"except requests.RequestException as e:\r\n",
+					"    raise SystemExit(f\"Failed to make the request. Error: {e}\")\r\n",
+					"\r\n",
+					"# Handle the response as needed (e.g., print or process)\r\n",
+					"print(response.json())"
+				],
+				"execution_count": null
+			}
+		]
+	}
+}
