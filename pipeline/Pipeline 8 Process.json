@@ -147,10 +147,6 @@
 						}
 					},
 					"snapshot": true,
-					"sparkPool": {
-						"referenceName": "SparkPool14",
-						"type": "BigDataPoolReference"
-					},
 					"executorSize": "Large",
 					"conf": {
 						"spark.dynamicAllocation.enabled": true
@@ -260,10 +256,6 @@
 						}
 					},
 					"snapshot": true,
-					"sparkPool": {
-						"referenceName": "SparkPool16",
-						"type": "BigDataPoolReference"
-					},
 					"executorSize": "Large",
 					"conf": {
 						"spark.dynamicAllocation.enabled": true
@@ -299,10 +291,6 @@
 						}
 					},
 					"snapshot": true,
-					"sparkPool": {
-						"referenceName": "SparkPool15",
-						"type": "BigDataPoolReference"
-					},
 					"executorSize": "Large",
 					"conf": {
 						"spark.dynamicAllocation.enabled": true
