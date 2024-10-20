@@ -16,7 +16,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "6bfb155d-f6c5-4d42-bc22-1604f82cb0c4"
+				"spark.autotune.trackingId": "8221a667-bf21-4dd0-919f-057992370e7e"
 			}
 		},
 		"metadata": {
@@ -41,18 +41,84 @@
 					"Performing DataFrame joins in PySpark is straightforward and similar to SQL joins. Here’s a quick guide on how to do it:\r\n",
 					"\r\n",
 					"### Basic Syntax\r\n",
-					"The `join()` method is used to combine two DataFrames. The basic syntax is:\r\n",
+					"The `join()` method is used to combine two DataFrames. The basic syntax is:"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"```python\r\n",
 					"df1.join(df2, on, how)\r\n",
-					"```\r\n",
+					"```"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"- **df1**: The first DataFrame.\r\n",
 					"- **df2**: The second DataFrame.\r\n",
 					"- **on**: The column(s) to join on.\r\n",
-					"- **how**: The type of join (e.g., 'inner', 'left', 'right', 'outer').\r\n",
-					"\r\n",
+					"- **how**: The type of join (e.g., 'inner', 'left', 'right', 'outer')."
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"### Example\r\n",
-					"Let's say you have two DataFrames, `empDF` and `deptDF`:\r\n",
-					"\r\n",
+					"Let's say you have two DataFrames, `empDF` and `deptDF`:"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"```python\r\n",
 					"from pyspark.sql import SparkSession\r\n",
 					"\r\n",
@@ -70,21 +136,72 @@
 					"```\r\n",
 					"\r\n",
 					"### Inner Join\r\n",
-					"An inner join returns rows that have matching values in both DataFrames:\r\n",
+					"An inner join returns rows that have matching values in both DataFrames:"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"```python\r\n",
 					"inner_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"inner\")\r\n",
 					"inner_join_df.show()\r\n",
 					"```\r\n",
 					"\r\n",
 					"### Left Join\r\n",
-					"A left join returns all rows from the left DataFrame and matched rows from the right DataFrame:\r\n",
+					"A left join returns all rows from the left DataFrame and matched rows from the right DataFrame:"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"```python\r\n",
 					"left_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"left\")\r\n",
 					"left_join_df.show()\r\n",
 					"```\r\n",
 					"\r\n",
 					"### Right Join\r\n",
-					"A right join returns all rows from the right DataFrame and matched rows from the left DataFrame:\r\n",
+					"A right join returns all rows from the right DataFrame and matched rows from the left DataFrame:"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"```python\r\n",
 					"right_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"right\")\r\n",
 					"right_join_df.show()\r\n",
