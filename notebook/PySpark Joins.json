@@ -1,0 +1,122 @@
+{
+	"name": "PySpark Joins",
+	"properties": {
+		"folder": {
+			"name": "BHDW"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "6bfb155d-f6c5-4d42-bc22-1604f82cb0c4"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"**Prompt **\r\n",
+					"how do i perform dataframe joins with pyspark\r\n",
+					"**Response**\r\n",
+					"Performing DataFrame joins in PySpark is straightforward and similar to SQL joins. Here’s a quick guide on how to do it:\r\n",
+					"\r\n",
+					"### Basic Syntax\r\n",
+					"The `join()` method is used to combine two DataFrames. The basic syntax is:\r\n",
+					"```python\r\n",
+					"df1.join(df2, on, how)\r\n",
+					"```\r\n",
+					"- **df1**: The first DataFrame.\r\n",
+					"- **df2**: The second DataFrame.\r\n",
+					"- **on**: The column(s) to join on.\r\n",
+					"- **how**: The type of join (e.g., 'inner', 'left', 'right', 'outer').\r\n",
+					"\r\n",
+					"### Example\r\n",
+					"Let's say you have two DataFrames, `empDF` and `deptDF`:\r\n",
+					"\r\n",
+					"```python\r\n",
+					"from pyspark.sql import SparkSession\r\n",
+					"\r\n",
+					"# Initialize Spark session\r\n",
+					"spark = SparkSession.builder.appName(\"example\").getOrCreate()\r\n",
+					"\r\n",
+					"# Sample data\r\n",
+					"empData = [(1, \"Smith\", 10), (2, \"Rose\", 20), (3, \"Williams\", 10), (4, \"Jones\", 30)]\r\n",
+					"empColumns = [\"emp_id\", \"name\", \"emp_dept_id\"]\r\n",
+					"empDF = spark.createDataFrame(empData, empColumns)\r\n",
+					"\r\n",
+					"deptData = [(\"Finance\", 10), (\"Marketing\", 20), (\"Sales\", 30), (\"IT\", 40)]\r\n",
+					"deptColumns = [\"dept_name\", \"dept_id\"]\r\n",
+					"deptDF = spark.createDataFrame(deptData, deptColumns)\r\n",
+					"```\r\n",
+					"\r\n",
+					"### Inner Join\r\n",
+					"An inner join returns rows that have matching values in both DataFrames:\r\n",
+					"```python\r\n",
+					"inner_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"inner\")\r\n",
+					"inner_join_df.show()\r\n",
+					"```\r\n",
+					"\r\n",
+					"### Left Join\r\n",
+					"A left join returns all rows from the left DataFrame and matched rows from the right DataFrame:\r\n",
+					"```python\r\n",
+					"left_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"left\")\r\n",
+					"left_join_df.show()\r\n",
+					"```\r\n",
+					"\r\n",
+					"### Right Join\r\n",
+					"A right join returns all rows from the right DataFrame and matched rows from the left DataFrame:\r\n",
+					"```python\r\n",
+					"right_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"right\")\r\n",
+					"right_join_df.show()\r\n",
+					"```\r\n",
+					"\r\n",
+					"### Full Outer Join\r\n",
+					"A full outer join returns all rows when there is a match in either DataFrame:\r\n",
+					"```python\r\n",
+					"outer_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"outer\")\r\n",
+					"outer_join_df.show()\r\n",
+					"```\r\n",
+					"\r\n",
+					"### Dropping Duplicate Columns\r\n",
+					"If you want to drop duplicate columns after a join:\r\n",
+					"```python\r\n",
+					"joined_df = empDF.join(deptDF, \"emp_dept_id\")\r\n",
+					"joined_df.show()\r\n",
+					"```\r\n",
+					"\r\n",
+					"### Using SQL for Joins\r\n",
+					"You can also use SQL queries to perform joins:\r\n",
+					"```python\r\n",
+					"empDF.createOrReplaceTempView(\"EMP\")\r\n",
+					"deptDF.createOrReplaceTempView(\"DEPT\")\r\n",
+					"sql_join_df = spark.sql(\"SELECT * FROM EMP e JOIN DEPT d ON e.emp_dept_id = d.dept_id\")\r\n",
+					"sql_join_df.show()\r\n",
+					"```\r\n",
+					"\r\n",
+					"These examples should help you get started with DataFrame joins in PySpark. If you have any specific scenarios or further questions, feel free to ask!"
+				],
+				"execution_count": null
+			}
+		]
+	}
+}
