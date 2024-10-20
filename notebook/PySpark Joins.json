@@ -16,7 +16,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "f4e4c29d-ea55-4af3-8e33-abb2c42a4010"
+				"spark.autotune.trackingId": "d3baaa19-f9a2-4bc2-8d9a-f57eb8a9bdcb"
 			}
 		},
 		"metadata": {
@@ -35,10 +35,8 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"**Prompt **\r\n",
-					"how do i perform dataframe joins with pyspark\r\n",
-					"**Response**\r\n",
-					"Performing DataFrame joins in PySpark is straightforward and similar to SQL joins. Here’s a quick guide on how to do it:\r\n",
+					"\r\n",
+					"Performing DataFrame joins in PySpark is similar to SQL joins. Here’s a quick guide on how to do it:\r\n",
 					"\r\n",
 					"### Basic Syntax\r\n",
 					"The `join()` method is used to combine two DataFrames. The basic syntax is:"
