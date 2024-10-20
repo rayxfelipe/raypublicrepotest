@@ -16,7 +16,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "8221a667-bf21-4dd0-919f-057992370e7e"
+				"spark.autotune.trackingId": "f4e4c29d-ea55-4af3-8e33-abb2c42a4010"
 			}
 		},
 		"metadata": {
@@ -181,8 +181,24 @@
 					"```python\r\n",
 					"left_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"left\")\r\n",
 					"left_join_df.show()\r\n",
-					"```\r\n",
-					"\r\n",
+					"```"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"### Right Join\r\n",
 					"A right join returns all rows from the right DataFrame and matched rows from the left DataFrame:"
 				],
@@ -205,32 +221,129 @@
 					"```python\r\n",
 					"right_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"right\")\r\n",
 					"right_join_df.show()\r\n",
-					"```\r\n",
-					"\r\n",
+					"```"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"### Full Outer Join\r\n",
-					"A full outer join returns all rows when there is a match in either DataFrame:\r\n",
+					"A full outer join returns all rows when there is a match in either DataFrame:"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"```python\r\n",
 					"outer_join_df = empDF.join(deptDF, empDF.emp_dept_id == deptDF.dept_id, \"outer\")\r\n",
 					"outer_join_df.show()\r\n",
-					"```\r\n",
-					"\r\n",
+					"```"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"### Dropping Duplicate Columns\r\n",
-					"If you want to drop duplicate columns after a join:\r\n",
+					"If you want to drop duplicate columns after a join:"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"```python\r\n",
 					"joined_df = empDF.join(deptDF, \"emp_dept_id\")\r\n",
 					"joined_df.show()\r\n",
-					"```\r\n",
-					"\r\n",
+					"```"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"### Using SQL for Joins\r\n",
-					"You can also use SQL queries to perform joins:\r\n",
+					"You can also use SQL queries to perform joins:"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
 					"```python\r\n",
 					"empDF.createOrReplaceTempView(\"EMP\")\r\n",
 					"deptDF.createOrReplaceTempView(\"DEPT\")\r\n",
 					"sql_join_df = spark.sql(\"SELECT * FROM EMP e JOIN DEPT d ON e.emp_dept_id = d.dept_id\")\r\n",
 					"sql_join_df.show()\r\n",
-					"```\r\n",
-					"\r\n",
-					"These examples should help you get started with DataFrame joins in PySpark. If you have any specific scenarios or further questions, feel free to ask!"
+					"```"
 				],
 				"execution_count": null
 			}
