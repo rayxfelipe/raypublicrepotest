@@ -1,6 +1,7 @@
 {
 	"name": "Notebook 8",
 	"properties": {
+		"description": "Doesn't work. No grounded data.",
 		"folder": {
 			"name": "WA-DOL"
 		},
@@ -20,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "650d2f11-28ff-4bb3-a8e8-ecccef64afd0"
+				"spark.autotune.trackingId": "0a280a88-cd62-474e-96bd-afe2a3eb4511"
 			}
 		},
 		"metadata": {
@@ -77,7 +78,7 @@
 					"    \r\n",
 					"###\r\n",
 					"\r\n",
-					"Key stuff here.\r\n",
+					"key stuff here. \r\n",
 					"###\r\n",
 					"    \r\n",
 					"# Initialize Azure OpenAI client with key-based authentication\r\n",
@@ -95,7 +96,7 @@
 					"},\r\n",
 					"{\r\n",
 					"    \"role\": \"user\",\r\n",
-					"    \"content\": \"Summarize the content of the dataset?\"\r\n",
+					"    \"content\": \"What is the sentiment for response id 318961?\"\r\n",
 					"}\r\n",
 					"]  \r\n",
 					"    \r\n",
@@ -144,7 +145,7 @@
 					"\r\n",
 					"print(completion)"
 				],
-				"execution_count": 10
+				"execution_count": 11
 			}
 		]
 	}
