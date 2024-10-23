@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "1b69d9f2-7082-48a3-bfb5-ae0c41207a4a"
+				"spark.autotune.trackingId": "650d2f11-28ff-4bb3-a8e8-ecccef64afd0"
 			}
 		},
 		"metadata": {
@@ -53,24 +53,40 @@
 		"cells": [
 			{
 				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%pip install azureopenai"
+				],
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
 				"source": [
 					"import os  \r\n",
 					"from openai import AzureOpenAI  \r\n",
-					" \r\n",
-					"endpoint = os.getenv(\"ENDPOINT_URL\", \"https://azureoaieastus.openai.azure.com/\")  \r\n",
-					"deployment = os.getenv(\"DEPLOYMENT_NAME\", \"gpt-4o\")  \r\n",
-					"search_endpoint = os.getenv(\"SEARCH_ENDPOINT\", \"https://infoasst-search-ervkh.search.windows.net\")  \r\n",
-					"search_key = os.getenv(\"SEARCH_KEY\", \"put your Azure AI Search admin key here\")  \r\n",
-					"search_index = os.getenv(\"SEARCH_INDEX_NAME\", \"rayinplayground1\")  \r\n",
-					"subscription_key = os.getenv(\"AZURE_OPENAI_API_KEY\", \"REPLACE_WITH_YOUR_KEY_VALUE_HERE\")  \r\n",
+					"    \r\n",
+					"###\r\n",
 					"\r\n",
+					"Key stuff here.\r\n",
+					"###\r\n",
+					"    \r\n",
 					"# Initialize Azure OpenAI client with key-based authentication\r\n",
 					"client = AzureOpenAI(  \r\n",
 					"    azure_endpoint=endpoint,  \r\n",
 					"    api_key=subscription_key,  \r\n",
 					"    api_version=\"2024-05-01-preview\",  \r\n",
 					")  \r\n",
-					"  \r\n",
+					"      \r\n",
 					"# Prepare the chat prompt  \r\n",
 					"chat_prompt = [\r\n",
 					"{\r\n",
@@ -79,54 +95,18 @@
 					"},\r\n",
 					"{\r\n",
 					"    \"role\": \"user\",\r\n",
-					"    \"content\": \"What is the data in row 5?\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"assistant\",\r\n",
-					"    \"content\": \"The data in row 5 includes the following details:\\n\\n- **Response ID**: 318268\\n- **Date**: 3/12/2024\\n- **Channel**: In-Person\\n- **Line of Business**: Driver Licenses and ID Cards\\n- **Appointment**: Yes\\n- **Experience Rating**: 7\\n- **Service Comparison**: 5 - Way above expectations\\n- **Staff Friendliness**: 1 - Yes\\n- **Service Improvement**: 3 - Getting better\\n- **Website Completion**: (Not provided)\\n- **Website Ratings**: (Not provided)\\n- **Comments**: \\\"I was getting an enhanced DL\\\"\\n- **Primary Service**: Other\\n- **Location**: Redmond\\n- **Driver Document**: Permit\\n- **Additional Comments**: (None provided)\\n- **Sentiment Score**: 0\\n\\nThis row provides feedback about an in-person visit to the Redmond office for an enhanced driver license, which was rated very positively by the respondent [doc1].\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"user\",\r\n",
-					"    \"content\": \"What is the sentiment for response id 318961?\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"assistant\",\r\n",
-					"    \"content\": \"The sentiment for response ID 318961 is **0.7** [doc1].\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"user\",\r\n",
-					"    \"content\": \"For all future questions on sentiment, response with values between 1 to 5 with 1 being the lowest and 5 the highest. Respond only with a number.\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"assistant\",\r\n",
-					"    \"content\": \"4\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"user\",\r\n",
-					"    \"content\": \"What is the sentiment for response id 318961?\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"assistant\",\r\n",
-					"    \"content\": \"4\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"user\",\r\n",
-					"    \"content\": \"What is the sentiment for response id 318968?\"\r\n",
-					"},\r\n",
-					"{\r\n",
-					"    \"role\": \"assistant\",\r\n",
-					"    \"content\": \"1\"\r\n",
+					"    \"content\": \"Summarize the content of the dataset?\"\r\n",
 					"}\r\n",
 					"]  \r\n",
-					"\r\n",
+					"    \r\n",
 					"# Include speech result if speech is enabled  \r\n",
 					"speech_result = chat_prompt  \r\n",
-					"\r\n",
+					"  \r\n",
 					"# Generate the completion  \r\n",
 					"completion = client.chat.completions.create(  \r\n",
 					"    model=deployment,  \r\n",
 					"    messages=speech_result,  \r\n",
-					"    past_messages=10,  \r\n",
+					"    #past_messages=10,  \r\n",
 					"    max_tokens=800,  \r\n",
 					"    temperature=0.7,  \r\n",
 					"    top_p=0.95,  \r\n",
@@ -134,9 +114,8 @@
 					"    presence_penalty=0,  \r\n",
 					"    stop=None,  \r\n",
 					"    stream=False  \r\n",
-					")\r\n",
-					",\r\n",
-					"  extra_body={\r\n",
+					"),\r\n",
+					"extra_body={\r\n",
 					"    \"data_sources\": [{\r\n",
 					"      \"type\": \"azure_search\",\r\n",
 					"      \"parameters\": {\r\n",
@@ -151,8 +130,8 @@
 					"        \"strictness\": 1,\r\n",
 					"        \"top_n_documents\": 20,\r\n",
 					"        \"authentication\": {\r\n",
-					"          \"type\": \"api_key\",\r\n",
-					"          \"key\": f\"{search_key}\"\r\n",
+					"        \"type\": \"api_key\",\r\n",
+					"        \"key\": f\"{search_key}\"\r\n",
 					"        },\r\n",
 					"        \"embedding_dependency\": {\r\n",
 					"          \"type\": \"deployment_name\",\r\n",
@@ -160,10 +139,12 @@
 					"        }\r\n",
 					"      }\r\n",
 					"    }]\r\n",
-					" }   print(completion.to_json())  \r\n",
-					"    "
+					"}\r\n",
+					"#print(completion.to_json())\r\n",
+					"\r\n",
+					"print(completion)"
 				],
-				"execution_count": 2
+				"execution_count": 10
 			}
 		]
 	}
