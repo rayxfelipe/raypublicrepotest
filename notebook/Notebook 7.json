@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "aec44801-bb97-4902-aab8-524231683e8e"
+				"spark.autotune.trackingId": "4fe2330c-d391-4631-929b-3dba78a12a9f"
 			}
 		},
 		"metadata": {
@@ -84,7 +84,7 @@
 					"      \"content\": [\r\n",
 					"        {\r\n",
 					"          \"type\": \"text\",\r\n",
-					"          \"text\": \"What is in the dataset?\"\r\n",
+					"          \"text\": \"WWhat is the sentiment for response id 318961?\"\r\n",
 					"        }\r\n",
 					"      ]\r\n",
 					"    },\r\n",
@@ -115,7 +115,7 @@
 					"# Handle the response as needed (e.g., print or process)\r\n",
 					"print(response.json())"
 				],
-				"execution_count": 4
+				"execution_count": 6
 			}
 		]
 	}
