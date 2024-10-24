@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "0a280a88-cd62-474e-96bd-afe2a3eb4511"
+				"spark.autotune.trackingId": "ae16613d-bb99-4fb8-b6da-5989bff11ac3"
 			}
 		},
 		"metadata": {
@@ -66,9 +66,10 @@
 					}
 				},
 				"source": [
-					"%pip install azureopenai"
+					"%pip install azureopenai\r\n",
+					"%pip install openai"
 				],
-				"execution_count": 9
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -145,7 +146,7 @@
 					"\r\n",
 					"print(completion)"
 				],
-				"execution_count": 11
+				"execution_count": 4
 			}
 		]
 	}
