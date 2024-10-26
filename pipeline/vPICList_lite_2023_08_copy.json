@@ -41,8 +41,7 @@
 								},
 								"sink": {
 									"type": "SqlPoolSink",
-									"writeBehavior": "Insert",
-									"tableOption": "autoCreate"
+									"allowCopyCommand": true
 								},
 								"enableStaging": false,
 								"translator": {
@@ -57,6 +56,12 @@
 									"parameters": {
 										"cw_table": "@item().source.table"
 									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_2gl",
+									"type": "DatasetReference"
 								}
 							]
 						}
