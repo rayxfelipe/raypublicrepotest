@@ -58,15 +58,6 @@
 										"cw_table": "@item().source.table"
 									}
 								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DestinationDataset_e78",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_table": "@item().destination.table"
-									}
-								}
 							]
 						}
 					]
