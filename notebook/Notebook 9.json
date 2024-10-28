@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "df26788c-1cc1-4747-87c2-e746f817715a"
+				"spark.autotune.trackingId": "e9b98ee5-7dc3-40ce-99bf-99bfc46a18ae"
 			}
 		},
 		"metadata": {
@@ -56,7 +56,7 @@
 				"metadata": {
 					"jupyter": {
 						"source_hidden": false,
-						"outputs_hidden": false
+						"outputs_hidden": true
 					},
 					"nteract": {
 						"transient": {
@@ -76,11 +76,7 @@
 					"import os  \r\n",
 					"from openai import AzureOpenAI  \r\n",
 					"    \r\n",
-					"endpoint = os.getenv(\"ENDPOINT_URL\", \"https://aoaicalstrshub694201078865.openai.azure.com/\")  \r\n",
-					"deployment = os.getenv(\"DEPLOYMENT_NAME\", \"gpt-4o\")  \r\n",
-					"search_endpoint = os.getenv(\"SEARCH_ENDPOINT\", \"https://aisearchcalstrshub694201078865.search.windows.net\")  \r\n",
-					"search_key = os.getenv(\"SEARCH_KEY\", \"put your Azure AI Search admin key here\")  \r\n",
-					"subscription_key = os.getenv(\"AZURE_OPENAI_API_KEY\", \"REPLACE_WITH_YOUR_KEY_VALUE_HERE\")  \r\n",
+					"\r\n",
 					"   \r\n",
 					"# Initialize Azure OpenAI client with key-based authentication\r\n",
 					"client = AzureOpenAI(  \r\n",
@@ -115,37 +111,37 @@
 					")  \r\n",
 					"      \r\n",
 					",\r\n",
-					"  extra_body={\r\n",
-					"    \"data_sources\": [{\r\n",
-					"      \"type\": \"azure_search\",\r\n",
-					"      \"parameters\": {\r\n",
-					"        \"filter\": None,\r\n",
-					"        \"endpoint\": f\"{search_endpoint}\",\r\n",
-					"        \"index_name\": \"brochures-index\",\r\n",
-					"        \"semantic_configuration\": \"azureml-default\",\r\n",
+					"extra_body={\r\n",
+					"  \"data_sources\": [{\r\n",
+					"    \"type\": \"azure_search\",\r\n",
+					"    \"parameters\": {\r\n",
+					"      \"filter\": None,\r\n",
+					"      \"endpoint\": f\"{search_endpoint}\",\r\n",
+					"      \"index_name\": \"brochures-index\",\r\n",
+					"      \"semantic_configuration\": \"azureml-default\",\r\n",
+					"      \"authentication\": {\r\n",
+					"        \"type\": \"api_key\",\r\n",
+					"        \"key\": f\"{search_key}\"\r\n",
+					"      },\r\n",
+					"      \"embedding_dependency\": {\r\n",
+					"        \"type\": \"endpoint\",\r\n",
+					"        \"endpoint\": \"https://aoaicalstrshub694201078865.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2023-07-01-preview\",\r\n",
 					"        \"authentication\": {\r\n",
 					"          \"type\": \"api_key\",\r\n",
-					"          \"key\": f\"{search_key}\"\r\n",
-					"        },\r\n",
-					"        \"embedding_dependency\": {\r\n",
-					"          \"type\": \"endpoint\",\r\n",
-					"          \"endpoint\": \"https://aoaicalstrshub694201078865.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2023-07-01-preview\",\r\n",
-					"          \"authentication\": {\r\n",
-					"            \"type\": \"api_key\",\r\n",
-					"            \"key\": \"5IkpOY1BvxTYnfvZKK3yRKgMsbX7BDQQ5oLYc2rPXwCUCcwoGsmpJQQJ99AJACHYHv6XJ3w3AAAAACOG7RXW\"\r\n",
-					"          }\r\n",
-					"        },\r\n",
-					"        \"query_type\": \"vector_simple_hybrid\",\r\n",
-					"        \"in_scope\": True,\r\n",
-					"        \"role_information\": \"You are an AI assistant that helps people find information.\",\r\n",
-					"        \"strictness\": 3,\r\n",
-					"        \"top_n_documents\": 5\r\n",
-					"      }\r\n",
-					"    }]\r\n",
-					"  }   print(completion.to_json())  \r\n",
+					"          \"key\": \"5IkpOY1BvxTYnfvZKK3yRKgMsbX7BDQQ5oLYc2rPXwCUCcwoGsmpJQQJ99AJACHYHv6XJ3w3AAAAACOG7RXW\"\r\n",
+					"        }\r\n",
+					"      },\r\n",
+					"      \"query_type\": \"vector_simple_hybrid\",\r\n",
+					"      \"in_scope\": True,\r\n",
+					"      \"role_information\": \"You are an AI assistant that helps people find information.\",\r\n",
+					"      \"strictness\": 3,\r\n",
+					"      \"top_n_documents\": 5\r\n",
+					"    }\r\n",
+					"  }]\r\n",
+					"}   print(completion.to_json())  \r\n",
 					"    "
 				],
-				"execution_count": null
+				"execution_count": 2
 			}
 		]
 	}
