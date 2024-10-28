@@ -1,10 +1,6 @@
 {
 	"name": "DestinationDataset_9nk",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

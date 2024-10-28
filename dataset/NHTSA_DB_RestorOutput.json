@@ -1,10 +1,6 @@
 {
 	"name": "NHTSA_DB_RestorOutput",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
 		"folder": {
 			"name": "WA-DOL"
 		},

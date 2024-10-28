@@ -1,10 +1,6 @@
 {
 	"name": "DestinationDataset_u7w",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"cw_fileName": {
 				"type": "String"

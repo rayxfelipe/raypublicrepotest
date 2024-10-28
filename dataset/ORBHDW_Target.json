@@ -1,10 +1,6 @@
 {
 	"name": "ORBHDW_Target",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
