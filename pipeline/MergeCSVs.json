@@ -46,13 +46,6 @@
 						}
 					},
 					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
-							"type": "LinkedServiceReference"
-						},
-						"path": "dlsynapsefromscratchfs/OR-BHDW/staging"
-					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
