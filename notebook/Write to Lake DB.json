@@ -7,7 +7,7 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool11",
+			"referenceName": "sparkpool1",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
@@ -15,469 +15,39 @@
 			"driverCores": 4,
 			"executorMemory": "28g",
 			"executorCores": 4,
-			"numExecutors": 1,
+			"numExecutors": 2,
 			"runAsWorkspaceSystemIdentity": false,
 			"conf": {
-				"spark.dynamicAllocation.enabled": "true",
-				"spark.dynamicAllocation.minExecutors": "1",
-				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "6d423623-aca2-4cc1-9ee3-15622f90bd57"
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "8208fbe4-1300-4800-a1a6-cdd7310b9a55"
 			}
 		},
 		"metadata": {
 			"saveOutput": true,
-			"synapse_widget": {
-				"version": "0.1",
-				"state": {
-					"1ad7d118-aa80-4bd1-a306-a5deecf4522c": {
-						"type": "Synapse.DataFrame",
-						"sync_state": {
-							"table": {
-								"rows": [
-									{
-										"0": "2022",
-										"1": "Q3",
-										"2": "128399228",
-										"4": "113604663",
-										"5": "242003891",
-										"6": "2022Q3",
-										"7": "1270612715"
-									},
-									{
-										"0": "2022",
-										"1": "Q2",
-										"2": "146711474",
-										"3": "27517183",
-										"4": "125601448",
-										"5": "299830105",
-										"6": "2022Q2",
-										"7": "1408396551"
-									},
-									{
-										"0": "2022",
-										"1": "Q1",
-										"2": "154838908",
-										"3": "37514840",
-										"4": "118726682",
-										"5": "311080430",
-										"6": "2022Q1",
-										"7": "1326753255"
-									},
-									{
-										"0": "2021",
-										"1": "Q4",
-										"2": "160839619",
-										"3": "40030593",
-										"4": "129339606",
-										"5": "330209818",
-										"6": "2021Q4",
-										"7": "1444182968"
-									},
-									{
-										"0": "2021",
-										"1": "Q3",
-										"2": "177312461",
-										"3": "43306300",
-										"4": "127835686",
-										"5": "348454447",
-										"6": "2021Q3",
-										"7": "1427996423"
-									},
-									{
-										"0": "2021",
-										"1": "Q2",
-										"2": "180221314",
-										"3": "42402734",
-										"4": "138637185",
-										"5": "361261233",
-										"6": "2021Q2",
-										"7": "1562124823"
-									},
-									{
-										"0": "2021",
-										"1": "Q1",
-										"2": "162113746",
-										"3": "40273985",
-										"4": "118115586",
-										"5": "320503317",
-										"6": "2021Q1",
-										"7": "1339073897"
-									},
-									{
-										"0": "2020",
-										"1": "Q4",
-										"2": "154674842",
-										"3": "42391987",
-										"4": "117878979",
-										"5": "314945808",
-										"6": "2020Q4",
-										"7": "1330075859"
-									},
-									{
-										"0": "2020",
-										"1": "Q3",
-										"2": "169514115",
-										"3": "43386101",
-										"4": "119280698",
-										"5": "332180914",
-										"6": "2020Q3",
-										"7": "1343153401"
-									},
-									{
-										"0": "2020",
-										"1": "Q2",
-										"2": "137517998",
-										"3": "30947989",
-										"4": "101890876",
-										"5": "270356863",
-										"6": "2020Q2",
-										"7": "1152349557"
-									}
-								],
-								"schema": [
-									{
-										"key": "0",
-										"name": "Calendar_Year",
-										"type": "string"
-									},
-									{
-										"key": "1",
-										"name": "Quarter",
-										"type": "string"
-									},
-									{
-										"key": "2",
-										"name": "Excise_Tax",
-										"type": "string"
-									},
-									{
-										"key": "3",
-										"name": "Cultivation_Tax",
-										"type": "string"
-									},
-									{
-										"key": "4",
-										"name": "Sales_Tax",
-										"type": "string"
-									},
-									{
-										"key": "5",
-										"name": "Total_Tax",
-										"type": "string"
-									},
-									{
-										"key": "6",
-										"name": "Year_Quarter",
-										"type": "string"
-									},
-									{
-										"key": "7",
-										"name": "Taxable_Sales",
-										"type": "string"
-									}
-								],
-								"truncated": false
-							},
-							"isSummary": false,
-							"language": "scala"
-						},
-						"persist_state": {
-							"view": {
-								"type": "details",
-								"chartOptions": {
-									"chartType": "bar",
-									"aggregationType": "count",
-									"categoryFieldKeys": [
-										"0"
-									],
-									"seriesFieldKeys": [
-										"0"
-									],
-									"isStacked": false
-								}
-							}
-						}
-					},
-					"6a0e4ec4-6962-492a-9832-bcdb54b02631": {
-						"type": "Synapse.DataFrame",
-						"sync_state": {
-							"table": {
-								"rows": [
-									{
-										"0": "2022",
-										"1": "Q3",
-										"2": "128399228",
-										"4": "113604663",
-										"5": "242003891",
-										"6": "2022Q3",
-										"7": "1270612715"
-									},
-									{
-										"0": "2022",
-										"1": "Q2",
-										"2": "146711474",
-										"3": "27517183",
-										"4": "125601448",
-										"5": "299830105",
-										"6": "2022Q2",
-										"7": "1408396551"
-									},
-									{
-										"0": "2022",
-										"1": "Q1",
-										"2": "154838908",
-										"3": "37514840",
-										"4": "118726682",
-										"5": "311080430",
-										"6": "2022Q1",
-										"7": "1326753255"
-									},
-									{
-										"0": "2021",
-										"1": "Q4",
-										"2": "160839619",
-										"3": "40030593",
-										"4": "129339606",
-										"5": "330209818",
-										"6": "2021Q4",
-										"7": "1444182968"
-									},
-									{
-										"0": "2021",
-										"1": "Q3",
-										"2": "177312461",
-										"3": "43306300",
-										"4": "127835686",
-										"5": "348454447",
-										"6": "2021Q3",
-										"7": "1427996423"
-									},
-									{
-										"0": "2021",
-										"1": "Q2",
-										"2": "180221314",
-										"3": "42402734",
-										"4": "138637185",
-										"5": "361261233",
-										"6": "2021Q2",
-										"7": "1562124823"
-									},
-									{
-										"0": "2021",
-										"1": "Q1",
-										"2": "162113746",
-										"3": "40273985",
-										"4": "118115586",
-										"5": "320503317",
-										"6": "2021Q1",
-										"7": "1339073897"
-									},
-									{
-										"0": "2020",
-										"1": "Q4",
-										"2": "154674842",
-										"3": "42391987",
-										"4": "117878979",
-										"5": "314945808",
-										"6": "2020Q4",
-										"7": "1330075859"
-									},
-									{
-										"0": "2020",
-										"1": "Q3",
-										"2": "169514115",
-										"3": "43386101",
-										"4": "119280698",
-										"5": "332180914",
-										"6": "2020Q3",
-										"7": "1343153401"
-									},
-									{
-										"0": "2020",
-										"1": "Q2",
-										"2": "137517998",
-										"3": "30947989",
-										"4": "101890876",
-										"5": "270356863",
-										"6": "2020Q2",
-										"7": "1152349557"
-									},
-									{
-										"0": "2020",
-										"1": "Q1",
-										"2": "112691216",
-										"3": "27635008",
-										"4": "77540464",
-										"5": "217866688",
-										"6": "2020Q1",
-										"7": "874484055"
-									},
-									{
-										"0": "2019",
-										"1": "Q4",
-										"2": "86896273",
-										"3": "24662913",
-										"4": "70924162",
-										"5": "182483348",
-										"6": "2019Q4",
-										"7": "799177192"
-									},
-									{
-										"0": "2019",
-										"1": "Q3",
-										"2": "84887286",
-										"3": "22809108",
-										"4": "65838591",
-										"5": "173534985",
-										"6": "2019Q3",
-										"7": "742689966"
-									},
-									{
-										"0": "2019",
-										"1": "Q2",
-										"2": "75731295",
-										"3": "23037243",
-										"4": "60369668",
-										"5": "159138206",
-										"6": "2019Q2",
-										"7": "681987559"
-									},
-									{
-										"0": "2019",
-										"1": "Q1",
-										"2": "63702235",
-										"3": "17277125",
-										"4": "50697347",
-										"5": "131676707",
-										"6": "2019Q1",
-										"7": "579052475"
-									},
-									{
-										"0": "2018",
-										"1": "Q4",
-										"2": "57134451",
-										"3": "17305538",
-										"4": "49219539",
-										"5": "123659528",
-										"6": "2018Q4",
-										"7": "563926086"
-									},
-									{
-										"0": "2018",
-										"1": "Q3",
-										"2": "55452365",
-										"3": "12965879",
-										"4": "42660678",
-										"5": "111078922",
-										"6": "2018Q3",
-										"7": "487899374"
-									},
-									{
-										"0": "2018",
-										"1": "Q2",
-										"2": "43202987",
-										"3": "4963720",
-										"4": "45452521",
-										"5": "93619228",
-										"6": "2018Q2",
-										"7": "520042047"
-									},
-									{
-										"0": "2018",
-										"1": "Q1",
-										"2": "35867466",
-										"3": "1849146",
-										"4": "35511626",
-										"5": "73228238",
-										"6": "2018Q1",
-										"7": "408509470"
-									}
-								],
-								"schema": [
-									{
-										"key": "0",
-										"name": "Calendar_Year",
-										"type": "string"
-									},
-									{
-										"key": "1",
-										"name": "Quarter",
-										"type": "string"
-									},
-									{
-										"key": "2",
-										"name": "Excise_Tax",
-										"type": "string"
-									},
-									{
-										"key": "3",
-										"name": "Cultivation_Tax",
-										"type": "string"
-									},
-									{
-										"key": "4",
-										"name": "Sales_Tax",
-										"type": "string"
-									},
-									{
-										"key": "5",
-										"name": "Total_Tax",
-										"type": "string"
-									},
-									{
-										"key": "6",
-										"name": "Year_Quarter",
-										"type": "string"
-									},
-									{
-										"key": "7",
-										"name": "Taxable_Sales",
-										"type": "string"
-									}
-								],
-								"truncated": false
-							},
-							"isSummary": false,
-							"language": "scala"
-						},
-						"persist_state": {
-							"view": {
-								"type": "details",
-								"chartOptions": {
-									"chartType": "bar",
-									"aggregationType": "count",
-									"categoryFieldKeys": [
-										"0"
-									],
-									"seriesFieldKeys": [
-										"0"
-									],
-									"isStacked": false
-								}
-							}
-						}
-					}
-				}
-			},
 			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
 			"language_info": {
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool11",
-				"name": "SparkPool11",
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/rg-synapse-demo-001/providers/Microsoft.Synapse/workspaces/synw-demoworkspace-001/bigDataPools/sparkpool1",
+				"name": "sparkpool1",
 				"type": "Spark",
-				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool11",
+				"endpoint": "https://synw-demoworkspace-001.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkpool1",
 				"auth": {
 					"type": "AAD",
-					"authResource": "https://dev.azuresynapse.net",
-					"authHeader": null
+					"authResource": "https://dev.azuresynapse.net"
 				},
-				"sparkVersion": "3.3",
-				"nodeCount": 10,
+				"sparkVersion": "3.4",
+				"nodeCount": 3,
 				"cores": 4,
 				"memory": 28,
-				"extraHeader": null
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},
@@ -669,7 +239,8 @@
 					"\"\"\") \r\n",
 					"display(sparksql_df)\r\n",
 					"sparksql_df.write.mode(\"overwrite\").saveAsTable(\"cannabis.taxrevenue2019\")"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -690,7 +261,8 @@
 					"view_query_result.show()\r\n",
 					"\r\n",
 					""
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -708,7 +280,8 @@
 				"source": [
 					"# To delete the view\r\n",
 					"spark.sql(\"drop view cannabis.ray_view\")"
-				]
+				],
+				"execution_count": null
 			}
 		]
 	}
