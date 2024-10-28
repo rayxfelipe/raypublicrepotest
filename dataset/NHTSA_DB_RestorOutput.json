@@ -1,6 +1,10 @@
 {
 	"name": "NHTSA_DB_RestorOutput",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synw-demoworkspace-001-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
 		"folder": {
 			"name": "WA-DOL"
 		},
