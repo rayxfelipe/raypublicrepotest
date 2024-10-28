@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "7bc7de12-7e81-405e-8f49-751f8320742d"
+				"spark.autotune.trackingId": "3e68bb08-c7e5-4fde-9413-0bcc1e89bd3b"
 			}
 		},
 		"metadata": {
@@ -109,7 +109,7 @@
 					"    \"content\": \"Margie's Travel offers the following accommodation options in New York:\\n\\n1. **The Manhattan Hotel**: Stay in the heart of New York City, within an easy walk to Times Square and Broadway [doc1].\\n2. **The Grand Central Hotel**: Comfortable mid-town hotel, close to Grand Central Station, the Chrysler Building, and the Empire State Building [doc1].\\n3. **The Park Hotel**: Luxurious accommodation in upper Manhattan, with views of Central Park [doc1].\\n\\nTo book your trip to New York, visit [Margie's Travel](http://www.margiestravel.com) [doc1].\"\r\n",
 					"}\r\n",
 					"],  \r\n",
-					"    past_messages=10,  \r\n",
+					"    #past_messages=10,  \r\n",
 					"    max_tokens=800,  \r\n",
 					"    temperature=0.7,  \r\n",
 					"    top_p=0.95,  \r\n",
@@ -137,7 +137,7 @@
 					"print(completion.model_dump_json(indent=2))  \r\n",
 					"      "
 				],
-				"execution_count": 2
+				"execution_count": 4
 			}
 		]
 	}
