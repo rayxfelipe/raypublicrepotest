@@ -1,6 +1,10 @@
 {
 	"name": "DestinationDataset_9nk",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synw-demoworkspace-001-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

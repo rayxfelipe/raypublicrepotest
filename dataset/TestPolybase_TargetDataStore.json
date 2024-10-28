@@ -1,6 +1,10 @@
 {
 	"name": "TestPolybase_TargetDataStore",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "raysynapsemgdvnet-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference"
+		},
 		"annotations": [],
 		"type": "AzureSqlDWTable",
 		"schema": [
@@ -30,11 +34,7 @@
 				"name": "RottenTomato",
 				"type": "varchar"
 			}
-		],
-		"typeProperties": {
-			"schema": "dbo",
-			"table": "Movies"
-		}
+		]
 	},
 	"type": "Microsoft.Synapse/workspaces/datasets"
 }

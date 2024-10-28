@@ -1,6 +1,10 @@
 {
 	"name": "DestinationDataset_u7w",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synw-demoworkspace-001-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"cw_fileName": {
 				"type": "String"
