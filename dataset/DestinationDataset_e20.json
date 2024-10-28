@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_e20",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "moviesDB2"
+		},
+		"sqlPool": {
+			"referenceName": "sqldedpool1",
+			"type": "SqlPoolReference"
+		}
+	}
+}

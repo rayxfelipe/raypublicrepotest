@@ -1,0 +1,134 @@
+{
+	"name": "copyformovies",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_e20",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "dlfssynapsedemo001/sampledata/moviesDB.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.moviesDB2"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"allowCopyCommand": true,
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "synw-demoworkspace-001-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "dlfssynapsedemo001/sampledata"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "movie",
+									"type": "String"
+								},
+								"sink": {
+									"name": "movie",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "title",
+									"type": "String"
+								},
+								"sink": {
+									"name": "title",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "genres",
+									"type": "String"
+								},
+								"sink": {
+									"name": "genres",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "year",
+									"type": "String"
+								},
+								"sink": {
+									"name": "year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Rating",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Rating",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Rotton Tomato",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Rotton Tomato",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_e20",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_e20",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
