@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "8881ab5a-c54e-4d76-b901-6b9bb3df1983"
+				"spark.autotune.trackingId": "a48ad645-02be-4193-b273-8b8b7071d44a"
 			}
 		},
 		"metadata": {
@@ -79,8 +79,6 @@
 					"### key stuff here\r\n",
 					"\r\n",
 					"\r\n",
-					"\r\n",
-					"\r\n",
 					"### key stuff here\r\n",
 					"\r\n",
 					"\r\n",
@@ -88,7 +86,7 @@
 					"client = AzureOpenAI(  \r\n",
 					"    azure_endpoint=endpoint,  \r\n",
 					"    api_key=subscription_key,  \r\n",
-					"    api_version=\"2024-05-01-preview\",  \r\n",
+					"    api_version=\"2024-08-01-preview\",  \r\n",
 					")  \r\n",
 					"      \r\n",
 					"# Prepare the chat prompt  \r\n",
@@ -108,7 +106,7 @@
 					"},\r\n",
 					"{\r\n",
 					"    \"role\": \"user\",\r\n",
-					"    \"content\": \"What is in the magie travel dataset?\"\r\n",
+					"    \"content\": \"Where can I stay in New York?\"\r\n",
 					"}\r\n",
 					"]  \r\n",
 					"\r\n",
@@ -162,7 +160,7 @@
 					"print(completion)  \r\n",
 					"    "
 				],
-				"execution_count": 12
+				"execution_count": 16
 			}
 		]
 	}
