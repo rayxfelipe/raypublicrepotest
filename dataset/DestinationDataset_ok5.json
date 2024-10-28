@@ -1,6 +1,10 @@
 {
 	"name": "DestinationDataset_ok5",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "raysynapsemgdvnet-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
