@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "ae16613d-bb99-4fb8-b6da-5989bff11ac3"
+				"spark.autotune.trackingId": "ab2cf569-99f0-4393-a66e-480adb99f803"
 			}
 		},
 		"metadata": {
@@ -74,10 +74,13 @@
 			{
 				"cell_type": "code",
 				"source": [
+					"\r\n",
+					"\r\n",
 					"import os  \r\n",
 					"from openai import AzureOpenAI  \r\n",
 					"    \r\n",
 					"###\r\n",
+					"\r\n",
 					"\r\n",
 					"key stuff here. \r\n",
 					"###\r\n",
