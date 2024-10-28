@@ -1,0 +1,142 @@
+{
+	"name": "Notebook 10",
+	"properties": {
+		"folder": {
+			"name": "WA-DOL"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "sparkpool3",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "e4e1a452-5f70-40b2-a810-cc99e74cc707"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/rg-synapse-demo-001/providers/Microsoft.Synapse/workspaces/synw-demoworkspace-001/bigDataPools/sparkpool3",
+				"name": "sparkpool3",
+				"type": "Spark",
+				"endpoint": "https://synw-demoworkspace-001.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkpool3",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%pip install azureopenai\r\n",
+					"%pip install openai"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"import os  \r\n",
+					"from openai import AzureOpenAI  \r\n",
+					"from azure.identity import DefaultAzureCredential, get_bearer_token_provider  \r\n",
+					"        \r\n",
+					"endpoint = os.getenv(\"ENDPOINT_URL\", \"https://aoaicalstrshub694201078865.openai.azure.com/\")\r\n",
+					"deployment = os.getenv(\"DEPLOYMENT_NAME\", \"gpt-4o\")\r\n",
+					"        \r\n",
+					"# Initialize Azure OpenAI client with Entra ID authentication  \r\n",
+					"cognitiveServicesResource = os.getenv('AZURE_COGNITIVE_SERVICES_RESOURCE', 'https://aisearchcalstrshub694201078865.search.windows.net')  \r\n",
+					"token_provider = get_bearer_token_provider(  \r\n",
+					"    DefaultAzureCredential(),  \r\n",
+					"    f'{cognitiveServicesResource}.default'  \r\n",
+					")  \r\n",
+					"       \r\n",
+					"client = AzureOpenAI(  \r\n",
+					"    azure_endpoint=endpoint,  \r\n",
+					"    azure_ad_token_provider=token_provider,  \r\n",
+					"    api_version='2024-05-01-preview',  \r\n",
+					")  \r\n",
+					"        \r\n",
+					"completion = client.chat.completions.create(  \r\n",
+					"    model=deployment,  \r\n",
+					"    messages=[\r\n",
+					"{\r\n",
+					"    \"role\": \"system\",\r\n",
+					"    \"content\": \"You are an AI assistant that helps people find information.\"\r\n",
+					"},\r\n",
+					"{\r\n",
+					"    \"role\": \"user\",\r\n",
+					"    \"content\": \"Where can I stay in New York?\"\r\n",
+					"},\r\n",
+					"{\r\n",
+					"    \"role\": \"assistant\",\r\n",
+					"    \"content\": \"Margie's Travel offers the following accommodation options in New York:\\n\\n1. **The Manhattan Hotel**: Stay in the heart of New York City, within an easy walk to Times Square and Broadway [doc1].\\n2. **The Grand Central Hotel**: Comfortable mid-town hotel, close to Grand Central Station, the Chrysler Building, and the Empire State Building [doc1].\\n3. **The Park Hotel**: Luxurious accommodation in upper Manhattan, with views of Central Park [doc1].\\n\\nTo book your trip to New York, visit [Margie's Travel](http://www.margiestravel.com) [doc1].\"\r\n",
+					"}\r\n",
+					"],  \r\n",
+					"    past_messages=10,  \r\n",
+					"    max_tokens=800,  \r\n",
+					"    temperature=0.7,  \r\n",
+					"    top_p=0.95,  \r\n",
+					"    frequency_penalty=0,  \r\n",
+					"    presence_penalty=0,  \r\n",
+					"    stop=None,  \r\n",
+					"    extra_body={  \r\n",
+					"        \"data_sources\": [  \r\n",
+					"            {  \r\n",
+					"                \"type\": \"azure_search\",  \r\n",
+					"                \"parameters\": {  \r\n",
+					"                    \"endpoint\": os.environ[\"AZURE_AI_SEARCH_ENDPOINT\"],  \r\n",
+					"                    \"index_name\": os.environ[\"AZURE_AI_SEARCH_INDEX\"],  \r\n",
+					"                    \"authentication\": {  \r\n",
+					"                        \"type\": \"azure_ad\"  \r\n",
+					"                    }  \r\n",
+					"                }  \r\n",
+					"            }  \r\n",
+					"        ]  \r\n",
+					"    }  \r\n",
+					")  \r\n",
+					"        \r\n",
+					"print(completion.model_dump_json(indent=2))  \r\n",
+					"      "
+				],
+				"execution_count": 5
+			}
+		]
+	}
+}
