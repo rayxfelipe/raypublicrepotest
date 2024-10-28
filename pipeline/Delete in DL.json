@@ -21,7 +21,7 @@
 					},
 					"logStorageSettings": {
 						"linkedServiceName": {
-							"referenceName": "synapsefromscratch-WorkspaceDefaultStorage",
+							"referenceName": "DataLake2_DemoRG",
 							"type": "LinkedServiceReference"
 						},
 						"path": "dlsynapsefromscratchfs/OR-BHDW/testdelete"

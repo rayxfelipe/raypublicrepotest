@@ -1,13 +1,6 @@
 {
 	"name": "TestPolybase_TargetDataStore",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "synapsefromscratch-WorkspaceDefaultSqlServer",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"DBName": "dedpool1"
-			}
-		},
 		"annotations": [],
 		"type": "AzureSqlDWTable",
 		"schema": [
