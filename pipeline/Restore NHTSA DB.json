@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderStoredProcedureName": "[dbo].[sp_forsynapse_dropdb]",
+						"sqlReaderStoredProcedureName": "test",
 						"storedProcedureParameters": {
 							"DatabaseName": {
 								"type": "String",
@@ -50,7 +50,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "NHTSDB_IntDS",
+						"referenceName": "DestinationDataset_lwx",
 						"type": "DatasetReference"
 					}
 				],
