@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "c34688cf-728c-415a-bf60-eaa658561232"
+				"spark.autotune.trackingId": "16b9e303-3cae-44ad-89cb-cab96b805169"
 			}
 		},
 		"metadata": {
@@ -78,11 +78,15 @@
 					"from openai import AzureOpenAI  \r\n",
 					"from azure.identity import DefaultAzureCredential, get_bearer_token_provider  \r\n",
 					"        \r\n",
-					"endpoint = os.getenv(\"ENDPOINT_URL\", \"https://aoaicalstrshub694201078865.openai.azure.com/\")\r\n",
-					"deployment = os.getenv(\"DEPLOYMENT_NAME\", \"gpt-4o\")\r\n",
+					"#endpoint = os.getenv(\"ENDPOINT_URL\", \"https://aoaicalstrshub694201078865.openai.azure.com/\")\r\n",
+					"endpoint = \"https://aoaicalstrshub694201078865.openai.azure.com/\"\r\n",
+					"#deployment = os.getenv(\"DEPLOYMENT_NAME\", \"gpt-4o\")\r\n",
+					"deployment = \"gpt-4o\"\r\n",
+					"\r\n",
 					"        \r\n",
 					"# Initialize Azure OpenAI client with Entra ID authentication  \r\n",
-					"cognitiveServicesResource = os.getenv('AZURE_COGNITIVE_SERVICES_RESOURCE', 'https://aisearchcalstrshub694201078865.search.windows.net')  \r\n",
+					"#cognitiveServicesResource = os.getenv('AZURE_COGNITIVE_SERVICES_RESOURCE', 'https://aisearchcalstrshub694201078865.search.windows.net')  \r\n",
+					"cognitiveServicesResource = \"https://aisearchcalstrshub694201078865.search.windows.net\" \r\n",
 					"token_provider = get_bearer_token_provider(  \r\n",
 					"    DefaultAzureCredential(),  \r\n",
 					"    f'{cognitiveServicesResource}.default'  \r\n",
@@ -138,7 +142,7 @@
 					"print(completion.model_dump_json(indent=2))  \r\n",
 					"      "
 				],
-				"execution_count": 7
+				"execution_count": 9
 			}
 		]
 	}
