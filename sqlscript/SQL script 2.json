@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [movie]\n,[title]\n,[genres]\n,[year]\n,[Rating]\n,[Rotton Tomato]\n FROM [dbo].[moviesDB]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "sqldedpool1",
+				"poolName": "sqldedpool1"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
