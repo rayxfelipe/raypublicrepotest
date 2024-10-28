@@ -1,5 +1,5 @@
 {
-	"name": "Notebook 8",
+	"name": "AOAI API No Index",
 	"properties": {
 		"description": "Doesn't work. No grounded data.",
 		"folder": {
@@ -21,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "3fe1327c-8db9-4d3a-a310-feffee9d60d6"
+				"spark.autotune.trackingId": "444bf1d3-92b6-4c8f-abf5-49c6b2ad110c"
 			}
 		},
 		"metadata": {

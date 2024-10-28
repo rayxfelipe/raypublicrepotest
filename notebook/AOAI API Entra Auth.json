@@ -1,5 +1,5 @@
 {
-	"name": "Notebook 10",
+	"name": "AOAI API Entra Auth",
 	"properties": {
 		"folder": {
 			"name": "WA-DOL"
@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e4e1a452-5f70-40b2-a810-cc99e74cc707"
+				"spark.autotune.trackingId": "14fbd068-484b-4ade-a856-ca42c0be690e"
 			}
 		},
 		"metadata": {
