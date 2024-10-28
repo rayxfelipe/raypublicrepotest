@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_dfx",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "moviesDB"
+		},
+		"sqlPool": {
+			"referenceName": "sqldedpool1",
+			"type": "SqlPoolReference"
+		}
+	}
+}
