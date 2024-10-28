@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "4670c2c5-632b-4c41-b937-376379286542"
+				"spark.autotune.trackingId": "7bc7de12-7e81-405e-8f49-751f8320742d"
 			}
 		},
 		"metadata": {
@@ -122,9 +122,9 @@
 					"                \"type\": \"azure_search\",  \r\n",
 					"                \"parameters\": {  \r\n",
 					"                    #\"endpoint\": os.environ[\"AZURE_AI_SEARCH_ENDPOINT\"],  \r\n",
-					"                    \"endpoint\": os.environ[\"AZURE_AI_SEARCH_ENDPOINT\"],  \r\n",
+					"                    \"endpoint\": \"https://aisearchcalstrshub694201078865.search.windows.net\",  \r\n",
 					"                    #\"index_name\": os.environ[\"AZURE_AI_SEARCH_INDEX\"],  \r\n",
-					"                    \"index_name\": os.environ[\"AZURE_AI_SEARCH_INDEX\"],  \r\n",
+					"                    \"index_name\": \"brochures-index\",  \r\n",
 					"                    \"authentication\": {  \r\n",
 					"                        \"type\": \"azure_ad\"  \r\n",
 					"                    }  \r\n",
