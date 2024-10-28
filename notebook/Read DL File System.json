@@ -1,6 +1,9 @@
 {
 	"name": "Read DL File System",
 	"properties": {
+		"folder": {
+			"name": "Examples"
+		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
@@ -17,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "93798005-d97d-4e22-be8a-f96f7d0761bb"
+				"spark.autotune.trackingId": "e258cc9d-ab39-4efd-9744-81891c3c8bf4"
 			}
 		},
 		"metadata": {
@@ -33,17 +36,10 @@
 			"a365ComputeOptions": {
 				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseFromScratch-Demo/providers/Microsoft.Synapse/workspaces/synapsefromscratch/bigDataPools/SparkPool11",
 				"name": "SparkPool11",
-				"type": "Spark",
-				"endpoint": "https://synapsefromscratch.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool11",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
-				},
-				"sparkVersion": "3.4",
-				"nodeCount": 10,
-				"cores": 4,
-				"memory": 28,
-				"automaticScaleJobs": true
+				}
 			},
 			"sessionKeepAliveTimeout": 30
 		},

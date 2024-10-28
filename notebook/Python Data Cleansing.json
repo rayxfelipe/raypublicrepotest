@@ -1,6 +1,9 @@
 {
 	"name": "Python Data Cleansing",
 	"properties": {
+		"folder": {
+			"name": "Examples"
+		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
@@ -17,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "3",
-				"spark.autotune.trackingId": "bb20e278-e403-4c89-a3d9-24ef8ad392f8"
+				"spark.autotune.trackingId": "a58d8120-0994-4a18-827d-65ffde061f59"
 			}
 		},
 		"metadata": {
@@ -33,17 +36,10 @@
 			"a365ComputeOptions": {
 				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/SynapseMgdVnet-Demo/providers/Microsoft.Synapse/workspaces/raysynapsemgdvnet/bigDataPools/SparkPool2",
 				"name": "SparkPool2",
-				"type": "Spark",
-				"endpoint": "https://raysynapsemgdvnet.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool2",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
-				},
-				"sparkVersion": "3.3",
-				"nodeCount": 10,
-				"cores": 8,
-				"memory": 56,
-				"automaticScaleJobs": true
+				}
 			},
 			"sessionKeepAliveTimeout": 30
 		},

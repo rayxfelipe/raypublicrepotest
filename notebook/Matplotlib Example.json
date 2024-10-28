@@ -1,6 +1,9 @@
 {
 	"name": "Matplotlib Example",
 	"properties": {
+		"folder": {
+			"name": "Examples"
+		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
@@ -18,7 +21,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "7c6f8e42-b394-40be-b855-324e0f3d7146"
+				"spark.autotune.trackingId": "0add6805-70fd-43f0-b23b-fafb4e93a2b9"
 			}
 		},
 		"metadata": {
@@ -34,18 +37,10 @@
 			"a365ComputeOptions": {
 				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/Synapse-Demo/providers/Microsoft.Synapse/workspaces/rayfelipesynapseworkspace/bigDataPools/SynapseDemoSprk",
 				"name": "SynapseDemoSprk",
-				"type": "Spark",
-				"endpoint": "https://rayfelipesynapseworkspace.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SynapseDemoSprk",
 				"auth": {
 					"type": "AAD",
-					"authResource": "https://dev.azuresynapse.net",
-					"authHeader": null
-				},
-				"sparkVersion": "3.2",
-				"nodeCount": 10,
-				"cores": 4,
-				"memory": 28,
-				"extraHeader": null
+					"authResource": "https://dev.azuresynapse.net"
+				}
 			},
 			"sessionKeepAliveTimeout": 30
 		},
