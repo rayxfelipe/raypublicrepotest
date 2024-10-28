@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "14fbd068-484b-4ade-a856-ca42c0be690e"
+				"spark.autotune.trackingId": "4670c2c5-632b-4c41-b937-376379286542"
 			}
 		},
 		"metadata": {
@@ -121,7 +121,9 @@
 					"            {  \r\n",
 					"                \"type\": \"azure_search\",  \r\n",
 					"                \"parameters\": {  \r\n",
+					"                    #\"endpoint\": os.environ[\"AZURE_AI_SEARCH_ENDPOINT\"],  \r\n",
 					"                    \"endpoint\": os.environ[\"AZURE_AI_SEARCH_ENDPOINT\"],  \r\n",
+					"                    #\"index_name\": os.environ[\"AZURE_AI_SEARCH_INDEX\"],  \r\n",
 					"                    \"index_name\": os.environ[\"AZURE_AI_SEARCH_INDEX\"],  \r\n",
 					"                    \"authentication\": {  \r\n",
 					"                        \"type\": \"azure_ad\"  \r\n",
@@ -135,7 +137,7 @@
 					"print(completion.model_dump_json(indent=2))  \r\n",
 					"      "
 				],
-				"execution_count": 5
+				"execution_count": 2
 			}
 		]
 	}
