@@ -1,0 +1,168 @@
+{
+	"name": "AOAI API Key Auth CalSTRS",
+	"properties": {
+		"folder": {
+			"name": "CalSTRS"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "sparkpool1",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "85cdbc3a-bd77-4279-b61b-b9f4ca7e863d"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/499bc654-f84c-46c2-952c-b30be508f78c/resourceGroups/rg-synapse-demo-001/providers/Microsoft.Synapse/workspaces/synw-demoworkspace-001/bigDataPools/sparkpool1",
+				"name": "sparkpool1",
+				"type": "Spark",
+				"endpoint": "https://synw-demoworkspace-001.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkpool1",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": true
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%pip install azureopenai\r\n",
+					"%pip install openai"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"import os  \r\n",
+					"from openai import AzureOpenAI  \r\n",
+					"\r\n",
+					"### key stuff here\r\n",
+					"\r\n",
+					"\r\n",
+					"### key stuff here\r\n",
+					"\r\n",
+					"\r\n",
+					"# Initialize Azure OpenAI client with key-based authentication\r\n",
+					"client = AzureOpenAI(  \r\n",
+					"    azure_endpoint=endpoint,  \r\n",
+					"    api_key=subscription_key,  \r\n",
+					"    api_version=\"2024-08-01-preview\",  \r\n",
+					")  \r\n",
+					"      \r\n",
+					"# Prepare the chat prompt  \r\n",
+					"#chat_prompt = [\r\n",
+					"#{\r\n",
+					"#    \"role\": \"system\",\r\n",
+					"#    \"content\": \"You are an AI assistant that helps people find information.\"\r\n",
+					"#}\r\n",
+					"#] \r\n",
+					"\r\n",
+					"\r\n",
+					"# Prepare the chat prompt  \r\n",
+					"chat_prompt = [\r\n",
+					"{\r\n",
+					"    \"role\": \"system\",\r\n",
+					"    \"content\": \"You are an AI assistant that helps people find information.\"\r\n",
+					"},\r\n",
+					"{\r\n",
+					"    \"role\": \"user\",\r\n",
+					"    \"content\": \"Where can I stay in New York?\"\r\n",
+					"}\r\n",
+					"]  \r\n",
+					"\r\n",
+					"\r\n",
+					"    \r\n",
+					"# Include speech result if speech is enabled  \r\n",
+					"speech_result = chat_prompt  \r\n",
+					"    \r\n",
+					"# Generate the completion  \r\n",
+					"completion = client.chat.completions.create(  \r\n",
+					"    model=deployment,  \r\n",
+					"    messages=speech_result,  \r\n",
+					"    #past_messages=10,  \r\n",
+					"    max_tokens=800,  \r\n",
+					"    temperature=0.7,  \r\n",
+					"    top_p=0.95,  \r\n",
+					"    frequency_penalty=0,  \r\n",
+					"    presence_penalty=0,  \r\n",
+					"    stop=None,  \r\n",
+					"    stream=False,  \r\n",
+					"    extra_body={\r\n",
+					"      \"data_sources\": [{\r\n",
+					"        \"type\": \"azure_search\",\r\n",
+					"        \"parameters\": {\r\n",
+					"          \"filter\": None,\r\n",
+					"          \"endpoint\": f\"{search_endpoint}\",\r\n",
+					"          \"index_name\": \"brochures-index\",\r\n",
+					"          \"semantic_configuration\": \"azureml-default\",\r\n",
+					"          \"authentication\": {\r\n",
+					"            \"type\": \"api_key\",\r\n",
+					"            \"key\": f\"{search_key}\"\r\n",
+					"          },\r\n",
+					"          \"embedding_dependency\": {\r\n",
+					"            \"type\": \"endpoint\",\r\n",
+					"            \"endpoint\": \"https://aoaicalstrshub694201078865.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2023-07-01-preview\",\r\n",
+					"            \"authentication\": {\r\n",
+					"              \"type\": \"api_key\",\r\n",
+					"              \"key\": \"xxxx\"\r\n",
+					"            }\r\n",
+					"          },\r\n",
+					"          \"query_type\": \"vector_simple_hybrid\",\r\n",
+					"          \"in_scope\": True,\r\n",
+					"          \"role_information\": \"You are an AI assistant that helps people find information.\",\r\n",
+					"          \"strictness\": 3,\r\n",
+					"          \"top_n_documents\": 5\r\n",
+					"        }\r\n",
+					"      }]\r\n",
+					"    }\r\n",
+					")\r\n",
+					"\r\n",
+					"print(completion.to_json())  \r\n",
+					"#print(completion)  \r\n",
+					"    "
+				],
+				"execution_count": 4
+			}
+		]
+	}
+}
