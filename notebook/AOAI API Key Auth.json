@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "d4ca23d7-e21d-47b7-a0f0-ac93390758b7"
+				"spark.autotune.trackingId": "0f3f61af-d29b-412c-b31d-c31023b798e9"
 			}
 		},
 		"metadata": {
@@ -144,7 +144,7 @@
 					"            \"endpoint\": \"https://aoaicalstrshub694201078865.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2023-07-01-preview\",\r\n",
 					"            \"authentication\": {\r\n",
 					"              \"type\": \"api_key\",\r\n",
-					"              \"key\": \"5IkpOY1BvxTYnfvZKK3yRKgMsbX7BDQQ5oLYc2rPXwCUCcwoGsmpJQQJ99AJACHYHv6XJ3w3AAAAACOG7RXW\"\r\n",
+					"              \"key\": \"xxxx this is the sub key xxxxx\"\r\n",
 					"            }\r\n",
 					"          },\r\n",
 					"          \"query_type\": \"vector_simple_hybrid\",\r\n",
